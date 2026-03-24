@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Serrago — Tradizione · Innovazione · Praia a Mare</title>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Helvetica+Neue:wght@100;300;400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0D0D0D;--paper:#F7F5F0;--warm:#EDEBE4;
+  --accent:#1A1A1A;--gold:#8B6914;--rule:rgba(13,13,13,.12);
+  --red:#8B1A1A;
+}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);color:var(--ink);
+  font-family:'Space Grotesk',sans-serif;font-weight:300;
+  overflow-x:hidden;
+}
+
+/* ── EDITORIAL GRID ── */
+.page{max-width:1200px;margin:0 auto;padding:0 48px}
+
+/* ── MASTHEAD ── */
+.masthead{
+  border-bottom:2px solid var(--ink);
+  padding:32px 0 20px;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:end;
+  gap:20px;
+}
+.mast-left{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(13,13,13,.45);line-height:2;
+}
+.mast-center{text-align:center}
+.mast-logo{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(42px,6vw,72px);
+  font-weight:300;
+  letter-spacing:.06em;
+  line-height:.95;
+  display:block;
+}
+.mast-tagline{
+  font-size:10px;letter-spacing:.35em;text-transform:uppercase;
+  color:rgba(13,13,13,.45);margin-top:8px;display:block;
+}
+.mast-right{
+  text-align:right;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(13,13,13,.45);line-height:2;
+}
+.mast-right a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);font-weight:400}
+
+/* ── SECTION RULES ── */
+.section-rule{
+  border-top:1px solid var(--ink);
+  padding:10px 0 6px;
+  display:flex;
+  justify-content:space-between;
+  align-items:baseline;
+  margin-bottom:0;
+}
+.sr-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
+.sr-num{font-size:10px;color:rgba(13,13,13,.35);font-family:'Bodoni Moda',serif;font-style:italic}
+
+/* ── HERO SPREAD ── */
+.hero-spread{
+  display:grid;
+  grid-template-columns:3fr 2fr;
+  gap:0;
+  min-height:72vh;
+  border-bottom:1px solid var(--rule);
+  margin-bottom:0;
+}
+.hero-img{
+  position:relative;overflow:hidden;
+  background:var(--ink);
+}
+.hero-img img{
+  width:100%;height:100%;object-fit:cover;
+  opacity:.88;display:block;
+  transition:transform .8s ease;
+}
+.hero-img:hover img{transform:scale(1.02)}
+
+.hero-text{
+  padding:48px 40px;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+  border-left:1px solid var(--rule);
+}
+.hero-overline{
+  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--gold);display:flex;align-items:center;gap:10px;
+  margin-bottom:auto;
+}
+.hero-overline::before{content:'';width:20px;height:1px;background:var(--gold)}
+
+.hero-headline{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(36px,4vw,56px);
+  font-weight:300;
+  line-height:1.08;
+  margin:auto 0;
+}
+.hero-headline em{font-style:italic;color:var(--gold)}
+
+.hero-body{
+  font-size:14px;line-height:1.9;
+  color:rgba(13,13,13,.6);
+  margin:32px 0;
+  border-top:1px solid var(--rule);
+  padding-top:24px;
+}
+
+.hero-stars{
+  display:flex;align-items:center;gap:12px;
+  font-size:11px;color:rgba(13,13,13,.5);
+  border-top:1px solid var(--rule);padding-top:20px;
+}
+.stars-gold{color:var(--gold);font-size:14px;letter-spacing:2px}
+
+/* ── THREE COLUMNS ── */
+.three-col{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  border-bottom:1px solid var(--rule);
+}
+.tcol{padding:40px 32px;border-right:1px solid var(--rule)}
+.tcol:last-child{border-right:none}
+.tcol-num{
+  font-family:'Bodoni Moda',serif;font-size:48px;font-style:italic;
+  color:rgba(13,13,13,.12);line-height:1;margin-bottom:16px;display:block;
+}
+.tcol-title{font-family:'Bodoni Moda',serif;font-size:20px;font-weight:400;margin-bottom:10px}
+.tcol-text{font-size:13px;line-height:1.8;color:rgba(13,13,13,.55)}
+
+/* ── MENU EDITORIAL ── */
+.menu-spread{
+  display:grid;
+  grid-template-columns:1fr 2px 1fr;
+  gap:0;
+  padding:48px 0;
+  border-bottom:1px solid var(--rule);
+}
+.menu-divider{background:var(--rule)}
+.menu-col{padding:0 40px}
+.menu-col:first-child{padding-left:0}
+.menu-col:last-child{padding-right:0}
+.menu-col-title{
+  font-family:'Bodoni Moda',serif;font-size:11px;
+  letter-spacing:.25em;text-transform:uppercase;
+  margin-bottom:32px;color:rgba(13,13,13,.4);
+  display:flex;align-items:center;gap:12px;
+}
+.menu-col-title::after{content:'';flex:1;height:1px;background:var(--rule)}
+
+.dish{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
+.dish:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+.dish-header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
+.dish-name{font-family:'Bodoni Moda',serif;font-size:18px;font-weight:400}
+.dish-dots{flex:1;border-bottom:1px dotted rgba(13,13,13,.2);margin:0 4px;margin-bottom:3px}
+.dish-price{font-size:14px;font-family:'Bodoni Moda',serif;color:var(--gold)}
+.dish-desc{font-size:12px;color:rgba(13,13,13,.5);line-height:1.65}
+.dish-tag{display:inline-block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:6px}
+
+/* ── GALLERY MOSAIC ── */
+.mosaic{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  grid-template-rows:260px 180px;
+  gap:3px;
+  border-bottom:1px solid var(--rule);
+}
+.mos-item{overflow:hidden;position:relative;background:var(--warm)}
+.mos-item:nth-child(1){grid-column:span 2;grid-row:span 2}
+.mos-item:nth-child(3){grid-column:span 2}
+.mos-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block;opacity:.9}
+.mos-item:hover img{transform:scale(1.04)}
+.mos-caption{
+  position:absolute;bottom:10px;left:12px;
+  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,255,255,.6);
+}
+
+/* ── QUOTE ── */
+.pull-quote{
+  padding:72px 0;
+  text-align:center;
+  border-bottom:1px solid var(--rule);
+  position:relative;
+}
+.pq-marks{
+  font-family:'Bodoni Moda',serif;font-size:120px;
+  color:rgba(13,13,13,.06);line-height:.7;
+  position:absolute;top:20px;left:50%;transform:translateX(-50%);
+}
+.pq-text{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(20px,3vw,34px);
+  font-weight:300;font-style:italic;
+  line-height:1.4;max-width:700px;margin:0 auto 20px;
+  position:relative;z-index:1;
+}
+.pq-attr{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(13,13,13,.4)}
+
+/* ── BOOKING ── */
+.booking-spread{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:0;
+  padding:56px 0;
+  border-bottom:1px solid var(--rule);
+}
+.book-info{padding-right:56px;border-right:1px solid var(--rule)}
+.book-form-wrap{padding-left:56px}
+
+.info-table{width:100%;border-collapse:collapse;margin-top:24px}
+.info-table tr{border-bottom:1px solid var(--rule)}
+.info-table td{padding:14px 0;font-size:13px;vertical-align:top}
+.info-table td:first-child{
+  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
+  color:rgba(13,13,13,.4);width:40%;font-weight:400;padding-right:16px;
+}
+
+.form-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(13,13,13,.4);display:block;margin-bottom:6px}
+.form-input{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--ink);
+  padding:10px 0;font-family:'Space Grotesk',sans-serif;font-size:13px;
+  color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:24px;
+}
+.form-input:focus{border-bottom-color:var(--gold)}
+.form-input::placeholder{color:rgba(13,13,13,.3)}
+.form-select{
+  width:100%;background:transparent;border:none;border-bottom:1px solid var(--ink);
+  padding:10px 0;font-family:'Space Grotesk',sans-serif;font-size:13px;
+  color:var(--ink);outline:none;margin-bottom:24px;cursor:pointer;
+  -webkit-appearance:none;
+}
+.form-select option{background:var(--paper)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+.btn-book{
+  width:100%;background:var(--ink);color:var(--paper);border:none;
+  padding:16px;font-family:'Space Grotesk',sans-serif;font-size:11px;
+  font-weight:400;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
+  transition:background .3s;margin-top:8px;
+}
+.btn-book:hover{background:var(--gold)}
+
+/* ── FOOTER ── */
+.footer-rule{
+  border-top:2px solid var(--ink);
+  padding:28px 0;
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  align-items:center;
+  gap:20px;
+}
+.foot-left{font-size:11px;color:rgba(13,13,13,.4);line-height:1.8}
+.foot-center{
+  font-family:'Bodoni Moda',serif;font-size:22px;
+  text-align:center;letter-spacing:.06em;
+}
+.foot-right{
+  text-align:right;font-size:11px;
+  color:rgba(13,13,13,.4);line-height:1.8;
+}
+
+/* ── DEMO BANNER ── */
+.demo-strip{
+  position:fixed;bottom:0;left:0;right:0;z-index:200;
+  background:var(--ink);color:var(--paper);
+  padding:12px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:20px;
+}
+.ds-text{font-size:11px;letter-spacing:.08em;opacity:.7;display:flex;align-items:center;gap:12px}
+.ds-badge{font-size:9px;letter-spacing:.15em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:3px 10px;font-weight:500}
+.ds-btns{display:flex;gap:10px}
+.ds-btn{padding:8px 20px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Space Grotesk',sans-serif;font-weight:400;transition:all .2s}
+.ds-btn-p{background:var(--gold);color:var(--ink)}.ds-btn-p:hover{opacity:.85}
+.ds-btn-s{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,.25)}.ds-btn-s:hover{background:rgba(255,255,255,.08)}
+
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .page{padding:0 20px}
+  .masthead{grid-template-columns:1fr;text-align:center}.mast-left,.mast-right{display:none}
+  .hero-spread,.booking-spread{grid-template-columns:1fr}
+  .hero-img{min-height:280px}
+  .hero-text{padding:32px 0;border-left:none;border-top:1px solid var(--rule)}
+  .three-col{grid-template-columns:1fr}
+  .tcol{border-right:none;border-bottom:1px solid var(--rule)}
+  .menu-spread{grid-template-columns:1fr}.menu-divider{display:none}
+  .menu-col{padding:0}.menu-col:first-child{padding-bottom:32px;border-bottom:1px solid var(--rule);margin-bottom:32px}
+  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .mos-item:nth-child(1){grid-column:span 2;height:240px}
+  .mos-item:nth-child(3){grid-column:span 2}
+  .book-info{padding-right:0;border-right:none;border-bottom:1px solid var(--rule);padding-bottom:40px;margin-bottom:40px}
+  .book-form-wrap{padding-left:0}
+  .footer-rule{grid-template-columns:1fr;text-align:center}
+  .foot-left,.foot-right{display:none}
+  .demo-strip{padding:12px 20px;flex-direction:column;gap:8px}
+  .form-row{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<div class="page">
+  <header class="masthead">
+    <div class="mast-left">
+      Via della Grotta, 15<br>
+      87028 Praia a Mare (CS)<br>
+      +39 380 238 4386
+    </div>
+    <div class="mast-center">
+      <span class="mast-logo">Serrago</span>
+      <span class="mast-tagline">tradizione · innovazione · Calabria</span>
+    </div>
+    <div class="mast-right">
+      Ven–Sab: 19:30–23:30<br>
+      Dom: 12:00–14:30<br>
+      <a href="tel:+393802384386">Prenota →</a>
+    </div>
+  </header>
+</div>
+
+<!-- HERO -->
+<div class="page">
+  <div class="section-rule">
+    <span class="sr-label">La cucina</span>
+    <span class="sr-num">I.</span>
+  </div>
+</div>
+<div class="page" style="padding-left:0;padding-right:0;max-width:100%">
+  <div style="max-width:1200px;margin:0 auto;padding:0 48px">
+    <div class="hero-spread">
+      <div class="hero-img">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHsYRdBNgJvajFvCbVfRJdH-_FPDlyQgWFN1MMoiPXbZM_sQSKlJmLIzW5bDdj8zK0cqk7VTNNXeKCXDaAcuqCBfUHBRXqMNIU2k69HBlqCYMLkbZ6UGWN7OgDv1dh0JXBAfFVOHOl3uh8JsrZXpHOug=s4800-w800-h600" alt="Serrago cucina"/>
+      </div>
+      <div class="hero-text">
+        <div class="hero-overline">Praia a Mare · 2019</div>
+        <h1 class="hero-headline">
+          Dove la <em>tradizione</em><br>
+          diventa<br>
+          <em>linguaggio</em> nuovo
+        </h1>
+        <p class="hero-body">
+          Una cucina che nasce dalla Calabria più profonda e guarda al futuro. Gnocchi di patata viola con orata e lime, tonno scottato, dessert che stupiscono. Una squadra giovane e appassionata nel cuore di Praia a Mare.
+        </p>
+        <div class="hero-stars">
+          <span class="stars-gold">★★★★★</span>
+          <span>4.8 · 144 recensioni Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- THREE PILLARS -->
+<div class="page">
+  <div class="section-rule" style="margin-top:0">
+    <span class="sr-label">La filosofia</span>
+    <span class="sr-num">II.</span>
+  </div>
+  <div class="three-col reveal">
+    <div class="tcol">
+      <span class="tcol-num">01</span>
+      <div class="tcol-title">Materia prima</div>
+      <p class="tcol-text">Ogni ingrediente viene selezionato da produttori calabresi di fiducia. Il pesce arriva ogni mattina dal porto di Praia. Le verdure dall'entroterra del Pollino.</p>
+    </div>
+    <div class="tcol">
+      <span class="tcol-num">02</span>
+      <div class="tcol-title">Tecnica moderna</div>
+      <p class="tcol-text">Cotture a bassa temperatura, abbinamenti inattesi, presentazioni che raccontano una storia. La tradizione calabrese interpretata con gli strumenti della cucina contemporanea.</p>
+    </div>
+    <div class="tcol">
+      <span class="tcol-num">03</span>
+      <div class="tcol-title">Esperienza totale</div>
+      <p class="tcol-text">Pochi tavoli, servizio attento, cantina curata. Una serata da Serrago non è un pasto — è un'esperienza che si ricorda. Per questo apriamo solo tre sere a settimana.</p>
+    </div>
+  </div>
+</div>
+
+<!-- MENU -->
+<div class="page">
+  <div class="section-rule">
+    <span class="sr-label">Il menu</span>
+    <span class="sr-num">III.</span>
+  </div>
+  <div class="menu-spread reveal">
+
+    <div class="menu-col">
+      <div class="menu-col-title">Antipasti &amp; Primi</div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Parmigiana di mare</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€16</span>
+        </div>
+        <div class="dish-desc">Melanzane, pomodoro confit, alici del Cantabrico, stracciatella pugliese, basilico cristallizzato</div>
+        <span class="dish-tag">★ Il più richiesto</span>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Gamberi e finocchio</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€18</span>
+        </div>
+        <div class="dish-desc">Gamberi rossi di Mazara crudi, insalata di finocchio al lime, granita di mandarino, bottarga</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Gnocchi viola e orata</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€22</span>
+        </div>
+        <div class="dish-desc">Gnocchi di patata viola del Pollino, orata del Tirreno, emulsione al lime, erba cipollina</div>
+        <span class="dish-tag">★ Firma dello chef</span>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Pasta alla 'nduja moderna</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€19</span>
+        </div>
+        <div class="dish-desc">Spaghettone, 'nduja di Spilinga sciolta, pomodoro San Marzano, burro di capra, scorza di limone</div>
+      </div>
+    </div>
+
+    <div class="menu-divider"></div>
+
+    <div class="menu-col">
+      <div class="menu-col-title">Secondi &amp; Dolci</div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Tonno scottato</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€26</span>
+        </div>
+        <div class="dish-desc">Filetto di tonno rosso dell'Atlantico, sesamo nero, salsa di soia artigianale, insalatina di capperi</div>
+        <span class="dish-tag">★ Eccellente secondo i clienti</span>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Involtini di pesce spada</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€24</span>
+        </div>
+        <div class="dish-desc">Pesce spada dello Stretto, ripieno di zucchine e caciocavallo, pomodorino arrostito, menta</div>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Pizzo tartufo rivisitato</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€10</span>
+        </div>
+        <div class="dish-desc">Il dolce iconico di Pizzo Calabro, reinterpretato: gelato al tartufo di cioccolato, salsa calda, crumble</div>
+        <span class="dish-tag">★ Imperdibile</span>
+      </div>
+
+      <div class="dish">
+        <div class="dish-header">
+          <span class="dish-name">Cheesecake ai frutti di bosco</span>
+          <span class="dish-dots"></span>
+          <span class="dish-price">€9</span>
+        </div>
+        <div class="dish-desc">Base di frolla al cacao, crema di ricotta calabrese, coulis di lamponi e mirtilli freschi</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MOSAIC -->
+<div class="page" style="padding:0">
+  <div style="max-width:1200px;margin:0 auto">
+    <div class="page">
+      <div class="section-rule">
+        <span class="sr-label">Il locale</span>
+        <span class="sr-num">IV.</span>
+      </div>
+    </div>
+    <div class="mosaic">
+      <div class="mos-item">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHsYRdBNgJvajFvCbVfRJdH-_FPDlyQgWFN1MMoiPXbZM_sQSKlJmLIzW5bDdj8zK0cqk7VTNNXeKCXDaAcuqCBfUHBRXqMNIU2k69HBlqCYMLkbZ6UGWN7OgDv1dh0JXBAfFVOHOl3uh8JsrZXpHOug=s4800-w800-h600" alt="Serrago"/>
+        <div class="mos-caption">La cucina</div>
+      </div>
+      <div class="mos-item">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFSbzBX9M2_AUX0v1jOSbMq3v-pLbRfxQCfxMNnkd5YiFVvJhKJxvyc5nZNf0eBPPFkT-jqWJRe6lp2aZA3OzQzF4Kp-P7qdRE5ZCMfFDp3R7I3LLjCiuJYyMi2nrN2_pBmv62C2yk5A2-HFH6GRJCA=s4800-w800-h600" alt="Piatti Serrago"/>
+        <div class="mos-caption">I piatti</div>
+      </div>
+      <div class="mos-item">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNHsYRdBNgJvajFvCbVfRJdH-_FPDlyQgWFN1MMoiPXbZM_sQSKlJmLIzW5bDdj8zK0cqk7VTNNXeKCXDaAcuqCBfUHBRXqMNIU2k69HBlqCYMLkbZ6UGWN7OgDv1dh0JXBAfFVOHOl3uh8JsrZXpHOug=s4800-w800-h600" alt="Ambiente"/>
+        <div class="mos-caption">L'ambiente</div>
+      </div>
+      <div class="mos-item">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNFSbzBX9M2_AUX0v1jOSbMq3v-pLbRfxQCfxMNnkd5YiFVvJhKJxvyc5nZNf0eBPPFkT-jqWJRe6lp2aZA3OzQzF4Kp-P7qdRE5ZCMfFDp3R7I3LLjCiuJYyMi2nrN2_pBmv62C2yk5A2-HFH6GRJCA=s4800-w800-h600" alt="Dettaglio"/>
+        <div class="mos-caption">Dettagli</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- PULL QUOTE -->
+<div class="page">
+  <div class="pull-quote reveal">
+    <div class="pq-marks">"</div>
+    <p class="pq-text">Best gnocchi I had in Italy — beautiful purple sweet potato gnocchi with bream and lime. Honestly perfect.</p>
+    <span class="pq-attr">Ospite internazionale · Google Maps · ★★★★★</span>
+  </div>
+</div>
+
+<!-- BOOKING -->
+<div class="page">
+  <div class="section-rule">
+    <span class="sr-label">Prenotazioni</span>
+    <span class="sr-num">V.</span>
+  </div>
+  <div class="booking-spread reveal">
+    <div class="book-info">
+      <h2 style="font-family:'Bodoni Moda',serif;font-size:32px;font-weight:300;margin-bottom:16px;line-height:1.2">
+        Ogni tavolo<br>è <em style="font-style:italic;color:var(--gold)">unico</em>
+      </h2>
+      <p style="font-size:14px;line-height:1.85;color:rgba(13,13,13,.55);max-width:340px">
+        Pochi tavoli, servizio dedicato. La prenotazione è consigliata — chiamate o compilate il modulo.
+      </p>
+      <table class="info-table">
+        <tr><td>Apertura</td><td>Ven–Sab: 19:30–23:30<br>Dom: 12:00–14:30<br>Lun–Gio: chiuso</td></tr>
+        <tr><td>Indirizzo</td><td>Via della Grotta, 15<br>87028 Praia a Mare (CS)</td></tr>
+        <tr><td>Telefono</td><td>+39 380 238 4386</td></tr>
+        <tr><td>Prezzi</td><td>Menu completo ~€45–55 p.p.<br>Include antipasto, primo, secondo, dessert</td></tr>
+        <tr><td>Parcheggio</td><td>Lungomare di Praia a Mare<br>A 100 metri dal locale</td></tr>
+      </table>
+    </div>
+    <div class="book-form-wrap">
+      <div style="font-family:'Bodoni Moda',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(13,13,13,.35);margin-bottom:32px">Modulo di prenotazione</div>
+      <div class="form-row">
+        <div><label class="form-label">Nome</label><input class="form-input" type="text" placeholder="Marco"/></div>
+        <div><label class="form-label">Cognome</label><input class="form-input" type="text" placeholder="Rossi"/></div>
+      </div>
+      <label class="form-label">Telefono</label>
+      <input class="form-input" type="tel" placeholder="+39 333 000 0000"/>
+      <div class="form-row">
+        <div>
+          <label class="form-label">Data</label>
+          <input class="form-input" type="date"/>
+        </div>
+        <div>
+          <label class="form-label">Persone</label>
+          <select class="form-select">
+            <option>2 persone</option>
+            <option selected>3–4 persone</option>
+            <option>5–6 persone</option>
+          </select>
+        </div>
+      </div>
+      <label class="form-label">Occasione speciale</label>
+      <select class="form-select">
+        <option>Nessuna</option>
+        <option>Compleanno</option>
+        <option>Anniversario</option>
+        <option>Cena di lavoro</option>
+        <option>Proposta di matrimonio</option>
+      </select>
+      <button class="btn-book" onclick="alert('✓ Richiesta inviata — vi ricontatteremo presto!')">Invia richiesta →</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="page">
+  <footer class="footer-rule">
+    <div class="foot-left">
+      Via della Grotta, 15 · 87028 Praia a Mare<br>
+      +39 380 238 4386 · P.IVA 03456780782
+    </div>
+    <div class="foot-center">Serrago</div>
+    <div class="foot-right">
+      © 2025 · Privacy Policy<br>
+      ★ 4.8 / 5 · 144 recensioni
+    </div>
+  </footer>
+</div>
+
+<!-- DEMO BANNER -->
+<div class="demo-strip" id="ds">
+  <div class="ds-text">
+    <span class="ds-badge">Demo</span>
+    Pagina demo gratuita per <strong>Ristorante Serrago</strong> — già pronta per l'attivazione
+  </div>
+  <div class="ds-btns">
+    <button class="ds-btn ds-btn-s" onclick="document.getElementById('ds').style.display='none'">✕</button>
+    <button class="ds-btn ds-btn-p" onclick="alert('Contattaci per attivare il sito!')">Voglio questo sito →</button>
+  </div>
+</div>
+
+<script>
+const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.08});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

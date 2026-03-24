@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>La Rondinella — Agriturismo · Scalea · Calabria</title>
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,200;0,300;0,400;1,200;1,300;1,400&family=Raleway:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --earth:#2C1F0F;--bark:#4A3520;--moss:#3A4A2A;--sage:#6B7A55;
+  --wheat:#C4A96A;--cream:#F5EFE0;--sky:#E8EDF0;
+  --text:#1E1610;--muted:#7A6A55;--light:#FAF7F2;
+}
+html{scroll-behavior:smooth;scroll-snap-type:y mandatory}
+body{background:var(--light);color:var(--text);font-family:'Raleway',sans-serif;font-weight:300;overflow-x:hidden}
+
+/* ── LANG SWITCHER ── */
+.lang-bar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;justify-content:space-between;align-items:center;
+  padding:16px 48px;
+  background:linear-gradient(to bottom,rgba(44,31,15,.85),transparent);
+  backdrop-filter:blur(4px);
+  transition:background .3s;
+}
+.lang-bar.solid{background:rgba(44,31,15,.95)}
+.lb-logo{
+  font-family:'Spectral',serif;font-size:20px;font-weight:200;
+  color:var(--cream);letter-spacing:.1em;
+}
+.lb-logo span{font-style:italic;color:var(--wheat)}
+.lb-center{
+  display:flex;gap:32px;
+}
+.lb-link{color:var(--cream);text-decoration:none;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.6;transition:opacity .2s}
+.lb-link:hover{opacity:1}
+.lb-right{display:flex;align-items:center;gap:16px}
+.lang-btn{
+  background:transparent;border:1px solid rgba(245,239,224,.3);
+  color:var(--cream);padding:6px 14px;font-size:10px;letter-spacing:.12em;
+  text-transform:uppercase;cursor:pointer;transition:all .2s;font-family:'Raleway',sans-serif;
+  border-radius:2px;
+}
+.lang-btn.active{background:var(--wheat);color:var(--earth);border-color:var(--wheat)}
+.lang-btn:hover:not(.active){background:rgba(245,239,224,.1)}
+
+/* ── SECTIONS ── */
+.panel{
+  min-height:100vh;
+  scroll-snap-align:start;
+  position:relative;
+  display:flex;align-items:center;
+  overflow:hidden;
+}
+
+/* ── PANEL 1: HERO ── */
+.p1{background:var(--earth)}
+.p1-bg{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at 30% 80%,rgba(196,169,106,.12),transparent 50%),
+    linear-gradient(160deg,#1A1008 0%,#2C1F0F 40%,#1A1008 100%);
+}
+.p1-img{position:absolute;inset:0}
+.p1-img img{width:100%;height:100%;object-fit:cover;opacity:.3;display:block}
+.p1-content{
+  position:relative;z-index:2;
+  padding:0 48px;
+  max-width:800px;
+}
+.p1-season{
+  display:flex;align-items:center;gap:14px;
+  font-size:10px;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--wheat);margin-bottom:28px;
+  opacity:0;animation:fi .9s ease .4s forwards;
+}
+.p1-season-line{width:40px;height:1px;background:var(--wheat)}
+.p1-title{
+  font-family:'Spectral',serif;
+  font-size:clamp(52px,8vw,96px);
+  font-weight:200;line-height:.95;
+  color:var(--cream);
+  margin-bottom:16px;
+  opacity:0;animation:fi .9s ease .6s forwards;
+}
+.p1-title em{font-style:italic;color:var(--wheat);display:block}
+.p1-sub{
+  font-family:'Spectral',serif;
+  font-size:clamp(16px,2vw,22px);
+  font-weight:200;
+  color:rgba(245,239,224,.5);
+  letter-spacing:.04em;
+  margin-bottom:40px;
+  opacity:0;animation:fi .9s ease .8s forwards;
+}
+.p1-desc{
+  font-size:15px;line-height:1.9;
+  color:rgba(245,239,224,.5);
+  max-width:480px;
+  margin-bottom:48px;
+  opacity:0;animation:fi .9s ease 1s forwards;
+}
+.p1-btns{
+  display:flex;gap:16px;flex-wrap:wrap;
+  opacity:0;animation:fi .9s ease 1.2s forwards;
+}
+.btn-wheat{
+  background:var(--wheat);color:var(--earth);border:none;
+  padding:16px 40px;font-size:11px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;transition:all .3s;font-family:'Raleway',sans-serif;text-decoration:none;display:inline-block;
+}
+.btn-wheat:hover{background:#D4B97A;transform:translateY(-2px);box-shadow:0 8px 24px rgba(196,169,106,.3)}
+.btn-outline-w{
+  border:1px solid rgba(245,239,224,.2);color:var(--cream);
+  padding:16px 40px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+  cursor:pointer;background:transparent;transition:all .3s;font-family:'Raleway',sans-serif;
+  text-decoration:none;display:inline-block;
+}
+.btn-outline-w:hover{border-color:var(--wheat);color:var(--wheat)}
+
+/* Scroll indicator */
+.scroll-down{
+  position:absolute;bottom:40px;left:48px;
+  display:flex;align-items:center;gap:12px;
+  font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:rgba(245,239,224,.3);
+  opacity:0;animation:fi .9s ease 1.6s forwards;
+}
+.sd-line{width:40px;height:1px;background:var(--wheat);animation:sdpulse 2s ease infinite}
+@keyframes sdpulse{0%{width:0}50%{width:40px}100%{width:0}}
+
+/* Stats float */
+.p1-stats{
+  position:absolute;right:48px;bottom:60px;z-index:2;
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;
+  opacity:0;animation:fi .9s ease 1.4s forwards;
+}
+.pstat{
+  background:rgba(245,239,224,.07);
+  border:1px solid rgba(245,239,224,.1);
+  backdrop-filter:blur(8px);
+  padding:16px 20px;text-align:center;
+}
+.pstat-n{font-family:'Spectral',serif;font-size:28px;font-weight:200;color:var(--wheat);display:block;line-height:1}
+.pstat-l{font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,239,224,.4);margin-top:4px}
+
+@keyframes fi{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── PANEL 2: STORY ── */
+.p2{background:var(--light)}
+.p2-inner{
+  display:grid;grid-template-columns:1fr 1fr;
+  width:100%;min-height:100vh;
+}
+.p2-img-side{position:relative;overflow:hidden}
+.p2-img-side img{width:100%;height:100%;object-fit:cover;display:block}
+.p2-img-side::after{content:'';position:absolute;right:0;top:0;bottom:0;width:80px;background:linear-gradient(to left,var(--light),transparent)}
+.p2-text-side{
+  padding:80px 64px;
+  display:flex;flex-direction:column;justify-content:center;
+}
+.sec-tag-e{font-size:10px;letter-spacing:.25em;text-transform:uppercase;color:var(--sage);margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.sec-tag-e::before{content:'';width:24px;height:1px;background:var(--sage)}
+.sec-title-big{
+  font-family:'Spectral',serif;
+  font-size:clamp(32px,4vw,52px);
+  font-weight:200;line-height:1.15;margin-bottom:24px;
+}
+.sec-title-big em{font-style:italic;color:var(--wheat)}
+.sec-body{font-size:14px;line-height:1.95;color:rgba(30,22,16,.55);margin-bottom:28px}
+.sec-quote{
+  border-left:3px solid var(--wheat);padding:14px 20px;
+  font-family:'Spectral',serif;font-size:14px;font-style:italic;
+  line-height:1.75;color:rgba(30,22,16,.65);
+  background:rgba(196,169,106,.06);
+}
+.awards{display:flex;gap:16px;margin-top:28px;flex-wrap:wrap}
+.award{
+  background:var(--sky);border:1px solid rgba(30,22,16,.08);
+  padding:10px 16px;font-size:11px;color:var(--muted);
+  display:flex;align-items:center;gap:6px;
+}
+.award strong{color:var(--text);font-weight:500}
+
+/* ── PANEL 3: MENU ── */
+.p3{background:var(--earth);color:var(--cream)}
+.p3-inner{width:100%;padding:80px 48px;display:flex;flex-direction:column;gap:0}
+.p3-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:56px}
+.p3-title{font-family:'Spectral',serif;font-size:clamp(36px,5vw,64px);font-weight:200}
+.p3-title em{font-style:italic;color:var(--wheat)}
+.p3-note{font-size:12px;color:rgba(245,239,224,.4);max-width:240px;text-align:right;line-height:1.7}
+.menu-categories{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.mcat{}
+.mcat-title{
+  font-size:10px;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--wheat);margin-bottom:24px;padding-bottom:12px;
+  border-bottom:1px solid rgba(245,239,224,.1);
+  display:flex;justify-content:space-between;align-items:center;
+}
+.mcat-items{display:flex;flex-direction:column;gap:18px}
+.mi{border-bottom:1px solid rgba(245,239,224,.06);padding-bottom:18px}
+.mi:last-child{border-bottom:none}
+.mi-top{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin-bottom:5px}
+.mi-name{font-family:'Spectral',serif;font-size:17px;font-weight:300}
+.mi-price{font-size:14px;color:var(--wheat);font-family:'Spectral',serif;flex-shrink:0}
+.mi-desc{font-size:11px;color:rgba(245,239,224,.4);line-height:1.6}
+.mi-tag{font-size:9px;color:var(--sage);letter-spacing:.08em;text-transform:uppercase;margin-top:5px;display:inline-block}
+
+/* ── PANEL 4: GALLERY ── */
+.p4{background:var(--light)}
+.p4-inner{width:100%;display:flex;flex-direction:column}
+.p4-header{padding:48px 48px 32px}
+.gallery-full{
+  display:grid;
+  grid-template-columns:1.5fr 1fr 1fr;
+  grid-template-rows:300px 300px;
+  gap:4px;
+  flex:1;
+}
+.gi{overflow:hidden;position:relative}
+.gi:nth-child(1){grid-row:span 2}
+.gi img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease;display:block}
+.gi:hover img{transform:scale(1.05)}
+.gi-label{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(transparent,rgba(44,31,15,.7));
+  padding:20px 18px 14px;
+  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(245,239,224,.7);
+  opacity:0;transition:opacity .3s;
+}
+.gi:hover .gi-label{opacity:1}
+
+/* ── PANEL 5: BOOKING ── */
+.p5{background:var(--cream)}
+.p5-inner{
+  width:100%;
+  display:grid;grid-template-columns:1fr 1fr;
+  min-height:100vh;
+}
+.p5-left{
+  background:var(--moss);
+  padding:80px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+  color:var(--cream);
+}
+.p5-right{
+  padding:80px 56px;
+  display:flex;flex-direction:column;justify-content:center;
+  background:var(--cream);
+}
+
+.contact-grid{display:flex;flex-direction:column;gap:24px;margin-top:32px}
+.citem{display:flex;gap:16px}
+.citem-ico{
+  width:40px;height:40px;
+  border:1px solid rgba(245,239,224,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-size:16px;flex-shrink:0;
+}
+.citem-l{font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:rgba(245,239,224,.5);margin-bottom:3px}
+.citem-v{font-size:13px;color:rgba(245,239,224,.8);line-height:1.7}
+
+/* FORM */
+.form-section-title{font-family:'Spectral',serif;font-size:28px;font-weight:200;margin-bottom:8px}
+.form-section-title em{font-style:italic;color:var(--sage)}
+.form-sub{font-size:13px;color:var(--muted);margin-bottom:36px;line-height:1.7}
+.fgroup{margin-bottom:18px}
+.fgroup label{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:block;margin-bottom:7px}
+.fgroup input,.fgroup select,.fgroup textarea{
+  width:100%;background:transparent;border:none;border-bottom:1px solid rgba(30,22,16,.15);
+  padding:10px 0;font-family:'Raleway',sans-serif;font-size:13px;
+  color:var(--text);outline:none;transition:border-color .2s;
+}
+.fgroup input:focus,.fgroup select:focus,.fgroup textarea:focus{border-bottom-color:var(--sage)}
+.fgroup input::placeholder,.fgroup textarea::placeholder{color:rgba(30,22,16,.25)}
+.fgroup select option{background:var(--cream)}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+.btn-book-e{
+  width:100%;background:var(--moss);color:var(--cream);border:none;
+  padding:16px;font-family:'Raleway',sans-serif;font-size:11px;
+  font-weight:400;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;
+  transition:all .3s;margin-top:8px;
+}
+.btn-book-e:hover{background:var(--sage)}
+
+/* ── DEMO BANNER ── */
+.demo-strip{
+  position:fixed;bottom:0;left:0;right:0;z-index:300;
+  background:var(--earth);
+  border-top:1px solid rgba(196,169,106,.25);
+  padding:11px 48px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+}
+.ds-t{font-size:11px;color:rgba(245,239,224,.65);display:flex;align-items:center;gap:10px}
+.ds-badge{font-size:9px;letter-spacing:.1em;text-transform:uppercase;background:var(--wheat);color:var(--earth);padding:3px 10px;font-weight:600}
+.ds-btns{display:flex;gap:8px}
+.dsbtn{padding:7px 18px;font-size:10px;font-weight:500;font-family:'Raleway',sans-serif;cursor:pointer;border:none;transition:all .2s;letter-spacing:.06em;text-transform:uppercase}
+.dsbtn-p{background:var(--wheat);color:var(--earth)}.dsbtn-p:hover{opacity:.85}
+.dsbtn-s{background:transparent;color:var(--wheat);border:1px solid rgba(196,169,106,.3)}.dsbtn-s:hover{background:rgba(196,169,106,.08)}
+
+/* Translations */
+[data-en]{display:none}
+body.en [data-it]{display:none}
+body.en [data-en]{display:block}
+body.en span[data-en]{display:inline}
+body.en span[data-it]{display:none}
+
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+
+@media(max-width:900px){
+  .lang-bar{padding:14px 20px}.lb-center{display:none}
+  .p1-content{padding:0 20px}.p1-stats{right:20px;bottom:80px}
+  .p2-inner,.p5-inner{grid-template-columns:1fr}
+  .p2-img-side{height:300px}
+  .p2-text-side{padding:48px 20px}
+  .p3-inner{padding:56px 20px}
+  .menu-categories{grid-template-columns:1fr}
+  .p4-header{padding:40px 20px 24px}
+  .gallery-full{grid-template-columns:1fr 1fr;grid-template-rows:auto}
+  .gi:nth-child(1){grid-row:span 1;height:240px}
+  .p5-left,.p5-right{padding:48px 20px}
+  .demo-strip{padding:11px 20px;flex-direction:column;gap:8px}
+  .frow{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- LANG BAR -->
+<header class="lang-bar" id="langbar">
+  <div class="lb-logo">La <span>Rondinella</span></div>
+  <div class="lb-center">
+    <a href="#storia" class="lb-link" data-it>Storia</a>
+    <a href="#storia" class="lb-link" data-en style="display:none">Our story</a>
+    <a href="#menu" class="lb-link" data-it>Menu</a>
+    <a href="#menu" class="lb-link" data-en style="display:none">Menu</a>
+    <a href="#galleria" class="lb-link" data-it>Galleria</a>
+    <a href="#galleria" class="lb-link" data-en style="display:none">Gallery</a>
+    <a href="#prenota" class="lb-link" data-it>Prenota</a>
+    <a href="#prenota" class="lb-link" data-en style="display:none">Book</a>
+  </div>
+  <div class="lb-right">
+    <button class="lang-btn active" onclick="setLang('it',this)">IT</button>
+    <button class="lang-btn" onclick="setLang('en',this)">EN</button>
+  </div>
+</header>
+
+<!-- ══ PANEL 1: HERO ══ -->
+<section class="panel p1" id="top">
+  <div class="p1-bg"></div>
+  <div class="p1-img">
+    <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEUgCAcIT39CVctqPeGQm-sm7bCgIcwiQXX2AY36eztkDxGvYhqwRLULhzQshE_wob5DV40qhKZiRhqwdWG7f7-IFoicBm3kzp_VW-MnxbiFO5XGCVl4UkFlp89jLdMnA8LiTRGpHLxAJf47YIPbvTGHA=s4800-w800-h600" alt="La Rondinella"/>
+  </div>
+  <div class="p1-content">
+    <div class="p1-season">
+      <div class="p1-season-line"></div>
+      <span data-it>Agriturismo · Scalea · Calabria</span>
+      <span data-en style="display:none">Farmhouse · Scalea · Calabria</span>
+    </div>
+    <h1 class="p1-title">
+      La
+      <em>Rondinella</em>
+    </h1>
+    <p class="p1-sub" data-it>Farm to table · Tradizione calabrese</p>
+    <p class="p1-sub" data-en style="display:none">Farm to table · Calabrian tradition</p>
+    <p class="p1-desc" data-it>
+      Immersi nell'entroterra di Scalea, a due passi dal mare. Cucina che nasce dalla terra: ingredienti coltivati in azienda, ricette della tradizione calabrese rielaborate con passione. Un luogo dove il tempo rallenta.
+    </p>
+    <p class="p1-desc" data-en style="display:none">
+      Nestled in the Scalea countryside, minutes from the sea. A farm-to-table experience rooted in Calabrian tradition — ingredients grown on site, recipes passed down through generations, reimagined with passion.
+    </p>
+    <div class="p1-btns">
+      <a href="#menu" class="btn-wheat" data-it>Scopri il menu</a>
+      <a href="#menu" class="btn-wheat" data-en style="display:none">Explore the menu</a>
+      <a href="#prenota" class="btn-outline-w" data-it>Prenota un tavolo</a>
+      <a href="#prenota" class="btn-outline-w" data-en style="display:none">Book a table</a>
+    </div>
+  </div>
+  <div class="p1-stats">
+    <div class="pstat"><span class="pstat-n">4.5</span><div class="pstat-l">Google ★</div></div>
+    <div class="pstat"><span class="pstat-n">1608</span><div class="pstat-l">Recensioni</div></div>
+    <div class="pstat"><span class="pstat-n">Farm</span><div class="pstat-l">To Table</div></div>
+    <div class="pstat"><span class="pstat-n">km 0</span><div class="pstat-l">Ingredienti</div></div>
+  </div>
+  <div class="scroll-down">
+    <div class="sd-line"></div>
+    <span data-it>Scorri</span><span data-en style="display:none">Scroll</span>
+  </div>
+</section>
+
+<!-- ══ PANEL 2: STORY ══ -->
+<section class="panel p2" id="storia">
+  <div class="p2-inner">
+    <div class="p2-img-side">
+      <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEm-c3x6ocTs1pNoTUbXIePeiXwCocuC1vL2clllrGLwov8B8EurJDTKdoNro_zFluKjok6RpyCPW79zAYcQxbzMW-AN9TE_oZNHWe_2yGnK-g6qSdqLQOIvsLxlDL7Gt0VChc_7NcjbFMT3-1muc8juA=s4800-w800-h600" alt="La Rondinella farm"/>
+    </div>
+    <div class="p2-text-side reveal">
+      <p class="sec-tag-e" data-it>La nostra storia</p>
+      <p class="sec-tag-e" data-en style="display:none">Our story</p>
+      <h2 class="sec-title-big" data-it>
+        La terra<br>che <em>nutre</em>
+      </h2>
+      <h2 class="sec-title-big" data-en style="display:none">
+        The land<br>that <em>nourishes</em>
+      </h2>
+      <p class="sec-body" data-it>
+        La Rondinella nasce dall'amore per la terra calabrese. Leopold e la sua famiglia accolgono ogni ospite come un amico, portando in tavola il meglio di quello che coltivano. Ogni piatto è diverso dall'ultimo — perché cambia la stagione, cambia il raccolto, cambia la creatività.
+      </p>
+      <p class="sec-body" data-en style="display:none">
+        La Rondinella was born from a deep love for Calabrian land. Leopold and his family welcome every guest like a friend, bringing to the table the best of what they grow themselves. Every meal is different — because the seasons change, the harvest changes, and the creativity never stops.
+      </p>
+      <div class="sec-quote" data-it>
+        "Unbelievable meal! Out of all the food we've eaten during our trip, these traditional Calabrian dishes top the charts." — Ospite internazionale
+      </div>
+      <div class="sec-quote" data-en style="display:none">
+        "If I could give this absolutely exquisite farm to table establishment 100,000 stars I would. Leopold described each experience perfectly and with such clarity." — International guest
+      </div>
+      <div class="awards">
+        <div class="award">🌿 <strong data-it>Km zero</strong><strong data-en style="display:none">Zero km</strong></div>
+        <div class="award">🏆 <strong data-it>4.5 Google</strong><strong data-en style="display:none">4.5 Google</strong></div>
+        <div class="award">🌍 <strong data-it>Multilingue</strong><strong data-en style="display:none">Multilingual</strong></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PANEL 3: MENU ══ -->
+<section class="panel p3" id="menu">
+  <div class="p3-inner">
+    <div class="p3-header reveal">
+      <div>
+        <h2 class="p3-title" data-it>La <em>cucina</em></h2>
+        <h2 class="p3-title" data-en style="display:none">The <em>kitchen</em></h2>
+      </div>
+      <p class="p3-note" data-it>Il menu cambia ogni giorno secondo stagione e disponibilità dell'orto. Leopold vi guiderà nella scelta.</p>
+      <p class="p3-note" data-en style="display:none">The menu changes daily according to season and garden availability. Leopold will guide you through the selection.</p>
+    </div>
+    <div class="menu-categories reveal">
+      <div class="mcat">
+        <div class="mcat-title">
+          <span data-it>Antipasti</span><span data-en style="display:none">Starters</span>
+        </div>
+        <div class="mcat-items">
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Tagliere della fattoria</span><span class="mi-name" data-en style="display:none">Farm charcuterie board</span><span class="mi-price">€14</span></div>
+            <div class="mi-desc" data-it>Salumi artigianali, formaggi di capra, sott'olio di stagione, pane casereccio</div>
+            <div class="mi-desc" data-en style="display:none">Artisan cured meats, goat cheeses, seasonal pickles, homemade bread</div>
+            <span class="mi-tag" data-it>⭐ Il più richiesto</span><span class="mi-tag" data-en style="display:none">⭐ Most ordered</span>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Parmigiana di melanzane</span><span class="mi-name" data-en style="display:none">Aubergine parmigiana</span><span class="mi-price">€12</span></div>
+            <div class="mi-desc" data-it>Melanzane dell'orto, sugo di pomodoro del giardino, fior di latte, basilico fresco</div>
+            <div class="mi-desc" data-en style="display:none">Garden aubergines, homegrown tomato sauce, mozzarella, fresh basil</div>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Verdure grigliate di stagione</span><span class="mi-name" data-en style="display:none">Seasonal grilled vegetables</span><span class="mi-price">€10</span></div>
+            <div class="mi-desc" data-it>Zucchine, peperoni, melanzane alla brace, olio EVO, erbe aromatiche dell'orto</div>
+            <div class="mi-desc" data-en style="display:none">Courgettes, peppers, aubergines on the grill, extra virgin olive oil, garden herbs</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcat">
+        <div class="mcat-title">
+          <span data-it>Primi &amp; Secondi</span><span data-en style="display:none">Pasta &amp; Mains</span>
+        </div>
+        <div class="mcat-items">
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Pasta al pomodoro fresco</span><span class="mi-name" data-en style="display:none">Pasta with fresh tomato</span><span class="mi-price">€13</span></div>
+            <div class="mi-desc" data-it>Spaghettoni, pomodori maturi dell'orto, basilico, aglio, olio EVO calabrese</div>
+            <div class="mi-desc" data-en style="display:none">Thick spaghetti, ripe garden tomatoes, basil, garlic, Calabrian extra virgin oil</div>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Carne alla brace</span><span class="mi-name" data-en style="display:none">Grilled meats</span><span class="mi-price">€18</span></div>
+            <div class="mi-desc" data-it>Salsiccia calabrese, costine, arrosticini — animali allevati in azienda</div>
+            <div class="mi-desc" data-en style="display:none">Calabrian sausage, ribs, skewers — farm-raised animals</div>
+            <span class="mi-tag" data-it>🔥 Cotti al momento</span><span class="mi-tag" data-en style="display:none">🔥 Cooked fresh</span>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Piatto vegetariano del giorno</span><span class="mi-name" data-en style="display:none">Vegetarian dish of the day</span><span class="mi-price">€15</span></div>
+            <div class="mi-desc" data-it>Ogni giorno diverso — chiedi a Leopold cosa c'è di buono oggi dall'orto</div>
+            <div class="mi-desc" data-en style="display:none">Changes daily — ask Leopold what's best from the garden today</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mcat">
+        <div class="mcat-title">
+          <span data-it>Dolci &amp; Vini</span><span data-en style="display:none">Desserts &amp; Wines</span>
+        </div>
+        <div class="mcat-items">
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Dolce della nonna</span><span class="mi-name" data-en style="display:none">Grandma's dessert</span><span class="mi-price">€6</span></div>
+            <div class="mi-desc" data-it>Cambia ogni giorno — crostate, budini, dolci tradizionali calabresi fatti la mattina</div>
+            <div class="mi-desc" data-en style="display:none">Changes daily — tarts, puddings, traditional Calabrian sweets made fresh each morning</div>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Vino della casa</span><span class="mi-name" data-en style="display:none">House wine</span><span class="mi-price">€5/bicchiere</span></div>
+            <div class="mi-desc" data-it>Rosso e bianco calabrese, selezionati da produttori locali dell'entroterra</div>
+            <div class="mi-desc" data-en style="display:none">Red and white Calabrian wine, selected from local inland producers</div>
+          </div>
+          <div class="mi">
+            <div class="mi-top"><span class="mi-name" data-it>Liquori artigianali</span><span class="mi-name" data-en style="display:none">Artisan liqueurs</span><span class="mi-price">€4</span></div>
+            <div class="mi-desc" data-it>Limoncello al bergamotto, liquore al cedro di Diamante, amaro delle erbe — fatti in casa</div>
+            <div class="mi-desc" data-en style="display:none">Bergamot limoncello, Diamante cedar liqueur, herbal digestive — all homemade</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PANEL 4: GALLERY ══ -->
+<section class="panel p4" id="galleria" style="min-height:auto;display:block">
+  <div class="p4-inner">
+    <div class="p4-header reveal">
+      <p class="sec-tag-e" data-it>Fotografie</p>
+      <p class="sec-tag-e" data-en style="display:none">Gallery</p>
+      <h2 class="sec-title-big" data-it>La vita <em>in fattoria</em></h2>
+      <h2 class="sec-title-big" data-en style="display:none">Life <em>on the farm</em></h2>
+    </div>
+    <div class="gallery-full">
+      <div class="gi">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqFDZpXLSXmyhkhWYn4Uzp2KjPbvmXSCoHVCXKE01TKzun8Ud9kFt7dCewEYPLGwdZxtkM9zPdSno_TEY3iDbgDnbKviYY6Et20=s4800-w800-h600" alt="Fattoria"/>
+        <div class="gi-label" data-it>La fattoria</div><div class="gi-label" data-en style="display:none">The farmhouse</div>
+      </div>
+      <div class="gi">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEUgCAcIT39CVctqPeGQm-sm7bCgIcwiQXX2AY36eztkDxGvYhqwRLULhzQshE_wob5DV40qhKZiRhqwdWG7f7-IFoicBm3kzp_VW-MnxbiFO5XGCVl4UkFlp89jLdMnA8LiTRGpHLxAJf47YIPbvTGHA=s4800-w800-h600" alt="Cucina"/>
+        <div class="gi-label" data-it>La cucina</div><div class="gi-label" data-en style="display:none">The kitchen</div>
+      </div>
+      <div class="gi">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEm-c3x6ocTs1pNoTUbXIePeiXwCocuC1vL2clllrGLwov8B8EurJDTKdoNro_zFluKjok6RpyCPW79zAYcQxbzMW-AN9TE_oZNHWe_2yGnK-g6qSdqLQOIvsLxlDL7Gt0VChc_7NcjbFMT3-1muc8juA=s4800-w800-h600" alt="Piatti"/>
+        <div class="gi-label" data-it>I piatti</div><div class="gi-label" data-en style="display:none">The dishes</div>
+      </div>
+      <div class="gi">
+        <img src="https://lh3.googleusercontent.com/places/ANXAkqHNHYu6406QNl0Js2KTvQgGWg7gi3wNEwkMQPiCvoZTCbSD_MHpN80K3ukvExtawWb830Ch-gpZrFovrOUiPI-jef-heiMOy0=s4800-w800-h600" alt="Vista"/>
+        <div class="gi-label" data-it>La vista</div><div class="gi-label" data-en style="display:none">The view</div>
+      </div>
+      <div class="gi">
+        <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNG90EO7ZLayS05eXUyFr1le9OAEgT-Edzu84CflwZDIBH8tAAZGyS4HP78rjq1LpmIIiBnDOegSDMkkoTgluEQ2t7C2TpO3b_AFjWSxssEDU4ffhxYPVRZ4pHuroIhf2gKHz6Ef3dxNxIsPqoMekCCVGA=s4800-w800-h600" alt="Orto"/>
+        <div class="gi-label" data-it>L'orto</div><div class="gi-label" data-en style="display:none">The garden</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PANEL 5: BOOKING ══ -->
+<section class="panel p5" id="prenota">
+  <div class="p5-inner">
+    <div class="p5-left reveal">
+      <p class="sec-tag-e" style="color:rgba(245,239,224,.5)" data-it>Dove siamo</p>
+      <p class="sec-tag-e" style="color:rgba(245,239,224,.5)" data-en style="display:none">Find us</p>
+      <h2 style="font-family:'Spectral',serif;font-size:36px;font-weight:200;margin-bottom:8px;line-height:1.2" data-it>
+        Vi aspettiamo<br>alla <em style="font-style:italic;color:var(--wheat)">Rondinella</em>
+      </h2>
+      <h2 style="font-family:'Spectral',serif;font-size:36px;font-weight:200;margin-bottom:8px;line-height:1.2" data-en style="display:none">
+        We're waiting<br>for you at <em style="font-style:italic;color:var(--wheat)">Rondinella</em>
+      </h2>
+      <div class="contact-grid">
+        <div class="citem"><div class="citem-ico">📍</div><div><div class="citem-l" data-it>Indirizzo</div><div class="citem-l" data-en style="display:none">Address</div><div class="citem-v">Contrada Piano Dell'Acqua, 6<br>87029 Scalea (CS)</div></div></div>
+        <div class="citem"><div class="citem-ico">📞</div><div><div class="citem-l">Telefono</div><div class="citem-v">+39 0985 90518</div></div></div>
+        <div class="citem"><div class="citem-ico">🕐</div><div><div class="citem-l" data-it>Orari</div><div class="citem-l" data-en style="display:none">Hours</div><div class="citem-v" data-it>Lun–Mar, Gio–Dom: 12:30–15:00 · 18:30–23:30<br>Mercoledì chiuso</div><div class="citem-v" data-en style="display:none">Mon–Tue, Thu–Sun: 12:30–15:00 · 18:30–23:30<br>Wednesday closed</div></div></div>
+        <div class="citem"><div class="citem-ico">🌿</div><div><div class="citem-l">Leopold</div><div class="citem-v" data-it>Parla italiano, inglese e tedesco — vi guiderà nel menu con piacere</div><div class="citem-v" data-en style="display:none">Speaks Italian, English and German — will guide you through the menu with pleasure</div></div></div>
+      </div>
+    </div>
+    <div class="p5-right reveal">
+      <div class="form-section-title" data-it>Prenota <em>il tavolo</em></div>
+      <div class="form-section-title" data-en style="display:none">Book <em>your table</em></div>
+      <p class="form-sub" data-it>La prenotazione è consigliata — specialmente nel weekend e in estate.</p>
+      <p class="form-sub" data-en style="display:none">Booking recommended — especially on weekends and during summer.</p>
+      <div class="frow">
+        <div class="fgroup"><label data-it>Nome</label><label data-en style="display:none">First name</label><input type="text" placeholder="Marco"/></div>
+        <div class="fgroup"><label data-it>Cognome</label><label data-en style="display:none">Last name</label><input type="text" placeholder="Rossi"/></div>
+      </div>
+      <div class="fgroup"><label>Email / Tel</label><input type="text" placeholder="+39 333 000 0000"/></div>
+      <div class="frow">
+        <div class="fgroup"><label data-it>Data</label><label data-en style="display:none">Date</label><input type="date"/></div>
+        <div class="fgroup">
+          <label data-it>Persone</label><label data-en style="display:none">Guests</label>
+          <select>
+            <option>2</option><option selected>3–4</option>
+            <option>5–6</option><option>7–10</option><option data-it>11+ (evento)</option><option data-en style="display:none">11+ (event)</option>
+          </select>
+        </div>
+      </div>
+      <div class="fgroup">
+        <label data-it>Lingua preferita</label><label data-en style="display:none">Preferred language</label>
+        <select>
+          <option>Italiano</option><option>English</option><option>Deutsch</option>
+        </select>
+      </div>
+      <div class="fgroup">
+        <label data-it>Note o allergie</label><label data-en style="display:none">Notes or allergies</label>
+        <input type="text" placeholder="" data-it/>
+        <input type="text" placeholder="" data-en style="display:none"/>
+      </div>
+      <button class="btn-book-e" onclick="alert(document.body.classList.contains('en') ? '✓ Request sent! Leopold will contact you soon.' : '✓ Richiesta inviata! Leopold vi ricontatterà presto.')">
+        <span data-it>Invia richiesta →</span>
+        <span data-en style="display:none">Send request →</span>
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- DEMO BANNER -->
+<div class="demo-strip" id="ds">
+  <div class="ds-t"><span class="ds-badge">Demo</span> Pagina demo gratuita per <strong>Farmhouse La Rondinella</strong></div>
+  <div class="ds-btns">
+    <button class="dsbtn dsbtn-s" onclick="document.getElementById('ds').style.display='none'">✕</button>
+    <button class="dsbtn dsbtn-p" onclick="alert('Contattaci per attivare il sito!')">Voglio questo sito →</button>
+  </div>
+</div>
+
+<script>
+// Lang switch
+function setLang(lang, btn) {
+  document.body.classList.toggle('en', lang === 'en');
+  document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  // show/hide nav links
+  document.querySelectorAll('.lb-link[data-it]').forEach(el => el.style.display = lang === 'en' ? 'none' : '');
+  document.querySelectorAll('.lb-link[data-en]').forEach(el => el.style.display = lang === 'en' ? '' : 'none');
+}
+
+// Sticky nav
+window.addEventListener('scroll', () => {
+  document.getElementById('langbar').classList.toggle('solid', window.scrollY > 80);
+});
+
+// Reveal
+const obs = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('vis'); }), {threshold:.08});
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
