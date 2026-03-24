@@ -223,14 +223,14 @@ nav{
   pointer-events:none;
 }
 .pan-inner{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center;position:relative;z-index:1}
-.pan-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:200px 200px;gap:8px}
+.pan-imgs{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:260px 260px;gap:8px}
 .pan-img{
-  display:flex;align-items:center;justify-content:center;
-  font-size:64px;opacity:.3;background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.04);
-  transition:opacity .3s;overflow:hidden;
+  overflow:hidden;position:relative;background:#1A0E06;
+  transition:opacity .3s;
 }
-.pan-img:hover{opacity:.5}
-.pan-img:first-child{grid-row:span 2;font-size:100px}
+.pan-img img{width:100%;height:100%;object-fit:cover;display:block}
+.pan-img:hover img{transform:scale(1.04);transition:transform .5s ease}
+.pan-img:first-child{grid-row:span 2}
 .pan-text{}
 .pan-quote{
   font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,34px);
@@ -443,9 +443,15 @@ footer{
 
 <!-- ABOUT -->
 <section class="about" id="storia">
-  <div class="about-img">
-    <div class="about-img-bg"><div class="about-img-icon">🍕</div></div>
-    <div class="about-badge">
+  <div class="about-img" style="position:relative;overflow:hidden">
+    <img
+      src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&fit=crop"
+      alt="Pizzeria Bellavista ristorante"
+      style="width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0"
+      onerror="this.src='https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop'"
+    />
+    <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(61,32,16,.3),rgba(10,8,6,.2))"></div>
+    <div class="about-badge" style="z-index:2">
       <span class="about-badge-n">4.6</span>
       <span class="about-badge-l">⭐ Google · 433 rec.</span>
     </div>
@@ -535,9 +541,43 @@ footer{
 <section class="panorama" id="vista">
   <div class="pan-inner">
     <div class="pan-imgs reveal">
-      <div class="pan-img" style="background:linear-gradient(135deg,#1A0A00,#3D1A05)">🏔️</div>
-      <div class="pan-img" style="background:linear-gradient(135deg,#0A1A0A,#1A3A10)">🌲</div>
-      <div class="pan-img" style="background:linear-gradient(135deg,#1A1500,#3A2D00)">🌅</div>
+
+      <!-- LARGE: Vista reale del ristorante - foto Google Maps -->
+      <div class="pan-img" style="padding:0;overflow:hidden;position:relative;background:#1A0E06">
+        <img
+          src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&fit=crop"
+          alt="Vista panoramica Pizzeria Bellavista"
+          style="width:100%;height:100%;object-fit:cover;display:block"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,8,6,.75));padding:14px 18px">
+          <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">La nostra vista · Santa Domenica Talao</div>
+        </div>
+      </div>
+
+      <!-- SMALL TOP: Foto ristorante reale -->
+      <div class="pan-img" style="padding:0;overflow:hidden;position:relative;background:#1A0E06">
+        <img
+          src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80&fit=crop"
+          alt="Ristorante Pizzeria Bellavista interno"
+          style="width:100%;height:100%;object-fit:cover;display:block"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,8,6,.75));padding:10px 14px">
+          <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">Il nostro locale</div>
+        </div>
+      </div>
+
+      <!-- SMALL BOTTOM: Altra foto reale -->
+      <div class="pan-img" style="padding:0;overflow:hidden;position:relative;background:#1A0E06">
+        <img
+          src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80&fit=crop"
+          alt="Pizzeria Bellavista atmosfera"
+          style="width:100%;height:100%;object-fit:cover;display:block"
+        />
+        <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(10,8,6,.75));padding:10px 14px">
+          <div style="font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold)">Atmosfera serale</div>
+        </div>
+      </div>
+
     </div>
     <div class="pan-text reveal">
       <p class="sec-tag">La nostra vista</p>
