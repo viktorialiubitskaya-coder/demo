@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Demo Portfolio — Viktoria Liubitskaya</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#07060A;--dark:#0F0D14;--card:#13111A;
+  --border:rgba(255,255,255,.07);--gold:#C8963C;
+  --cream:#F5EDE0;--muted:#7A7090;--light:#FAF8F5;
+}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--cream);font-family:'Jost',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden}
+
+/* NOISE OVERLAY */
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");opacity:.025;pointer-events:none;z-index:0}
+
+/* HEADER */
+header{position:relative;z-index:1;padding:72px 64px 0;text-align:center}
+.eyebrow{font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);opacity:.7;margin-bottom:18px}
+h1{font-family:'Cormorant Garamond',serif;font-size:clamp(2.4rem,6vw,4.2rem);font-weight:300;letter-spacing:.04em;line-height:1.12;color:var(--light)}
+h1 em{font-style:italic;color:var(--gold)}
+.subtitle{margin-top:16px;font-size:13px;letter-spacing:.1em;color:var(--muted);max-width:480px;margin-left:auto;margin-right:auto;line-height:1.8}
+.divider{width:1px;height:56px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);margin:48px auto}
+
+/* GRID */
+.grid{
+  position:relative;z-index:1;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:1px;
+  max-width:1280px;
+  margin:0 auto;
+  padding:0 24px 120px;
+  border-top:1px solid var(--border);
+}
+
+/* CARD */
+.card{
+  position:relative;
+  background:var(--card);
+  padding:48px 40px 44px;
+  text-decoration:none;
+  display:block;
+  border-right:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+  overflow:hidden;
+  transition:background .35s;
+}
+.card:hover{background:#1A1724}
+.card::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent-a,.08) 0%,transparent 60%);
+  opacity:0;transition:opacity .4s;
+}
+.card:hover::after{opacity:1}
+
+.card-num{
+  font-family:'Cormorant Garamond',serif;
+  font-size:11px;letter-spacing:.2em;
+  color:var(--gold);opacity:.45;
+  margin-bottom:32px;
+  display:block;
+}
+.card-icon{
+  width:44px;height:44px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:28px;
+  font-size:20px;
+}
+.card-name{
+  font-family:'Cormorant Garamond',serif;
+  font-size:1.7rem;font-weight:400;
+  letter-spacing:.03em;line-height:1.2;
+  color:var(--light);
+  margin-bottom:6px;
+}
+.card-name em{font-style:italic;color:var(--gold)}
+.card-location{
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:20px;
+}
+.card-desc{
+  font-size:13px;line-height:1.75;
+  color:var(--muted);max-width:320px;
+  margin-bottom:36px;
+}
+.card-tags{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:36px}
+.tag{
+  font-size:9px;letter-spacing:.16em;text-transform:uppercase;
+  padding:5px 12px;border:1px solid var(--border);
+  color:var(--muted);border-radius:40px;
+}
+.card-arrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold);opacity:.6;
+  transition:opacity .25s,gap .25s;
+}
+.card:hover .card-arrow{opacity:1;gap:16px}
+.card-arrow span{font-size:16px;line-height:1}
+
+/* CARD ACCENT BARS */
+.card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(to right,transparent,var(--accent-color,var(--gold)),transparent);
+  opacity:0;transition:opacity .35s;
+}
+.card:hover::before{opacity:1}
+
+/* FOOTER */
+footer{
+  position:relative;z-index:1;
+  text-align:center;padding:40px 24px 56px;
+  border-top:1px solid var(--border);
+  font-size:11px;letter-spacing:.12em;color:var(--muted);opacity:.6;
+}
+</style>
+</head>
+<body>
+
+<header>
+  <p class="eyebrow">Portfolio Dimostrativo · 2025</p>
+  <h1>Siti Web<br><em>per la Ristorazione</em></h1>
+  <p class="subtitle">Quattro concept personalizzati per ristoranti della Calabria — design esclusivo, identità visiva unica.</p>
+  <div class="divider"></div>
+</header>
+
+<main class="grid">
+
+  <!-- BELLAVISTA -->
+  <a class="card" href="bellavista/" style="--accent-color:#C8963C">
+    <span class="card-num">01 / 04</span>
+    <div class="card-icon">🌿</div>
+    <h2 class="card-name">Ristorante<br><em>Bellavista</em></h2>
+    <p class="card-location">Santa Domenica Talao, CS</p>
+    <p class="card-desc">Eleganza rustica con palette calda terra e oro. Cursore personalizzato, animazioni fluide, menù interattivo.</p>
+    <div class="card-tags">
+      <span class="tag">Luxury Dark</span>
+      <span class="tag">Gold &amp; Terra</span>
+      <span class="tag">Ristorante · Pizzeria</span>
+    </div>
+    <span class="card-arrow">Vedi demo <span>→</span></span>
+  </a>
+
+  <!-- ERSILIO -->
+  <a class="card" href="ersilio/" style="--accent-color:#D4A843">
+    <span class="card-num">02 / 04</span>
+    <div class="card-icon">🍕</div>
+    <h2 class="card-name">Pizzeria<br><em>da Ersilio</em></h2>
+    <p class="card-location">Santa Domenica Talao, CS</p>
+    <p class="card-desc">Design caldo e accogliente, toni olive e verde scuro. Atmosfera autentica di pizzeria artigianale.</p>
+    <div class="card-tags">
+      <span class="tag">Warm Dark</span>
+      <span class="tag">Terra &amp; Olive</span>
+      <span class="tag">Pizzeria</span>
+    </div>
+    <span class="card-arrow">Vedi demo <span>→</span></span>
+  </a>
+
+  <!-- BISTROT -->
+  <a class="card" href="bistrot/" style="--accent-color:#7C6FFF">
+    <span class="card-num">03 / 04</span>
+    <div class="card-icon">🍷</div>
+    <h2 class="card-name">BistrotEnoteca<br><em>Del Corso</em></h2>
+    <p class="card-location">Santa Domenica Talao, CS</p>
+    <p class="card-desc">Estetica contemporanea con viola e neon. Design audace per un locale con carattere e identità forte.</p>
+    <div class="card-tags">
+      <span class="tag">Neo-Bistrot</span>
+      <span class="tag">Purple &amp; Violet</span>
+      <span class="tag">Enoteca · Bistrot</span>
+    </div>
+    <span class="card-arrow">Vedi demo <span>→</span></span>
+  </a>
+
+  <!-- FATTORIA -->
+  <a class="card" href="fattoria/" style="--accent-color:#2EC4B6">
+    <span class="card-num">04 / 04</span>
+    <div class="card-icon">🌊</div>
+    <h2 class="card-name">La Vecchia<br><em>Fattoria</em></h2>
+    <p class="card-location">Scalea, CS</p>
+    <p class="card-desc">Palette marina blu profondo e teal. Evoca il paesaggio costiero calabrese con raffinatezza mediterranea.</p>
+    <div class="card-tags">
+      <span class="tag">Mediterranean</span>
+      <span class="tag">Sea &amp; Teal</span>
+      <span class="tag">Ristorante</span>
+    </div>
+    <span class="card-arrow">Vedi demo <span>→</span></span>
+  </a>
+
+</main>
+
+<footer>
+  © 2025 Viktoria Liubitskaya · Web Design per la Ristorazione
+</footer>
+
+</body>
+</html>
