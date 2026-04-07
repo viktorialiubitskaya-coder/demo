@@ -21,9 +21,9 @@ nav.on{background:rgba(26,14,8,.97);backdrop-filter:blur(12px);border-bottom:1px
 .nav-cta{background:var(--rust);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;transition:all .2s;}.nav-cta:hover{background:var(--ochre);}
 .hero{min-height:100vh;position:relative;display:flex;align-items:flex-end;overflow:hidden;}
 .hbg{position:absolute;inset:0;background:linear-gradient(160deg,#1a0e08 0%,#3a1a10 30%,#6a2a14 60%,#8b3a1a 100%);}
-.hbg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0px,transparent 1px,transparent 40px),repeating-linear-gradient(90deg,rgba(255,255,255,.01) 0px,transparent 1px,transparent 60px);}
-.hbg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 65% 40%,rgba(196,88,42,.3) 0%,transparent 65%);}
-.hdeco{position:absolute;right:-2%;top:50%;transform:translateY(-52%);font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(140px,20vw,260px);color:rgba(196,88,42,.06);line-height:1;pointer-events:none;}
+.hbg::before{content:'';position:absolute;inset:0;background-image:url('https://lh3.googleusercontent.com/places/ANXAkqHJUsvpBiGA1rlBnk9qEUiIaCjw8fn5uVv5Z9mzozzr8j1vgf-qBggreLRX-5H8QVxai5-a-sXh53Trpnb9hXDzqJ8DrPdzY0g=s4800-w800-h600');background-size:cover;background-position:center;opacity:.18;}
+.hbg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 55% at 65% 40%,rgba(196,88,42,.25) 0%,transparent 65%);}
+.hdeco{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(180px,28vw,340px);color:rgba(196,88,42,.04);line-height:1;pointer-events:none;letter-spacing:-4px;}
 .hc{position:relative;z-index:2;padding:0 60px 90px;max-width:700px;animation:su .9s ease both;}
 @keyframes su{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
 .htag{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--ochre);margin-bottom:24px;}
@@ -45,7 +45,7 @@ nav.on{background:rgba(26,14,8,.97);backdrop-filter:blur(12px);border-bottom:1px
 .si{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap;}.si b{color:rgba(255,255,255,.85);}
 .about{display:grid;grid-template-columns:5fr 4fr;}
 .avis{background:var(--mid);min-height:540px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative;}
-.avis::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(196,88,42,.15) 0%,transparent 65%);}
+
 .atxt{background:var(--card);padding:88px 60px;display:flex;flex-direction:column;justify-content:center;}
 .tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--rust);margin-bottom:16px;}
 .atxt h2{font-family:'Playfair Display',serif;font-size:clamp(32px,3.5vw,50px);line-height:1.1;color:var(--ink);margin-bottom:22px;}
@@ -118,11 +118,12 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
 </nav>
 <section class="hero">
   <div class="hbg"></div>
-  <div class="hdeco" lang="it">Gusto</div><div class="hdeco" lang="en" style="right:-4%">Taste</div>
+  <div class="hdeco">✦</div>
   <div class="hc">
     <div class="htag" lang="it">Diamante · Riviera dei Cedri · Cucina calabrese</div>
     <div class="htag" lang="en">Diamante · Riviera dei Cedri · Calabrian cuisine</div>
-    <h1 class="hh">Gusto<i>Antico</i></h1>
+    <h1 class="hh" lang="it">Gusto<i>Antico</i></h1>
+    <h1 class="hh" lang="en">Gusto<i>Antico</i></h1>
     <p class="hsub" lang="it">Tradizione · Territorio · Francesco Albano</p>
     <p class="hsub" lang="en">Tradition · Territory · Francesco Albano</p>
     <p class="hdesc" lang="it">Nel cuore del centro storico di Diamante — un balconcino panoramico, la cucina calabrese più autentica, il cedro spritz della casa. Chef Francesco Albano: dal viaggio nelle cucine d'Italia, tornato alla sua terra.</p>
@@ -148,29 +149,8 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
   <div class="si">👨‍🍳 <b>Francesco Albano</b></div>
 </div>
 <section class="about" id="about">
-  <div class="avis">
-    <svg viewBox="0 0 380 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;opacity:.9">
-      <rect width="380" height="460" fill="#1a0e08"/>
-      <circle cx="80" cy="100" r="50" fill="rgba(196,88,42,.15)"/>
-      <circle cx="300" cy="80" r="40" fill="rgba(212,146,58,.12)"/>
-      <path d="M40 200 Q190 150 340 200 Q190 250 40 200Z" fill="rgba(139,58,26,.2)"/>
-      <rect x="100" y="180" width="180" height="200" rx="6" fill="#3a1a0c" opacity=".9"/>
-      <rect x="88" y="174" width="204" height="14" rx="3" fill="#4a2a14"/>
-      <rect x="120" y="204" width="50" height="55" rx="3" fill="rgba(212,146,58,.25)"/>
-      <rect x="210" y="204" width="50" height="55" rx="3" fill="rgba(212,146,58,.2)"/>
-      <rect x="96" y="300" width="188" height="60" rx="4" fill="#2a1208" opacity=".8"/>
-      <line x1="96" y1="300" x2="284" y2="300" stroke="rgba(212,146,58,.3)" stroke-width="2"/>
-      <line x1="130" y1="300" x2="130" y2="360" stroke="rgba(212,146,58,.2)" stroke-width="1.5"/>
-      <line x1="160" y1="300" x2="160" y2="360" stroke="rgba(212,146,58,.2)" stroke-width="1.5"/>
-      <line x1="190" y1="300" x2="190" y2="360" stroke="rgba(212,146,58,.2)" stroke-width="1.5"/>
-      <line x1="220" y1="300" x2="220" y2="360" stroke="rgba(212,146,58,.2)" stroke-width="1.5"/>
-      <line x1="250" y1="300" x2="250" y2="360" stroke="rgba(212,146,58,.2)" stroke-width="1.5"/>
-      <rect x="0" y="385" width="380" height="75" fill="rgba(26,60,90,.4)"/>
-      <ellipse cx="155" cy="330" rx="7" ry="18" fill="rgba(180,40,20,.6)" transform="rotate(-15 155 330)"/>
-      <ellipse cx="225" cy="325" rx="7" ry="18" fill="rgba(180,40,20,.5)" transform="rotate(10 225 325)"/>
-      <ellipse cx="190" cy="280" rx="80" ry="50" fill="rgba(196,88,42,.06)"/>
-      <text x="190" y="448" text-anchor="middle" font-family="'Playfair Display',serif" font-style="italic" font-size="13" fill="rgba(212,146,58,.3)" letter-spacing="2">gusto antico</text>
-    </svg>
+  <div class="avis" style="overflow:hidden;">
+    <img src="https://lh3.googleusercontent.com/places/ANXAkqH_NA3LikNqCgjDbp642a8FUXcTgGY-fBCj4ZarFNfT4cS0-FrEnxzOjPBmbOWyk5RgvsK9AOD32-cfuqHQrHL8uCBP58taghU=s4800-w800-h600" alt="Gusto Antico Diamante" style="width:100%;height:100%;min-height:540px;object-fit:cover;display:block;">
   </div>
   <div class="atxt">
     <div class="tag" lang="it">La nostra storia</div><div class="tag" lang="en">Our story</div>
