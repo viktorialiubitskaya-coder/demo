@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="it" id="html">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Charlot Artigiani della Pizza · Praia a Mare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#080808;--charcoal:#121212;--card:#1a1a1a;
+  --red:#e63022;--orange:#f07020;--cream:#f5f0e8;--warm:#ede5d5;
+  --muted:#888;--border:rgba(255,255,255,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--black);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden;}
+
+/* ── LANG ── */
+[lang="en"] { display:none; }
+body.en [lang="it"] { display:none; }
+body.en [lang="en"] { display:revert; }
+
+.lang-btn{
+  position:fixed;top:22px;right:80px;z-index:200;
+  background:rgba(255,255,255,.08);border:1px solid var(--border);
+  color:var(--cream);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;transition:all .2s;font-family:'Inter',sans-serif;
+}
+.lang-btn:hover{background:rgba(255,255,255,.15);}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 52px;display:flex;align-items:center;justify-content:space-between;
+  transition:all .4s;
+}
+nav.on{background:rgba(8,8,8,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:13px 52px;}
+.logo{font-family:'Anton',sans-serif;font-size:24px;color:var(--cream);text-decoration:none;letter-spacing:1px;}
+.logo span{color:var(--red);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--cream);}
+.cta{background:var(--red);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .2s;clip-path:polygon(0 0,calc(100% - 8px) 0,100% 100%,8px 100%);}
+.cta:hover{background:var(--orange);}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;display:flex;align-items:center;
+  position:relative;overflow:hidden;
+  background:var(--black);
+}
+/* animated gradient bg */
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 60% 50%, rgba(230,48,34,.18) 0%, transparent 65%);
+  animation:pulse 5s ease-in-out infinite alternate;
+}
+@keyframes pulse{from{opacity:.6;transform:scale(1);}to{opacity:1;transform:scale(1.05);}}
+
+/* big text watermark */
+.hero-wm{
+  position:absolute;right:-2%;top:50%;transform:translateY(-50%);
+  font-family:'Anton',sans-serif;font-size:clamp(180px,25vw,340px);
+  line-height:1;color:rgba(230,48,34,.07);pointer-events:none;
+  letter-spacing:-5px;user-select:none;
+  animation:drift 8s ease-in-out infinite alternate;
+}
+@keyframes drift{from{transform:translateY(-50%) translateX(0);}to{transform:translateY(-52%) translateX(-15px);}}
+
+.hero-content{position:relative;z-index:2;padding:0 52px;max-width:760px;}
+
+/* staggered reveal */
+.hero-content > *{opacity:0;transform:translateY(30px);animation:rev .8s ease forwards;}
+@keyframes rev{to{opacity:1;transform:translateY(0);}}
+.hero-badge{animation-delay:.1s;}
+.hero-title{animation-delay:.25s;}
+.hero-sub{animation-delay:.4s;}
+.hero-desc{animation-delay:.55s;}
+.hero-btns{animation-delay:.7s;}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(230,48,34,.15);border:1px solid rgba(230,48,34,.3);
+  padding:6px 16px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);
+  margin-bottom:24px;
+}
+.hero-badge::before{content:'●';color:var(--red);animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:.2;}}
+
+.hero-title{
+  font-family:'Anton',sans-serif;
+  font-size:clamp(70px,12vw,160px);line-height:.88;
+  color:var(--cream);margin-bottom:14px;letter-spacing:-1px;
+}
+.hero-title .accent{color:var(--red);}
+.hero-title .outline{
+  -webkit-text-stroke:2px var(--cream);color:transparent;
+  display:block;
+}
+
+.hero-sub{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+.hero-desc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.55);max-width:480px;margin-bottom:44px;}
+
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn-red{
+  background:var(--red);color:#fff;padding:16px 38px;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:500;
+  clip-path:polygon(0 0,calc(100% - 10px) 0,100% 100%,10px 100%);
+  transition:all .3s;position:relative;overflow:hidden;
+}
+.btn-red::after{
+  content:'';position:absolute;inset:0;background:var(--orange);
+  transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.btn-red:hover::after{transform:scaleX(1);}
+.btn-red span{position:relative;z-index:1;}
+.btn-ghost{
+  color:rgba(255,255,255,.5);font-size:12px;letter-spacing:3px;text-transform:uppercase;
+  text-decoration:none;border:1px solid rgba(255,255,255,.15);padding:15px 28px;transition:all .2s;
+}
+.btn-ghost:hover{border-color:rgba(255,255,255,.4);color:var(--cream);}
+
+/* awards strip */
+.awards{
+  position:absolute;bottom:0;left:0;right:0;
+  background:rgba(230,48,34,.12);border-top:1px solid rgba(230,48,34,.2);
+  padding:14px 52px;display:flex;gap:40px;overflow:hidden;
+}
+.aw{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.45);white-space:nowrap;}
+.aw strong{color:var(--orange);}
+
+/* ── NUMBERS ── */
+.numbers{background:var(--red);display:grid;grid-template-columns:repeat(4,1fr);}
+.num{padding:22px 20px;border-right:1px solid rgba(255,255,255,.15);text-align:center;}
+.num:last-child{border-right:none;}
+.num-v{font-family:'Anton',sans-serif;font-size:38px;color:#fff;line-height:1;}
+.num-l{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:4px;}
+
+/* ── MANIFESTO ── */
+.manifesto{padding:100px 52px;background:var(--charcoal);position:relative;overflow:hidden;}
+.manifesto::before{
+  content:'PIZZA';position:absolute;bottom:-40px;right:-20px;
+  font-family:'Anton',sans-serif;font-size:280px;color:rgba(255,255,255,.02);
+  line-height:1;pointer-events:none;
+}
+.man-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.man-txt .tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:20px;}
+.man-txt h2{font-family:'Anton',sans-serif;font-size:clamp(48px,6vw,80px);line-height:.92;color:var(--cream);margin-bottom:28px;letter-spacing:-1px;}
+.man-txt h2 em{font-style:normal;color:var(--red);}
+.man-txt p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.55);margin-bottom:14px;}
+.man-txt p strong{color:var(--cream);}
+
+/* pizza stat cards */
+.man-cards{display:flex;flex-direction:column;gap:16px;}
+.mc{
+  background:var(--card);border:1px solid var(--border);
+  padding:24px 28px;display:flex;gap:20px;align-items:center;
+  transition:all .3s;cursor:default;
+}
+.mc:hover{border-color:rgba(230,48,34,.4);transform:translateX(8px);}
+.mc-icon{font-size:32px;flex-shrink:0;}
+.mc-title{font-family:'Anton',sans-serif;font-size:20px;color:var(--cream);letter-spacing:.5px;margin-bottom:4px;}
+.mc-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* ── PIZZE ── */
+.pizze{padding:100px 52px;background:var(--black);}
+.piz-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:20px;}
+.piz-head h2{font-family:'Anton',sans-serif;font-size:clamp(50px,7vw,90px);line-height:.92;color:var(--cream);}
+.piz-head h2 em{color:var(--red);font-style:normal;}
+
+/* pizza cards — horizontal scrollable on mobile */
+.piz-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.pz{
+  background:var(--card);padding:36px 28px;position:relative;overflow:hidden;
+  border-bottom:3px solid transparent;transition:all .35s;
+}
+.pz::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(230,48,34,.08) 0%,transparent 60%);
+  opacity:0;transition:opacity .3s;
+}
+.pz:hover{border-bottom-color:var(--red);transform:translateY(-4px);}
+.pz:hover::before{opacity:1;}
+.pz-num{font-family:'Anton',sans-serif;font-size:56px;color:rgba(255,255,255,.04);line-height:1;margin-bottom:-12px;}
+.pz-name{font-family:'Anton',sans-serif;font-size:22px;color:var(--cream);letter-spacing:.5px;margin-bottom:6px;}
+.pz-ing{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.pz-tag{
+  display:inline-block;font-size:9px;letter-spacing:2px;text-transform:uppercase;
+  padding:3px 10px;background:rgba(230,48,34,.15);color:var(--orange);
+  clip-path:polygon(0 0,calc(100% - 4px) 0,100% 100%,4px 100%);
+}
+.pz-price{position:absolute;top:28px;right:24px;font-family:'Anton',sans-serif;font-size:20px;color:var(--red);}
+
+/* fritti */
+.fritti{background:var(--charcoal);padding:80px 52px;}
+.fr-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:2px;margin-top:48px;}
+.fr{background:var(--card);padding:28px;border-left:3px solid transparent;transition:all .3s;}
+.fr:hover{border-left-color:var(--orange);}
+.fr-name{font-family:'Anton',sans-serif;font-size:20px;color:var(--cream);margin-bottom:6px;}
+.fr-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* ── REVIEWS ── */
+.reviews{padding:100px 52px;background:var(--black);}
+.rev-head h2{font-family:'Anton',sans-serif;font-size:clamp(50px,7vw,90px);line-height:.92;color:var(--cream);margin-bottom:6px;}
+.rev-head h2 em{color:var(--red);font-style:normal;}
+.rev-bar{font-size:11px;letter-spacing:2px;color:var(--muted);margin-bottom:52px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;}
+.rv{background:var(--card);padding:32px;border-top:2px solid var(--border);transition:border-color .3s;}
+.rv:hover{border-top-color:var(--red);}
+.rv-stars{color:var(--orange);letter-spacing:3px;font-size:13px;margin-bottom:14px;}
+.rv-txt{font-size:15px;line-height:1.7;color:rgba(255,255,255,.75);margin-bottom:18px;font-style:italic;}
+.rv-lang{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* ── CTA ── */
+.cta-s{background:var(--red);padding:80px 52px;display:grid;grid-template-columns:1fr auto;gap:40px;align-items:center;}
+.cta-s h2{font-family:'Anton',sans-serif;font-size:clamp(42px,6vw,80px);line-height:.92;color:#fff;}
+.cta-actions{display:flex;flex-direction:column;gap:12px;align-items:flex-end;}
+.wa-big{
+  background:#fff;color:var(--red);padding:18px 36px;
+  font-family:'Anton',sans-serif;font-size:16px;letter-spacing:1px;
+  text-decoration:none;display:flex;align-items:center;gap:10px;
+  transition:all .2s;clip-path:polygon(0 0,calc(100% - 12px) 0,100% 100%,12px 100%);
+}
+.wa-big:hover{background:var(--cream);transform:scale(1.03);}
+.info-small{font-size:12px;color:rgba(255,255,255,.6);text-align:right;line-height:1.6;}
+
+footer{background:var(--black);padding:32px 52px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'Anton',sans-serif;font-size:18px;color:rgba(255,255,255,.25);}
+.f-logo span{color:var(--red);}
+.f-copy{font-size:11px;color:var(--muted);}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:58px;height:58px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.5);transition:transform .2s;animation:pop .4s 1.2s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.12);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}
+  .hero-content{padding:0 20px;}
+  .awards{padding:12px 20px;gap:20px;}
+  .numbers{grid-template-columns:1fr 1fr;}
+  .manifesto{padding:60px 20px;}.man-grid{grid-template-columns:1fr;}
+  .pizze,.fritti,.reviews{padding:60px 20px;}
+  .piz-grid{grid-template-columns:1fr;}
+  .fr-grid{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .cta-s{grid-template-columns:1fr;padding:60px 20px;}.cta-actions{align-items:flex-start;}
+  footer{padding:24px 20px;flex-direction:column;text-align:center;}
+  .lang-btn{right:20px;}
+}
+</style>
+</head>
+<body id="body">
+
+<button class="lang-btn" onclick="toggleLang()">EN / IT</button>
+
+<nav id="nav">
+  <a href="#" class="logo"><span>C</span>harlot</a>
+  <div class="links">
+    <a href="#pizze"><span lang="it">Pizze</span><span lang="en">Pizzas</span></a>
+    <a href="#fritti">Fritti</a>
+    <a href="#reviews"><span lang="it">Recensioni</span><span lang="en">Reviews</span></a>
+    <a href="#contact"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393408292940" class="cta"><span lang="it">Prenota</span><span lang="en">Book now</span></a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-wm">PIZZA</div>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <span lang="it">🏅 50 Top Pizza · Praia a Mare</span>
+      <span lang="en">🏅 50 Top Pizza Award · Praia a Mare</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="accent">CHARLOT</span>
+      <span class="outline"><span lang="it">ARTIGIANI</span><span lang="en">ARTISAN</span></span>
+      <span lang="it">DELLA PIZZA</span><span lang="en">PIZZA MAKERS</span>
+    </h1>
+    <p class="hero-sub">
+      <span lang="it">Tradizione · Innovazione · Qualità</span>
+      <span lang="en">Tradition · Innovation · Quality</span>
+    </p>
+    <p class="hero-desc">
+      <span lang="it">Impasto a lievitazione 24 ore, forno a legna, ingredienti calabresi di eccellenza. Il giusto mix tra anima napoletana e spirito calabrese — riconosciuto da 50 Top Pizza.</span>
+      <span lang="en">24-hour slow fermentation dough, wood-fired oven, exceptional Calabrian ingredients. The perfect blend of Neapolitan tradition and Calabrian soul — recognized by 50 Top Pizza.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/393408292940?text=Ciao!%20Vorrei%20prenotare%20da%20Charlot%20😊" class="btn-red">
+        <span>📱 <span lang="it">Prenota su WhatsApp</span><span lang="en">Book on WhatsApp</span></span>
+      </a>
+      <a href="#pizze" class="btn-ghost"><span lang="it">Scopri le pizze</span><span lang="en">See the menu</span></a>
+    </div>
+  </div>
+  <div class="awards">
+    <div class="aw">⭐ <strong>★4.5</strong> Google · 1263 rec.</div>
+    <div class="aw">🏅 <strong lang="it">50 Top Pizza</strong><strong lang="en">50 Top Pizza Award</strong></div>
+    <div class="aw">🍕 <strong lang="it">Lievitazione 24h</strong><strong lang="en">24h slow-rise dough</strong></div>
+    <div class="aw">🔥 <strong lang="it">Forno a legna</strong><strong lang="en">Wood-fired oven</strong></div>
+    <div class="aw">🌶️ <strong lang="it">Anima Calabrese</strong><strong lang="en">Calabrian Soul</strong></div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<div class="numbers">
+  <div class="num"><div class="num-v">1263</div><div class="num-l" lang="it">Recensioni Google</div><div class="num-l" lang="en">Google Reviews</div></div>
+  <div class="num"><div class="num-v">★4.5</div><div class="num-l" lang="it">Valutazione media</div><div class="num-l" lang="en">Average rating</div></div>
+  <div class="num"><div class="num-v">24h</div><div class="num-l" lang="it">Lievitazione impasto</div><div class="num-l" lang="en">Dough fermentation</div></div>
+  <div class="num"><div class="num-v">50</div><div class="num-l">Top Pizza</div></div>
+</div>
+
+<!-- MANIFESTO -->
+<section class="manifesto" id="about">
+  <div class="man-grid">
+    <div class="man-txt">
+      <div class="tag" lang="it">La nostra filosofia</div>
+      <div class="tag" lang="en">Our philosophy</div>
+      <h2 lang="it">Pizza <em>vera</em>,<br>non una <em>copia</em></h2>
+      <h2 lang="en">Real <em>pizza</em>,<br>not a <em>copy</em></h2>
+      <p lang="it">L'impasto è un diretto con lievitazione di <strong>24 ore</strong> — il risultato è una pizza morbida, profumata e fragrante. Non una pizza qualunque: il giusto mix tra tradizione partenopea e anima calabrese.</p>
+      <p lang="en">Our dough is a direct mix with <strong>24-hour fermentation</strong> — the result is a soft, fragrant, aromatic pizza. Not just any pizza: the perfect balance of Neapolitan tradition and Calabrian soul.</p>
+      <p lang="it">Al centro del locale il <strong>forno a legna</strong>: lo spettacolo inizia già all'ingresso. Due sale — una interna moderna, una esterna — con vista sull'Isola di Dino.</p>
+      <p lang="en">At the heart of the restaurant, our <strong>wood-fired oven</strong> puts on a show from the moment you walk in. Two dining areas — a modern interior and an outdoor terrace — with views of Dino Island.</p>
+    </div>
+    <div class="man-cards">
+      <div class="mc">
+        <div class="mc-icon">🔥</div>
+        <div>
+          <div class="mc-title" lang="it">Forno a legna</div>
+          <div class="mc-title" lang="en">Wood-fired oven</div>
+          <div class="mc-desc" lang="it">Cottura perfetta ad alta temperatura — cornicione alveolato e base croccante.</div>
+          <div class="mc-desc" lang="en">Perfect high-temperature baking — airy crust, crispy base.</div>
+        </div>
+      </div>
+      <div class="mc">
+        <div class="mc-icon">🌶️</div>
+        <div>
+          <div class="mc-title" lang="it">Ingredienti calabresi</div>
+          <div class="mc-title" lang="en">Calabrian ingredients</div>
+          <div class="mc-desc" lang="it">'Nduja di Spilinga, cipolla di Tropea, tonno, peperoncino — il territorio nel piatto.</div>
+          <div class="mc-desc" lang="en">'Nduja di Spilinga, Tropea onion, tuna, chili — the land on your plate.</div>
+        </div>
+      </div>
+      <div class="mc">
+        <div class="mc-icon">🏅</div>
+        <div>
+          <div class="mc-title">50 Top Pizza</div>
+          <div class="mc-desc" lang="it">Riconosciuti dalla guida italiana più prestigiosa delle pizzerie d'eccellenza.</div>
+          <div class="mc-desc" lang="en">Recognized by Italy's most prestigious guide to excellence in pizza.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PIZZE -->
+<section class="pizze" id="pizze">
+  <div class="piz-head">
+    <div>
+      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:12px" lang="it">Le nostre specialità</div>
+      <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--red);margin-bottom:12px" lang="en">Our specialities</div>
+      <h2 lang="it">Le <em>Pizze</em></h2>
+      <h2 lang="en">Our <em>Pizzas</em></h2>
+    </div>
+    <div style="font-size:13px;color:var(--muted);max-width:200px;line-height:1.6;text-align:right" lang="it">Impasto diretto, lievitazione 24h. Tutto fresco.</div>
+    <div style="font-size:13px;color:var(--muted);max-width:200px;line-height:1.6;text-align:right" lang="en">Direct dough, 24h rise. Everything fresh.</div>
+  </div>
+  <div class="piz-grid">
+    <div class="pz">
+      <div class="pz-price">€8</div>
+      <div class="pz-num">01</div>
+      <div class="pz-name">ReCharlot</div>
+      <div class="pz-ing" lang="it">Fior di latte, crema di pistacchio di Bronte, ciliegine di bufala, polpettine fritte, basilico, olio EVO</div>
+      <div class="pz-ing" lang="en">Fior di latte, Bronte pistachio cream, buffalo mozzarella, fried meatballs, basil, extra virgin olive oil</div>
+      <div class="pz-tag" lang="it">Must try</div><div class="pz-tag" lang="en">Must try</div>
+    </div>
+    <div class="pz">
+      <div class="pz-price">€9</div>
+      <div class="pz-num">02</div>
+      <div class="pz-name" lang="it">Benvenuti in Calabria</div>
+      <div class="pz-name" lang="en">Welcome to Calabria</div>
+      <div class="pz-ing" lang="it">Cipolla di Tropea, 'nduja di Spilinga, filetto di tonno, pomodorino giallo, fior di latte, basilico</div>
+      <div class="pz-ing" lang="en">Tropea onion, Spilinga 'nduja, tuna fillet, yellow cherry tomato, fior di latte, basil</div>
+      <div class="pz-tag">Signature</div>
+    </div>
+    <div class="pz">
+      <div class="pz-price">€8</div>
+      <div class="pz-num">03</div>
+      <div class="pz-name">Spilinga</div>
+      <div class="pz-ing" lang="it">Pomodoro, fior di latte, salsiccia fresca, 'nduja di Spilinga — piccante e irresistibile</div>
+      <div class="pz-ing" lang="en">Tomato, fior di latte, fresh sausage, 'nduja di Spilinga — spicy and irresistible</div>
+      <div class="pz-tag">🌶️ <span lang="it">Piccante</span><span lang="en">Spicy</span></div>
+    </div>
+    <div class="pz">
+      <div class="pz-price">€9</div>
+      <div class="pz-num">04</div>
+      <div class="pz-name">Burratina</div>
+      <div class="pz-ing" lang="it">Burrata di bufala, salmone fresco, zucchine grigliate, olio EVO, scorza di limone</div>
+      <div class="pz-ing" lang="en">Buffalo burrata, fresh salmon, grilled courgette, EVO oil, lemon zest</div>
+      <div class="pz-tag">Premium</div>
+    </div>
+    <div class="pz">
+      <div class="pz-price">€6</div>
+      <div class="pz-num">05</div>
+      <div class="pz-name">Pummarò</div>
+      <div class="pz-ing" lang="it">Pomodoro San Marzano, alici salate, origano selvatico, olio EVO — la classica napoletana</div>
+      <div class="pz-ing" lang="en">San Marzano tomato, salted anchovies, wild oregano, EVO oil — the Neapolitan classic</div>
+      <div class="pz-tag" lang="it">Classica</div><div class="pz-tag" lang="en">Classic</div>
+    </div>
+    <div class="pz">
+      <div class="pz-price">€6</div>
+      <div class="pz-num">06</div>
+      <div class="pz-name">Margherita</div>
+      <div class="pz-ing" lang="it">Pomodoro San Marzano DOP, fior di latte, basilico fresco, olio EVO — la perfezione nella semplicità</div>
+      <div class="pz-ing" lang="en">DOP San Marzano tomato, fior di latte, fresh basil, EVO oil — perfection in simplicity</div>
+      <div class="pz-tag" lang="it">Sempre in carta</div><div class="pz-tag" lang="en">Always on menu</div>
+    </div>
+  </div>
+</section>
+
+<!-- FRITTI -->
+<section class="fritti" id="fritti">
+  <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:14px" lang="it">Prima della pizza</div>
+  <div style="font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--orange);margin-bottom:14px" lang="en">Before the pizza</div>
+  <h2 style="font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,80px);color:var(--cream);margin-bottom:48px;line-height:.92" lang="it">I <span style="color:var(--orange)">FRITTI</span> ARTIGIANALI</h2>
+  <h2 style="font-family:'Anton',sans-serif;font-size:clamp(44px,6vw,80px);color:var(--cream);margin-bottom:48px;line-height:.92" lang="en">ARTISAN <span style="color:var(--orange)">FRIED</span> STARTERS</h2>
+  <div class="fr-grid">
+    <div class="fr">
+      <div class="fr-name" lang="it">Frittatina Nerano</div>
+      <div class="fr-name" lang="en">Frittatina Nerano</div>
+      <div class="fr-desc" lang="it">Bucatini, besciamella, crema di zucchine, provolone, menta — ispirata alla costa amalfitana</div>
+      <div class="fr-desc" lang="en">Bucatini, béchamel, courgette cream, provolone, mint — inspired by the Amalfi coast</div>
+    </div>
+    <div class="fr">
+      <div class="fr-name" lang="it">Frittatina Pistacchio e Mortadella</div>
+      <div class="fr-name" lang="en">Pistachio & Mortadella Frittatina</div>
+      <div class="fr-desc" lang="it">Bucatini, besciamella, provola, crema di pistacchio, mortadella, granella — una esplosione di sapore</div>
+      <div class="fr-desc" lang="en">Bucatini, béchamel, provola, pistachio cream, mortadella, pistachio crumble — a flavour explosion</div>
+    </div>
+    <div class="fr">
+      <div class="fr-name" lang="it">Frittatina Carbonara</div>
+      <div class="fr-name" lang="en">Carbonara Frittatina</div>
+      <div class="fr-desc" lang="it">Guanciale croccante, uovo, pecorino romano, pepe nero — la carbonara che non ti aspetti</div>
+      <div class="fr-desc" lang="en">Crispy guanciale, egg, pecorino romano, black pepper — the carbonara you didn't expect</div>
+    </div>
+    <div class="fr">
+      <div class="fr-name" lang="it">Crocchette di patate</div>
+      <div class="fr-name" lang="en">Potato croquettes</div>
+      <div class="fr-desc" lang="it">Patate, provola filante, prezzemolo — croccanti fuori, cremose dentro. Irresistibili.</div>
+      <div class="fr-desc" lang="en">Potato, melting provola, parsley — crispy outside, creamy inside. Irresistible.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rev-head">
+    <h2 lang="it"><em>1263</em> VOCI,<br>UNA CERTEZZA</h2>
+    <h2 lang="en"><em>1263</em> VOICES,<br>ONE CERTAINTY</h2>
+    <div class="rev-bar">Google Maps · ★4.5 · 50TopPizza · Praia a Mare</div>
+  </div>
+  <div class="rev-grid">
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Pizza da WOW! Una delizia per gli occhi e per il palato! Per non parlare delle frittatine di pasta — ineguagliabili. Proprietario gentile, personale disponibile e sorridente."</p>
+      <p class="rv-txt" lang="en">"WOW pizza! A delight for the eyes and the palate! Not to mention the frittatine — unmatched. Kind owner, helpful and smiling staff."</p>
+      <div class="rv-lang">🇮🇹 Sluurpy</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Se siete a Praia a mare ANDATECI — pizza buonissima, si paga poco e le pizze arrivano in un battibaleno. Hanno un forno a legna spettacolare!"</p>
+      <p class="rv-txt" lang="en">"If you're in Praia a Mare, GO THERE — amazing pizza, very affordable, and pizzas arrive in a flash. They have a spectacular wood-fired oven!"</p>
+      <div class="rv-lang">🇮🇹 TripAdvisor</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"The best pizza we've ever had in Italy! And believe me, we've had a lot. The desserts are delicious too. Great place — we'll be back!"</p>
+      <p class="rv-txt" lang="en">"The best pizza we've ever had in Italy! And believe me, we've had a lot. The desserts are delicious too. Great place — we'll be back!"</p>
+      <div class="rv-lang">🇬🇧 Google Maps</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-s" id="contact">
+  <div>
+    <h2 lang="it">VIENI A<br><span style="color:rgba(255,255,255,.35)">ASSAGGIARLA</span></h2>
+    <h2 lang="en">COME AND<br><span style="color:rgba(255,255,255,.35)">TASTE IT</span></h2>
+  </div>
+  <div class="cta-actions">
+    <a href="https://wa.me/393408292940?text=Ciao!%20Vorrei%20prenotare%20da%20Charlot%20😊" class="wa-big">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--red)"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <span lang="it">Prenota su WhatsApp</span><span lang="en">Book on WhatsApp</span>
+    </a>
+    <div class="info-small">
+      <span lang="it">Via C. Colombo 44/46 · Praia a Mare (CS)<br>Tel: 340 829 2940 · Aperto ogni sera</span>
+      <span lang="en">Via C. Colombo 44/46 · Praia a Mare (CS)<br>Tel: +39 340 829 2940 · Open every evening</span>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo"><span>C</span>harlot <span lang="it">Artigiani della Pizza</span><span lang="en">Artisan Pizza</span></div>
+  <div class="f-copy">© 2025 Charlot · Via C. Colombo 44/46 · Praia a Mare · Tel. 340 829 2940</div>
+</footer>
+
+<a href="https://wa.me/393408292940?text=Ciao!%20Vorrei%20prenotare%20da%20Charlot%20😊" class="waf">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+function toggleLang(){
+  const b=document.getElementById('body');
+  b.classList.toggle('en');
+  document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';
+}
+</script>
+</body>
+</html>

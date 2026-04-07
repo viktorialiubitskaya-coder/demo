@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria Ticciabbaca · Praia a Mare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Mulish:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --forest:#1a2a18;--deep:#0f1a0e;--olive:#3a5a2a;--sage:#5a8050;
+  --warm:#c8a060;--gold:#d4a840;--cream:#f5f0e5;--parch:#ede5d0;
+  --stone:#2a2018;--muted:#7a6a50;--border:rgba(255,255,255,.08);
+  --leaf:#4a7a38;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--stone);font-family:'Mulish',sans-serif;overflow-x:hidden;}
+
+[lang="en"]{display:none;}
+body.en [lang="it"]{display:none;}
+body.en [lang="en"]{display:revert;}
+
+.lang-btn{
+  position:fixed;top:22px;right:80px;z-index:200;
+  background:rgba(26,42,24,.7);border:1px solid rgba(255,255,255,.2);
+  color:#fff;font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;border-radius:2px;font-family:'Mulish',sans-serif;
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(15,26,14,.97);backdrop-filter:blur(12px);padding:14px 52px;}
+.logo{font-family:'Libre Baskerville',serif;font-size:20px;font-style:italic;color:#fff;text-decoration:none;}
+.logo span{font-style:normal;color:var(--warm);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.7);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--warm);}
+.cta{background:var(--warm);color:var(--deep);padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:1px;transition:all .2s;}
+.cta:hover{background:var(--gold);}
+
+/* HERO — full bleed forest/countryside */
+.hero{
+  min-height:100vh;display:flex;align-items:flex-end;
+  position:relative;overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,
+    #0a1208 0%, #12200f 20%, #1a3015 45%, #2a4a20 70%, #1a3015 100%
+  );
+}
+/* organic texture */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 60%, rgba(90,128,80,.2) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 35% at 75% 30%, rgba(212,168,64,.08) 0%, transparent 55%);
+}
+
+/* leaf particles */
+.leaves{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.leaf{
+  position:absolute;width:18px;height:18px;border-radius:50% 0 50% 0;
+  background:rgba(90,128,80,.25);
+  animation:fall linear infinite;
+}
+.leaf:nth-child(1){left:10%;animation-duration:12s;animation-delay:0s;width:14px;height:14px;}
+.leaf:nth-child(2){left:30%;animation-duration:15s;animation-delay:3s;width:20px;height:20px;}
+.leaf:nth-child(3){left:55%;animation-duration:11s;animation-delay:6s;width:12px;height:12px;}
+.leaf:nth-child(4){left:75%;animation-duration:14s;animation-delay:1s;width:16px;height:16px;}
+.leaf:nth-child(5){left:90%;animation-duration:13s;animation-delay:8s;width:10px;height:10px;}
+@keyframes fall{
+  0%{top:-30px;transform:rotate(0deg) translateX(0);}
+  25%{transform:rotate(90deg) translateX(20px);}
+  50%{transform:rotate(180deg) translateX(-10px);}
+  75%{transform:rotate(270deg) translateX(15px);}
+  100%{top:110%;transform:rotate(360deg) translateX(0);}
+}
+
+/* mountain/hills silhouette */
+.hills{position:absolute;bottom:0;left:0;right:0;height:45%;pointer-events:none;}
+
+.hero-content{position:relative;z-index:2;padding:0 60px 100px;animation:su .9s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-eyebrow{
+  display:flex;align-items:center;gap:14px;
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--warm);
+  margin-bottom:24px;
+}
+.hero-eyebrow::before,.hero-eyebrow::after{content:'';height:1px;background:var(--warm);opacity:.5;flex:1;max-width:40px;}
+
+.hero-h{
+  font-family:'Libre Baskerville',serif;
+  font-size:clamp(52px,8vw,110px);font-weight:700;line-height:.9;
+  color:#fff;margin-bottom:12px;
+}
+.hero-h em{font-style:italic;color:rgba(255,255,255,.4);}
+.hero-tagline{font-size:13px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:28px;}
+.hero-desc{font-size:16px;line-height:1.85;color:rgba(255,255,255,.6);max-width:500px;margin-bottom:44px;}
+
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-w{
+  background:var(--warm);color:var(--deep);padding:16px 36px;
+  font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:600;
+  border-radius:1px;position:relative;overflow:hidden;transition:all .3s;
+}
+.btn-w::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:3px;
+  background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .3s;
+}
+.btn-w:hover::after{transform:scaleX(1);}
+.btn-w:hover{background:var(--gold);}
+.btn-out{
+  color:rgba(255,255,255,.6);padding:15px 28px;font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.2);transition:all .2s;
+}
+.btn-out:hover{border-color:rgba(255,255,255,.5);color:#fff;}
+
+/* hero card right */
+.hero-card{
+  position:absolute;right:60px;bottom:100px;z-index:2;
+  background:rgba(26,42,24,.85);border:1px solid rgba(212,168,64,.2);
+  backdrop-filter:blur(12px);padding:24px 28px;max-width:220px;
+}
+.hc-v{font-family:'Libre Baskerville',serif;font-size:38px;font-weight:700;color:var(--warm);line-height:1;}
+.hc-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-top:5px;}
+.hc-sep{width:40px;height:1px;background:rgba(212,168,64,.3);margin:14px 0;}
+
+/* STRIP */
+.strip{background:var(--forest);display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--warm);}
+.si{padding:18px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.06);}
+.si:last-child{border-right:none;}
+.si-v{font-family:'Libre Baskerville',serif;font-size:18px;color:var(--warm);}
+.si-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;}
+
+/* STORIA */
+.storia{display:grid;grid-template-columns:1fr 1fr;}
+.storia-vis{
+  background:var(--olive);min-height:560px;
+  display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+}
+.storia-vis::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 60% 50% at 50% 50%,rgba(212,168,64,.1) 0%,transparent 65%);
+}
+.storia-txt{background:var(--parch);padding:88px 64px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--warm);margin-bottom:18px;}
+.storia-txt h2{font-family:'Libre Baskerville',serif;font-size:clamp(32px,3.5vw,50px);line-height:1.1;color:var(--stone);margin-bottom:24px;}
+.storia-txt h2 em{font-style:italic;color:var(--olive);}
+.storia-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.storia-quote{
+  margin-top:28px;background:#fff;padding:20px 24px;
+  border-left:4px solid var(--warm);
+}
+.storia-quote p{font-family:'Libre Baskerville',serif;font-style:italic;font-size:17px;color:var(--stone);line-height:1.6;}
+.storia-quote cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+
+/* MENU */
+.menu-s{padding:90px 52px;background:var(--cream);}
+.mh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.mh h2{font-family:'Libre Baskerville',serif;font-size:clamp(36px,5vw,58px);color:var(--stone);}
+.mh h2 em{font-style:italic;color:var(--olive);}
+
+.tabs{display:flex;border-bottom:2px solid #d8cdb8;margin-bottom:44px;}
+.tab{padding:12px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'Mulish',sans-serif;border-bottom:3px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.tab.on{color:var(--olive);border-bottom-color:var(--warm);font-weight:600;}
+
+.dish-g{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.dish{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 0;border-bottom:1px solid #d8cdb8;gap:14px;opacity:0;transform:translateY(6px);transition:all .3s;}
+.dish.show{opacity:1;transform:translateY(0);}
+.dish:nth-child(odd){padding-right:44px;}
+.dish:nth-child(even){padding-left:44px;border-left:1px solid #d8cdb8;}
+.dn{font-family:'Libre Baskerville',serif;font-size:19px;color:var(--stone);}
+.ds{font-size:12px;color:var(--muted);margin-top:4px;line-height:1.5;}
+.dp{font-family:'Libre Baskerville',serif;font-size:16px;color:var(--warm);white-space:nowrap;}
+
+/* FEATURES */
+.features{background:var(--forest);padding:80px 52px;}
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;}
+.fc{background:rgba(255,255,255,.04);border:1px solid var(--border);padding:36px 28px;border-top:3px solid var(--warm);transition:transform .3s;}
+.fc:hover{transform:translateY(-6px);}
+.fc-icon{font-size:30px;margin-bottom:16px;}
+.fc-t{font-family:'Libre Baskerville',serif;font-size:22px;color:#fff;margin-bottom:10px;}
+.fc-t em{font-style:italic;color:var(--warm);}
+.fc-d{font-size:13px;line-height:1.7;color:rgba(255,255,255,.5);}
+
+/* REVIEWS */
+.reviews{padding:90px 52px;background:var(--parch);}
+.rv-head h2{font-family:'Libre Baskerville',serif;font-size:clamp(34px,4vw,52px);color:var(--stone);margin-bottom:8px;}
+.rv-head h2 em{font-style:italic;color:var(--olive);}
+.rv-bar{font-size:12px;color:var(--muted);margin-bottom:48px;letter-spacing:1px;}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rv{background:#fff;padding:32px;border-bottom:3px solid var(--warm);}
+.rv-stars{color:var(--gold);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
+.rv-txt{font-family:'Libre Baskerville',serif;font-style:italic;font-size:16px;line-height:1.65;color:var(--stone);margin-bottom:16px;}
+.rv-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PRENOTA */
+.prenota{display:grid;grid-template-columns:1fr 1fr;}
+.p-left{background:var(--olive);padding:80px 60px;}
+.p-left h2{font-family:'Libre Baskerville',serif;font-size:clamp(32px,3.5vw,48px);color:#fff;margin-bottom:18px;line-height:1.15;}
+.p-left h2 em{font-style:italic;}
+.p-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:28px;}
+.ir{display:flex;gap:14px;align-items:flex-start;margin-bottom:14px;}
+.ir-i{width:36px;height:36px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0;}
+.ir-t{font-size:14px;color:rgba(255,255,255,.8);line-height:1.55;}
+.wa-l{display:inline-block;margin-top:24px;background:#25d366;color:#fff;padding:14px 26px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;transition:opacity .2s;}
+.wa-l:hover{opacity:.85;}
+
+.p-right{background:var(--parch);padding:80px 60px;}
+.p-right h3{font-family:'Libre Baskerville',serif;font-size:26px;color:var(--stone);margin-bottom:28px;font-style:italic;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #c8b898;padding:13px 14px;font-family:'Mulish',sans-serif;font-size:14px;color:var(--stone);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--olive);}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--stone);color:var(--warm);border:none;padding:16px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Mulish',sans-serif;font-weight:600;cursor:pointer;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--olive);}
+
+footer{background:var(--deep);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'Libre Baskerville',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo span{font-style:normal;color:var(--warm);}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}
+  .hero-content{padding:0 20px 72px;}.hero-card{display:none;}
+  .leaves{display:none;}
+  .strip{grid-template-columns:1fr 1fr;}
+  .storia{grid-template-columns:1fr;}.storia-vis{min-height:260px;}.storia-txt{padding:60px 20px;}
+  .menu-s,.features,.reviews{padding:60px 20px;}
+  .dish-g{grid-template-columns:1fr;}
+  .dish:nth-child(even){padding-left:0;border-left:none;}
+  .dish:nth-child(odd){padding-right:0;}
+  .feat-grid{grid-template-columns:1fr;}
+  .rv-grid{grid-template-columns:1fr;}
+  .prenota{grid-template-columns:1fr;}.p-left,.p-right{padding:60px 20px;}
+  .fg-r{grid-template-columns:1fr;}
+  footer{padding:24px 20px;flex-direction:column;text-align:center;}
+  .lang-btn{right:20px;}
+}
+</style>
+</head>
+<body id="body">
+
+<button class="lang-btn" onclick="toggleLang()">EN / IT</button>
+
+<nav id="nav">
+  <a href="#" class="logo"><span>Trattoria</span> Ticciabbaca</a>
+  <div class="links">
+    <a href="#storia"><span lang="it">La Trattoria</span><span lang="en">About</span></a>
+    <a href="#menu">Menu</a>
+    <a href="#reviews"><span lang="it">Recensioni</span><span lang="en">Reviews</span></a>
+    <a href="#prenota"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393409748413" class="cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="leaves">
+    <div class="leaf"></div><div class="leaf"></div><div class="leaf"></div>
+    <div class="leaf"></div><div class="leaf"></div>
+  </div>
+  <!-- Hills silhouette SVG -->
+  <svg class="hills" viewBox="0 0 1440 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg" style="position:absolute;bottom:0;left:0;right:0;width:100%;height:45%;pointer-events:none;">
+    <path d="M0 180 Q180 120 360 160 Q540 200 720 140 Q900 80 1080 150 Q1260 220 1440 160 L1440 300 L0 300Z" fill="#1a2a18" opacity=".7"/>
+    <path d="M0 220 Q200 170 400 200 Q600 230 800 180 Q1000 130 1200 190 Q1350 230 1440 210 L1440 300 L0 300Z" fill="#0f1a0e" opacity=".8"/>
+    <!-- little trees on hills -->
+    <path d="M180 175 L185 155 L190 175Z" fill="#3a5a2a" opacity=".5"/>
+    <path d="M320 152 L327 128 L334 152Z" fill="#3a5a2a" opacity=".5"/>
+    <path d="M850 142 L858 115 L866 142Z" fill="#3a5a2a" opacity=".4"/>
+    <path d="M1050 158 L1058 132 L1066 158Z" fill="#3a5a2a" opacity=".5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span lang="it">Praia a Mare · Cucina tradizionale calabrese</span>
+      <span lang="en">Praia a Mare · Traditional Calabrian cuisine</span>
+    </div>
+    <h1 class="hero-h">
+      Trattoria<br>
+      <em>Ticciabbaca</em>
+    </h1>
+    <p class="hero-tagline">
+      <span lang="it">Cucina di casa · Vista mare · Foresta di Praia</span>
+      <span lang="en">Home cooking · Sea view · Praia forest</span>
+    </p>
+    <p class="hero-desc">
+      <span lang="it">Nella quiete della foresta di Praia a Mare, una trattoria di famiglia dove il cibo è quello di una volta. Ragù lenti, pasta fatta a mano, atmosfera che rallenta il tempo. Dove i turisti diventano habitué.</span>
+      <span lang="en">Nestled in the quiet of Praia a Mare's forest, a family trattoria where food is made the old way. Slow ragù, hand-rolled pasta, an atmosphere that slows time down. Where tourists become regulars.</span>
+    </p>
+    <div class="hero-btns">
+      <a href="https://wa.me/393409748413?text=Ciao!%20Vorrei%20prenotare%20alla%20Trattoria%20Ticciabbaca%20😊" class="btn-w">
+        <span lang="it">📱 Prenota su WhatsApp</span>
+        <span lang="en">📱 Book on WhatsApp</span>
+      </a>
+      <a href="#menu" class="btn-out"><span lang="it">Scopri il menu</span><span lang="en">See the menu</span></a>
+    </div>
+  </div>
+
+  <div class="hero-card">
+    <div class="hc-v">★4.6</div>
+    <div class="hc-l">Google · 193 rec.</div>
+    <div class="hc-sep"></div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5)" lang="it">"Il miglior ragù<br>che abbia mangiato<br>in Italia"</div>
+    <div style="font-size:12px;color:rgba(255,255,255,.5)" lang="en">"Best ragù I've had<br>in Italy"<br>— Google</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="si"><div class="si-v">★4.6</div><div class="si-l" lang="it">193 recensioni</div><div class="si-l" lang="en">193 reviews</div></div>
+  <div class="si"><div class="si-v" lang="it">Famiglia</div><div class="si-v" lang="en">Family</div><div class="si-l" lang="it">Cucina di casa</div><div class="si-l" lang="en">Home cooking</div></div>
+  <div class="si"><div class="si-v" lang="it">Vista</div><div class="si-v" lang="en">View</div><div class="si-l" lang="it">Mare e foresta</div><div class="si-l" lang="en">Sea & forest</div></div>
+  <div class="si"><div class="si-v" lang="it">Serale</div><div class="si-v" lang="en">Evening</div><div class="si-l" lang="it">Aperto ogni sera</div><div class="si-l" lang="en">Open every evening</div></div>
+</div>
+
+<!-- STORIA -->
+<section class="storia" id="storia">
+  <div class="storia-vis">
+    <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:320px;opacity:.9">
+      <!-- night forest scene -->
+      <rect width="400" height="440" fill="#1a2a18"/>
+      <rect width="400" height="200" fill="#0f1a0e"/>
+      <!-- stars -->
+      <circle cx="80" cy="50" r="1.5" fill="rgba(255,255,255,.6)"/>
+      <circle cx="200" cy="30" r="1" fill="rgba(255,255,255,.5)"/>
+      <circle cx="340" cy="60" r="1.5" fill="rgba(255,255,255,.7)"/>
+      <circle cx="290" cy="90" r="1" fill="rgba(255,255,255,.4)"/>
+      <circle cx="130" cy="80" r="1" fill="rgba(255,255,255,.5)"/>
+      <!-- sea view horizon -->
+      <path d="M0 195 Q200 188 400 195 L400 220 Q200 213 0 220Z" fill="rgba(90,128,80,.2)"/>
+      <!-- hills -->
+      <path d="M0 200 Q100 170 200 185 Q300 200 400 175 L400 440 L0 440Z" fill="#2a4a20"/>
+      <path d="M0 240 Q150 220 300 235 Q350 240 400 230 L400 440 L0 440Z" fill="#1a3015"/>
+      <!-- large tree center -->
+      <rect x="195" y="220" width="10" height="180" fill="#3a2810" opacity=".8"/>
+      <ellipse cx="200" cy="200" rx="55" ry="70" fill="#2a4a20"/>
+      <ellipse cx="175" cy="185" rx="40" ry="55" fill="#3a5a2a"/>
+      <ellipse cx="225" cy="190" rx="38" ry="52" fill="#3a5a2a"/>
+      <ellipse cx="200" cy="170" rx="35" ry="48" fill="#4a7a38"/>
+      <!-- firefly dots -->
+      <circle cx="140" cy="300" r="2" fill="rgba(212,168,64,.5)" style="animation:blink 2s .3s infinite alternate"/>
+      <circle cx="280" cy="280" r="2" fill="rgba(212,168,64,.4)" style="animation:blink 2.5s .8s infinite alternate"/>
+      <circle cx="320" cy="330" r="1.5" fill="rgba(212,168,64,.5)" style="animation:blink 1.8s 1.2s infinite alternate"/>
+      <!-- trattoria building -->
+      <rect x="120" y="320" width="160" height="100" rx="4" fill="#2a1808" opacity=".9"/>
+      <rect x="100" y="316" width="200" height="10" rx="2" fill="#3a2010" opacity=".8"/>
+      <!-- windows with warm light -->
+      <rect x="138" y="338" width="36" height="30" rx="2" fill="rgba(212,168,64,.35)"/>
+      <rect x="230" y="338" width="36" height="30" rx="2" fill="rgba(212,168,64,.35)"/>
+      <!-- door -->
+      <path d="M186 420 L186 368 Q186 356 200 356 Q214 356 214 368 L214 420Z" fill="#1a0a04" opacity=".8"/>
+      <!-- warm glow from windows -->
+      <ellipse cx="156" cy="353" rx="30" ry="20" fill="rgba(212,168,64,.05)"/>
+      <ellipse cx="248" cy="353" rx="30" ry="20" fill="rgba(212,168,64,.05)"/>
+      <!-- label -->
+      <text x="200" y="428" text-anchor="middle" font-family="'Libre Baskerville',serif" font-style="italic" font-size="12" fill="rgba(212,168,64,.3)" letter-spacing="2">cucina di casa</text>
+    </svg>
+  </div>
+  <div class="storia-txt">
+    <div class="tag" lang="it">La nostra storia</div>
+    <div class="tag" lang="en">Our story</div>
+    <h2 lang="it">Dove il<br><em>cibo rallenta</em><br>il tempo</h2>
+    <h2 lang="en">Where<br><em>food slows</em><br>time down</h2>
+    <p lang="it">Nella zona Foresta di Praia a Mare, lontani dal trambusto del lungomare, la Trattoria Ticciabbaca è rimasta fedele a sé stessa. Una gestione familiare, un menu di piatti tradizionali, una veranda affacciata sul mare.</p>
+    <p lang="en">In Praia a Mare's Foresta neighbourhood, away from the bustle of the seafront, Trattoria Ticciabbaca has stayed true to itself. Family-run, traditional menu, a terrace overlooking the sea.</p>
+    <p lang="it">I turisti internazionali che la scoprono non riescono a dimenticarla. "Best ragù I've had in Italy." "Simple atmosphere, family service. You dine in the calm of old times." — recensioni reali.</p>
+    <p lang="en">International travellers who discover it can't forget it. "Best ragù I've had in Italy." "Simple atmosphere, family service. You dine in the calm of old times." — real reviews.</p>
+    <div class="storia-quote">
+      <p lang="it">"Cercavo un posto autentico con cucina locale. Ho cenato nella calma dei tempi antichi. Sono uscito soddisfatto. Vale assolutamente la pena tornare."</p>
+      <p lang="en">"Looking for an authentic local place. I dined in the calm of old times. I left satisfied. Absolutely worth going back to."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-s" id="menu">
+  <div class="mh">
+    <div>
+      <div class="tag" lang="it">Cucina del territorio</div>
+      <div class="tag" lang="en">Local cuisine</div>
+      <h2 lang="it">Il <em>Menu</em></h2>
+      <h2 lang="en">Our <em>Menu</em></h2>
+    </div>
+    <div style="font-size:13px;color:var(--muted);max-width:220px;line-height:1.6;text-align:right" lang="it">Tutto fatto in casa. Il menu segue le stagioni e il mercato.</div>
+    <div style="font-size:13px;color:var(--muted);max-width:220px;line-height:1.6;text-align:right" lang="en">Everything homemade. Menu follows the seasons and market.</div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="mostra('antipasti',this)"><span lang="it">Antipasti</span><span lang="en">Starters</span></button>
+    <button class="tab" onclick="mostra('primi',this)"><span lang="it">Primi</span><span lang="en">First courses</span></button>
+    <button class="tab" onclick="mostra('secondi',this)"><span lang="it">Secondi</span><span lang="en">Main courses</span></button>
+    <button class="tab" onclick="mostra('dolci',this)"><span lang="it">Dolci</span><span lang="en">Desserts</span></button>
+  </div>
+  <div class="dish-g" id="dg"></div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="tag">
+    <span lang="it" style="color:var(--warm)">Perché sceglierci</span>
+    <span lang="en" style="color:var(--warm)">Why choose us</span>
+  </div>
+  <h2 style="font-family:'Libre Baskerville',serif;font-size:clamp(32px,4vw,50px);color:#fff;margin-top:8px;margin-bottom:0">
+    <span lang="it">L'<em style="color:var(--warm)">esperienza</em> autentica</span>
+    <span lang="en">The <em style="color:var(--warm)">authentic</em> experience</span>
+  </h2>
+  <div class="feat-grid">
+    <div class="fc">
+      <div class="fc-icon">🌿</div>
+      <div class="fc-t" lang="it">Cucina <em>di casa</em></div>
+      <div class="fc-t" lang="en"><em>Home</em> cooking</div>
+      <div class="fc-d" lang="it">Pasta fatta a mano, ragù cotto lentamente, ingredienti freschi del mercato. Il cibo che racconta una storia — senza fronzoli.</div>
+      <div class="fc-d" lang="en">Hand-rolled pasta, slow-cooked ragù, fresh market ingredients. Food that tells a story — without pretension.</div>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">🌊</div>
+      <div class="fc-t" lang="it">Vista <em>mare</em></div>
+      <div class="fc-t" lang="en">Sea <em>view</em></div>
+      <div class="fc-d" lang="it">Veranda affacciata sul mare Tirreno, lontana dal traffico, con spazio esterno e sala rustica al coperto. L'atmosfera giusta per una serata memorabile.</div>
+      <div class="fc-d" lang="en">Terrace overlooking the Tyrrhenian Sea, away from traffic, with outdoor seating and a rustic indoor room. The right atmosphere for a memorable evening.</div>
+    </div>
+    <div class="fc">
+      <div class="fc-icon">👨‍👩‍👧</div>
+      <div class="fc-t" lang="it">Gestione <em>familiare</em></div>
+      <div class="fc-t" lang="en"><em>Family</em> run</div>
+      <div class="fc-d" lang="it">Un locale di famiglia, dove il proprietario accoglie personalmente ogni ospite. Prezzi onesti, porzioni generose, nessuna fretta.</div>
+      <div class="fc-d" lang="en">A family place where the owner personally welcomes every guest. Fair prices, generous portions, no rush.</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rv-head">
+    <div class="tag" lang="it">Cosa dicono</div>
+    <div class="tag" lang="en">What they say</div>
+    <h2 lang="it">193 recensioni,<br><em>un'unica voce</em></h2>
+    <h2 lang="en">193 reviews,<br><em>one voice</em></h2>
+    <div class="rv-bar">Google Maps ★4.6 · TripAdvisor · Praia a Mare</div>
+  </div>
+  <div class="rv-grid">
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Il miglior ragù che abbia mai mangiato in Italia. Staff straordinario. Ristorante bellissimo. Un'esperienza che tornerà nella mia mente ogni volta che penso all'Italia."</p>
+      <p class="rv-txt" lang="en">"Best ragù I've had in Italy. Amazing staff. Beautiful restaurant. An experience that will come back to my mind every time I think of Italy."</p>
+      <div class="rv-who">🇬🇧 Google Maps</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Cercavo un posto autentico fuori dalla mappa turistica con cucina locale semplice. Lo ho trovato. Atmosfera semplice, servizio familiare. Ci si siede con la calma dei tempi antichi."</p>
+      <p class="rv-txt" lang="en">"Looking for an authentic place off the tourist map with simple local cuisine. Found it. Simple atmosphere, family service. You dine in the calm of old times."</p>
+      <div class="rv-who">🌍 Google Maps</div>
+    </div>
+    <div class="rv">
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Eccellente esperienza con cibo tradizionale e la cameriera e il proprietario di famiglia molto gentili. Il posto perfetto per gustare la cucina calabrese!"</p>
+      <p class="rv-txt" lang="en">"Great experience with traditional food and very friendly waitress and owner family. Perfect place to enjoy Calabrian food!"</p>
+      <div class="rv-who">🇩🇪 Google Maps</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="p-left">
+    <div class="tag" style="color:rgba(255,255,255,.5)" lang="it">Come raggiungerci</div>
+    <div class="tag" style="color:rgba(255,255,255,.5)" lang="en">How to find us</div>
+    <h2 lang="it">Prenota<br>il tuo tavolo <em>stasera</em></h2>
+    <h2 lang="en">Book<br>your table <em>tonight</em></h2>
+    <p lang="it">Il locale si trova nella zona Foresta di Praia a Mare — un po' defilato, ma ne vale la pena. Prenotare è consigliato la sera.</p>
+    <p lang="en">Located in Praia a Mare's Foresta area — a little off the beaten track, but worth it. Evening bookings recommended.</p>
+    <div class="ir"><div class="ir-i">📍</div><div class="ir-t">Via Giorgio Almirante<br>Praia a Mare (CS) — zona Foresta</div></div>
+    <div class="ir"><div class="ir-i">📞</div><div class="ir-t">340 974 8413</div></div>
+    <div class="ir"><div class="ir-i">🕐</div><div class="ir-t"><span lang="it">Aperto ogni sera · Chiuso il mercoledì</span><span lang="en">Open every evening · Closed Wednesday</span></div></div>
+    <div class="ir"><div class="ir-i">🐕</div><div class="ir-t"><span lang="it">Cani ammessi · Parcheggio disponibile</span><span lang="en">Dogs welcome · Parking available</span></div></div>
+    <a href="https://wa.me/393409748413?text=Ciao!%20Vorrei%20prenotare%20alla%20Trattoria%20Ticciabbaca%20😊" class="wa-l">📱 WhatsApp</a>
+  </div>
+  <div class="p-right">
+    <h3 lang="it">Invia una richiesta</h3>
+    <h3 lang="en">Send a request</h3>
+    <form onsubmit="sent(event)">
+      <div class="fg-r">
+        <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+        <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-r">
+        <div class="fg"><label lang="it">Data</label><label lang="en">Date</label><input type="date"></div>
+        <div class="fg"><label lang="it">Persone</label><label lang="en">Guests</label>
+          <select><option lang="it">2 persone</option><option lang="en">2 people</option><option lang="it">3–4 persone</option><option lang="en">3–4 people</option><option lang="it">5–6 persone</option><option lang="en">5–6 people</option><option lang="it">Gruppo 7+</option><option lang="en">Group 7+</option></select>
+        </div>
+      </div>
+      <div class="fg"><label lang="it">Note (allergie, richieste...)</label><label lang="en">Notes (allergies, requests...)</label><textarea placeholder="..."></textarea></div>
+      <button class="sub" type="submit"><span lang="it">Invia richiesta</span><span lang="en">Send request</span></button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo"><span>Trattoria</span> Ticciabbaca</div>
+  <div class="f-copy">© 2025 Trattoria Ticciabbaca · Via Giorgio Almirante · Praia a Mare (CS) · Tel. 340 974 8413</div>
+  <a href="https://wa.me/393409748413" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/393409748413?text=Ciao!%20Vorrei%20prenotare%20alla%20Trattoria%20Ticciabbaca%20😊" class="waf">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+function toggleLang(){
+  const b=document.getElementById('body');
+  b.classList.toggle('en');
+  document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';
+}
+const piatti={
+  antipasti:[
+    {n:{it:'Antipasto della trattoria',en:'House antipasto'},s:{it:'Salumi locali, formaggi calabresi, olive, sott\'oli, bruschette',en:'Local cured meats, Calabrian cheeses, olives, pickled vegetables, bruschette'},p:'10 €'},
+    {n:{it:'Crostini con \'nduja',en:'Crostini with \'nduja'},s:{it:'Nduja artigianale sciolta su crostini croccanti — piccante e irresistibile',en:'Artisanal \'nduja melted on crispy crostini — spicy and irresistible'},p:'7 €'},
+    {n:{it:'Frittata di erbe',en:'Herb frittata'},s:{it:'Uova fresche, erbe aromatiche di stagione, pecorino grattugiato',en:'Fresh eggs, seasonal aromatic herbs, grated pecorino'},p:'8 €'},
+    {n:{it:'Verdure grigliate',en:'Grilled vegetables'},s:{it:'Melanzane, zucchine, peperoni di stagione — olio EVO calabrese',en:'Aubergine, courgette, seasonal peppers — Calabrian EVO oil'},p:'7 €'},
+  ],
+  primi:[
+    {n:{it:'Ragù della casa',en:'House ragù'},s:{it:'Pasta fresca, ragù lento di maiale. "Best ragù I\'ve had in Italy."',en:'Fresh pasta, slow pork ragù. "Best ragù I\'ve had in Italy."'},p:'11 €'},
+    {n:{it:'Fileja al sugo calabrese',en:'Fileja with Calabrian sauce'},s:{it:'Pasta tipica calabrese con pomodoro, basilico, peperoncino fresco',en:'Traditional Calabrian pasta with tomato, basil, fresh chilli'},p:'10 €'},
+    {n:{it:'Pasta e fagioli',en:'Pasta e fagioli'},s:{it:'Ricetta contadina, fagioli freschi, pasta corta, pepe nero',en:'Peasant recipe, fresh beans, short pasta, black pepper'},p:'9 €'},
+    {n:{it:'Lagane e ceci',en:'Lagane e ceci'},s:{it:'Piatto povero della tradizione calabrese, profumato e sostanzioso',en:'Traditional Calabrian peasant dish, fragrant and filling'},p:'9 €'},
+  ],
+  secondi:[
+    {n:{it:'Carne al sugo',en:'Meat in sauce'},s:{it:'Secondo la disponibilità del giorno — chiedi al cameriere',en:'According to the day\'s availability — ask the waitress'},p:'13 €'},
+    {n:{it:'Baccalà alla calabrese',en:'Calabrian baccalà'},s:{it:'Pomodoro, peperoni, olive, capperi — piatto della tradizione',en:'Tomato, peppers, olives, capers — traditional dish'},p:'12 €'},
+    {n:{it:'Rosolio al peperoncino',en:'Chilli rosolio'},s:{it:'Liquore artigianale piccantissimo — "intensamente speziato, non deluderà"',en:'Artisanal spicy liqueur — "intensely spicy, won\'t disappoint"'},p:'4 €'},
+    {n:{it:'Pesce del giorno',en:'Fish of the day'},s:{it:'Secondo il pescato fresco — chiedi disponibilità',en:'According to fresh catch — ask for availability'},p:'dal 14 €'},
+  ],
+  dolci:[
+    {n:{it:'Tartufo di Pizzo',en:'Pizzo truffle'},s:{it:'Il classico gelato calabrese al cioccolato — imperdibile',en:'The classic Calabrian chocolate ice cream — not to be missed'},p:'4 €'},
+    {n:{it:'Cannolo calabrese',en:'Calabrian cannolo'},s:{it:'Ricotta fresca locale, scorza di cedro del Tirreno',en:'Fresh local ricotta, Tyrrhenian citron zest'},p:'4 €'},
+    {n:{it:'Torta del giorno',en:'Cake of the day'},s:{it:'Cambia ogni giorno — chiedi al cameriere',en:'Changes daily — ask the waitress'},p:'4 €'},
+    {n:{it:'Caffè corretto',en:'Espresso corretto'},s:{it:'Con il rosolio della casa — la chiusura perfetta',en:'With house rosolio — the perfect ending'},p:'3 €'},
+  ],
+};
+function mostra(cat,btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const en=document.getElementById('body').classList.contains('en');
+  const g=document.getElementById('dg');
+  g.innerHTML=piatti[cat].map((d,i)=>`
+    <div class="dish" style="transition-delay:${i*.05}s">
+      <div>
+        <div class="dn">${en?d.n.en:d.n.it}</div>
+        <div class="ds">${en?d.s.en:d.s.it}</div>
+      </div>
+      <div class="dp">${d.p}</div>
+    </div>`).join('');
+  requestAnimationFrame(()=>g.querySelectorAll('.dish').forEach(d=>d.classList.add('show')));
+}
+mostra('antipasti',document.querySelector('.tab.on'));
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a5a2a';b.style.color='#fff';}
+</script>
+</body>
+</html>

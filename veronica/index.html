@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Veronica il Parigino — Parrucchiere · Praia a Mare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --black:#080808;--dark:#111;--card:#161616;
+  --gold:#b8923a;--gold2:#d4ac52;--champagne:#f5edd8;
+  --white:#fafaf8;--warm:#f0ead8;--cream:#f5f2ec;
+  --muted:#888;--border:rgba(255,255,255,.06);
+  --bgold:rgba(184,146,58,.15);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--white);color:var(--black);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+
+[lang="en"]{display:none;}
+body.en [lang="it"]{display:none;}
+body.en [lang="en"]{display:revert;}
+
+.lang-btn{
+  position:fixed;top:22px;right:80px;z-index:200;
+  background:transparent;border:1px solid rgba(0,0,0,.15);
+  color:var(--black);font-size:11px;letter-spacing:2px;text-transform:uppercase;
+  padding:7px 14px;cursor:pointer;font-family:'Outfit',sans-serif;transition:all .2s;
+}
+.lang-btn:hover{background:rgba(0,0,0,.04);}
+body.dark-hero .lang-btn{border-color:rgba(255,255,255,.2);color:#fff;}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 52px;display:flex;align-items:center;justify-content:space-between;
+  transition:all .5s;
+}
+nav.on{background:rgba(8,8,8,.97);backdrop-filter:blur(14px);border-bottom:1px solid var(--border);padding:14px 52px;}
+.logo{font-family:'Bodoni Moda',serif;font-size:20px;color:#fff;text-decoration:none;letter-spacing:.5px;}
+.logo em{font-style:italic;color:var(--gold2);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:#fff;}
+.cta{
+  border:1px solid var(--gold);color:var(--gold);padding:10px 22px;
+  font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;
+  transition:all .25s;
+}
+.cta:hover{background:var(--gold);color:#fff;}
+
+/* HERO — split editorial */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;padding-top:80px;}
+
+.hero-left{
+  background:var(--black);display:flex;flex-direction:column;
+  justify-content:center;padding:80px 64px;position:relative;overflow:hidden;
+}
+.hero-left::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 30% 50%,rgba(184,146,58,.1) 0%,transparent 60%);
+}
+/* vertical text decoration */
+.hero-vert{
+  position:absolute;right:28px;top:50%;transform:translateY(-50%) rotate(90deg);
+  font-family:'Bodoni Moda',serif;font-size:11px;letter-spacing:6px;text-transform:uppercase;
+  color:rgba(255,255,255,.12);white-space:nowrap;
+}
+
+.hero-left-content{position:relative;z-index:1;}
+
+.hero-kicker{
+  display:flex;align-items:center;gap:12px;
+  font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);
+  margin-bottom:28px;
+}
+.hero-kicker::before{content:'';width:28px;height:1px;background:var(--gold);}
+
+.hero-h{
+  font-family:'Bodoni Moda',serif;
+  font-size:clamp(52px,6vw,88px);font-weight:300;line-height:.95;
+  color:#fff;margin-bottom:14px;
+}
+.hero-h em{font-style:italic;color:rgba(255,255,255,.35);}
+.hero-h span{display:block;}
+
+.hero-sub{
+  font-size:12px;letter-spacing:4px;text-transform:uppercase;
+  color:rgba(255,255,255,.3);margin-bottom:32px;
+}
+.hero-desc{font-size:15px;line-height:1.9;color:rgba(255,255,255,.5);max-width:380px;margin-bottom:44px;}
+
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn-gold{
+  background:var(--gold);color:#fff;padding:15px 36px;
+  font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;
+  position:relative;overflow:hidden;transition:all .3s;
+}
+.btn-gold::after{
+  content:'';position:absolute;inset:0;background:var(--gold2);
+  transform:translateX(-100%);transition:transform .35s;
+}
+.btn-gold:hover::after{transform:translateX(0);}
+.btn-gold span{position:relative;z-index:1;}
+.btn-line{
+  color:rgba(255,255,255,.45);font-size:11px;letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;
+}
+.btn-line:hover{color:#fff;border-color:#fff;}
+
+/* rating block */
+.hero-rating{
+  position:absolute;bottom:48px;left:64px;z-index:1;
+  display:flex;align-items:center;gap:20px;
+}
+.hr-num{font-family:'Bodoni Moda',serif;font-size:52px;font-weight:300;color:var(--gold);line-height:1;}
+.hr-info{display:flex;flex-direction:column;gap:3px;}
+.hr-stars{color:var(--gold2);font-size:13px;letter-spacing:2px;}
+.hr-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+
+/* hero right — golden salon illustration */
+.hero-right{
+  background:var(--black);display:flex;align-items:center;justify-content:center;
+  position:relative;overflow:hidden;
+  border-left:1px solid rgba(184,146,58,.15);
+}
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 60% at 65% 45%,rgba(184,146,58,.12) 0%,transparent 65%),
+    radial-gradient(ellipse 40% 30% at 30% 75%,rgba(184,146,58,.06) 0%,transparent 55%);
+}
+
+/* STRIP */
+.strip{background:var(--black);display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--border);}
+.si{padding:18px 20px;text-align:center;border-right:1px solid var(--border);}
+.si:last-child{border-right:none;}
+.si-v{font-family:'Bodoni Moda',serif;font-size:20px;color:var(--gold);font-style:italic;}
+.si-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:3px;}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:5fr 4fr;min-height:560px;}
+.about-txt{background:var(--cream);padding:88px 64px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.about-txt h2{font-family:'Bodoni Moda',serif;font-size:clamp(36px,3.5vw,52px);font-weight:300;line-height:1.1;color:var(--black);margin-bottom:24px;}
+.about-txt h2 em{font-style:italic;color:var(--gold);}
+.about-txt p{font-size:15px;line-height:1.9;color:#5a5a5a;margin-bottom:14px;}
+.about-quote{
+  margin-top:28px;background:#fff;padding:24px 28px;
+  border-left:3px solid var(--gold);
+}
+.about-quote p{font-family:'Bodoni Moda',serif;font-style:italic;font-size:18px;color:var(--black);line-height:1.55;}
+.about-quote cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:10px;font-style:normal;}
+
+.about-vis{background:var(--warm);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+
+/* SERVIZI */
+.servizi{padding:100px 52px;background:var(--white);}
+.sv-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:60px;flex-wrap:wrap;gap:20px;}
+.sv-head h2{font-family:'Bodoni Moda',serif;font-size:clamp(40px,5vw,64px);font-weight:300;color:var(--black);}
+.sv-head h2 em{font-style:italic;color:var(--gold);}
+
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:#e8e4dc;}
+.sv{background:var(--white);padding:40px 32px;transition:background .25s;}
+.sv:hover{background:var(--cream);}
+.sv-num{font-family:'Bodoni Moda',serif;font-size:56px;font-weight:300;color:rgba(0,0,0,.05);line-height:1;margin-bottom:-10px;}
+.sv-name{font-family:'Bodoni Moda',serif;font-size:22px;font-weight:300;color:var(--black);margin-bottom:8px;}
+.sv-name em{font-style:italic;color:var(--gold);}
+.sv-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:16px;}
+.sv-price{font-family:'Bodoni Moda',serif;font-size:18px;color:var(--gold);}
+
+/* REVIEWS */
+.reviews{background:var(--black);padding:100px 52px;}
+.rv-head h2{font-family:'Bodoni Moda',serif;font-size:clamp(38px,5vw,64px);font-weight:300;color:#fff;margin-bottom:8px;}
+.rv-head h2 em{font-style:italic;color:rgba(255,255,255,.25);}
+.rv-bar{font-size:12px;color:var(--muted);margin-bottom:52px;letter-spacing:1px;}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.rv{background:var(--card);padding:36px 30px;border-bottom:2px solid transparent;transition:border-color .3s;}
+.rv:hover{border-bottom-color:var(--gold);}
+.rv-flag{font-size:20px;margin-bottom:12px;}
+.rv-stars{color:var(--gold2);font-size:13px;letter-spacing:2px;margin-bottom:14px;}
+.rv-txt{font-family:'Bodoni Moda',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.75);margin-bottom:18px;}
+.rv-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PRENOTA */
+.prenota{background:var(--cream);padding:100px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.p-txt .tag{color:var(--gold);}
+.p-txt h2{font-family:'Bodoni Moda',serif;font-size:clamp(36px,4vw,54px);font-weight:300;color:var(--black);margin-bottom:20px;line-height:1.1;}
+.p-txt h2 em{font-style:italic;}
+.p-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:28px;}
+.ci{display:flex;gap:14px;align-items:center;margin-bottom:12px;}
+.ci-i{width:36px;height:36px;border:1px solid rgba(0,0,0,.1);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ci-t{font-size:14px;color:#4a4a4a;line-height:1.5;}
+.wa-l{display:inline-flex;align-items:center;gap:10px;margin-top:24px;background:#25d366;color:#fff;padding:14px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:opacity .2s;}
+.wa-l:hover{opacity:.85;}
+
+.p-form{display:flex;flex-direction:column;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:7px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #d8d0c0;padding:13px 14px;font-family:'Outfit',sans-serif;font-size:14px;color:var(--black);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{background:var(--black);color:var(--gold);border:none;padding:16px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Outfit',sans-serif;cursor:pointer;width:100%;transition:all .2s;margin-top:4px;}
+.sub:hover{background:var(--gold);color:#fff;}
+
+footer{background:var(--black);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.f-logo{font-family:'Bodoni Moda',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo span{color:var(--gold);font-style:normal;}
+.f-copy{font-size:11px;color:var(--muted);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+/* wow — cursor glow effect on hero */
+.glow{
+  position:fixed;width:300px;height:300px;pointer-events:none;z-index:0;
+  border-radius:50%;background:radial-gradient(ellipse,rgba(184,146,58,.07) 0%,transparent 70%);
+  transform:translate(-50%,-50%);transition:opacity .3s;opacity:0;
+}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}
+  .hero{grid-template-columns:1fr;}.hero-right{display:none;}.hero-left{padding:40px 20px 100px;}
+  .hero-rating{bottom:28px;left:20px;}
+  .strip{grid-template-columns:1fr 1fr;}
+  .about{grid-template-columns:1fr;}.about-txt{padding:60px 20px;}.about-vis{min-height:260px;}
+  .servizi,.reviews,.prenota{padding:60px 20px;}
+  .sv-head{flex-direction:column;align-items:flex-start;}
+  .sv-grid{grid-template-columns:1fr;}
+  .rv-grid{grid-template-columns:1fr;}
+  .prenota{grid-template-columns:1fr;gap:40px;}
+  .fg-r{grid-template-columns:1fr;}
+  footer{padding:24px 20px;flex-direction:column;text-align:center;}
+  .lang-btn{right:20px;}
+}
+</style>
+</head>
+<body id="body" class="dark-hero">
+
+<div class="glow" id="glow"></div>
+<button class="lang-btn" onclick="toggleLang()">EN / IT</button>
+
+<nav id="nav">
+  <a href="#" class="logo"><em>Veronica</em> il Parigino</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Salone</span><span lang="en">The Salon</span></a>
+    <a href="#servizi"><span lang="it">Servizi</span><span lang="en">Services</span></a>
+    <a href="#reviews"><span lang="it">Recensioni</span><span lang="en">Reviews</span></a>
+    <a href="#prenota"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/390985722850" class="cta"><span lang="it">Prenota</span><span lang="en">Book now</span></a>
+</nav>
+
+<section class="hero">
+  <!-- LEFT -->
+  <div class="hero-left">
+    <div class="hero-vert">VERONICA · IL PARIGINO · PRAIA A MARE</div>
+    <div class="hero-left-content">
+      <div class="hero-kicker">
+        <span lang="it">Parrucchiere · Praia a Mare</span>
+        <span lang="en">Hair Salon · Praia a Mare</span>
+      </div>
+      <h1 class="hero-h">
+        <span>Veronica</span>
+        <span><em>il Parigino</em></span>
+      </h1>
+      <p class="hero-sub">
+        <span lang="it">Bellezza · Professionalità · Prezzi onesti</span>
+        <span lang="en">Beauty · Professionalism · Fair prices</span>
+      </p>
+      <p class="hero-desc">
+        <span lang="it">Il salone storico di Praia a Mare che porta avanti una tradizione di qualità. Le clienti arrivano da Monaco, dal Nord Italia, da tutta Europa — e tornano ogni anno.</span>
+        <span lang="en">Praia a Mare's historic salon, carrying forward a tradition of quality. Clients come from Munich, northern Italy, all over Europe — and return every year.</span>
+      </p>
+      <div class="hero-btns">
+        <a href="https://wa.me/390985722850?text=Ciao!%20Vorrei%20prenotare%20da%20Veronica%20il%20Parigino%20😊" class="btn-gold">
+          <span lang="it">📱 Prenota ora</span>
+          <span lang="en">📱 Book now</span>
+        </a>
+        <a href="#servizi" class="btn-line"><span lang="it">Scopri i servizi</span><span lang="en">See services</span></a>
+      </div>
+    </div>
+    <div class="hero-rating">
+      <div class="hr-num">4.9</div>
+      <div class="hr-info">
+        <div class="hr-stars">★★★★★</div>
+        <div class="hr-label">287 <span lang="it">recensioni Google</span><span lang="en">Google reviews</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT — salon illustration -->
+  <div class="hero-right">
+    <svg viewBox="0 0 440 520" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:360px;position:relative;z-index:1;opacity:.9">
+      <!-- salon interior bg -->
+      <rect width="440" height="520" fill="#0a0a0a"/>
+      <!-- floor -->
+      <rect x="0" y="380" width="440" height="140" fill="#121212"/>
+      <!-- floor tiles -->
+      <g fill="none" stroke="rgba(255,255,255,.04)" stroke-width=".5">
+        <rect x="40" y="395" width="80" height="50"/>
+        <rect x="120" y="395" width="80" height="50"/>
+        <rect x="200" y="395" width="80" height="50"/>
+        <rect x="280" y="395" width="80" height="50"/>
+        <rect x="40" y="445" width="80" height="50"/>
+        <rect x="120" y="445" width="80" height="50"/>
+        <rect x="200" y="445" width="80" height="50"/>
+        <rect x="280" y="445" width="80" height="50"/>
+      </g>
+      <!-- large mirror frame -->
+      <rect x="90" y="40" width="260" height="340" rx="8" fill="none" stroke="rgba(184,146,58,.3)" stroke-width="2.5"/>
+      <rect x="96" y="46" width="248" height="328" rx="6" fill="none" stroke="rgba(184,146,58,.12)" stroke-width="1"/>
+      <!-- mirror reflection -->
+      <rect x="98" y="48" width="244" height="324" rx="5" fill="rgba(255,255,255,.03)"/>
+      <!-- reflected woman silhouette -->
+      <ellipse cx="220" cy="160" rx="32" ry="38" fill="none" stroke="rgba(184,146,58,.15)" stroke-width="1"/>
+      <!-- hair flowing -->
+      <path d="M188 148 Q170 130 175 100 Q180 75 200 70 Q220 65 238 75 Q255 85 252 110 Q248 135 235 148" fill="none" stroke="rgba(184,146,58,.2)" stroke-width="2" stroke-linecap="round"/>
+      <path d="M195 148 Q175 140 172 115 Q170 90 188 80" fill="none" stroke="rgba(184,146,58,.12)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- salon chair -->
+      <rect x="165" y="290" width="110" height="80" rx="12" fill="#1a1a1a" stroke="rgba(184,146,58,.2)" stroke-width="1"/>
+      <rect x="155" y="295" width="15" height="60" rx="6" fill="#222"/>
+      <rect x="270" y="295" width="15" height="60" rx="6" fill="#222"/>
+      <rect x="175" y="360" width="90" height="12" rx="3" fill="#1a1a1a"/>
+      <!-- shelf with products -->
+      <rect x="30" y="200" width="40" height="5" fill="rgba(184,146,58,.15)"/>
+      <rect x="33" y="175" width="8" height="25" rx="2" fill="rgba(255,255,255,.1)"/>
+      <rect x="44" y="180" width="8" height="20" rx="2" fill="rgba(255,255,255,.08)"/>
+      <rect x="55" y="172" width="8" height="28" rx="2" fill="rgba(255,255,255,.1)"/>
+      <!-- gold light from mirror -->
+      <ellipse cx="220" cy="200" rx="120" ry="100" fill="rgba(184,146,58,.04)"/>
+      <!-- scissors decoration -->
+      <g transform="translate(335,100)" opacity=".4">
+        <line x1="0" y1="0" x2="25" y2="25" stroke="var(--gold2)" stroke-width="1.5" stroke-linecap="round"/>
+        <line x1="25" y1="0" x2="0" y2="25" stroke="var(--gold2)" stroke-width="1.5" stroke-linecap="round"/>
+        <circle cx="0" cy="0" r="5" stroke="var(--gold2)" stroke-width="1.5" fill="none"/>
+        <circle cx="25" cy="25" r="5" stroke="var(--gold2)" stroke-width="1.5" fill="none"/>
+      </g>
+      <!-- comb -->
+      <g transform="translate(60,350)" opacity=".35">
+        <rect x="0" y="0" width="42" height="6" rx="3" fill="var(--gold)"/>
+        <line x1="5" y1="6" x2="5" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+        <line x1="11" y1="6" x2="11" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+        <line x1="17" y1="6" x2="17" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+        <line x1="23" y1="6" x2="23" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+        <line x1="29" y1="6" x2="29" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+        <line x1="35" y1="6" x2="35" y2="18" stroke="var(--gold)" stroke-width="1.5"/>
+      </g>
+      <!-- brand text -->
+      <text x="220" y="500" text-anchor="middle" font-family="'Bodoni Moda',serif" font-style="italic" font-size="14" fill="rgba(184,146,58,.25)" letter-spacing="3">il parigino</text>
+    </svg>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="si"><div class="si-v">4.9</div><div class="si-l" lang="it">287 recensioni</div><div class="si-l" lang="en">287 reviews</div></div>
+  <div class="si"><div class="si-v" lang="it">Storico</div><div class="si-v" lang="en">Historic</div><div class="si-l" lang="it">Salone di riferimento</div><div class="si-l" lang="en">Reference salon</div></div>
+  <div class="si"><div class="si-v" lang="it">Turisti</div><div class="si-v" lang="en">Tourists</div><div class="si-l" lang="it">Da tutta Europa</div><div class="si-l" lang="en">From across Europe</div></div>
+  <div class="si"><div class="si-v" lang="it">Prezzi</div><div class="si-v" lang="en">Prices</div><div class="si-l" lang="it">Onesti e trasparenti</div><div class="si-l" lang="en">Fair & transparent</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-txt">
+    <div class="tag" lang="it">La nostra storia</div>
+    <div class="tag" lang="en">Our story</div>
+    <h2 lang="it">Una tradizione<br><em>che continua</em></h2>
+    <h2 lang="en">A tradition<br><em>that continues</em></h2>
+    <p lang="it">Il Parigino è un nome che a Praia a Mare non ha bisogno di presentazioni. Veronica porta avanti un'eredità di qualità, gentilezza e attenzione al risultato — che ha fatto innamorare di questo salone clienti da tutta Italia e dall'Europa.</p>
+    <p lang="en">Il Parigino is a name in Praia a Mare that needs no introduction. Veronica carries on a legacy of quality, kindness and attention to results — which has won the hearts of clients from all over Italy and Europe.</p>
+    <p lang="it">Chi arriva in vacanza a Praia e scopre Veronica non cerca più un altro parrucchiere. Tornano ogni estate, portano le amiche, scrivono recensioni commossi.</p>
+    <p lang="en">Visitors who discover Veronica during their holiday in Praia stop looking for another hairdresser. They return every summer, bring their friends, and leave glowing reviews.</p>
+    <div class="about-quote">
+      <p lang="it">"Venendo dalla Lombardia, ero in vacanza e avevo bisogno di aggiustare i capelli. Mi sono affidata a queste fantastiche ragazze. Un nome, una garanzia. Prezzi onesti, preparate e gentilissime. Le amo. Tornerò nonostante la distanza."</p>
+      <p lang="en">"Coming from Lombardy, I was on holiday and needed my hair done. I trusted these fantastic girls. A name, a guarantee. Fair prices, professional and very kind. I love them. I'll be back despite the distance."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+  <div class="about-vis">
+    <img src="https://images.unsplash.com/photo-1560066984-138dadb4c035?w=700&q=80" alt="Salone di parrucchiere" style="width:100%;height:100%;object-fit:cover;min-height:560px;display:block;filter:brightness(.85) saturate(.9);"/>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="servizi" id="servizi">
+  <div class="sv-head">
+    <div>
+      <div class="tag" lang="it">Cosa facciamo</div>
+      <div class="tag" lang="en">What we do</div>
+      <h2 lang="it">I nostri <em>servizi</em></h2>
+      <h2 lang="en">Our <em>services</em></h2>
+    </div>
+    <div style="font-size:13px;color:var(--muted);max-width:200px;line-height:1.6;text-align:right" lang="it">Prezzi chiari, risultati eccellenti. Chiama per un preventivo.</div>
+    <div style="font-size:13px;color:var(--muted);max-width:200px;line-height:1.6;text-align:right" lang="en">Clear prices, excellent results. Call for a quote.</div>
+  </div>
+  <div class="sv-grid">
+    <div class="sv">
+      <div class="sv-num">01</div>
+      <div class="sv-name" lang="it">Taglio <em>Donna</em></div>
+      <div class="sv-name" lang="en">Women's <em>Cut</em></div>
+      <div class="sv-desc" lang="it">Consulenza morfologica, taglio personalizzato, asciugatura e styling. Capelli corti, medi o lunghi.</div>
+      <div class="sv-desc" lang="en">Morphological consultation, personalised cut, blow-dry and styling. Short, medium or long hair.</div>
+      <div class="sv-price" lang="it">da €25</div>
+      <div class="sv-price" lang="en">from €25</div>
+    </div>
+    <div class="sv">
+      <div class="sv-num">02</div>
+      <div class="sv-name" lang="it">Colore & <em>Mèches</em></div>
+      <div class="sv-name" lang="en">Colour & <em>Highlights</em></div>
+      <div class="sv-desc" lang="it">Tinta, balayage, mèches, decolorazione. Colori naturali o audaci — seguiamo le tendenze con prodotti professionali.</div>
+      <div class="sv-desc" lang="en">Colour, balayage, highlights, bleaching. Natural or bold — we follow trends using professional products.</div>
+      <div class="sv-price" lang="it">da €40</div>
+      <div class="sv-price" lang="en">from €40</div>
+    </div>
+    <div class="sv">
+      <div class="sv-num">03</div>
+      <div class="sv-name" lang="it"><em>Piega</em> & Acconciature</div>
+      <div class="sv-name" lang="en"><em>Blow-dry</em> & Styling</div>
+      <div class="sv-desc" lang="it">Piega classica, volume, lisciatura. Acconciature per matrimoni, cerimonie e occasioni speciali su appuntamento.</div>
+      <div class="sv-desc" lang="en">Classic blow-dry, volume, straightening. Wedding and occasion styling by appointment.</div>
+      <div class="sv-price" lang="it">da €18</div>
+      <div class="sv-price" lang="en">from €18</div>
+    </div>
+    <div class="sv">
+      <div class="sv-num">04</div>
+      <div class="sv-name" lang="it"><em>Trattamenti</em> capelli</div>
+      <div class="sv-name" lang="en">Hair <em>treatments</em></div>
+      <div class="sv-desc" lang="it">Keratina, ristrutturante, idratante profondo. Capelli danneggiati o stressati ritrovano vita e lucentezza.</div>
+      <div class="sv-desc" lang="en">Keratin, restructuring, deep hydration. Damaged or stressed hair finds new life and shine.</div>
+      <div class="sv-price" lang="it">da €35</div>
+      <div class="sv-price" lang="en">from €35</div>
+    </div>
+    <div class="sv">
+      <div class="sv-num">05</div>
+      <div class="sv-name" lang="it">Taglio <em>Bambini</em></div>
+      <div class="sv-name" lang="en">Children's <em>cut</em></div>
+      <div class="sv-desc" lang="it">Ambiente accogliente e paziente per i più piccoli. Anche i bambini meritano il meglio.</div>
+      <div class="sv-desc" lang="en">Welcoming and patient environment for children. Even the little ones deserve the best.</div>
+      <div class="sv-price" lang="it">da €12</div>
+      <div class="sv-price" lang="en">from €12</div>
+    </div>
+    <div class="sv">
+      <div class="sv-num">06</div>
+      <div class="sv-name" lang="it">Consulenza <em>colore</em></div>
+      <div class="sv-name" lang="en">Colour <em>consultation</em></div>
+      <div class="sv-desc" lang="it">Non sai che colore fare? Veronica ti aiuta a trovare il colore perfetto per il tuo tipo di pelle e capello.</div>
+      <div class="sv-desc" lang="en">Not sure what colour? Veronica helps you find the perfect shade for your skin tone and hair type.</div>
+      <div class="sv-price" lang="it">Gratuita</div>
+      <div class="sv-price" lang="en">Free</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="rv-head">
+    <div class="tag">Google Maps</div>
+    <h2 lang="it">287 clienti,<br><em>una voce sola</em></h2>
+    <h2 lang="en">287 clients,<br><em>one voice</em></h2>
+    <div class="rv-bar">Google Maps ★4.9 · Praia a Mare, Calabria</div>
+  </div>
+  <div class="rv-grid">
+    <div class="rv">
+      <div class="rv-flag">🇩🇪</div>
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Biggest thanks to wonderful Enza and her team! Even though I do not speak Italian, we found our way to a perfect result! Made an appointment fast the day before. I recommend the salon — totally worth a 16-hour drive from Munich."</p>
+      <p class="rv-txt" lang="en">"Biggest thanks to wonderful Enza and her team! Even though I do not speak Italian, we found our way to a perfect result! Made an appointment fast the day before. Totally worth a 16-hour drive from Munich."</p>
+      <div class="rv-who">🇩🇪 Google Maps · da Monaco</div>
+    </div>
+    <div class="rv">
+      <div class="rv-flag">🇮🇹</div>
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Super experience! Venendo dalla Lombardia, in vacanza a Praia, mi sono affidata a queste fantastiche ragazze. Un nome, una garanzia. Prezzi onesti, preparate e gentilissime. Le amo — tornerò nonostante la distanza."</p>
+      <p class="rv-txt" lang="en">"Super experience! Coming from Lombardy on holiday, I trusted these fantastic girls. A name, a guarantee. Fair prices, professional and very kind. I love them — I'll be back despite the distance."</p>
+      <div class="rv-who">🇮🇹 Google Maps · dalla Lombardia</div>
+    </div>
+    <div class="rv">
+      <div class="rv-flag">🇮🇹</div>
+      <div class="rv-stars">★★★★★</div>
+      <p class="rv-txt" lang="it">"Colore brillante, capelli morbidi, frangia perfettamente tagliata. Tutti molto gentili e disponibili. E il prezzo era ottimo! Super soddisfatta, consiglio vivamente!"</p>
+      <p class="rv-txt" lang="en">"Bright colour, soft hair, perfectly cut fringe. Everyone was very kind and helpful. And the price was great! Super satisfied, highly recommend!"</p>
+      <div class="rv-who">🇮🇹 Google Maps</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="p-txt">
+    <div class="tag" lang="it">Prenota il tuo appuntamento</div>
+    <div class="tag" lang="en">Book your appointment</div>
+    <h2 lang="it">Il tuo momento<br><em>di bellezza</em></h2>
+    <h2 lang="en">Your moment<br><em>of beauty</em></h2>
+    <p lang="it">Il modo più veloce è WhatsApp — risponderemo subito. In alternativa chiama direttamente. Prenotare in anticipo è consigliato, specialmente in estate.</p>
+    <p lang="en">The fastest way is WhatsApp — we'll reply straight away. Otherwise call directly. Booking in advance is recommended, especially in summer.</p>
+    <div class="ci"><div class="ci-i">📍</div><div class="ci-t">Via P. Longo, 41 · Praia a Mare (CS)</div></div>
+    <div class="ci"><div class="ci-i">📞</div><div class="ci-t">0985 72285</div></div>
+    <div class="ci"><div class="ci-i">🕐</div><div class="ci-t"><span lang="it">Mar–Sab: 8:30–13:00 · 15:00–19:00<br>Lunedì e Domenica: chiuso</span><span lang="en">Tue–Sat: 8:30–13:00 · 15:00–19:00<br>Monday & Sunday: closed</span></div></div>
+    <a href="https://wa.me/390985722850?text=Ciao!%20Vorrei%20prenotare%20da%20Veronica%20il%20Parigino%20😊" class="wa-l">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <span lang="it">Scrivi su WhatsApp</span><span lang="en">Write on WhatsApp</span>
+    </a>
+  </div>
+  <form class="p-form" onsubmit="sent(event)">
+    <div class="fg-r">
+      <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+      <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+    </div>
+    <div class="fg"><label lang="it">Servizio desiderato</label><label lang="en">Desired service</label>
+      <select>
+        <option lang="it">Taglio donna</option><option lang="en">Women's cut</option>
+        <option lang="it">Colorazione / Balayage</option><option lang="en">Colour / Balayage</option>
+        <option lang="it">Piega</option><option lang="en">Blow-dry</option>
+        <option lang="it">Trattamento</option><option lang="en">Treatment</option>
+        <option lang="it">Taglio bambino/a</option><option lang="en">Children's cut</option>
+        <option lang="it">Acconciatura cerimonia</option><option lang="en">Wedding styling</option>
+      </select>
+    </div>
+    <div class="fg-r">
+      <div class="fg"><label lang="it">Giorno preferito</label><label lang="en">Preferred day</label><input type="date"></div>
+      <div class="fg"><label lang="it">Orario</label><label lang="en">Time</label>
+        <select><option lang="it">Mattina</option><option lang="en">Morning</option><option lang="it">Pomeriggio</option><option lang="en">Afternoon</option><option lang="it">Indifferente</option><option lang="en">Any time</option></select>
+      </div>
+    </div>
+    <div class="fg"><label lang="it">Note (capelli, allergie...)</label><label lang="en">Notes (hair type, allergies...)</label><input type="text" placeholder="..."></div>
+    <button class="sub" type="submit"><span lang="it">Invia richiesta di appuntamento</span><span lang="en">Send appointment request</span></button>
+  </form>
+</section>
+
+<footer>
+  <div class="f-logo"><em>Veronica</em> <span>il Parigino</span></div>
+  <div class="f-copy">© 2025 Veronica il Parigino · Via P. Longo 41 · Praia a Mare (CS) · Tel. 0985 72285</div>
+  <a href="https://wa.me/390985722850" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/390985722850?text=Ciao!%20Vorrei%20prenotare%20da%20Veronica%20il%20Parigino%20😊" class="waf">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  const s=scrollY>60;
+  document.getElementById('nav').classList.toggle('on',s);
+  document.getElementById('body').classList.toggle('dark-hero',!s);
+});
+// cursor glow
+document.addEventListener('mousemove',e=>{
+  const g=document.getElementById('glow');
+  g.style.left=e.clientX+'px';g.style.top=e.clientY+'px';
+  g.style.opacity='1';
+});
+document.addEventListener('mouseleave',()=>document.getElementById('glow').style.opacity='0');
+function toggleLang(){
+  const b=document.getElementById('body');
+  b.classList.toggle('en');
+  document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';
+}
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='var(--gold)';b.style.color='#fff';}
+</script>
+</body>
+</html>
