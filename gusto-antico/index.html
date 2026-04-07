@@ -26,21 +26,37 @@ nav.on{background:rgba(26,14,8,.97);backdrop-filter:blur(12px);border-bottom:1px
 .hdeco{position:absolute;right:8%;top:50%;transform:translateY(-50%);font-family:'Playfair Display',serif;font-style:italic;font-size:clamp(180px,28vw,340px);color:rgba(196,88,42,.04);line-height:1;pointer-events:none;letter-spacing:-4px;}
 .hc{position:relative;z-index:2;padding:0 60px 90px;max-width:700px;animation:su .9s ease both;}
 @keyframes su{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
-.htag{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--ochre);margin-bottom:24px;}
+.htag{display:flex;align-items:center;gap:14px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--ochre);margin-bottom:20px;}
 .htag::before{content:'';width:32px;height:1px;background:var(--ochre);opacity:.7;}
+.hrating{display:flex;align-items:center;gap:16px;margin-bottom:28px;}
+.hrating-v{font-family:'Playfair Display',serif;font-size:38px;font-weight:700;color:var(--ochre);line-height:1;}
+.hrating-s{color:var(--ochre);font-size:13px;letter-spacing:2px;display:block;margin-bottom:2px;}
+.hrating-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+.horari{margin-top:20px;font-size:12px;letter-spacing:1px;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:8px;}
+.horari::before{content:'';width:6px;height:6px;border-radius:50%;background:#4ade80;flex-shrink:0;}
+.gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:4px;height:260px;}
+.gallery img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;}
+.gallery img:hover{transform:scale(1.03);}
+.gallery .g-wide{grid-column:span 2;}
+.specialita{padding:70px 52px;background:var(--parch);}
+.spec-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:32px;}
+.spec-card{background:#fff;border-radius:4px;overflow:hidden;border:1px solid var(--border);transition:transform .3s,box-shadow .3s;}
+.spec-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(139,58,26,.12);}
+.spec-img{height:180px;overflow:hidden;background:var(--mid);}
+.spec-img img{width:100%;height:100%;object-fit:cover;display:block;}
+.spec-body{padding:18px 20px;}
+.spec-tag{font-size:9px;letter-spacing:3px;text-transform:uppercase;color:var(--rust);margin-bottom:6px;}
+.spec-name{font-family:'Playfair Display',serif;font-size:20px;color:var(--ink);margin-bottom:5px;}
+.spec-name i{font-style:italic;color:var(--terra);}
+.spec-desc{font-size:12px;line-height:1.6;color:var(--muted);}
 .hh{font-family:'Playfair Display',serif;font-size:clamp(54px,9vw,120px);font-weight:700;line-height:.9;color:var(--sand);margin-bottom:10px;}
 .hh i{font-style:italic;color:var(--ochre);display:block;}
 .hsub{font-size:13px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:28px;}
-.hdesc{font-size:16px;line-height:1.85;color:rgba(255,255,255,.55);max-width:500px;margin-bottom:44px;}
+.hdesc{font-size:16px;line-height:1.85;color:rgba(255,255,255,.72);max-width:500px;margin-bottom:32px;}
 .hbtns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
 .btt{background:var(--rust);color:#fff;padding:16px 36px;font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;transition:all .3s;}.btt:hover{background:var(--ochre);}
 .btg{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}.btg:hover{color:var(--sand);}
-.hbadge{position:absolute;right:60px;top:50%;transform:translateY(-50%);z-index:2;background:rgba(26,14,8,.6);border:1px solid rgba(212,146,58,.25);backdrop-filter:blur(12px);padding:24px 28px;text-align:center;}
-.hbv{font-family:'Playfair Display',serif;font-size:44px;font-weight:700;color:var(--ochre);line-height:1;}
-.hbs{color:var(--ochre);font-size:14px;letter-spacing:2px;margin:4px 0;}
-.hbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);}
-.hbsep{width:30px;height:1px;background:rgba(212,146,58,.3);margin:12px auto;}
-.hbq{font-family:'Playfair Display',serif;font-style:italic;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5;max-width:160px;}
+
 .strip{background:var(--terra);padding:14px 52px;display:flex;gap:40px;align-items:center;overflow:hidden;border-bottom:3px solid var(--ochre);}
 .si{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);white-space:nowrap;}.si b{color:rgba(255,255,255,.85);}
 .about{display:grid;grid-template-columns:5fr 4fr;}
@@ -101,7 +117,7 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
 .fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;}
 .waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
 @keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
-@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:0 20px 72px;}.hbadge{display:none;}.strip{padding:12px 20px;gap:20px;}.about{grid-template-columns:1fr;}.avis{min-height:220px;}.atxt{padding:60px 20px;}.menus,.revs{padding:60px 20px;}.dg{grid-template-columns:1fr;}.dish:nth-child(odd){padding-right:0;}.dish:nth-child(even){padding-left:0;border-left:none;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.bl,.br{padding:60px 20px;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:0 20px 72px;}.gallery{grid-template-columns:1fr 1fr;height:auto;}.gallery .g-wide{grid-column:span 1;}.gallery img{height:140px;}.spec-grid{grid-template-columns:1fr;}.specialita{padding:60px 20px;}.strip{padding:12px 20px;gap:20px;}.about{grid-template-columns:1fr;}.avis{min-height:220px;}.atxt{padding:60px 20px;}.menus,.revs{padding:60px 20px;}.dg{grid-template-columns:1fr;}.dish:nth-child(odd){padding-right:0;}.dish:nth-child(even){padding-left:0;border-left:none;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.bl,.br{padding:60px 20px;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}}
 </style>
 </head>
 <body id="body" class="ho">
@@ -120,25 +136,22 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
   <div class="hbg"></div>
   <div class="hdeco">✦</div>
   <div class="hc">
-    <div class="htag" lang="it">Diamante · Riviera dei Cedri · Cucina calabrese</div>
-    <div class="htag" lang="en">Diamante · Riviera dei Cedri · Calabrian cuisine</div>
-    <h1 class="hh" lang="it">Gusto<i>Antico</i></h1>
-    <h1 class="hh" lang="en">Gusto<i>Antico</i></h1>
-    <p class="hsub" lang="it">Tradizione · Territorio · Francesco Albano</p>
-    <p class="hsub" lang="en">Tradition · Territory · Francesco Albano</p>
-    <p class="hdesc" lang="it">Nel cuore del centro storico di Diamante — un balconcino panoramico, la cucina calabrese più autentica, il cedro spritz della casa. Chef Francesco Albano: dal viaggio nelle cucine d'Italia, tornato alla sua terra.</p>
-    <p class="hdesc" lang="en">In the heart of Diamante's historic centre — a panoramic balcony, the most authentic Calabrian cuisine, and the house cedro spritz. Chef Francesco Albano: back to his roots after years in Italy's finest kitchens.</p>
-    <div class="hbtns">
-      <a href="https://wa.me/393484808020?text=Ciao!%20Vorrei%20prenotare%20da%20Gusto%20Antico%20a%20Diamante%20😊" class="btt"><span lang="it">📱 Prenota su WhatsApp</span><span lang="en">📱 Book on WhatsApp</span></a>
-      <a href="#menu" class="btg"><span lang="it">Scopri il menu</span><span lang="en">Discover the menu</span></a>
+    <div class="htag" id="htag-text">Diamante · Riviera dei Cedri · Cucina calabrese</div>
+    <h1 class="hh">Gusto<i>Antico</i></h1>
+    <p class="hsub" id="hsub-text">Tradizione · Territorio · Francesco Albano</p>
+    <div class="hrating">
+      <div class="hrating-v">4.7</div>
+      <div>
+        <span class="hrating-s">★★★★★</span>
+        <span class="hrating-l" id="hrl-text">234 recensioni Google</span>
+      </div>
     </div>
-  </div>
-  <div class="hbadge">
-    <div class="hbv">4.7</div><div class="hbs">★★★★★</div>
-    <div class="hbl">234 <span lang="it">recensioni</span><span lang="en">reviews</span></div>
-    <div class="hbsep"></div>
-    <div class="hbq" lang="it">"Antipasto fenomenale. Balconcino vista mare favoloso."</div>
-    <div class="hbq" lang="en">"Phenomenal antipasto. Stunning sea-view balcony."</div>
+    <p class="hdesc" id="hdesc-text">Nel cuore del centro storico di Diamante — un balconcino panoramico, la cucina calabrese più autentica, il cedro spritz della casa. Chef Francesco Albano: dal viaggio nelle cucine d'Italia, tornato alla sua terra.</p>
+    <div class="hbtns">
+      <a href="https://wa.me/393484808020?text=Ciao!%20Vorrei%20prenotare%20da%20Gusto%20Antico%20a%20Diamante%20😊" class="btt" id="hbtn-text">📱 Prenota su WhatsApp</a>
+      <a href="#menu" class="btg" id="hbtg-text">Scopri il menu</a>
+    </div>
+    <div class="horari" id="horari-text">Gio–Dom: 11–15:30 · 18–23 &nbsp;·&nbsp; Lun: 11–23 &nbsp;·&nbsp; Mar–Mer: chiuso</div>
   </div>
 </section>
 <div class="strip">
@@ -147,6 +160,12 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
   <div class="si">🍋 <b>Riviera dei Cedri</b></div>
   <div class="si">🌊 <b lang="it">Vista Tirreno</b><b lang="en">Sea view</b></div>
   <div class="si">👨‍🍳 <b>Francesco Albano</b></div>
+</div>
+<div class="gallery">
+  <img class="g-wide" src="https://lh3.googleusercontent.com/places/ANXAkqH_NA3LikNqCgjDbp642a8FUXcTgGY-fBCj4ZarFNfT4cS0-FrEnxzOjPBmbOWyk5RgvsK9AOD32-cfuqHQrHL8uCBP58taghU=s4800-w800-h600" alt="Gusto Antico">
+  <img src="https://lh3.googleusercontent.com/places/ANXAkqFJUsvpBiGA1rlBnk9qEUiIaCjw8fn5uVv5Z9mzozzr8j1vgf-qBggreLRX-5H8QVxai5-a-sXh53Trpnb9hXDzqJ8DrPdzY0g=s4800-w800-h600" alt="Gusto Antico piatti">
+  <img src="https://lh3.googleusercontent.com/places/ANXAkqGne06aF74m5E30ftZHXmFu_xtS2tLs2Y0utQ4XpPXN8KFtGKXj3uivc4bsNJBdGvDY4JLMnB6C5r0zvVachu5dghnjJ9FUPYU=s4800-w800-h600" alt="Gusto Antico interno">
+  <img src="https://lh3.googleusercontent.com/place-photos/AL8-SNEZ6gRxVpXVAqbAlnYGCTC9D5zIz8xYVZ_QaJir5Fqm3FS_bu_AX3t5umSR-oXKJPrCZtdoX60v6JoZmrpUrSLPKIN_mdCkaVXMAuUYMa0IY6NwRhFNQugqp9iSROb_v9-BnBqWaAgnB54KimuAdeGaw=s4800-w800-h600" alt="Gusto Antico balcone">
 </div>
 <section class="about" id="about">
   <div class="avis" style="overflow:hidden;">
@@ -164,6 +183,47 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
       <p lang="it">"Suggerisco di prendere l'antipasto: è fenomenale! Vario e abbondante. Balconcino vista mare favoloso. Proprietari simpaticissimi."</p>
       <p lang="en">"I suggest the antipasto — phenomenal! Varied and generous. Stunning sea-view balcony. Very friendly owners."</p>
       <cite>— TripAdvisor ★★★★★</cite>
+    </div>
+  </div>
+</section>
+<section class="specialita">
+  <div class="tag" lang="it">Le nostre specialità</div>
+  <div class="tag" lang="en">Our specialities</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:700;color:var(--ink);margin-top:6px" lang="it">Tre piatti da <i style="font-style:italic;color:var(--terra)">non perdere</i></h2>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(28px,3vw,42px);font-weight:700;color:var(--ink);margin-top:6px" lang="en">Three dishes you <i style="font-style:italic;color:var(--terra)">must try</i></h2>
+  <div class="spec-grid">
+    <div class="spec-card">
+      <div class="spec-img"><img src="https://lh3.googleusercontent.com/places/ANXAkqH_NA3LikNqCgjDbp642a8FUXcTgGY-fBCj4ZarFNfT4cS0-FrEnxzOjPBmbOWyk5RgvsK9AOD32-cfuqHQrHL8uCBP58taghU=s4800-w600-h400" alt="Antipasto"></div>
+      <div class="spec-body">
+        <div class="spec-tag" lang="it">Antipasto · 14 €</div>
+        <div class="spec-tag" lang="en">Starter · €14</div>
+        <div class="spec-name" lang="it">Antipasto <i>della casa</i></div>
+        <div class="spec-name" lang="en">House <i>antipasto</i></div>
+        <div class="spec-desc" lang="it">Salumi locali, pecorini aromatizzati, bomba calabrese, frittelle — "Fenomenale!"</div>
+        <div class="spec-desc" lang="en">Local cured meats, aromatic pecorino, bomba calabrese, fritters — "Phenomenal!"</div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-img"><img src="https://lh3.googleusercontent.com/places/ANXAkqFJUsvpBiGA1rlBnk9qEUiIaCjw8fn5uVv5Z9mzozzr8j1vgf-qBggreLRX-5H8QVxai5-a-sXh53Trpnb9hXDzqJ8DrPdzY0g=s4800-w600-h400" alt="Cedro Spritz"></div>
+      <div class="spec-body">
+        <div class="spec-tag" lang="it">Signature · 6 €</div>
+        <div class="spec-tag" lang="en">Signature · €6</div>
+        <div class="spec-name" lang="it">Spritz <i>al Cedro</i></div>
+        <div class="spec-name" lang="en"><i>Cedro</i> Spritz</div>
+        <div class="spec-desc" lang="it">Il drink della Riviera dei Cedri. Cedro fresco, Aperol, prosecco — unico a Diamante.</div>
+        <div class="spec-desc" lang="en">The drink of the Riviera dei Cedri. Fresh cedro, Aperol, prosecco — unique in Diamante.</div>
+      </div>
+    </div>
+    <div class="spec-card">
+      <div class="spec-img"><img src="https://lh3.googleusercontent.com/places/ANXAkqGne06aF74m5E30ftZHXmFu_xtS2tLs2Y0utQ4XpPXN8KFtGKXj3uivc4bsNJBdGvDY4JLMnB6C5r0zvVachu5dghnjJ9FUPYU=s4800-w600-h400" alt="Braciola"></div>
+      <div class="spec-body">
+        <div class="spec-tag" lang="it">Secondo · 15 €</div>
+        <div class="spec-tag" lang="en">Main · €15</div>
+        <div class="spec-name" lang="it">Braciola di <i>maiale nero</i></div>
+        <div class="spec-name" lang="en">Black pork <i>chop</i></div>
+        <div class="spec-desc" lang="it">Maiale nero calabrese con cipolla di Tropea. Tenero, saporito, indimenticabile.</div>
+        <div class="spec-desc" lang="en">Calabrian black pork with Tropea onion. Tender, flavourful, unforgettable.</div>
+      </div>
     </div>
   </div>
 </section>
@@ -234,7 +294,24 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
 <a href="https://wa.me/393484808020" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <script>
 window.addEventListener('scroll',()=>{const s=scrollY>60;document.getElementById('nav').classList.toggle('on',s);document.getElementById('body').classList.toggle('ho',!s);});
-function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.getElementById('lbtn').textContent=b.classList.contains('en')?'🇮🇹 IT':'🇬🇧 EN';}
+function tl(){
+  const b=document.getElementById('body');
+  b.classList.toggle('en');
+  const en=b.classList.contains('en');
+  document.getElementById('lbtn').textContent=en?'🇮🇹 IT':'🇬🇧 EN';
+  const T={
+    'htag-text':['Diamante · Riviera dei Cedri · Cucina calabrese','Diamante · Riviera dei Cedri · Calabrian cuisine'],
+    'hsub-text':['Tradizione · Territorio · Francesco Albano','Tradition · Territory · Francesco Albano'],
+    'hrl-text':['234 recensioni Google','234 Google reviews'],
+    'hbtn-text':['📱 Prenota su WhatsApp','📱 Book on WhatsApp'],
+    'hbtg-text':['Scopri il menu','Discover the menu'],
+    'horari-text':['Gio–Dom: 11–15:30 · 18–23 &nbsp;·&nbsp; Lun: 11–23 &nbsp;·&nbsp; Mar–Mer: chiuso','Thu–Sun: 11–15:30 · 18–23 &nbsp;·&nbsp; Mon: 11–23 &nbsp;·&nbsp; Tue–Wed: closed']
+  };
+  for(const[id,vals]of Object.entries(T)){
+    const el=document.getElementById(id);
+    if(el)el.innerHTML=vals[en?1:0];
+  }
+}
 const P={antipasti:[{n:{it:'Antipasto della casa',en:'House antipasto'},s:{it:'Salumi locali, pecorini aromatizzati, marmellata di cipolla di Tropea, bomba calabrese, frittelle',en:'Local cured meats, aromatic pecorino, Tropea onion marmalade, bomba calabrese, fritters'},p:'14 €'},{n:{it:'Seppia ai ferri',en:'Grilled cuttlefish'},s:{it:'Con peperone crusco saltato e olio EVO calabrese',en:'With pan-fried crusco pepper and Calabrian EVO oil'},p:'12 €'},{n:{it:'Tonno con cipolle di Tropea',en:'Tuna with Tropea onion'},s:{it:'Tonno sott\'olio artigianale, cipolla di Tropea in agrodolce',en:'Artisan oil-preserved tuna, sweet-and-sour Tropea onion'},p:'11 €'},{n:{it:'Baccalà fritto con peperone crusco',en:'Fried baccalà with crusco pepper'},s:{it:'Ricetta tradizionale calabrese — croccante fuori, tenero dentro',en:'Traditional Calabrian recipe — crispy outside, tender inside'},p:'11 €'}],
 primi:[{n:{it:'Fileja al ragù calabrese',en:'Fileja with Calabrian ragù'},s:{it:'Pasta tipica calabrese, ragù lento di maiale nero',en:'Traditional Calabrian pasta, slow black pork ragù'},p:'13 €'},{n:{it:'Fusilli con \'nduja e pesce spada',en:'Fusilli with \'nduja and swordfish'},s:{it:'\'Nduja di Spilinga, pesce spada fresco, pomodorino giallo',en:'Spilinga \'nduja, fresh swordfish, yellow cherry tomato'},p:'14 €'},{n:{it:'Pasta con cipolla di Tropea',en:'Pasta with Tropea onion'},s:{it:'Pasta fresca con cipolla di Tropea caramellata — classico calabrese',en:'Fresh pasta with caramelised Tropea onion — Calabrian classic'},p:'12 €'},{n:{it:'Spaghetti alla calabrese',en:'Calabrian-style spaghetti'},s:{it:'Pomodoro, peperoncino, capperi, olive, aglio',en:'Tomato, chilli, capers, olives, garlic'},p:'11 €'}],
 secondi:[{n:{it:'Braciola di maiale nero',en:'Black pork chop'},s:{it:'Con cipolla di Tropea e patate al forno — tenero e saporito',en:'With Tropea onion and roasted potatoes'},p:'15 €'},{n:{it:'Orata con spaghetti',en:'Sea bream with spaghetti'},s:{it:'Pesce fresco, secondo disponibilità',en:'Fresh fish of the day'},p:'16 €'},{n:{it:'Parmigiana di cipolle',en:'Onion parmigiana'},s:{it:'Con provola silana affumicata — piatto povero nobile',en:'With smoked Silan provola'},p:'11 €'},{n:{it:'Pesce del giorno',en:'Fish of the day'},s:{it:'Chiedi al cameriere',en:'Ask your waiter'},p:'dal 14 €'}],
