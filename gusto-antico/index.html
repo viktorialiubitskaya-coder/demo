@@ -10,9 +10,9 @@
 :root{--terra:#8b3a1a;--rust:#c4582a;--ochre:#d4923a;--sand:#f0e0c4;--parch:#faf4ec;--dark:#1a0e08;--mid:#2a1a10;--card:#f5ead8;--muted:#8a6a50;--border:rgba(139,58,26,.15);--ink:#2a1a0e;}
 *{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
 body{background:var(--parch);color:var(--ink);font-family:'Lato',sans-serif;overflow-x:hidden;}
-[lang="en"]{display:none;}body.en [lang="it"]{display:none;}body.en [lang="en"]{display:revert;}
-.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(139,58,26,.1);border:1px solid var(--border);color:var(--terra);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Lato',sans-serif;border-radius:2px;}
-body.ho .lang-btn{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2);color:var(--sand);}
+.it-only,[lang="it"]{display:revert;}.en-only,[lang="en"]{display:none;}body.en .it-only,body.en [lang="it"]{display:none;}body.en .en-only,body.en [lang="en"]{display:revert;}
+.lang-btn{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.7);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Lato',sans-serif;border-radius:2px;transition:all .2s;}
+.lang-btn:hover{background:rgba(255,255,255,.2);color:#fff;}
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
 nav.on{background:rgba(26,14,8,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,.06);padding:14px 52px;}
 .logo{font-family:'Playfair Display',serif;font-size:20px;font-style:italic;color:#fff;text-decoration:none;}
@@ -101,11 +101,10 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
 .fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:700;border-radius:2px;}
 .waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
 @keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
-@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:0 20px 72px;}.hbadge{display:none;}.strip{padding:12px 20px;gap:20px;}.about{grid-template-columns:1fr;}.avis{min-height:220px;}.atxt{padding:60px 20px;}.menus,.revs{padding:60px 20px;}.dg{grid-template-columns:1fr;}.dish:nth-child(odd){padding-right:0;}.dish:nth-child(even){padding-left:0;border-left:none;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.bl,.br{padding:60px 20px;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:0 20px 72px;}.hbadge{display:none;}.strip{padding:12px 20px;gap:20px;}.about{grid-template-columns:1fr;}.avis{min-height:220px;}.atxt{padding:60px 20px;}.menus,.revs{padding:60px 20px;}.dg{grid-template-columns:1fr;}.dish:nth-child(odd){padding-right:0;}.dish:nth-child(even){padding-left:0;border-left:none;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.bl,.br{padding:60px 20px;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}}
 </style>
 </head>
 <body id="body" class="ho">
-<button class="lang-btn" onclick="tl()">EN / IT</button>
 <nav id="nav">
   <a href="#" class="logo"><b>Gusto</b> Antico</a>
   <div class="links">
@@ -114,6 +113,7 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
     <a href="#reviews"><span lang="it">Recensioni</span><span lang="en">Reviews</span></a>
     <a href="#book"><span lang="it">Prenota</span><span lang="en">Book</span></a>
   </div>
+  <button class="lang-btn" onclick="tl()" id="lbtn">EN</button>
   <a href="https://wa.me/393484808020" class="nav-cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
 </nav>
 <section class="hero">
@@ -234,7 +234,7 @@ footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;
 <a href="https://wa.me/393484808020" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
 <script>
 window.addEventListener('scroll',()=>{const s=scrollY>60;document.getElementById('nav').classList.toggle('on',s);document.getElementById('body').classList.toggle('ho',!s);});
-function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.getElementById('lbtn').textContent=b.classList.contains('en')?'🇮🇹 IT':'🇬🇧 EN';}
 const P={antipasti:[{n:{it:'Antipasto della casa',en:'House antipasto'},s:{it:'Salumi locali, pecorini aromatizzati, marmellata di cipolla di Tropea, bomba calabrese, frittelle',en:'Local cured meats, aromatic pecorino, Tropea onion marmalade, bomba calabrese, fritters'},p:'14 €'},{n:{it:'Seppia ai ferri',en:'Grilled cuttlefish'},s:{it:'Con peperone crusco saltato e olio EVO calabrese',en:'With pan-fried crusco pepper and Calabrian EVO oil'},p:'12 €'},{n:{it:'Tonno con cipolle di Tropea',en:'Tuna with Tropea onion'},s:{it:'Tonno sott\'olio artigianale, cipolla di Tropea in agrodolce',en:'Artisan oil-preserved tuna, sweet-and-sour Tropea onion'},p:'11 €'},{n:{it:'Baccalà fritto con peperone crusco',en:'Fried baccalà with crusco pepper'},s:{it:'Ricetta tradizionale calabrese — croccante fuori, tenero dentro',en:'Traditional Calabrian recipe — crispy outside, tender inside'},p:'11 €'}],
 primi:[{n:{it:'Fileja al ragù calabrese',en:'Fileja with Calabrian ragù'},s:{it:'Pasta tipica calabrese, ragù lento di maiale nero',en:'Traditional Calabrian pasta, slow black pork ragù'},p:'13 €'},{n:{it:'Fusilli con \'nduja e pesce spada',en:'Fusilli with \'nduja and swordfish'},s:{it:'\'Nduja di Spilinga, pesce spada fresco, pomodorino giallo',en:'Spilinga \'nduja, fresh swordfish, yellow cherry tomato'},p:'14 €'},{n:{it:'Pasta con cipolla di Tropea',en:'Pasta with Tropea onion'},s:{it:'Pasta fresca con cipolla di Tropea caramellata — classico calabrese',en:'Fresh pasta with caramelised Tropea onion — Calabrian classic'},p:'12 €'},{n:{it:'Spaghetti alla calabrese',en:'Calabrian-style spaghetti'},s:{it:'Pomodoro, peperoncino, capperi, olive, aglio',en:'Tomato, chilli, capers, olives, garlic'},p:'11 €'}],
 secondi:[{n:{it:'Braciola di maiale nero',en:'Black pork chop'},s:{it:'Con cipolla di Tropea e patate al forno — tenero e saporito',en:'With Tropea onion and roasted potatoes'},p:'15 €'},{n:{it:'Orata con spaghetti',en:'Sea bream with spaghetti'},s:{it:'Pesce fresco, secondo disponibilità',en:'Fresh fish of the day'},p:'16 €'},{n:{it:'Parmigiana di cipolle',en:'Onion parmigiana'},s:{it:'Con provola silana affumicata — piatto povero nobile',en:'With smoked Silan provola'},p:'11 €'},{n:{it:'Pesce del giorno',en:'Fish of the day'},s:{it:'Chiedi al cameriere',en:'Ask your waiter'},p:'dal 14 €'}],
