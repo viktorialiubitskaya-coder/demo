@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Palazzo Spinelli B&B — Centro Storico · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Karla:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --stone:  #2a2218;
+  --warm:   #3d3222;
+  --gold:   #b8924a;
+  --ivory:  #f8f4ec;
+  --parch:  #ede5d4;
+  --cream:  #faf8f4;
+  --brick:  #8b4a2a;
+  --sage:   #6a7a5a;
+  --muted:  #7a6e5a;
+  --sky:    #d4e4f0;
+  --border: #d8cdb8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Karla',sans-serif;background:var(--cream);color:var(--stone);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(42,34,24,.97);backdrop-filter:blur(10px);padding:13px 52px;}
+.logo{font-family:'Cormorant',serif;font-size:22px;color:#fff;text-decoration:none;letter-spacing:1px;}
+.logo span{font-style:italic;color:var(--gold);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--gold);}
+.cta{border:1px solid var(--gold);color:var(--gold);padding:9px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.cta:hover{background:var(--gold);color:var(--stone);}
+
+/* HERO — full screen palazzo facade */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(170deg,
+    #1a1208 0%,
+    #2a1e10 30%,
+    #3d2d18 55%,
+    #2a2218 80%,
+    #1a1208 100%
+  );
+}
+/* warm candlelight effect */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 50% 60% at 40% 50%, rgba(184,146,74,.12) 0%, transparent 65%),
+    radial-gradient(ellipse 30% 40% at 75% 35%, rgba(184,146,74,.07) 0%, transparent 55%);
+}
+
+/* palazzo window glow */
+.win-glow{
+  position:absolute;width:80px;height:120px;
+  background:radial-gradient(ellipse,rgba(255,200,80,.12) 0%,transparent 70%);
+  border-radius:50% 50% 0 0;
+}
+
+.hero-content{position:relative;z-index:2;padding:0 52px 88px;max-width:680px;animation:up .9s ease both;}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.motto{display:flex;align-items:center;gap:14px;margin-bottom:22px;}
+.motto-line{width:32px;height:1px;background:var(--gold);opacity:.6;}
+.motto-txt{font-family:'Cormorant',serif;font-style:italic;font-size:14px;color:var(--gold);opacity:.8;letter-spacing:1px;}
+
+.hero-title{font-family:'Cormorant',serif;font-size:clamp(48px,8vw,100px);font-weight:300;line-height:.9;color:#fff;margin-bottom:10px;}
+.hero-title em{font-style:italic;color:rgba(255,255,255,.45);}
+.hero-sub{font-family:'Cormorant',serif;font-size:16px;font-style:italic;color:rgba(255,255,255,.45);margin-bottom:30px;letter-spacing:.5px;}
+.hero-desc{font-size:15px;line-height:1.85;color:rgba(255,255,255,.65);margin-bottom:40px;max-width:480px;}
+
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn-g{background:var(--gold);color:var(--stone);padding:15px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .25s;}
+.btn-g:hover{background:#d4a85a;transform:translateY(-2px);}
+.btn-o{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}
+.btn-o:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+
+/* info panel right */
+.hero-info{position:absolute;right:52px;bottom:88px;z-index:2;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.hi{background:rgba(255,255,255,.06);border:1px solid rgba(184,146,74,.2);backdrop-filter:blur(8px);padding:12px 18px;display:flex;align-items:center;gap:12px;}
+.hi-icon{font-size:15px;}
+.hi-txt{font-size:12px;color:rgba(255,255,255,.75);line-height:1.4;}
+.hi-txt strong{display:block;font-size:14px;color:var(--gold);font-family:'Cormorant',serif;}
+
+/* STRIP */
+.strip{background:var(--stone);display:grid;grid-template-columns:repeat(4,1fr);}
+.si{padding:16px 20px;border-right:1px solid rgba(255,255,255,.06);text-align:center;}
+.si:last-child{border-right:none;}
+.si-v{font-family:'Cormorant',serif;font-size:20px;color:var(--gold);font-weight:400;}
+.si-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:2px;}
+
+/* STORIA */
+.storia{display:grid;grid-template-columns:1fr 1fr;}
+.storia-txt{background:var(--ivory);padding:84px 64px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-family:'Cormorant',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:18px;}
+.storia-txt h2{font-family:'Cormorant',serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:var(--stone);margin-bottom:22px;}
+.storia-txt h2 em{font-style:italic;color:var(--brick);}
+.storia-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.quote-box{margin-top:26px;border-left:3px solid var(--gold);padding:16px 20px;background:var(--parch);}
+.quote-box p{font-family:'Cormorant',serif;font-style:italic;font-size:18px;color:var(--stone);line-height:1.55;}
+.quote-box cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+
+.storia-vis{background:var(--warm);display:flex;align-items:center;justify-content:center;min-height:540px;overflow:hidden;}
+
+/* CAMERE */
+.camere{padding:88px 52px;background:var(--cream);}
+.camere h2{font-family:'Cormorant',serif;font-size:clamp(36px,4.5vw,56px);font-weight:300;color:var(--stone);margin-bottom:8px;}
+.camere h2 em{font-style:italic;color:var(--brick);}
+.camere-sub{font-size:14px;color:var(--muted);margin-bottom:48px;max-width:480px;line-height:1.6;}
+.cam-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.cam{background:var(--ivory);padding:0;overflow:hidden;border:1px solid var(--border);}
+.cam-color{height:6px;}
+.cam-body{padding:28px;}
+.cam-num{font-family:'Cormorant',serif;font-size:42px;font-weight:300;color:rgba(42,34,24,.08);line-height:1;margin-bottom:-8px;}
+.cam-name{font-family:'Cormorant',serif;font-size:24px;font-weight:400;color:var(--stone);margin-bottom:8px;}
+.cam-name em{font-style:italic;color:var(--gold);}
+.cam-desc{font-size:13px;line-height:1.7;color:var(--muted);}
+.cam-features{display:flex;flex-wrap:wrap;gap:6px;margin-top:14px;}
+.cam-feat{font-size:10px;letter-spacing:1px;padding:3px 8px;background:#fff;border:1px solid var(--border);color:var(--muted);}
+
+/* HIGHLIGHTS */
+.highlights{background:var(--parch);padding:80px 52px;}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:48px;}
+.hl{background:#fff;padding:32px;border-top:3px solid var(--gold);}
+.hl-icon{font-size:26px;margin-bottom:14px;}
+.hl-t{font-family:'Cormorant',serif;font-size:22px;font-weight:400;color:var(--stone);margin-bottom:10px;}
+.hl-t em{font-style:italic;color:var(--gold);}
+.hl-p{font-size:13px;line-height:1.7;color:var(--muted);}
+
+/* COLAZIONE */
+.colazione{background:var(--stone);padding:80px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.col-txt .tag{color:var(--gold);}
+.col-txt h2{font-family:'Cormorant',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:#fff;margin-bottom:20px;}
+.col-txt h2 em{font-style:italic;color:rgba(255,255,255,.35);}
+.col-txt p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.6);margin-bottom:14px;}
+.col-items{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;}
+.col-item{background:rgba(255,255,255,.05);border:1px solid rgba(184,146,74,.15);padding:14px 16px;}
+.col-item-n{font-family:'Cormorant',serif;font-size:16px;color:var(--gold);margin-bottom:4px;}
+.col-item-d{font-size:12px;color:rgba(255,255,255,.45);line-height:1.4;}
+.col-vis{display:flex;align-items:center;justify-content:center;}
+
+/* REVIEWS */
+.revs{padding:88px 52px;background:var(--ivory);}
+.revs-head{margin-bottom:48px;}
+.revs-head h2{font-family:'Cormorant',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--stone);}
+.revs-head h2 em{font-style:italic;color:var(--brick);}
+.revs-head p{font-size:12px;color:var(--muted);letter-spacing:1px;margin-top:6px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rc{background:#fff;padding:30px;border-bottom:3px solid var(--gold);}
+.rc-stars{color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:12px;}
+.rc-txt{font-family:'Cormorant',serif;font-style:italic;font-size:17px;line-height:1.65;color:var(--stone);margin-bottom:16px;}
+.rc-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PRENOTA */
+.prenota{display:grid;grid-template-columns:1fr 1fr;}
+.p-left{background:var(--brick);padding:80px 60px;}
+.p-left h2{font-family:'Cormorant',serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:18px;}
+.p-left h2 em{font-style:italic;}
+.p-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);margin-bottom:28px;}
+.c-rows{display:flex;flex-direction:column;gap:14px;}
+.cr{display:flex;gap:14px;align-items:flex-start;}
+.cr-icon{width:36px;height:36px;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.cr-txt{font-size:14px;color:rgba(255,255,255,.8);line-height:1.55;}
+.wa-l{display:inline-block;margin-top:24px;background:#25d366;color:#fff;padding:12px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:opacity .2s;}
+.wa-l:hover{opacity:.85;}
+
+.p-right{background:var(--parch);padding:80px 60px;}
+.p-right h3{font-family:'Cormorant',serif;font-size:26px;font-weight:400;color:var(--stone);margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid var(--border);padding:13px 14px;font-family:'Karla',sans-serif;font-size:14px;color:var(--stone);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--stone);color:var(--gold);border:none;padding:15px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Karla',sans-serif;cursor:pointer;font-weight:500;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--warm);}
+
+footer{background:var(--stone);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,.04);}
+.f-logo{font-family:'Cormorant',serif;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo span{font-style:italic;color:var(--gold);}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}
+  .hero-content{padding:100px 20px 60px;}.hero-info{display:none;}
+  .strip{grid-template-columns:1fr 1fr;}
+  .storia{grid-template-columns:1fr;}.storia-txt{padding:60px 20px;}.storia-vis{min-height:260px;}
+  .camere,.highlights,.revs{padding:60px 20px;}
+  .cam-grid{grid-template-columns:1fr;}
+  .hl-grid{grid-template-columns:1fr;}
+  .colazione{grid-template-columns:1fr;padding:60px 20px;gap:32px;}.col-vis{display:none;}
+  .col-items{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .prenota{grid-template-columns:1fr;}.p-left,.p-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Palazzo <span>Spinelli</span></a>
+  <div class="links">
+    <a href="#storia">La Dimora</a>
+    <a href="#camere">Camere</a>
+    <a href="#colazione">Colazione</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- window glows -->
+  <div class="win-glow" style="top:20%;left:25%;"></div>
+  <div class="win-glow" style="top:25%;left:48%;opacity:.6"></div>
+  <div class="win-glow" style="top:18%;right:22%;opacity:.5"></div>
+
+  <!-- palazzo facade SVG -->
+  <svg style="position:absolute;inset:0;width:100%;height:100%;opacity:.15;pointer-events:none;" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- main facade -->
+    <rect x="200" y="150" width="800" height="550" fill="#5a4030"/>
+    <!-- cornice top -->
+    <rect x="180" y="140" width="840" height="20" fill="#7a5a3a"/>
+    <!-- piano nobile windows row 1 -->
+    <g fill="#1a1208" stroke="rgba(184,146,74,.3)" stroke-width="2">
+      <path d="M270 200 L270 310 Q270 325 300 325 Q330 325 330 310 L330 200Z"/>
+      <path d="M420 200 L420 310 Q420 325 450 325 Q480 325 480 310 L480 200Z"/>
+      <path d="M570 200 L570 310 Q570 325 600 325 Q630 325 630 310 L630 200Z"/>
+      <path d="M720 200 L720 310 Q720 325 750 325 Q780 325 780 310 L780 200Z"/>
+      <path d="M870 200 L870 310 Q870 325 900 325 Q930 325 930 310 L930 200Z"/>
+    </g>
+    <!-- window glow fills -->
+    <g fill="rgba(255,200,80,.08)">
+      <rect x="272" y="202" width="56" height="110"/>
+      <rect x="422" y="202" width="56" height="110"/>
+      <rect x="572" y="202" width="56" height="110"/>
+      <rect x="722" y="202" width="56" height="110"/>
+      <rect x="872" y="202" width="56" height="110"/>
+    </g>
+    <!-- floor 2 windows -->
+    <g fill="#1a1208" stroke="rgba(184,146,74,.2)" stroke-width="1.5">
+      <rect x="270" y="360" width="60" height="80" rx="2"/>
+      <rect x="420" y="360" width="60" height="80" rx="2"/>
+      <rect x="570" y="360" width="60" height="80" rx="2"/>
+      <rect x="720" y="360" width="60" height="80" rx="2"/>
+      <rect x="870" y="360" width="60" height="80" rx="2"/>
+    </g>
+    <!-- entrance portal -->
+    <path d="M530 700 L530 520 Q530 480 600 480 Q670 480 670 520 L670 700Z" fill="#1a1208"/>
+    <path d="M520 520 Q520 470 600 470 Q680 470 680 520" stroke="rgba(184,146,74,.4)" stroke-width="3" fill="none"/>
+    <!-- cobblestones ground -->
+    <g fill="rgba(0,0,0,.3)">
+      <ellipse cx="300" cy="690" rx="50" ry="8"/>
+      <ellipse cx="450" cy="692" rx="60" ry="8"/>
+      <ellipse cx="620" cy="688" rx="55" ry="8"/>
+      <ellipse cx="800" cy="691" rx="50" ry="8"/>
+      <ellipse cx="950" cy="689" rx="45" ry="8"/>
+    </g>
+    <!-- lampioni -->
+    <line x1="230" y1="700" x2="230" y2="420" stroke="rgba(184,146,74,.3)" stroke-width="3"/>
+    <circle cx="230" cy="415" r="12" fill="rgba(255,200,80,.2)"/>
+    <line x1="970" y1="700" x2="970" y2="420" stroke="rgba(184,146,74,.3)" stroke-width="3"/>
+    <circle cx="970" cy="415" r="12" fill="rgba(255,200,80,.2)"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="motto">
+      <div class="motto-line"></div>
+      <div class="motto-txt">Piazza Castel Rugiero · Centro Storico · Belvedere Marittimo</div>
+      <div class="motto-line"></div>
+    </div>
+    <h1 class="hero-title">Palazzo<br><em>Spinelli</em></h1>
+    <p class="hero-sub">Bed & Breakfast · Dimora storica d'epoca</p>
+    <p class="hero-desc">In una delle antiche dimore del centro storico medievale di Belvedere Marittimo. Quattro camere finemente arredate, terrazza panoramica sul castello aragonese, colazione con le specialità della casa. La Sig.ra Spinelli e sua figlia Olga vi accoglieranno come ospiti di famiglia.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-g">Prenota una camera</a>
+      <a href="#camere" class="btn-o">Scopri le camere</a>
+    </div>
+  </div>
+
+  <div class="hero-info">
+    <div class="hi"><div class="hi-icon">🏰</div><div class="hi-txt"><strong>Centro storico</strong>Piazza Castel Rugiero 18</div></div>
+    <div class="hi"><div class="hi-icon">🛏️</div><div class="hi-txt"><strong>4 camere</strong>Con bagno privato</div></div>
+    <div class="hi"><div class="hi-icon">🌅</div><div class="hi-txt"><strong>Vista panoramica</strong>Mare e Castello Aragonese</div></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="si"><div class="si-v">4</div><div class="si-l">Camere con bagno privato</div></div>
+  <div class="si"><div class="si-v">Sec. XVI</div><div class="si-l">Palazzo storico d'epoca</div></div>
+  <div class="si"><div class="si-v">200 m</div><div class="si-l">Dal Castello Aragonese</div></div>
+  <div class="si"><div class="si-v">Mare</div><div class="si-l">Vista panoramica dalla terrazza</div></div>
+</div>
+
+<!-- STORIA -->
+<section class="storia" id="storia">
+  <div class="storia-txt">
+    <div class="tag">La nostra dimora</div>
+    <h2>Un palazzo d'epoca<br>nel cuore del <em>borgo medievale</em></h2>
+    <p>In cima al centro storico di Belvedere Marittimo, in una piccola piazza cinta da antichi palazzi e dominata dal castello Aragonese, sorge Palazzo Spinelli. Una dimora che porta con sé secoli di storia e un'atmosfera che il tempo non ha cancellato.</p>
+    <p>Il caratteristico salone con mobili e oggetti d'epoca, il caminetto, la terrazza privata — ogni angolo racconta il passato di questa terra. La Sig.ra Spinelli e sua figlia Olga portano avanti con cura la tradizione dell'ospitalità del Sud.</p>
+    <div class="quote-box">
+      <p>"Posto sublime pieno di innumerevoli suggestioni, assoluta tranquillità. Panorama mozzafiato da rifare. Grazie alla Sig.ra Spinelli e a sua figlia Olga."</p>
+      <cite>— Ospite soddisfatto · TripAdvisor</cite>
+    </div>
+  </div>
+
+  <div class="storia-vis">
+    <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:.85">
+      <!-- background warm interior -->
+      <rect width="400" height="460" fill="#2a1e10"/>
+      <!-- floor -->
+      <rect x="0" y="360" width="400" height="100" fill="#1a1208"/>
+      <!-- marble floor pattern -->
+      <g fill="rgba(255,255,255,.03)" stroke="rgba(255,255,255,.04)" stroke-width=".5">
+        <rect x="0" y="360" width="80" height="50"/>
+        <rect x="80" y="360" width="80" height="50"/>
+        <rect x="160" y="360" width="80" height="50"/>
+        <rect x="240" y="360" width="80" height="50"/>
+        <rect x="320" y="360" width="80" height="50"/>
+        <rect x="40" y="410" width="80" height="50"/>
+        <rect x="120" y="410" width="80" height="50"/>
+        <rect x="200" y="410" width="80" height="50"/>
+        <rect x="280" y="410" width="80" height="50"/>
+      </g>
+      <!-- back wall with warm plaster -->
+      <rect x="0" y="0" width="400" height="360" fill="#3d2d18"/>
+      <!-- ornate frame on wall -->
+      <rect x="110" y="40" width="180" height="140" rx="4" fill="rgba(0,0,0,.3)" stroke="rgba(184,146,74,.3)" stroke-width="2"/>
+      <rect x="118" y="48" width="164" height="124" rx="2" fill="rgba(0,0,0,.2)"/>
+      <!-- painting in frame — window with view -->
+      <rect x="120" y="50" width="160" height="120" fill="#1a3a5a" opacity=".6"/>
+      <path d="M120 120 Q200 100 280 120" fill="none" stroke="rgba(255,255,255,.1)" stroke-width="1"/>
+      <ellipse cx="200" cy="90" rx="40" ry="12" fill="rgba(255,255,255,.08)"/>
+      <!-- castello in painting -->
+      <rect x="155" y="95" width="90" height="60" fill="rgba(90,70,40,.5)"/>
+      <rect x="148" y="88" width="14" height="20" fill="rgba(90,70,40,.5)"/>
+      <rect x="238" y="88" width="14" height="20" fill="rgba(90,70,40,.5)"/>
+      <!-- antique chest / credenza -->
+      <rect x="50" y="280" width="120" height="80" rx="3" fill="#5a3a20"/>
+      <rect x="52" y="282" width="116" height="76" rx="2" fill="#6a4a28"/>
+      <!-- brass handles -->
+      <rect x="98" y="318" width="24" height="4" rx="2" fill="rgba(184,146,74,.6)"/>
+      <!-- side chair -->
+      <rect x="280" y="310" width="70" height="50" rx="4" fill="#4a2a10"/>
+      <rect x="300" y="290" width="30" height="25" rx="2" fill="#5a3a18"/>
+      <!-- candle on credenza -->
+      <rect x="170" y="262" width="8" height="18" rx="1" fill="#f0e8d0"/>
+      <circle cx="174" cy="260" r="3" fill="rgba(255,200,80,.6)"/>
+      <ellipse cx="174" cy="258" rx="12" ry="7" fill="rgba(255,200,80,.06)"/>
+      <!-- flower vase -->
+      <ellipse cx="90" cy="281" rx="14" ry="5" fill="#7a5030"/>
+      <rect x="82" y="258" width="16" height="24" rx="4" fill="#7a5030"/>
+      <path d="M82 270 Q90 255 98 265" stroke="#c8a060" stroke-width="1.5" fill="none"/>
+      <path d="M86 265 Q90 250 96 260" stroke="#a08040" stroke-width="1.5" fill="none"/>
+      <!-- warm light from window (upper right) -->
+      <path d="M340 0 L400 0 L400 200 L340 150Z" fill="rgba(255,200,80,.04)"/>
+      <!-- ornate ceiling molding -->
+      <rect x="0" y="0" width="400" height="12" fill="rgba(184,146,74,.1)"/>
+      <path d="M0 12 Q200 20 400 12" fill="rgba(184,146,74,.05)"/>
+      <!-- label -->
+      <text x="200" y="442" text-anchor="middle" font-family="'Cormorant',serif" font-style="italic" font-size="13" fill="rgba(184,146,74,.3)" letter-spacing="2">dimora storica</text>
+    </svg>
+  </div>
+</section>
+
+<!-- CAMERE -->
+<section class="camere" id="camere">
+  <div class="tag" style="color:var(--brick)">Dove dormire</div>
+  <h2>Quattro camere, <em>una storia</em></h2>
+  <p class="camere-sub">Ogni camera è arredata in stile classico con mobili d'epoca, bagno privato e TV. Le finestre si aprono su vedute che il tempo non offre altrove.</p>
+  <div class="cam-grid">
+    <div class="cam">
+      <div class="cam-color" style="background:linear-gradient(90deg,#8b4a2a,#b8924a)"></div>
+      <div class="cam-body">
+        <div class="cam-num">I</div>
+        <div class="cam-name"><em>La Suite</em> del Castello</div>
+        <p class="cam-desc">Spaziosa, con vista sia sul mare che sul Castello Aragonese. La camera più richiesta — un'esperienza che unisce storia e panorama in un'unica finestra.</p>
+        <div class="cam-features">
+          <span class="cam-feat">Vista castello</span>
+          <span class="cam-feat">Vista mare</span>
+          <span class="cam-feat">Bagno privato</span>
+          <span class="cam-feat">Arredi d'epoca</span>
+        </div>
+      </div>
+    </div>
+    <div class="cam">
+      <div class="cam-color" style="background:linear-gradient(90deg,#6a7a5a,#8a9a6a)"></div>
+      <div class="cam-body">
+        <div class="cam-num">II</div>
+        <div class="cam-name">Camera <em>del Giardino</em></div>
+        <p class="cam-desc">Luminosa, con vista sul giardino interno e sui tetti del borgo medievale. Arredata con cura in stile classico meridionale, ideale per coppie.</p>
+        <div class="cam-features">
+          <span class="cam-feat">Vista borgo</span>
+          <span class="cam-feat">Bagno privato</span>
+          <span class="cam-feat">TV color</span>
+          <span class="cam-feat">Aria condizionata</span>
+        </div>
+      </div>
+    </div>
+    <div class="cam">
+      <div class="cam-color" style="background:linear-gradient(90deg,#4a6a8a,#6a8aaa)"></div>
+      <div class="cam-body">
+        <div class="cam-num">III</div>
+        <div class="cam-name">Camera <em>del Mare</em></div>
+        <p class="cam-desc">Con scorcio sul mare Tirreno tra i vicoli del borgo. Fresca d'estate, calda d'inverno — una finestra sul paesaggio calabrese più bello.</p>
+        <div class="cam-features">
+          <span class="cam-feat">Vista mare</span>
+          <span class="cam-feat">Bagno privato</span>
+          <span class="cam-feat">Mobili d'epoca</span>
+        </div>
+      </div>
+    </div>
+    <div class="cam">
+      <div class="cam-color" style="background:linear-gradient(90deg,#8a5a3a,#aa7a5a)"></div>
+      <div class="cam-body">
+        <div class="cam-num">IV</div>
+        <div class="cam-name">Camera <em>del Borgo</em></div>
+        <p class="cam-desc">Nel cuore del palazzo, la camera più raccolta e intima. Ideale per chi cerca silenzio e vuole immergersi nell'atmosfera di un borgo medievale autentico.</p>
+        <div class="cam-features">
+          <span class="cam-feat">Vista vicoli</span>
+          <span class="cam-feat">Bagno privato</span>
+          <span class="cam-feat">Stile classico</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights">
+  <div class="tag" style="color:var(--gold)">Cosa offriamo</div>
+  <h2 style="font-family:'Cormorant',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--stone);margin-top:8px;">L'<em style="font-style:italic;color:var(--brick)">esperienza</em> Palazzo Spinelli</h2>
+  <div class="hl-grid">
+    <div class="hl">
+      <div class="hl-icon">🏯</div>
+      <div class="hl-t">Centro storico <em>medievale</em></div>
+      <p class="hl-p">A 200 metri dal Castello Aragonese, in una delle piazze più suggestive del borgo. Bar Gelateria Cipolla, Juve Bar, la Chiesa del SS. Crocifisso — tutto a pochi passi.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🌅</div>
+      <div class="hl-t">Terrazza <em>panoramica</em></div>
+      <p class="hl-p">La terrazza privata offre una vista che abbraccia il mare Tirreno e le montagne della Calabria, con il castello aragonese in primo piano. Magica all'alba e al tramonto.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🛋️</div>
+      <div class="hl-t">Salone <em>d'epoca</em></div>
+      <p class="hl-p">Il salone comune con mobili e oggetti d'epoca, caminetto e biblioteca vi riporta indietro nel tempo. Uno spazio per leggere, conversare, sentirsi a casa in un palazzo storico.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COLAZIONE -->
+<section class="colazione">
+  <div class="col-txt">
+    <div class="tag">Al risveglio</div>
+    <h2>La colazione della<br><em>Sig.ra Spinelli</em></h2>
+    <p>Al risveglio, la padrona di casa prepara personalmente le specialità della casa per i suoi ospiti. Una colazione che profuma di tradizione calabrese e cura artigianale.</p>
+    <div class="col-items">
+      <div class="col-item">
+        <div class="col-item-n">🥐 Dolci di casa</div>
+        <div class="col-item-d">Preparati dalla padrona ogni mattina</div>
+      </div>
+      <div class="col-item">
+        <div class="col-item-n">🍯 Confetture</div>
+        <div class="col-item-d">Marmellate artigianali di stagione</div>
+      </div>
+      <div class="col-item">
+        <div class="col-item-n">☕ Caffè</div>
+        <div class="col-item-d">Espresso calabrese, forte e aromatico</div>
+      </div>
+      <div class="col-item">
+        <div class="col-item-n">🧀 Prodotti locali</div>
+        <div class="col-item-d">Formaggi e salumi del territorio</div>
+      </div>
+    </div>
+  </div>
+  <div class="col-vis">
+    <svg viewBox="0 0 300 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;opacity:.8">
+      <rect width="300" height="320" fill="#3d2d18"/>
+      <!-- table -->
+      <ellipse cx="150" cy="220" rx="130" ry="40" fill="#5a3a20"/>
+      <ellipse cx="150" cy="214" rx="122" ry="36" fill="#7a5030"/>
+      <!-- tablecloth hint -->
+      <ellipse cx="150" cy="210" rx="115" ry="32" fill="#f0e8d4" opacity=".15"/>
+      <!-- coffee cup -->
+      <ellipse cx="120" cy="195" rx="28" ry="9" fill="#3a2010"/>
+      <ellipse cx="120" cy="192" rx="25" ry="8" fill="#2a1808"/>
+      <!-- coffee -->
+      <ellipse cx="120" cy="191" rx="22" ry="6" fill="#1a0f05"/>
+      <path d="M148 192 Q155 185 148 178" stroke="rgba(255,255,255,.15)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- croissant -->
+      <path d="M155 185 Q170 175 185 180 Q190 195 180 200 Q165 205 155 195 Q150 188 155 185Z" fill="#c4902a" opacity=".8"/>
+      <path d="M157 188 Q172 178 184 183" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none"/>
+      <!-- jam jar -->
+      <rect x="74" y="175" width="22" height="24" rx="5" fill="#c03020" opacity=".7"/>
+      <rect x="72" y="173" width="26" height="6" rx="3" fill="#888"/>
+      <!-- flower vase center -->
+      <rect x="143" y="155" width="14" height="30" rx="4" fill="#8a6040" opacity=".7"/>
+      <ellipse cx="150" cy="155" rx="7" ry="3" fill="#8a6040" opacity=".7"/>
+      <path d="M150 145 Q148 130 142 120" stroke="#5a7a40" stroke-width="2" fill="none"/>
+      <circle cx="140" cy="118" r="6" fill="#d4a5c9" opacity=".8"/>
+      <path d="M150 145 Q153 130 158 120" stroke="#5a7a40" stroke-width="2" fill="none"/>
+      <circle cx="160" cy="117" r="5" fill="#e9c46a" opacity=".8"/>
+      <!-- window behind showing morning -->
+      <rect x="60" y="40" width="180" height="110" rx="4" fill="#d4e8f0" opacity=".2"/>
+      <path d="M60 95 Q150 85 240 95" fill="none" stroke="rgba(255,255,255,.08)" stroke-width="1"/>
+      <!-- castle silhouette in window -->
+      <path d="M120 90 L120 75 L130 75 L130 65 L140 65 L140 75 L160 75 L160 65 L170 65 L170 75 L180 75 L180 90Z" fill="rgba(90,60,30,.3)"/>
+      <!-- label -->
+      <text x="150" y="300" text-anchor="middle" font-family="'Cormorant',serif" font-style="italic" font-size="12" fill="rgba(184,146,74,.3)" letter-spacing="2">buongiorno</text>
+    </svg>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="revs" id="recensioni">
+  <div class="revs-head">
+    <div class="tag" style="color:var(--brick)">Cosa dicono gli ospiti</div>
+    <h2>Una dimora da <em>rivivere</em></h2>
+    <p>TripAdvisor · N. 2 di 3 B&B a Belvedere Marittimo</p>
+  </div>
+  <div class="rev-grid">
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Abbiamo trascorso 2 giorni meravigliosi. Ospitalità, accoglienza e pulizia ottime, posto sublime pieno di innumerevoli suggestioni. Panorama mozzafiato."</p>
+      <div class="rc-who">— Famiglia · TripAdvisor</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Un palazzo d'epoca nel centro storico, a circa 3 km dal mare. Camere in stile classico, terrazza con bella vista mare. Disponibilità e gentilezza da parte dei gestori."</p>
+      <div class="rc-who">— Ospite · ViaggiaeDormi</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"La suite è spaziosa con vista sia sul mare che sul castello. In una location che ha della storia e del fascino autentico. Si respirano atmosfere dimenticate."</p>
+      <div class="rc-who">— Coppia · TripAdvisor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="p-left">
+    <div class="tag" style="color:rgba(255,255,255,.5)">Come raggiungerci</div>
+    <h2>Prenota la<br>tua camera <em>storica</em></h2>
+    <p>Nel centro storico medievale di Belvedere Marittimo. A 200 metri dal castello, a pochi minuti a piedi da tutto — e lontano dal rumore del mondo.</p>
+    <div class="c-rows">
+      <div class="cr"><div class="cr-icon">📍</div><div class="cr-txt">Piazza Castel Rugiero 18<br>Centro storico, Belvedere Marittimo (CS)</div></div>
+      <div class="cr"><div class="cr-icon">📞</div><div class="cr-txt">0985 849110<br>Cell: 335 525 4499</div></div>
+      <div class="cr"><div class="cr-icon">✉️</div><div class="cr-txt"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="35575057455459544f4f5a46455c5b5059595c755d5a4158545c591b565a58">[email&#160;protected]</a></div></div>
+      <div class="cr"><div class="cr-icon">🚗</div><div class="cr-txt">Parcheggio pubblico gratuito<br>nelle immediate vicinanze</div></div>
+    </div>
+    <a href="https://wa.me/393355254499?text=Buongiorno!%20Vorrei%20prenotare%20una%20camera%20al%20Palazzo%20Spinelli%20😊" class="wa-l">📱 WhatsApp</a>
+  </div>
+  <div class="p-right">
+    <h3>Invia una richiesta</h3>
+    <form onsubmit="inviato(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Check-in</label><input type="date"></div>
+        <div class="fg"><label>Check-out</label><input type="date"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Ospiti</label>
+          <select>
+            <option>1 persona</option><option>2 persone</option>
+            <option>3 persone</option><option>4 persone</option>
+          </select>
+        </div>
+        <div class="fg"><label>Camera preferita</label>
+          <select>
+            <option>Suite del Castello</option>
+            <option>Camera del Giardino</option>
+            <option>Camera del Mare</option>
+            <option>Camera del Borgo</option>
+            <option>Nessuna preferenza</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Note</label><textarea placeholder="Richieste particolari, allergie, motivo del viaggio..."></textarea></div>
+      <button class="sub" type="submit">Invia richiesta di prenotazione</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Palazzo <span>Spinelli</span></div>
+  <div class="f-copy">© 2025 B&B Palazzo Spinelli · Piazza Castel Rugiero 18 · Belvedere Marittimo (CS) · Tel. 0985 849110</div>
+  <a href="https://wa.me/393355254499" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/393355254499?text=Buongiorno!%20Vorrei%20prenotare%20al%20Palazzo%20Spinelli%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList

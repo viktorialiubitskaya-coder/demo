@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Antico Palmento — Agriturismo · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Figtree:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --olive:   #5a6e35;
+  --deep:    #2e3d1a;
+  --sage:    #7a8f52;
+  --earth:   #8b6040;
+  --terra:   #c4784a;
+  --parch:   #f2ead8;
+  --cream:   #faf6ed;
+  --warm:    #f0e6d0;
+  --bark:    #6b4e35;
+  --muted:   #7a6e58;
+  --sky:     #d4e8f0;
+  --moon:    #f8f4e8;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Figtree',sans-serif;background:var(--cream);color:var(--deep);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(46,61,26,.96);backdrop-filter:blur(10px);padding:13px 52px;}
+.logo{font-family:'Fraunces',serif;font-size:21px;color:#fff;text-decoration:none;font-weight:300;}
+.logo em{font-style:italic;color:#c8d88a;}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:#c8d88a;}
+.cta{background:var(--terra);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.cta:hover{background:var(--earth);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;}
+/* twilight sky gradient */
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg,
+    #1a2840 0%,
+    #2a3a5a 15%,
+    #3a5a4a 40%,
+    #4a6a38 65%,
+    #3a5228 85%,
+    #2e3d1a 100%
+  );
+}
+/* stars */
+.stars{position:absolute;top:0;left:0;right:0;height:40%;pointer-events:none;}
+/* moon */
+.moon{position:absolute;top:8%;right:15%;width:60px;height:60px;border-radius:50%;background:radial-gradient(circle,#f8f4d8 30%,#e8d898 100%);opacity:.85;box-shadow:0 0 40px rgba(248,244,216,.3);}
+/* olive tree silhouettes */
+.trees{position:absolute;bottom:0;left:0;right:0;height:55%;pointer-events:none;}
+
+.hero-content{position:relative;z-index:2;padding:0 52px 88px;animation:up .9s ease both;}
+@keyframes up{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+.hero-tag{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:#c8d88a;margin-bottom:18px;display:flex;align-items:center;gap:12px;}
+.hero-tag::before{content:'';width:28px;height:1px;background:#c8d88a;}
+.hero-title{font-family:'Fraunces',serif;font-size:clamp(46px,8vw,100px);font-weight:300;line-height:.92;color:#fff;margin-bottom:10px;}
+.hero-title em{font-style:italic;color:#c8d88a;}
+.hero-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:28px;}
+.hero-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.65);max-width:460px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-t{background:var(--terra);color:#fff;padding:15px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.btn-t:hover{background:var(--earth);transform:translateY(-2px);}
+.btn-g{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}
+.btn-g:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+
+.hero-note{position:absolute;right:52px;bottom:88px;z-index:2;background:rgba(255,255,255,.07);border:1px solid rgba(200,216,138,.2);backdrop-filter:blur(8px);padding:18px 22px;max-width:220px;}
+.hero-note-title{font-family:'Fraunces',serif;font-style:italic;font-size:15px;color:#c8d88a;margin-bottom:6px;}
+.hero-note-txt{font-size:12px;color:rgba(255,255,255,.6);line-height:1.6;}
+
+/* RIBBON */
+.ribbon{background:var(--deep);padding:0;display:grid;grid-template-columns:repeat(4,1fr);}
+.rib{padding:18px 20px;border-right:1px solid rgba(255,255,255,.06);text-align:center;}
+.rib:last-child{border-right:none;}
+.rib-v{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:#c8d88a;line-height:1;}
+.rib-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;}
+
+/* STORY */
+.story{display:grid;grid-template-columns:1fr 1fr;}
+.story-txt{background:var(--parch);padding:84px 68px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--terra);margin-bottom:18px;}
+.story-txt h2{font-family:'Fraunces',serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:var(--deep);margin-bottom:22px;}
+.story-txt h2 em{font-style:italic;color:var(--olive);}
+.story-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.palmento-box{margin-top:24px;background:#fff;border-left:4px solid var(--terra);padding:18px 22px;}
+.palmento-box strong{display:block;font-family:'Fraunces',serif;font-size:18px;color:var(--deep);margin-bottom:4px;}
+.palmento-box p{font-size:13px;color:var(--muted);line-height:1.5;margin-bottom:0;}
+
+.story-vis{background:var(--olive);display:flex;align-items:center;justify-content:center;min-height:520px;overflow:hidden;}
+
+/* MENU FISSO */
+.menu-s{padding:90px 52px;background:var(--cream);}
+.menu-head{margin-bottom:52px;}
+.menu-head h2{font-family:'Fraunces',serif;font-size:clamp(38px,5vw,62px);font-weight:300;color:var(--deep);}
+.menu-head h2 em{font-style:italic;color:var(--terra);}
+.menu-head p{font-size:14px;color:var(--muted);margin-top:10px;max-width:520px;line-height:1.6;}
+
+/* fixed menu card */
+.menu-fixed{background:var(--warm);border:1px solid #d8c8a8;padding:48px;margin-bottom:48px;position:relative;}
+.menu-fixed::before{content:'Menù Fisso';position:absolute;top:-12px;left:36px;background:var(--terra);color:#fff;font-size:9px;letter-spacing:3px;text-transform:uppercase;padding:4px 14px;font-family:'Figtree',sans-serif;}
+.mf-price{font-family:'Fraunces',serif;font-size:52px;font-weight:300;color:var(--terra);line-height:1;margin-bottom:6px;}
+.mf-note{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:32px;}
+.mf-courses{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+.mfc{padding:20px;background:#fff;}
+.mfc-title{font-family:'Fraunces',serif;font-size:15px;color:var(--deep);margin-bottom:10px;}
+.mfc-items{font-size:13px;color:var(--muted);line-height:1.7;}
+.mfc-items li{list-style:none;padding:3px 0;border-bottom:1px solid #e8dcc8;}
+.mfc-items li:last-child{border-bottom:none;}
+.mfc-items li::before{content:'· ';color:var(--terra);}
+
+/* stagionale */
+.stagionale{background:var(--deep);padding:16px 20px;display:flex;align-items:center;gap:14px;margin-top:20px;}
+.stag-icon{font-size:20px;}
+.stag-txt{font-size:13px;color:rgba(255,255,255,.75);line-height:1.5;}
+.stag-txt strong{color:#c8d88a;}
+
+/* EXPERIENCE */
+.exp{background:var(--warm);padding:80px 52px;}
+.exp h2{font-family:'Fraunces',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:var(--deep);margin-bottom:52px;}
+.exp h2 em{font-style:italic;color:var(--olive);}
+.exp-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.ec{padding:32px;background:#fff;border-top:3px solid var(--olive);}
+.ec-num{font-family:'Fraunces',serif;font-size:52px;font-weight:300;color:rgba(90,110,53,.15);line-height:1;margin-bottom:-8px;}
+.ec-title{font-family:'Fraunces',serif;font-size:22px;font-weight:300;color:var(--deep);margin-bottom:10px;}
+.ec-title em{font-style:italic;color:var(--terra);}
+.ec-txt{font-size:13px;line-height:1.7;color:var(--muted);}
+
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--deep);}
+.revs h2{font-family:'Fraunces',serif;font-size:clamp(34px,4vw,52px);font-weight:300;color:#fff;margin-bottom:6px;}
+.revs h2 em{font-style:italic;color:#c8d88a;}
+.revs-sub{font-size:12px;color:rgba(255,255,255,.35);margin-bottom:52px;letter-spacing:1px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rc{padding:30px;border:1px solid rgba(255,255,255,.07);position:relative;}
+.rc::before{content:'"';position:absolute;top:12px;right:16px;font-family:'Fraunces',serif;font-size:72px;color:rgba(90,110,53,.15);line-height:1;}
+.rc-stars{color:#c8d88a;font-size:12px;letter-spacing:3px;margin-bottom:12px;}
+.rc-txt{font-family:'Fraunces',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.8);margin-bottom:16px;}
+.rc-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+
+/* BOOK */
+.book{display:grid;grid-template-columns:1fr 1fr;}
+.b-left{background:var(--olive);padding:80px 64px;}
+.b-left h2{font-family:'Fraunces',serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#fff;line-height:1.1;margin-bottom:18px;}
+.b-left h2 em{font-style:italic;}
+.b-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:28px;}
+.irows{display:flex;flex-direction:column;gap:14px;}
+.ir{display:flex;gap:14px;align-items:flex-start;}
+.ir-icon{width:36px;height:36px;background:rgba(255,255,255,.12);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ir-txt{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55;}
+.wa-btn{display:inline-block;margin-top:26px;background:#25d366;color:#fff;padding:13px 24px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.wa-btn:hover{opacity:.85;}
+
+.b-right{background:var(--parch);padding:80px 64px;}
+.b-right h3{font-family:'Fraunces',serif;font-size:26px;font-weight:300;color:var(--deep);margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #d8c8a8;padding:13px 14px;font-family:'Figtree',sans-serif;font-size:14px;color:var(--deep);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--olive);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--terra);color:#fff;border:none;padding:15px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Figtree',sans-serif;cursor:pointer;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--earth);}
+
+footer{background:var(--deep);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid rgba(255,255,255,.05);}
+.f-logo{font-family:'Fraunces',serif;font-size:18px;font-weight:300;color:rgba(255,255,255,.3);}
+.f-logo em{font-style:italic;color:#c8d88a;}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}nav.on{padding:12px 20px;}.links{display:none;}
+  .hero-content{padding:100px 20px 60px;}.hero-note{display:none;}
+  .ribbon{grid-template-columns:1fr 1fr;}
+  .story{grid-template-columns:1fr;}.story-txt{padding:60px 20px;}.story-vis{min-height:260px;}
+  .menu-s,.exp,.revs{padding:60px 20px;}
+  .mf-courses{grid-template-columns:1fr;}
+  .exp-grid{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .book{grid-template-columns:1fr;}.b-left,.b-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">L'<em>Antico Palmento</em></a>
+  <div class="links">
+    <a href="#storia">La Storia</a>
+    <a href="#menu">Menù Fisso</a>
+    <a href="#esperienza">L'Esperienza</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- moon -->
+  <div class="moon"></div>
+
+  <!-- stars SVG -->
+  <svg class="stars" viewBox="0 0 1200 300" xmlns="http://www.w3.org/2000/svg" style="position:absolute;top:0;left:0;right:0;width:100%;height:40%;pointer-events:none;">
+    <circle cx="100" cy="40" r="1.2" fill="rgba(255,255,255,.7)"/>
+    <circle cx="230" cy="80" r="1" fill="rgba(255,255,255,.5)"/>
+    <circle cx="400" cy="30" r="1.5" fill="rgba(255,255,255,.8)"/>
+    <circle cx="550" cy="60" r="1" fill="rgba(255,255,255,.5)"/>
+    <circle cx="700" cy="25" r="1.2" fill="rgba(255,255,255,.6)"/>
+    <circle cx="850" cy="70" r="1" fill="rgba(255,255,255,.4)"/>
+    <circle cx="1050" cy="35" r="1.5" fill="rgba(255,255,255,.7)"/>
+    <circle cx="150" cy="100" r="1" fill="rgba(255,255,255,.4)"/>
+    <circle cx="480" cy="90" r="1.2" fill="rgba(255,255,255,.5)"/>
+    <circle cx="780" cy="110" r="1" fill="rgba(255,255,255,.35)"/>
+    <circle cx="1100" cy="85" r="1.2" fill="rgba(255,255,255,.6)"/>
+    <circle cx="330" cy="120" r="1" fill="rgba(255,255,255,.3)"/>
+    <circle cx="620" cy="45" r="1" fill="rgba(255,255,255,.55)"/>
+    <circle cx="920" cy="50" r="1.2" fill="rgba(255,255,255,.5)"/>
+  </svg>
+
+  <!-- olive trees silhouette -->
+  <svg style="position:absolute;bottom:0;left:0;right:0;width:100%;height:50%;pointer-events:none;" viewBox="0 0 1200 300" preserveAspectRatio="xMidYMax slice" xmlns="http://www.w3.org/2000/svg">
+    <!-- ground -->
+    <rect x="0" y="260" width="1200" height="40" fill="#2e3d1a"/>
+    <!-- left trees -->
+    <ellipse cx="100" cy="200" rx="70" ry="90" fill="#2e3d1a"/>
+    <ellipse cx="80" cy="180" rx="50" ry="70" fill="#3a5228"/>
+    <ellipse cx="120" cy="170" rx="55" ry="75" fill="#3a5228"/>
+    <rect x="95" y="220" width="12" height="45" fill="#4a3020"/>
+    <ellipse cx="220" cy="210" rx="55" ry="75" fill="#2e3d1a"/>
+    <ellipse cx="210" cy="195" rx="45" ry="60" fill="#3a5228"/>
+    <rect x="215" y="230" width="10" height="35" fill="#4a3020"/>
+    <!-- right trees -->
+    <ellipse cx="1100" cy="195" rx="65" ry="85" fill="#2e3d1a"/>
+    <ellipse cx="1090" cy="178" rx="50" ry="68" fill="#3a5228"/>
+    <ellipse cx="1120" cy="172" rx="52" ry="72" fill="#3a5228"/>
+    <rect x="1097" y="218" width="12" height="44" fill="#4a3020"/>
+    <ellipse cx="980" cy="205" rx="50" ry="70" fill="#2e3d1a"/>
+    <rect x="976" y="228" width="10" height="36" fill="#4a3020"/>
+    <!-- palmento suggestion center -->
+    <rect x="540" y="190" width="120" height="70" fill="#3a2a1a" opacity=".6"/>
+    <rect x="530" y="185" width="140" height="10" fill="#4a3828" opacity=".6"/>
+    <!-- arch -->
+    <path d="M570 260 L570 220 Q570 200 600 200 Q630 200 630 220 L630 260" fill="#2a1a08" opacity=".5"/>
+  </svg>
+
+  <div class="hero-content">
+    <div class="hero-tag">Agriturismo · Contrada San Giorgio · Belvedere Marittimo</div>
+    <h1 class="hero-title">L'<em>Antico</em><br>Palmento</h1>
+    <p class="hero-sub">Agriturismo km 0 · Adriana Cristofaro</p>
+    <p class="hero-desc">Una serata sotto le stelle, tra ulivi secolari e un palmento di epoca romana. Cucina casereccia calabrese con i prodotti della nostra terra — tutto genuino, tutto di produzione propria.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-t">Prenota un tavolo</a>
+      <a href="#menu" class="btn-g">Scopri il menù fisso</a>
+    </div>
+  </div>
+
+  <div class="hero-note">
+    <div class="hero-note-title">Cena sotto la luna</div>
+    <div class="hero-note-txt">Con vista su Stromboli all'orizzonte e concerto di grilli. Un'esperienza unica nel suo genere.</div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="rib"><div class="rib-v">€25</div><div class="rib-l">Menù fisso completo</div></div>
+  <div class="rib"><div class="rib-v">★4.5</div><div class="rib-l">Restaurant Guru · 79 rec.</div></div>
+  <div class="rib"><div class="rib-v">KM 0</div><div class="rib-l">Produzione propria</div></div>
+  <div class="rib"><div class="rib-v">Roma</div><div class="rib-l">Palmento di epoca romana</div></div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="storia">
+  <div class="story-txt">
+    <div class="tag">La nostra storia</div>
+    <h2>Un luogo dove il<br>tempo si è <em>fermato</em></h2>
+    <p>Contrada San Giorgio, immersa nel verde delle colline di Belvedere. L'Antico Palmento di Adriana Cristofaro è un agriturismo a conduzione familiare dove lo chef Aldo cucina ogni giorno con i prodotti della propria terra.</p>
+    <p>Il segreto? Niente di elaborato — solo semplicità genuina. Gli animali in fattoria, gli ulivi centenari, l'orto che cambia con le stagioni. Tutto quello che finisce nel piatto nasce qui, a pochi passi dalla tavola.</p>
+    <div class="palmento-box">
+      <strong>Il Palmento Romano</strong>
+      <p>Nel giardino si conserva un antico palmento di epoca romana — uno strumento per la spremitura delle olive, testimonianza storica rarissima che dà il nome all'agriturismo.</p>
+    </div>
+  </div>
+  <div class="story-vis">
+    <svg viewBox="0 0 400 460" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:.9">
+      <!-- dusk sky -->
+      <rect width="400" height="460" fill="#3a5228"/>
+      <!-- horizon glow -->
+      <ellipse cx="200" cy="200" rx="200" ry="60" fill="rgba(196,120,74,.2)"/>
+      <!-- hills -->
+      <path d="M0 200 Q100 160 200 180 Q300 200 400 170 L400 460 L0 460Z" fill="#2e3d1a"/>
+      <!-- ancient palmento stone -->
+      <ellipse cx="200" cy="290" rx="70" ry="20" fill="#5a3a20"/>
+      <ellipse cx="200" cy="288" rx="60" ry="15" fill="#7a5030"/>
+      <!-- stone groove -->
+      <ellipse cx="200" cy="286" rx="40" ry="8" fill="#4a2a10"/>
+      <!-- large olive tree center -->
+      <rect x="195" y="200" width="10" height="90" fill="#4a3020"/>
+      <ellipse cx="200" cy="185" rx="55" ry="70" fill="#3a5228"/>
+      <ellipse cx="175" cy="170" rx="40" ry="55" fill="#4a6a38"/>
+      <ellipse cx="225" cy="175" rx="38" ry="52" fill="#4a6a38"/>
+      <ellipse cx="200" cy="160" rx="35" ry="48" fill="#5a7a48"/>
+      <!-- small olives on tree -->
+      <circle cx="180" cy="195" r="3" fill="#2a3a18"/>
+      <circle cx="215" cy="200" r="3" fill="#2a3a18"/>
+      <circle cx="195" cy="210" r="2.5" fill="#2a3a18"/>
+      <!-- left small tree -->
+      <rect x="100" y="250" width="7" height="50" fill="#4a3020"/>
+      <ellipse cx="103" cy="235" rx="32" ry="42" fill="#3a5228"/>
+      <ellipse cx="103" cy="228" rx="26" ry="35" fill="#4a6a38"/>
+      <!-- right small tree -->
+      <rect x="300" y="245" width="7" height="55" fill="#4a3020"/>
+      <ellipse cx="303" cy="230" rx="30" ry="40" fill="#3a5228"/>
+      <ellipse cx="303" cy="222" rx="24" ry="32" fill="#4a6a38"/>
+      <!-- dinner table -->
+      <ellipse cx="200" cy="380" rx="50" ry="14" fill="rgba(255,255,255,.08)"/>
+      <rect x="194" y="330" width="12" height="52" fill="rgba(255,255,255,.06)"/>
+      <!-- candlelight -->
+      <rect x="197" y="340" width="6" height="14" rx="1" fill="rgba(255,255,255,.15)"/>
+      <circle cx="200" cy="339" r="3" fill="rgba(255,200,80,.5)"/>
+      <ellipse cx="200" cy="339" rx="10" ry="6" fill="rgba(255,200,80,.08)"/>
+      <!-- wine glass -->
+      <path d="M215 358 L215 368 L223 368 L223 358 Q223 352 219 350 Q215 352 215 358Z" fill="rgba(255,255,255,.12)" stroke="rgba(255,255,255,.2)" stroke-width=".5"/>
+      <line x1="219" y1="368" x2="219" y2="374" stroke="rgba(255,255,255,.15)" stroke-width="1"/>
+      <!-- moon far -->
+      <circle cx="340" cy="60" r="20" fill="rgba(248,244,216,.25)"/>
+      <!-- stromboli silhouette -->
+      <path d="M50 190 L70 175 L90 190" fill="rgba(0,0,0,.2)"/>
+      <!-- text -->
+      <text x="200" y="440" text-anchor="middle" font-family="'Fraunces',serif" font-style="italic" font-size="13" fill="rgba(200,216,138,.3)" letter-spacing="2">contrada san giorgio</text>
+    </svg>
+  </div>
+</section>
+
+<!-- MENU FISSO -->
+<section class="menu-s" id="menu">
+  <div class="menu-head">
+    <div class="tag" style="color:var(--terra)">Cucina di produzione propria</div>
+    <h2>Il menù <em>fisso</em></h2>
+    <p>Un menù completo che cambia con le stagioni. Tutto preparato dallo chef Aldo con ingredienti di produzione propria — un viaggio nella vera cucina calabrese.</p>
+  </div>
+
+  <div class="menu-fixed">
+    <div class="mf-price">€25</div>
+    <div class="mf-note">A persona · tutto incluso · vino della casa incluso</div>
+    <div class="mf-courses">
+      <div class="mfc">
+        <div class="mfc-title">🧺 Antipasti</div>
+        <ul class="mfc-items">
+          <li>Salumi di produzione propria</li>
+          <li>Sott'oli e conserve dell'orto</li>
+          <li>Formaggi locali</li>
+          <li>Bruschette al pomodoro</li>
+          <li>Olive condite in casa</li>
+          <li>Crostini con nduja</li>
+        </ul>
+      </div>
+      <div class="mfc">
+        <div class="mfc-title">🌾 Primi (2 portate)</div>
+        <ul class="mfc-items">
+          <li>Pasta al ragù di maiale</li>
+          <li>Fileja con sugo calabrese</li>
+          <li>Spaghetti alle melanzane</li>
+          <li>Pasta e fagioli dell'orto</li>
+          <li>Lagane e ceci</li>
+          <li><em>Variano ogni settimana</em></li>
+        </ul>
+      </div>
+      <div class="mfc">
+        <div class="mfc-title">🍖 Secondo + Dolce</div>
+        <ul class="mfc-items">
+          <li>Carne di produzione propria</li>
+          <li>Contorni di stagione</li>
+          <li>Frutta fresca</li>
+          <li>Dolce fatto in casa</li>
+          <li>Caffè</li>
+          <li>Digestivo artigianale</li>
+        </ul>
+      </div>
+    </div>
+    <div class="stagionale">
+      <div class="stag-icon">🌶️</div>
+      <div class="stag-txt"><strong>Ottobre — Menù speciale:</strong> il menu si arricchisce di piatti tipici a base di baccalà e peperoni. Una rarità che vale da sola il viaggio.</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp" id="esperienza">
+  <h2>Perché <em>l'Antico Palmento</em></h2>
+  <div class="exp-grid">
+    <div class="ec">
+      <div class="ec-num">I</div>
+      <div class="ec-title">Cena sotto le <em>stelle</em></div>
+      <p class="ec-txt">All'aperto in terrazza, con la luna sopra la testa e Stromboli all'orizzonte. Il concerto dei grilli come colonna sonora. Un'esperienza che non si trova nei ristoranti normali.</p>
+    </div>
+    <div class="ec">
+      <div class="ec-num">II</div>
+      <div class="ec-title">Produzione <em>propria</em></div>
+      <p class="ec-txt">Gli animali della fattoria, gli ulivi centenari, l'orto di stagione. Ogni ingrediente nasce qui. "A dire il vero ogni tanto si sentiva la voce di una mucca nelle vicinanze" — un cliente soddisfatto.</p>
+    </div>
+    <div class="ec">
+      <div class="ec-num">III</div>
+      <div class="ec-title">Palmento <em>romano</em></div>
+      <p class="ec-txt">Nel giardino si conserva un antico palmento di epoca romana — rarità storica unica. Un luogo dove mangiare è anche fare un viaggio nel tempo, tra ulivi che hanno secoli di storia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="revs" id="recensioni">
+  <div class="tag" style="color:#c8d88a">Cosa dicono i nostri ospiti</div>
+  <h2>Un posto <em>magico</em></h2>
+  <p class="revs-sub">TripAdvisor · Restaurant Guru ★4.5 · Sluurpy 85/100</p>
+  <div class="rev-grid">
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Una bella serata. Abbiamo cenato all'aperto nella terrazza, sotto la luna con Stromboli all'orizzonte e concerto di grilli. Un'esperienza indimenticabile."</p>
+      <div class="rc-who">— Ospite TripAdvisor</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Li frequento da oltre 10 anni. È come essere ospiti di vecchi amici. Location graziosissima con ulivi e un antico palmento. Cibo spaventosamente buono."</p>
+      <div class="rc-who">— Cliente abituale · Sluurpy</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Prodotti realmente a Km 0. La cena è stata sublime nella sua semplicità. Persino il dolce ricorda la sicurezza di casa. Ci torneremo ogni anno."</p>
+      <div class="rc-who">— Famiglia · TripAdvisor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="book" id="prenota">
+  <div class="b-left">
+    <div class="tag" style="color:rgba(255,255,255,.5)">Come trovarci</div>
+    <h2>Prenota la<br>tua <em>serata</em></h2>
+    <p>L'agriturismo è un po' nascosto nella natura — ma ne vale assolutamente la pena. Chiamaci o scrivi su WhatsApp per prenotare. La prenotazione è consigliata.</p>
+    <div class="irows">
+      <div class="ir"><div class="ir-icon">📍</div><div class="ir-txt">Contrada San Giorgio 14<br>Belvedere Marittimo (CS)</div></div>
+      <div class="ir"><div class="ir-icon">📞</div><div class="ir-txt">0985 89487<br>Cell: 328 963 3583</div></div>
+      <div class="ir"><div class="ir-icon">🕐</div><div class="ir-txt">Pranzo domenicale: su prenotazione<br>Cena: da giovedì a domenica</div></div>
+      <div class="ir"><div class="ir-icon">🚗</div><div class="ir-txt">Seguire i cartelli — la strada è sterrata ma raggiungibile. Parcheggio gratuito in loco.</div></div>
+    </div>
+    <a href="https://wa.me/393289633583?text=Buongiorno!%20Vorrei%20prenotare%20all'Antico%20Palmento%20😊" class="wa-btn">📱 WhatsApp</a>
+  </div>
+  <div class="b-right">
+    <h3>Invia una richiesta</h3>
+    <form onsubmit="sent(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Data</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3–4 persone</option>
+            <option>5–6 persone</option><option>7–10 persone</option><option>Gruppo 10+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Servizio</label>
+        <select>
+          <option>Cena (sera)</option>
+          <option>Pranzo domenicale</option>
+        </select>
+      </div>
+      <div class="fg"><label>Note (allergie, occasioni...)</label>
+        <textarea placeholder="Intolleranze, vegetariani nel gruppo, bambini..."></textarea>
+      </div>
+      <button class="sub" type="submit">Invia richiesta</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">L'<em>Antico Palmento</em></div>
+  <div class="f-copy">© 2025 Agriturismo L'Antico Palmento · Adriana Cristofaro · Contrada San Giorgio 14 · Belvedere Marittimo (CS)</div>
+  <a href="https://wa.me/393289633583" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/393289633583?text=Buongiorno!%20Vorrei%20prenotare%20all'Antico%20Palmento%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on',scrollY>60);
+});
+function sent(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.sub');
+  b.textContent='✓ Richiesta inviata!';
+  b.style.background='#5a6e35';
+}
+</script>
+</body>
+</html>

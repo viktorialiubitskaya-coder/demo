@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Al Povero Pesce — Lungomare · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sea:    #0e5c7a;
+  --deep:   #083a50;
+  --light:  #e8f4f8;
+  --white:  #ffffff;
+  --sand:   #f5f0e8;
+  --stone:  #c8bfaa;
+  --coral:  #d4553a;
+  --gold:   #c8962a;
+  --text:   #1a2830;
+  --muted:  #607585;
+  --cream:  #fdf9f4;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(8,58,80,.97);backdrop-filter:blur(12px);padding:14px 52px;}
+.logo{font-family:'Libre Baskerville',serif;font-size:20px;color:#fff;text-decoration:none;letter-spacing:.3px;}
+.logo em{font-style:italic;color:var(--gold);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:#fff;}
+.nav-cta{background:var(--coral);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:#b8422a;}
+
+/* HERO — bright coastal white */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+
+.hero-left{
+  background:linear-gradient(145deg,#083a50 0%,#0e5c7a 50%,#1a7a9a 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 60px 80px;position:relative;overflow:hidden;
+}
+/* wave ripples on left */
+.hero-left::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:200px;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent 0px, transparent 18px,
+    rgba(255,255,255,.03) 18px, rgba(255,255,255,.03) 19px
+  );
+}
+.hero-left::after{
+  content:'';position:absolute;top:15%;left:-60px;width:300px;height:300px;
+  border-radius:50%;border:1px solid rgba(255,255,255,.05);
+}
+
+.hero-eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:20px;position:relative;z-index:1;}
+.hero-title{font-family:'Libre Baskerville',serif;font-size:clamp(42px,6vw,80px);font-weight:700;line-height:.92;color:#fff;margin-bottom:12px;position:relative;z-index:1;}
+.hero-title em{font-style:italic;font-weight:400;color:rgba(255,255,255,.5);}
+.hero-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:28px;position:relative;z-index:1;}
+.hero-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.65);max-width:400px;margin-bottom:36px;position:relative;z-index:1;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;position:relative;z-index:1;}
+.btn-coral{background:var(--coral);color:#fff;padding:15px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.btn-coral:hover{background:#b8422a;transform:translateY(-2px);}
+.btn-ghost{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}
+.btn-ghost:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+
+/* hero right — bright arch illustration area */
+.hero-right{
+  background:var(--sand);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;padding:40px;
+}
+.hero-right::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(180deg,rgba(200,191,170,.15) 0%,transparent 50%);
+}
+
+/* rating chips */
+.chips{position:absolute;bottom:40px;right:40px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+.chip{background:#fff;border:1px solid #e0d8cc;padding:8px 14px;font-size:11px;color:var(--text);display:flex;align-items:center;gap:8px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.chip-dot{width:6px;height:6px;border-radius:50%;background:var(--coral);}
+
+/* STRIP */
+.strip{background:var(--deep);display:grid;grid-template-columns:repeat(4,1fr);}
+.sitem{padding:18px 24px;border-right:1px solid rgba(255,255,255,.06);text-align:center;}
+.sitem:last-child{border-right:none;}
+.sitem-n{font-family:'Libre Baskerville',serif;font-size:22px;color:#fff;font-weight:400;}
+.sitem-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-top:3px;}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;}
+.about-img{background:var(--sea);display:flex;align-items:center;justify-content:center;min-height:520px;position:relative;overflow:hidden;}
+.about-txt{background:var(--cream);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.stag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:18px;}
+.about-txt h2{font-family:'Libre Baskerville',serif;font-size:clamp(32px,3.5vw,48px);font-weight:400;line-height:1.15;color:var(--text);margin-bottom:20px;}
+.about-txt h2 em{font-style:italic;color:var(--sea);}
+.about-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.highlight-box{margin-top:24px;background:var(--light);border-left:3px solid var(--sea);padding:16px 20px;}
+.highlight-box p{font-family:'Libre Baskerville',serif;font-style:italic;font-size:16px;color:var(--sea);line-height:1.55;margin-bottom:0;}
+.highlight-box cite{display:block;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px;font-style:normal;}
+
+/* MENU */
+.menu-s{padding:90px 52px;background:var(--white);}
+.menu-hd{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.menu-hd h2{font-family:'Libre Baskerville',serif;font-size:clamp(36px,5vw,60px);font-weight:400;color:var(--text);}
+.menu-hd h2 em{font-style:italic;color:var(--coral);}
+.menu-note{font-size:13px;color:var(--muted);max-width:240px;text-align:right;line-height:1.6;}
+
+.tabs{display:flex;border-bottom:2px solid var(--light);margin-bottom:44px;}
+.tab{padding:12px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'Inter',sans-serif;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.tab.on{color:var(--coral);border-bottom-color:var(--coral);font-weight:500;}
+
+.dish-g{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.dish{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--light);gap:14px;opacity:0;transform:translateY(6px);transition:all .3s;}
+.dish.show{opacity:1;transform:translateY(0);}
+.dish:nth-child(odd){padding-right:44px;}
+.dish:nth-child(even){padding-left:44px;border-left:1px solid var(--light);}
+.d-name{font-family:'Libre Baskerville',serif;font-size:19px;color:var(--text);}
+.d-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.d-badge{display:inline-block;margin-top:5px;font-size:9px;letter-spacing:1px;padding:2px 8px;background:rgba(212,85,58,.08);color:var(--coral);border-radius:2px;text-transform:uppercase;}
+.d-price{font-size:15px;color:var(--sea);font-weight:500;white-space:nowrap;}
+
+/* CRUDO FEATURE */
+.crudo{background:var(--deep);padding:70px 52px;display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:center;}
+.crudo-label{font-family:'Libre Baskerville',serif;font-size:clamp(36px,5vw,64px);font-weight:700;font-style:italic;color:#fff;line-height:1;}
+.crudo-label span{display:block;font-size:14px;letter-spacing:4px;text-transform:uppercase;font-style:normal;font-weight:300;color:rgba(255,255,255,.35);margin-bottom:8px;font-family:'Inter',sans-serif;}
+.crudo-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.cc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.08);padding:24px 20px;}
+.cc-title{font-family:'Libre Baskerville',serif;font-size:17px;color:#fff;margin-bottom:8px;}
+.cc-title em{font-style:italic;color:var(--gold);}
+.cc-desc{font-size:12px;line-height:1.6;color:rgba(255,255,255,.45);}
+
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--sand);}
+.revs h2{font-family:'Libre Baskerville',serif;font-size:clamp(34px,4vw,52px);font-weight:400;color:var(--text);margin-bottom:6px;}
+.revs h2 em{font-style:italic;color:var(--sea);}
+.revs-sub{font-size:12px;color:var(--muted);margin-bottom:52px;letter-spacing:1px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rc{background:#fff;padding:32px;position:relative;border-top:3px solid var(--coral);}
+.rc-stars{color:var(--coral);font-size:13px;letter-spacing:3px;margin-bottom:14px;}
+.rc-txt{font-family:'Libre Baskerville',serif;font-style:italic;font-size:16px;line-height:1.65;color:var(--text);margin-bottom:18px;}
+.rc-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* BOOK */
+.book{display:grid;grid-template-columns:1fr 1fr;}
+.b-left{background:var(--sea);padding:80px 64px;}
+.b-left h2{font-family:'Libre Baskerville',serif;font-size:clamp(34px,3.5vw,50px);font-weight:400;color:#fff;line-height:1.1;margin-bottom:18px;}
+.b-left h2 em{font-style:italic;}
+.b-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:28px;}
+.info-rows{display:flex;flex-direction:column;gap:14px;}
+.ir{display:flex;gap:14px;align-items:flex-start;}
+.ir-icon{width:36px;height:36px;background:rgba(255,255,255,.1);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ir-txt{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55;}
+.cash-note{margin-top:20px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);padding:12px 16px;font-size:12px;color:rgba(255,255,255,.7);line-height:1.5;}
+.cash-note strong{color:#fff;}
+.wa-lnk{display:inline-block;margin-top:24px;padding:13px 24px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.wa-lnk:hover{background:rgba(255,255,255,.1);}
+
+.b-right{background:var(--light);padding:80px 64px;}
+.b-right h3{font-family:'Libre Baskerville',serif;font-size:26px;font-weight:400;color:var(--text);margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #d5e4ea;padding:13px 14px;font-family:'Inter',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--sea);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--coral);color:#fff;border:none;padding:15px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Inter',sans-serif;cursor:pointer;transition:all .2s;margin-top:6px;}
+.sub:hover{background:#b8422a;}
+
+footer{background:var(--deep);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'Libre Baskerville',serif;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo em{font-style:italic;color:var(--gold);}
+.f-info{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:11px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}nav.on{padding:12px 20px;}.links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:100px 24px 60px;}
+  .strip{grid-template-columns:1fr 1fr;}
+  .sitem{border-bottom:1px solid rgba(255,255,255,.06);}
+  .about{grid-template-columns:1fr;}.about-img{min-height:260px;}.about-txt{padding:60px 20px;}
+  .menu-s,.revs{padding:60px 20px;}
+  .menu-hd{flex-direction:column;align-items:flex-start;}.menu-note{text-align:left;}
+  .dish-g{grid-template-columns:1fr;}
+  .dish:nth-child(even){padding-left:0;border-left:none;}
+  .dish:nth-child(odd){padding-right:0;}
+  .crudo{grid-template-columns:1fr;padding:60px 20px;gap:32px;}
+  .crudo-cards{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .book{grid-template-columns:1fr;}.b-left,.b-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo"><em>Al</em> Povero Pesce</a>
+  <div class="links">
+    <a href="#about">Il Ristorante</a>
+    <a href="#menu">Menu</a>
+    <a href="#crudo">I Crudi</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="nav-cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Lungomare · Via Fiordaliso 12 · Belvedere Marittimo</div>
+    <h1 class="hero-title"><em>Al</em><br>Povero<br>Pesce</h1>
+    <p class="hero-sub">Ristorante di pesce · Sul lungomare</p>
+    <p class="hero-desc">Veranda sul Tirreno, arcate in pietra, pesce freschissimo dalle barche di giornata. Dal 1996, il punto di riferimento del lungomare di Belvedere Marittimo.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-coral">Prenota un tavolo</a>
+      <a href="#menu" class="btn-ghost">Scopri il menu</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- arch & sea illustration -->
+    <svg viewBox="0 0 480 540" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:400px;position:relative;z-index:1;">
+      <!-- sky -->
+      <rect width="480" height="540" fill="#e8f4f8"/>
+      <!-- sea horizon -->
+      <rect x="0" y="300" width="480" height="240" fill="#bce0ec"/>
+      <!-- sea shimmer -->
+      <path d="M0 320 Q120 315 240 320 Q360 325 480 320" stroke="rgba(255,255,255,.5)" stroke-width="1.5" fill="none"/>
+      <path d="M0 345 Q100 340 200 345 Q300 350 400 344 Q440 341 480 345" stroke="rgba(255,255,255,.4)" stroke-width="1" fill="none"/>
+      <path d="M0 370 Q150 365 300 370 Q400 373 480 368" stroke="rgba(255,255,255,.35)" stroke-width="1" fill="none"/>
+      <!-- sun reflection on water -->
+      <ellipse cx="240" cy="330" rx="60" ry="8" fill="rgba(255,255,255,.3)"/>
+      <!-- stone arch frame -->
+      <path d="M80 540 L80 280 Q80 200 240 200 Q400 200 400 280 L400 540" fill="rgba(200,191,170,.25)" stroke="#c8bfaa" stroke-width="2"/>
+      <!-- inner arch opening -->
+      <path d="M110 540 L110 290 Q110 225 240 225 Q370 225 370 290 L370 540" fill="rgba(188,224,236,.6)"/>
+      <!-- arch keystone detail -->
+      <path d="M220 202 Q240 192 260 202" stroke="#c8bfaa" stroke-width="2" fill="rgba(200,191,170,.3)"/>
+      <!-- stone texture on arch -->
+      <rect x="80" y="300" width="30" height="50" fill="none" stroke="rgba(200,191,170,.4)" stroke-width="0.5"/>
+      <rect x="80" y="350" width="30" height="50" fill="none" stroke="rgba(200,191,170,.4)" stroke-width="0.5"/>
+      <rect x="370" y="300" width="30" height="50" fill="none" stroke="rgba(200,191,170,.4)" stroke-width="0.5"/>
+      <rect x="370" y="350" width="30" height="50" fill="none" stroke="rgba(200,191,170,.4)" stroke-width="0.5"/>
+      <!-- table & setting inside arch -->
+      <ellipse cx="240" cy="480" rx="70" ry="16" fill="rgba(255,255,255,.7)" stroke="#d5e4ea" stroke-width="1"/>
+      <!-- plate left -->
+      <ellipse cx="205" cy="475" rx="22" ry="6" fill="white" stroke="#e0d8d0" stroke-width="0.5"/>
+      <ellipse cx="205" cy="474" rx="16" ry="4" fill="#f5f0e8"/>
+      <!-- plate right -->
+      <ellipse cx="275" cy="475" rx="22" ry="6" fill="white" stroke="#e0d8d0" stroke-width="0.5"/>
+      <ellipse cx="275" cy="474" rx="16" ry="4" fill="#f5f0e8"/>
+      <!-- wine glass center -->
+      <path d="M232 455 L232 468 L248 468 L248 455 Q248 447 240 445 Q232 447 232 455Z" fill="rgba(14,92,122,.15)" stroke="rgba(14,92,122,.3)" stroke-width="0.5"/>
+      <line x1="240" y1="468" x2="240" y2="476" stroke="rgba(14,92,122,.3)" stroke-width="1"/>
+      <ellipse cx="240" cy="476" rx="7" ry="2" fill="rgba(14,92,122,.1)"/>
+      <!-- fish on plate left (simple) -->
+      <path d="M195 473 Q205 469 215 473 Q205 477 195 473Z" fill="#d4553a" opacity=".6"/>
+      <!-- lemon slice right -->
+      <circle cx="275" cy="474" r="5" fill="#e8d44a" opacity=".7"/>
+      <!-- small boat on horizon -->
+      <path d="M340 297 L360 297 L357 302 L343 302Z" fill="rgba(14,92,122,.3)"/>
+      <line x1="350" y1="297" x2="350" y2="285" stroke="rgba(14,92,122,.2)" stroke-width="1"/>
+      <!-- "al povero pesce" text subtle -->
+      <text x="240" y="520" text-anchor="middle" font-family="'Libre Baskerville',serif" font-style="italic" font-size="13" fill="rgba(14,92,122,.3)" letter-spacing="2">sul lungomare dal 1996</text>
+    </svg>
+
+    <div class="chips">
+      <div class="chip"><div class="chip-dot"></div>★ 4.2 Google · 640 rec. TripAdvisor</div>
+      <div class="chip"><div class="chip-dot"></div>Pesce fresco di giornata</div>
+      <div class="chip"><div class="chip-dot"></div>Veranda sul mare · Arcate in pietra</div>
+    </div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="sitem"><div class="sitem-n">640</div><div class="sitem-l">Recensioni TripAdvisor</div></div>
+  <div class="sitem"><div class="sitem-n">★4.2</div><div class="sitem-l">Rating Google</div></div>
+  <div class="sitem"><div class="sitem-n">€40</div><div class="sitem-l">Prezzo medio a persona</div></div>
+  <div class="sitem"><div class="sitem-n">1996</div><div class="sitem-l">Sul lungomare</div></div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-img">
+    <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:.9;">
+      <rect width="400" height="440" fill="#083a50"/>
+      <!-- deep sea -->
+      <rect x="0" y="180" width="400" height="260" fill="#0e5c7a"/>
+      <!-- boat wake / light on water -->
+      <ellipse cx="200" cy="200" rx="150" ry="18" fill="rgba(255,255,255,.05)"/>
+      <!-- fish silhouettes -->
+      <g fill="rgba(255,255,255,.12)">
+        <path d="M80 260 Q100 255 115 260 Q100 265 80 260Z"/>
+        <path d="M280 290 Q305 284 322 290 Q305 296 280 290Z"/>
+        <path d="M150 320 Q168 315 180 320 Q168 325 150 320Z"/>
+        <path d="M310 340 Q325 336 334 340 Q325 344 310 340Z"/>
+      </g>
+      <!-- net texture -->
+      <g stroke="rgba(255,255,255,.04)" stroke-width=".5" fill="none">
+        <line x1="0" y1="200" x2="400" y2="220"/>
+        <line x1="0" y1="240" x2="400" y2="255"/>
+        <line x1="0" y1="270" x2="400" y2="282"/>
+        <line x1="50" y1="180" x2="60" y2="440"/>
+        <line x1="120" y1="180" x2="128" y2="440"/>
+        <line x1="190" y1="180" x2="196" y2="440"/>
+        <line x1="260" y1="180" x2="264" y2="440"/>
+        <line x1="330" y1="180" x2="332" y2="440"/>
+      </g>
+      <!-- fishing boat silhouette -->
+      <path d="M130 170 L270 170 L280 185 L120 185 Z" fill="rgba(255,255,255,.15)"/>
+      <rect x="188" y="145" width="24" height="28" fill="rgba(255,255,255,.1)"/>
+      <line x1="200" y1="120" x2="200" y2="145" stroke="rgba(255,255,255,.2)" stroke-width="1.5"/>
+      <!-- pole/mast flag -->
+      <path d="M200 120 L220 128 L200 136" fill="rgba(212,85,58,.4)"/>
+      <!-- water reflection -->
+      <path d="M160 190 Q200 205 240 190 Q200 215 160 190" fill="rgba(255,255,255,.05)"/>
+      <!-- label -->
+      <text x="200" y="420" text-anchor="middle" font-family="'Libre Baskerville',serif" font-style="italic" font-size="13" fill="rgba(255,255,255,.2)" letter-spacing="3">pesce del giorno</text>
+    </svg>
+  </div>
+  <div class="about-txt">
+    <div class="stag">Sul lungomare dal 1996</div>
+    <h2>La cucina è scienza,<br><em>il cuoco la fa arte</em></h2>
+    <p>Lo chef Roberto Migliore ha scelto il lungomare di Belvedere per fare del Povero Pesce un punto di riferimento della costa tirrenica cosentina. Veranda sul mare, arcate in pietra, e pesce freschissimo che arriva direttamente dalle barche dei pescatori locali ogni mattina.</p>
+    <p>Gli antipasti sono la firma del ristorante: fino a 8 assaggi diversi tra freddo e caldo, con il "colpo segreto dello chef" — i gamberi in piastra all'aroma di camomilla. Porzioni abbondanti, impiattamento curato, prezzi onesti.</p>
+    <div class="highlight-box">
+      <p>"Pesce freschissimo, porzioni spettacolari, qualità spettacolare. I soldi migliori spesi in un ristorante di pesce."</p>
+      <cite>— Recensione Google Maps ★★★★★</cite>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-s" id="menu">
+  <div class="menu-hd">
+    <div>
+      <div class="stag">Cucina di mare fresco</div>
+      <h2>Il nostro <em>menu</em></h2>
+    </div>
+    <div class="menu-note">Il menu varia ogni giorno secondo il pescato. Prenotare è consigliato — il locale è sempre pieno.</div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="show('antipasti',this)">Antipasti</button>
+    <button class="tab" onclick="show('primi',this)">Primi</button>
+    <button class="tab" onclick="show('secondi',this)">Secondi</button>
+    <button class="tab" onclick="show('dolci',this)">Dolci</button>
+  </div>
+  <div class="dish-g" id="dg"></div>
+</section>
+
+<!-- CRUDO SECTION -->
+<section class="crudo" id="crudo">
+  <div class="crudo-label">
+    <span>La nostra firma</span>
+    Maxi<br>Crudo<br>di Mare
+  </div>
+  <div class="crudo-cards">
+    <div class="cc">
+      <div class="cc-title"><em>Gamberi</em> rossi</div>
+      <p class="cc-desc">Gamberi crudi del Tirreno, sale marino, limone. Freschissimi, serviti su ghiaccio.</p>
+    </div>
+    <div class="cc">
+      <div class="cc-title"><em>Carpaccio</em> di pesce spada</div>
+      <p class="cc-desc">Sottile, con citronette, capperi di Pantelleria, scorza di limone e olio EVO calabrese.</p>
+    </div>
+    <div class="cc">
+      <div class="cc-title"><em>Tartare</em> di tonno</div>
+      <p class="cc-desc">Tonno rosso battuto al coltello, avocado, sesamo tostato, gocce di limone.</p>
+    </div>
+    <div class="cc">
+      <div class="cc-title"><em>Ostriche</em> del giorno</div>
+      <p class="cc-desc">Secondo disponibilità — chiedi al cameriere il pescato fresco della mattina.</p>
+    </div>
+    <div class="cc">
+      <div class="cc-title">Gamberi <em>in piastra</em></div>
+      <p class="cc-desc">Il "colpo segreto" dello chef Roberto — gamberi scottati all'aroma di camomilla.</p>
+    </div>
+    <div class="cc">
+      <div class="cc-title"><em>Selezione</em> completa</div>
+      <p class="cc-desc">Il Maxi Crudo comprende 4–5 assaggi diversi. Una portata per sé, generosa e completa.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="revs" id="recensioni">
+  <div class="stag">Cosa dicono i nostri ospiti</div>
+  <h2>640 recensioni,<br><em>una certezza</em></h2>
+  <p class="revs-sub">TripAdvisor · Google Maps · Via Fiordaliso, Belvedere Marittimo</p>
+  <div class="rev-grid">
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Pesce freschissimo, qualità spettacolare, porzioni spettacolari. I soldi migliori spesi in un ristorante di pesce sconosciuto. Consigliatissimo!"</p>
+      <div class="rc-who">— Ospite · Google Maps</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Sul lungomare di Belvedere, finalmente un ristorante dove si mangia bene! Qualità del pesce eccellente, antipasti fantastici. Altamente consigliato."</p>
+      <div class="rc-who">— TripAdvisor · Travellers' Choice</div>
+    </div>
+    <div class="rc">
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"The best food and staff in all Diamante region! A gastronomic experience. We are from Zurich and it was the best restaurant in our trip to Calabria."</p>
+      <div class="rc-who">— Ospite internazionale · TripAdvisor</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="book" id="prenota">
+  <div class="b-left">
+    <div class="stag" style="color:rgba(255,255,255,.5)">Vieni a trovarci</div>
+    <h2>Prenota il<br>tuo tavolo <em>sul mare</em></h2>
+    <p>È fortemente consigliato prenotare — il locale è piccolo e sempre pieno. Chiamaci o scrivi su WhatsApp. Rispondiamo presto.</p>
+    <div class="info-rows">
+      <div class="ir"><div class="ir-icon">📍</div><div class="ir-txt">Via A. Fiordaliso 12<br>Lungomare, Belvedere Marittimo (CS)</div></div>
+      <div class="ir"><div class="ir-icon">📞</div><div class="ir-txt">0985 84516</div></div>
+      <div class="ir"><div class="ir-icon">🕐</div><div class="ir-txt">Pranzo: 12:30 – 15:00<br>Cena: 19:30 – 23:30 · Tutti i giorni</div></div>
+    </div>
+    <div class="cash-note">💳 <strong>Solo contanti.</strong> Si prega di venire preparati — nessun POS disponibile.</div>
+    <a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20al%20Povero%20Pesce%20😊" class="wa-lnk">📱 Scrivi su WhatsApp</a>
+  </div>
+  <div class="b-right">
+    <h3>Richiedi un tavolo</h3>
+    <form onsubmit="sent(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Data</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3 persone</option>
+            <option>4 persone</option><option>5–6 persone</option><option>Gruppo 7+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Servizio</label>
+        <select><option>Cena (19:30)</option><option>Pranzo (12:30)</option></select>
+      </div>
+      <div class="fg"><label>Note (allergie, occasioni...)</label>
+        <textarea placeholder="Celiaco, compleanno, richieste particolari..."></textarea>
+      </div>
+      <button class="sub" type="submit">Invia richiesta di prenotazione</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo"><em>Al</em> Povero Pesce</div>
+  <div class="f-info">Via A. Fiordaliso 12 · Lungomare · Belvedere Marittimo (CS) · Tel. 0985 84516</div>
+  <a href="https://wa.me/39" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20al%20Povero%20Pesce%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on',scrollY>60);
+});
+
+const menu = {
+  antipasti:[
+    {n:'Maxi Crudo di Mare',s:'4–5 assaggi: tartare, carpacci, crudités del giorno',b:'Signature',p:'22 €'},
+    {n:'Gamberi in piastra',s:"Il colpo segreto dello chef — all'aroma di camomilla",b:'Chef special',p:'16 €'},
+    {n:'Antipasto caldo e freddo',s:'3–4 portate miste: fritture, carpacci, tartare, cartoccio',b:'',p:'18 €'},
+    {n:'Frittura di moscardini',s:'Leggera, croccante, con limone e maionese di casa',b:'',p:'12 €'},
+    {n:'Seppie ripiene',s:'Alla scamorza affumicata, sugo leggero di pomodoro',b:'',p:'13 €'},
+    {n:'Cous cous di mare',s:'Con zuppetta di frutti di mare, prezzemolo, zafferano',b:'',p:'14 €'},
+  ],
+  primi:[
+    {n:"Tagliolini all'astice",s:'Pasta fresca, astice, bisque ridotta — piatto signature',b:'Signature',p:'22 €'},
+    {n:'Taglierini ai crostacei',s:'Gamberi, scampi, bisque, pomodorini gialli',b:'Top',p:'18 €'},
+    {n:'Paccheri pesce spada e olive',s:'Pesce spada, olive taggiasche, pomodorini, basilico',b:'',p:'15 €'},
+    {n:'Spaghetti alle vongole',s:'Vongole veraci, aglio, prezzemolo, vino bianco',b:'Classico',p:'13 €'},
+    {n:'Risotto ai frutti di mare',s:'Cozze, vongole, gamberi, zafferano, mantecato',b:'',p:'16 €'},
+    {n:'Paccheri alla lucerna',s:'Sugo di gallinella, pomodorini, capperi',b:'',p:'14 €'},
+  ],
+  secondi:[
+    {n:'Tagliata di tonno',s:'Tonno rosso scottato, rucola, parmigiano, aceto balsamico',b:'Top',p:'20 €'},
+    {n:'Grigliata mista di mare',s:'Secondo il pescato — orata, spigola, ombrina, dentice',b:'Del giorno',p:'24 €'},
+    {n:'Frittura di calamari e gamberi',s:'Leggerissima, dorata, con maionese di casa',b:'',p:'18 €'},
+    {n:'Dentice al forno',s:'Con patate, olive, pomodorini e origano calabrese',b:'',p:'22 €'},
+    {n:'Fritto di paranza',s:'Pesciolini misti, frittura tipica calabrese',b:'Tradizione',p:'16 €'},
+    {n:'Spigola in crosta di sale',s:'Servita intera, preparata al momento',b:'',p:'26 €'},
+  ],
+  dolci:[
+    {n:'Dolci fatti in casa',s:'Cambiano ogni giorno — chiedi al cameriere',b:'Casa',p:'5 €'},
+    {n:'Cheesecake del Povero Pesce',s:'Ricetta dello chef, con frutti di bosco freschi',b:'',p:'5 €'},
+    {n:'Tiramisù',s:'Ricetta originale, mascarpone, savoiardi, cacao',b:'',p:'5 €'},
+    {n:'Gelato artigianale',s:'Alla crema, al cioccolato o al gusto del giorno',b:'',p:'4 €'},
+  ],
+};
+
+function show(cat, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const g = document.getElementById('dg');
+  g.innerHTML = menu[cat].map((d,i)=>`
+    <div class="dish" style="transition-delay:${i*.05}s">
+      <div>
+        <div class="d-name">${d.n}</div>
+        <div class="d-sub">${d.s}</div>
+        ${d.b?`<span class="d-badge">${d.b}</span>`:''}
+      </div>
+      <div class="d-price">${d.p}</div>
+    </div>`).join('');
+  requestAnimationFrame(()=>g.querySelectorAll('.dish').forEach(d=>d.classList.add('show')));
+}
+show('antipasti',document.querySelector('.tab.on'));
+
+function sent(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.sub');
+  b.textContent='✓ Richiesta inviata!';
+  b.style.background='#0e5c7a';
+}
+</script>
+</body>
+</html>

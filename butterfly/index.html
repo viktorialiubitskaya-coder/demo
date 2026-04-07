@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Butterfly Beauty — Centro Estetico · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0f0a0e;--dark:#160f14;--mid:#1e1520;--card:#130e12;
+  --accent:#e87ab0;--accent2:#f4a8cc;--white:#f8f2f6;--muted:#8a7885;--border:rgba(255,255,255,0.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--white);overflow-x:hidden;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 52px;display:flex;align-items:center;justify-content:space-between;background:rgba(15,10,14,.97);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);}
+.logo{font-family:'Syne',sans-serif;font-size:20px;font-weight:700;color:var(--white);text-decoration:none;}
+.logo span{color:var(--accent);}
+.links{display:flex;gap:28px;}
+.links a{color:var(--muted);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--white);}
+.cta{background:var(--accent);color:#fff;padding:10px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .2s;}
+.cta:hover{background:var(--accent2);color:#1a0a14;}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-top:80px;}
+.hero-bg{position:absolute;inset:0;background:linear-gradient(150deg,#0a050e 0%,#140a18 35%,#1a0e22 65%,#0f0a12 100%);}
+.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 55% at 65% 35%,rgba(232,122,176,.1) 0%,transparent 65%),radial-gradient(ellipse 30% 30% at 20% 70%,rgba(232,122,176,.05) 0%,transparent 60%);}
+
+.hero-content{position:relative;z-index:2;padding:0 52px 88px;max-width:680px;}
+.eyebrow{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--accent);margin-bottom:22px;}
+.hero-title{font-family:'Syne',sans-serif;font-size:clamp(52px,8vw,96px);font-weight:800;line-height:.92;color:var(--white);margin-bottom:12px;}
+.hero-title em{color:var(--accent);font-style:normal;}
+.hero-sub{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:28px;}
+.hero-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.55);max-width:480px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-a{background:var(--accent);color:#fff;padding:15px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .25s;}
+.btn-a:hover{background:var(--accent2);color:#1a0a14;transform:translateY(-2px);}
+.btn-b{color:var(--muted);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid var(--border);padding-bottom:2px;transition:all .2s;}
+.btn-b:hover{color:var(--white);}
+.hero-pills{position:absolute;right:52px;bottom:88px;display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+.hp{background:var(--card);border:1px solid var(--border);padding:10px 16px;font-size:12px;color:var(--muted);}
+.hp strong{color:var(--white);}
+
+.marquee{background:var(--dark);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:14px 0;overflow:hidden;}
+.m-inner{display:inline-flex;gap:44px;animation:scroll 20s linear infinite;}
+@keyframes scroll{to{transform:translateX(-50%);}}
+.mi{font-family:'Syne',sans-serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--muted);}
+.ms{color:var(--accent);}
+
+.servizi{padding:90px 52px;background:var(--bg);}
+.sh{margin-bottom:52px;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--accent);margin-bottom:14px;}
+.sh h2{font-family:'Syne',sans-serif;font-size:clamp(34px,5vw,58px);font-weight:700;color:var(--white);}
+.sh h2 em{color:var(--accent);font-style:normal;}
+.srv-g{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);}
+.sc{background:var(--dark);padding:32px;transition:background .2s;}
+.sc:hover{background:var(--mid);}
+.sc-n{font-size:10px;letter-spacing:3px;color:var(--accent);margin-bottom:14px;font-family:'Syne',sans-serif;}
+.sc-t{font-family:'Syne',sans-serif;font-size:20px;font-weight:600;color:var(--white);margin-bottom:8px;}
+.sc-d{font-size:13px;color:var(--muted);line-height:1.6;margin-bottom:16px;}
+.sc-p{font-family:'Syne',sans-serif;font-size:16px;color:var(--accent);}
+
+.prenota{background:var(--dark);padding:90px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.pt h2{font-family:'Syne',sans-serif;font-size:clamp(32px,4vw,50px);font-weight:700;color:var(--white);margin-bottom:18px;}
+.pt p{font-size:15px;line-height:1.8;color:var(--muted);margin-bottom:24px;}
+.ci{display:flex;gap:14px;align-items:center;margin-bottom:12px;}
+.ci-i{width:38px;height:38px;border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ci-t{font-size:14px;color:rgba(255,255,255,.75);}
+.wa-l{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:#25d366;color:#fff;padding:13px 24px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;}
+.pf{display:flex;flex-direction:column;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select{background:var(--card);border:1px solid var(--border);padding:13px 14px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--white);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus{border-color:var(--accent);}
+.fg select option{background:var(--dark);}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sub{background:var(--accent);color:#fff;border:none;padding:15px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;width:100%;transition:all .2s;margin-top:4px;}
+.sub:hover{background:var(--accent2);color:#1a0a14;}
+footer{background:var(--bg);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.fl{font-family:'Syne',sans-serif;font-size:16px;font-weight:700;color:rgba(255,255,255,.25);}
+.fl span{color:var(--accent);}
+.fc{font-size:11px;color:var(--muted);}
+.fw{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){
+  nav{padding:14px 20px;}.links{display:none;}
+  .hero-content{padding:40px 20px 60px;}.hero-pills{display:none;}
+  .servizi,.prenota{padding:60px 20px;}
+  .srv-g{grid-template-columns:1fr;}
+  .prenota{grid-template-columns:1fr;gap:40px;}
+  .fg-r{grid-template-columns:1fr;}
+  footer{padding:24px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<nav>
+  <a href="#" class="logo"><span>Butterfly</span> Beauty</a>
+  <div class="links"><a href="#servizi">Trattamenti</a><a href="#prenota">Prenota</a></div>
+  <a href="#prenota" class="cta">Prenota ora</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="eyebrow">Centro Estetico · Belvedere Marittimo · Top locale</div>
+    <h1 class="hero-title"><em>Butterfly</em><br>Beauty</h1>
+    <p class="hero-sub">Marilena Trieste · Centro Estetico · Belvedere Marittimo</p>
+    <p class="hero-desc">Il centro estetico di riferimento a Belvedere Marittimo. Trattamenti viso, corpo, epilazione, nail art e molto altro. Marilena e il suo staff ti aspettano per un momento tutto per te.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20da%20Butterfly%20Beauty%20😊" class="btn-a">📱 Prenota su WhatsApp</a>
+      <a href="#servizi" class="btn-b">I trattamenti</a>
+    </div>
+  </div>
+  <div class="hero-pills">
+    <div class="hp"><strong>Centro Estetico</strong> · Top Belvedere</div>
+    <div class="hp">Viso · Corpo · Nails · Epilazione</div>
+  </div>
+</section>
+
+<div class="marquee">
+  <div class="m-inner">
+    <span class="mi">Pulizia Viso</span><span class="ms">✦</span>
+    <span class="mi">Epilazione</span><span class="ms">✦</span>
+    <span class="mi">Nail Art</span><span class="ms">✦</span>
+    <span class="mi">Trattamenti Corpo</span><span class="ms">✦</span>
+    <span class="mi">Massaggi</span><span class="ms">✦</span>
+    <span class="mi">Sopracciglia</span><span class="ms">✦</span>
+    <span class="mi">Ciglia</span><span class="ms">✦</span>
+    <span class="mi">Abbronzatura</span><span class="ms">✦</span>
+    <span class="mi">Pulizia Viso</span><span class="ms">✦</span>
+    <span class="mi">Epilazione</span><span class="ms">✦</span>
+    <span class="mi">Nail Art</span><span class="ms">✦</span>
+    <span class="mi">Trattamenti Corpo</span><span class="ms">✦</span>
+    <span class="mi">Massaggi</span><span class="ms">✦</span>
+    <span class="mi">Sopracciglia</span><span class="ms">✦</span>
+  </div>
+</div>
+
+<section class="servizi" id="servizi">
+  <div class="sh">
+    <div class="tag">I nostri trattamenti</div>
+    <h2>Bellezza a <em>360°</em></h2>
+  </div>
+  <div class="srv-g">
+    <div class="sc"><div class="sc-n">01</div><div class="sc-t">Trattamenti Viso</div><p class="sc-d">Pulizia profonda, idratante, anti-age, illuminante. Ogni pelle merita la sua cura specifica.</p><div class="sc-p">Da €35</div></div>
+    <div class="sc"><div class="sc-n">02</div><div class="sc-t">Epilazione</div><p class="sc-d">Ceretta classica, orientale, roll-on. Gambe, ascelle, bikini, viso — risultato duraturo e indolore.</p><div class="sc-p">Da €12</div></div>
+    <div class="sc"><div class="sc-n">03</div><div class="sc-t">Nail Art & Unghie</div><p class="sc-d">Ricostruzione, gel, semipermanente, nail art. Mani e piedi curati in ogni dettaglio.</p><div class="sc-p">Da €25</div></div>
+    <div class="sc"><div class="sc-n">04</div><div class="sc-t">Trattamenti Corpo</div><p class="sc-d">Massaggi, fanghi, bendaggi, trattamenti snellenti e rimodellanti. Benessere totale.</p><div class="sc-p">Da €40</div></div>
+    <div class="sc"><div class="sc-n">05</div><div class="sc-t">Sopracciglia & Ciglia</div><p class="sc-d">Architettura sopracciglia, laminazione, extension ciglia. Lo sguardo che hai sempre voluto.</p><div class="sc-p">Da €15</div></div>
+    <div class="sc"><div class="sc-n">06</div><div class="sc-t">Pacchetti Benessere</div><p class="sc-d">Combina più trattamenti a prezzo vantaggioso. Ideale come regalo o per coccolarti spesso.</p><div class="sc-p">Da €60</div></div>
+  </div>
+</section>
+
+<section class="prenota" id="prenota">
+  <div class="pt">
+    <div class="tag">Prenota</div>
+    <h2>Il tuo momento<br>di bellezza</h2>
+    <p>Scrivi su WhatsApp o chiama — rispondo velocemente per trovare l'orario più comodo per te.</p>
+    <div class="ci"><div class="ci-i">📍</div><div class="ci-t">Belvedere Marittimo (CS), Calabria</div></div>
+    <div class="ci"><div class="ci-i">🕐</div><div class="ci-t">Lunedì – Sabato · su appuntamento</div></div>
+    <div class="ci"><div class="ci-i">💆</div><div class="ci-t">Marilena Trieste — Centro Estetico Butterfly</div></div>
+    <a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20da%20Butterfly%20Beauty%20😊" class="wa-l">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      Scrivi su WhatsApp
+    </a>
+  </div>
+  <form class="pf" onsubmit="inv(event)">
+    <div class="fg-r">
+      <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+      <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+    </div>
+    <div class="fg"><label>Trattamento</label>
+      <select><option>Pulizia viso</option><option>Epilazione</option><option>Nail art / Ricostruzione</option><option>Trattamento corpo</option><option>Sopracciglia / Ciglia</option><option>Massaggio</option><option>Pacchetto benessere</option></select>
+    </div>
+    <div class="fg-r">
+      <div class="fg"><label>Giorno</label><input type="date"></div>
+      <div class="fg"><label>Orario</label><select><option>Mattina</option><option>Pomeriggio</option><option>Indifferente</option></select></div>
+    </div>
+    <div class="fg"><label>Note (pelle sensibile, allergie...)</label><input type="text" placeholder="Eventuali allergie o note particolari"></div>
+    <button class="sub" type="submit">Invia richiesta di appuntamento</button>
+  </form>
+</section>
+
+<footer>
+  <div class="fl"><span>Butterfly</span> Beauty</div>
+  <div class="fc">© 2025 Butterfly di Trieste Marilena · Centro Estetico · Belvedere Marittimo (CS)</div>
+  <a href="https://wa.me/39" class="fw">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20da%20Butterfly%20Beauty%20😊" class="waf">
+  <svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+</a>
+<script>function inv(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓ Richiesta inviata!';b.style.background='#52b788';b.style.color='#fff';}</script>
+</body>
+</html>

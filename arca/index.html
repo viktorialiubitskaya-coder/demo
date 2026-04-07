@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>L'Arca di Anna Brambilla — Agriturismo · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green:   #2d6a4f;
+  --light:   #52b788;
+  --pale:    #d8f3dc;
+  --sky:     #e8f4f8;
+  --sun:     #f4a261;
+  --warm:    #e9c46a;
+  --terra:   #e76f51;
+  --cream:   #faf9f4;
+  --white:   #ffffff;
+  --text:    #1b2d24;
+  --muted:   #5a7a68;
+  --sand:    #f5f0e5;
+  --flower:  #d4a5c9;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Nunito',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:18px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(45,106,79,.97);backdrop-filter:blur(10px);padding:12px 52px;}
+.logo{font-family:'Young Serif',serif;font-size:20px;color:#fff;text-decoration:none;}
+.logo span{color:var(--warm);}
+.links{display:flex;gap:26px;}
+.links a{color:rgba(255,255,255,.8);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--warm);}
+.cta{background:var(--sun);color:#fff;padding:9px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:40px;transition:all .2s;font-weight:600;}
+.cta:hover{background:var(--terra);transform:scale(1.03);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;overflow:hidden;}
+
+/* left — lush green */
+.hero-left{
+  background:linear-gradient(145deg,#1b4332 0%,#2d6a4f 40%,#40916c 70%,#52b788 100%);
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:0 56px 80px;position:relative;overflow:hidden;
+}
+/* leaf texture */
+.hero-left::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 80% 60% at 30% 20%, rgba(82,183,136,.25) 0%, transparent 60%);
+}
+/* decorative circles */
+.hero-left::after{
+  content:'';position:absolute;top:-60px;right:-60px;width:280px;height:280px;
+  border-radius:50%;background:rgba(82,183,136,.1);
+}
+
+.hero-tag{font-size:10px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-bottom:18px;position:relative;z-index:1;}
+.hero-title{font-family:'Young Serif',serif;font-size:clamp(40px,6vw,76px);line-height:.95;color:#fff;margin-bottom:10px;position:relative;z-index:1;}
+.hero-title span{display:block;font-size:.5em;color:var(--warm);margin-bottom:4px;}
+.hero-sub{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.5);margin-bottom:28px;position:relative;z-index:1;}
+.hero-desc{font-size:15px;line-height:1.8;color:rgba(255,255,255,.75);max-width:420px;margin-bottom:36px;position:relative;z-index:1;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;position:relative;z-index:1;}
+.btn-sun{background:var(--sun);color:#fff;padding:14px 30px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:40px;font-weight:600;transition:all .25s;}
+.btn-sun:hover{background:var(--terra);transform:translateY(-2px);}
+.btn-pale{color:rgba(255,255,255,.7);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.3);padding-bottom:2px;transition:all .2s;}
+.btn-pale:hover{color:#fff;}
+
+/* right — bright illustration */
+.hero-right{background:var(--pale);position:relative;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden;}
+.hero-right::before{content:'';position:absolute;inset:0;background:linear-gradient(180deg,#c7f5d4 0%,#d8f3dc 60%,#b7e4c7 100%);}
+
+/* rating chips bottom right */
+.chips-wrap{position:absolute;bottom:32px;right:32px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+.chip{background:rgba(255,255,255,.85);backdrop-filter:blur(6px);border:1px solid rgba(45,106,79,.15);padding:8px 14px;border-radius:30px;font-size:11px;color:var(--text);display:flex;align-items:center;gap:8px;font-weight:500;}
+.chip-dot{width:7px;height:7px;border-radius:50%;background:var(--light);}
+
+/* PILLS */
+.pills{background:var(--green);padding:16px 52px;display:flex;gap:0;justify-content:space-around;flex-wrap:wrap;}
+.pill{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.5);display:flex;align-items:center;gap:8px;padding:4px 0;}
+.pill::before{content:'✿';color:var(--warm);font-size:10px;}
+
+/* ANNA */
+.anna{display:grid;grid-template-columns:1fr 1fr;}
+.anna-txt{background:var(--white);padding:84px 64px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sun);margin-bottom:16px;}
+.anna-txt h2{font-family:'Young Serif',serif;font-size:clamp(32px,3.5vw,50px);line-height:1.1;color:var(--text);margin-bottom:20px;}
+.anna-txt h2 em{font-style:italic;color:var(--green);}
+.anna-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.anna-quote{margin-top:24px;background:var(--pale);border-radius:12px;padding:20px 22px;}
+.anna-quote p{font-family:'Young Serif',serif;font-style:italic;font-size:17px;color:var(--green);line-height:1.55;}
+.anna-quote cite{display:block;font-size:11px;color:var(--muted);margin-top:8px;font-style:normal;letter-spacing:1px;}
+
+.anna-vis{background:var(--pale);display:flex;align-items:center;justify-content:center;min-height:520px;overflow:hidden;position:relative;}
+
+/* CAMERE FIORI */
+.rooms{padding:80px 52px;background:var(--sand);}
+.rooms h2{font-family:'Young Serif',serif;font-size:clamp(32px,4vw,50px);color:var(--text);margin-bottom:8px;}
+.rooms h2 em{font-style:italic;color:var(--green);}
+.rooms-sub{font-size:14px;color:var(--muted);margin-bottom:48px;max-width:500px;line-height:1.6;}
+.rooms-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;}
+.rc{background:#fff;padding:24px;border-radius:12px;text-align:center;border-top:4px solid var(--flower);transition:transform .2s;}
+.rc:hover{transform:translateY(-4px);}
+.rc:nth-child(2){border-top-color:#f4a261;}
+.rc:nth-child(3){border-top-color:#e9c46a;}
+.rc:nth-child(4){border-top-color:#52b788;}
+.rc-flower{font-size:28px;margin-bottom:10px;}
+.rc-name{font-family:'Young Serif',serif;font-size:17px;color:var(--text);margin-bottom:6px;}
+.rc-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* RISTORANTE */
+.rist{padding:90px 52px;background:var(--white);}
+.rist-head{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.rist-head h2{font-family:'Young Serif',serif;font-size:clamp(34px,4vw,54px);color:var(--text);}
+.rist-head h2 em{font-style:italic;color:var(--terra);}
+.rist-avg{font-size:13px;color:var(--muted);text-align:right;line-height:1.6;}
+.rist-avg strong{display:block;font-family:'Young Serif',serif;font-size:28px;color:var(--text);}
+
+.tabs{display:flex;border-bottom:2px solid var(--pale);margin-bottom:40px;}
+.tab{padding:12px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'Nunito',sans-serif;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;font-weight:600;}
+.tab.on{color:var(--green);border-bottom-color:var(--green);}
+
+.dish-g{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.dish{display:flex;justify-content:space-between;align-items:flex-start;padding:20px 0;border-bottom:1px solid var(--pale);gap:14px;opacity:0;transform:translateY(6px);transition:all .3s;}
+.dish.show{opacity:1;transform:translateY(0);}
+.dish:nth-child(odd){padding-right:44px;}
+.dish:nth-child(even){padding-left:44px;border-left:1px solid var(--pale);}
+.d-name{font-family:'Young Serif',serif;font-size:19px;color:var(--text);}
+.d-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.d-badge{display:inline-block;margin-top:5px;font-size:9px;letter-spacing:1px;padding:2px 8px;background:var(--pale);color:var(--green);border-radius:20px;font-weight:600;}
+.d-price{font-size:15px;color:var(--terra);font-weight:600;white-space:nowrap;}
+
+/* HIGHLIGHTS */
+.highlights{background:var(--green);padding:80px 52px;}
+.hl-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:52px;}
+.hl{background:rgba(255,255,255,.07);border-radius:12px;padding:32px 24px;}
+.hl-icon{font-size:32px;margin-bottom:14px;}
+.hl-title{font-family:'Young Serif',serif;font-size:20px;color:#fff;margin-bottom:10px;}
+.hl-txt{font-size:13px;line-height:1.7;color:rgba(255,255,255,.6);}
+
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--pale);}
+.revs-head{margin-bottom:52px;}
+.revs-head h2{font-family:'Young Serif',serif;font-size:clamp(32px,4vw,50px);color:var(--text);}
+.revs-head h2 em{font-style:italic;color:var(--green);}
+.revs-head p{font-size:12px;color:var(--muted);letter-spacing:1px;margin-top:6px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rc2{background:#fff;padding:28px;border-radius:12px;}
+.rc2-flag{font-size:14px;margin-bottom:10px;}
+.rc2-stars{color:var(--sun);font-size:13px;letter-spacing:2px;margin-bottom:10px;}
+.rc2-txt{font-family:'Young Serif',serif;font-style:italic;font-size:15px;line-height:1.65;color:var(--text);margin-bottom:14px;}
+.rc2-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* BOOK */
+.book{display:grid;grid-template-columns:1fr 1fr;}
+.b-left{background:var(--sun);padding:80px 56px;}
+.b-left h2{font-family:'Young Serif',serif;font-size:clamp(32px,3.5vw,48px);color:#fff;line-height:1.1;margin-bottom:18px;}
+.b-left h2 em{font-style:italic;}
+.b-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.85);margin-bottom:28px;}
+.irows{display:flex;flex-direction:column;gap:14px;}
+.ir{display:flex;gap:14px;align-items:flex-start;}
+.ir-icon{width:38px;height:38px;background:rgba(255,255,255,.2);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ir-txt{font-size:14px;color:rgba(255,255,255,.9);line-height:1.55;}
+.wa-btn{display:inline-block;margin-top:26px;background:#25d366;color:#fff;padding:13px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:40px;font-weight:600;transition:opacity .2s;}
+.wa-btn:hover{opacity:.85;}
+
+.b-right{background:var(--sand);padding:80px 56px;}
+.b-right h3{font-family:'Young Serif',serif;font-size:26px;color:var(--text);margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);font-weight:600;}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #c8e6c9;padding:13px 14px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--green);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--green);color:#fff;border:none;padding:15px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Nunito',sans-serif;cursor:pointer;font-weight:600;border-radius:8px;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--light);}
+
+footer{background:var(--text);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'Young Serif',serif;font-size:17px;color:rgba(255,255,255,.3);}
+.f-logo span{color:var(--warm);}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:30px;font-weight:600;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}
+  .hero{grid-template-columns:1fr;}
+  .hero-right{display:none;}
+  .hero-left{padding:100px 20px 60px;}
+  .pills{padding:12px 20px;gap:8px;}
+  .anna{grid-template-columns:1fr;}.anna-txt{padding:60px 20px;}.anna-vis{min-height:260px;}
+  .rooms,.rist,.highlights,.revs{padding:60px 20px;}
+  .rooms-grid{grid-template-columns:1fr 1fr;}
+  .rist-head{flex-direction:column;align-items:flex-start;}.rist-avg{text-align:left;}
+  .dish-g{grid-template-columns:1fr;}
+  .dish:nth-child(even){padding-left:0;border-left:none;}
+  .dish:nth-child(odd){padding-right:0;}
+  .hl-grid{grid-template-columns:1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .book{grid-template-columns:1fr;}.b-left,.b-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">L'Arca di <span>Anna</span></a>
+  <div class="links">
+    <a href="#anna">La Storia</a>
+    <a href="#ristorante">Ristorante</a>
+    <a href="#highlights">Struttura</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-tag">Agriturismo · Contrada Oracchio 30 · Belvedere Marittimo</div>
+    <h1 class="hero-title">
+      <span>Agriturismo</span>
+      L'Arca di<br>Anna Brambilla
+    </h1>
+    <p class="hero-sub">Qualità superiore · Dal 2007 · Piscina con idromassaggio</p>
+    <p class="hero-desc">Dal cuore di Milano alla Calabria. Anna ha realizzato il suo sogno: una comunità rurale dove benessere, natura e cucina genuina si incontrano in uno scenario incantevole.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-sun">Prenota ora</a>
+      <a href="#ristorante" class="btn-pale">Vedi il menu</a>
+    </div>
+  </div>
+
+  <div class="hero-right">
+    <!-- nature illustration -->
+    <svg viewBox="0 0 560 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;position:absolute;inset:0;">
+      <!-- bg -->
+      <rect width="560" height="640" fill="#b7e4c7"/>
+      <!-- sun -->
+      <circle cx="420" cy="100" r="55" fill="#f4d03f" opacity=".6"/>
+      <circle cx="420" cy="100" r="38" fill="#f4d03f" opacity=".4"/>
+      <!-- hills -->
+      <ellipse cx="280" cy="500" rx="350" ry="200" fill="#52b788" opacity=".4"/>
+      <ellipse cx="100" cy="520" rx="220" ry="160" fill="#40916c" opacity=".5"/>
+      <ellipse cx="460" cy="510" rx="200" ry="150" fill="#40916c" opacity=".4"/>
+      <!-- pool -->
+      <ellipse cx="280" cy="420" rx="110" ry="38" fill="#74c0fc" opacity=".7"/>
+      <ellipse cx="280" cy="416" rx="100" ry="32" fill="#a5d8ff" opacity=".5"/>
+      <!-- pool shimmer -->
+      <path d="M200 415 Q240 410 280 415 Q320 420 360 415" stroke="rgba(255,255,255,.6)" stroke-width="1.5" fill="none"/>
+      <!-- pool deck -->
+      <rect x="165" y="450" width="230" height="12" rx="4" fill="#d4a373" opacity=".4"/>
+      <!-- sun loungers -->
+      <rect x="180" y="445" width="50" height="8" rx="4" fill="#fff" opacity=".4"/>
+      <rect x="330" y="445" width="50" height="8" rx="4" fill="#fff" opacity=".4"/>
+      <!-- main building -->
+      <rect x="160" y="280" width="240" height="130" rx="8" fill="#fff" opacity=".35"/>
+      <rect x="160" y="276" width="240" height="10" rx="3" fill="#d4a373" opacity=".5"/>
+      <!-- windows -->
+      <rect x="185" y="298" width="30" height="35" rx="4" fill="rgba(116,192,252,.4)"/>
+      <rect x="230" y="298" width="30" height="35" rx="4" fill="rgba(116,192,252,.4)"/>
+      <rect x="275" y="298" width="30" height="35" rx="4" fill="rgba(116,192,252,.4)"/>
+      <rect x="320" y="298" width="30" height="35" rx="4" fill="rgba(116,192,252,.4)"/>
+      <!-- small animals -->
+      <!-- pig (maiale nero) -->
+      <ellipse cx="150" cy="470" rx="18" ry="12" fill="#2d2d2d" opacity=".5"/>
+      <circle cx="163" cy="465" r="8" fill="#2d2d2d" opacity=".5"/>
+      <ellipse cx="167" cy="464" rx="4" ry="3" fill="#555" opacity=".5"/>
+      <!-- duck -->
+      <circle cx="400" cy="460" r="8" fill="#fff" opacity=".6"/>
+      <ellipse cx="408" cy="462" rx="5" ry="4" fill="#fff" opacity=".6"/>
+      <path d="M411 461 L417 461" stroke="#f4a261" stroke-width="2" stroke-linecap="round"/>
+      <!-- tree left -->
+      <rect x="78" y="300" width="10" height="120" fill="#6b4c11" opacity=".5"/>
+      <ellipse cx="83" cy="285" rx="38" ry="50" fill="#2d6a4f" opacity=".6"/>
+      <ellipse cx="83" cy="272" rx="30" ry="40" fill="#40916c" opacity=".5"/>
+      <!-- tree right -->
+      <rect x="460" y="320" width="10" height="100" fill="#6b4c11" opacity=".5"/>
+      <ellipse cx="465" cy="308" rx="36" ry="48" fill="#2d6a4f" opacity=".6"/>
+      <ellipse cx="465" cy="296" rx="28" ry="38" fill="#40916c" opacity=".5"/>
+      <!-- flower accents -->
+      <circle cx="200" cy="380" r="6" fill="#d4a5c9" opacity=".7"/>
+      <circle cx="200" cy="380" r="3" fill="#fff" opacity=".8"/>
+      <circle cx="360" cy="385" r="5" fill="#f4a261" opacity=".7"/>
+      <circle cx="360" cy="385" r="2.5" fill="#fff" opacity=".8"/>
+      <circle cx="310" cy="375" r="4" fill="#e9c46a" opacity=".8"/>
+      <!-- borgo castle silhouette far -->
+      <path d="M240 250 L240 230 L250 230 L250 220 L260 220 L260 230 L280 230 L280 220 L290 220 L290 230 L300 230 L300 250Z" fill="rgba(45,106,79,.3)"/>
+      <!-- label -->
+      <text x="280" y="600" text-anchor="middle" font-family="'Young Serif',serif" font-style="italic" font-size="14" fill="rgba(45,106,79,.35)" letter-spacing="2">contrada oracchio</text>
+    </svg>
+
+    <div class="chips-wrap">
+      <div class="chip"><div class="chip-dot"></div>★ 8.3 Booking · 224 rec. TripAdvisor</div>
+      <div class="chip"><div class="chip-dot"></div>2 piscine · Mini-zoo · 14 camere</div>
+      <div class="chip"><div class="chip-dot"></div>Maiale nero calabrese · KM 0</div>
+    </div>
+  </div>
+</section>
+
+<!-- PILLS -->
+<div class="pills">
+  <div class="pill">Qualità superiore</div>
+  <div class="pill">2 piscine con idromassaggio</div>
+  <div class="pill">Mini-zoo e fattoria didattica</div>
+  <div class="pill">Ristorante aperto al pubblico</div>
+  <div class="pill">14 camere con nome di fiore</div>
+</div>
+
+<!-- ANNA -->
+<section class="anna" id="anna">
+  <div class="anna-txt">
+    <div class="tag">La nostra storia</div>
+    <h2>Da Milano alla Calabria,<br><em>per realizzare un sogno</em></h2>
+    <p>Sono Anna Brambilla. Nel 2013 ho lasciato Milano e sono venuta in Calabria con un sogno: creare una comunità rurale all'insegna del benessere, della natura e della condivisione. L'Arca è nata così.</p>
+    <p>Qui troverete il maiale nero calabrese allevato allo stato brado, il laghetto con le oche e le anatre, un orto che cambia con le stagioni, e Dario — il nostro responsabile accoglienza — pronto ad accogliervi come parte della famiglia.</p>
+    <div class="anna-quote">
+      <p>"The paradise I recommend. My perfect escape from the city stress. Amazing stay — thanks Anna for the delicious food and thanks Dario for the warm welcome ❤️"</p>
+      <cite>— Ospite internazionale · Booking.com</cite>
+    </div>
+  </div>
+
+  <div class="anna-vis">
+    <svg viewBox="0 0 400 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;height:100%;max-width:380px;">
+      <rect width="400" height="440" fill="#b7e4c7"/>
+      <!-- morning light -->
+      <ellipse cx="200" cy="0" rx="200" ry="120" fill="rgba(244,163,97,.2)"/>
+      <!-- farm scene -->
+      <!-- house -->
+      <rect x="100" y="140" width="200" height="150" rx="6" fill="#fff" opacity=".6"/>
+      <polygon points="80,145 200,80 320,145" fill="#d4a373" opacity=".55"/>
+      <!-- chimney -->
+      <rect x="230" y="85" width="14" height="35" fill="#c8956c" opacity=".5"/>
+      <!-- windows -->
+      <rect x="125" y="168" width="40" height="40" rx="3" fill="rgba(116,192,252,.5)"/>
+      <rect x="235" y="168" width="40" height="40" rx="3" fill="rgba(116,192,252,.5)"/>
+      <!-- door -->
+      <path d="M183 290 L183 245 Q183 235 200 235 Q217 235 217 245 L217 290Z" fill="#d4a373" opacity=".5"/>
+      <!-- sunflowers left -->
+      <line x1="60" y1="330" x2="60" y2="220" stroke="#5a7a00" stroke-width="3"/>
+      <circle cx="60" cy="215" r="16" fill="#f4d03f" opacity=".8"/>
+      <circle cx="60" cy="215" r="8" fill="#8b4513" opacity=".6"/>
+      <line x1="80" y1="320" x2="80" y2="225" stroke="#5a7a00" stroke-width="3"/>
+      <circle cx="80" cy="220" r="14" fill="#f4d03f" opacity=".7"/>
+      <circle cx="80" cy="220" r="7" fill="#8b4513" opacity=".6"/>
+      <!-- pool right -->
+      <ellipse cx="330" cy="300" rx="55" ry="18" fill="#74c0fc" opacity=".5"/>
+      <ellipse cx="330" cy="297" rx="48" ry="14" fill="#a5d8ff" opacity=".4"/>
+      <!-- pig -->
+      <ellipse cx="155" cy="355" rx="22" ry="15" fill="#2a2a2a" opacity=".45"/>
+      <circle cx="170" cy="347" r="11" fill="#2a2a2a" opacity=".45"/>
+      <ellipse cx="176" cy="346" rx="5" ry="4" fill="#444" opacity=".4"/>
+      <!-- flowers ground -->
+      <circle cx="250" cy="340" r="5" fill="#d4a5c9" opacity=".8"/>
+      <circle cx="270" cy="350" r="4" fill="#e76f51" opacity=".7"/>
+      <circle cx="290" cy="338" r="5" fill="#e9c46a" opacity=".8"/>
+      <circle cx="310" cy="345" r="4" fill="#d4a5c9" opacity=".7"/>
+      <!-- grass -->
+      <ellipse cx="200" cy="430" rx="220" ry="40" fill="#52b788" opacity=".4"/>
+      <!-- label -->
+      <text x="200" y="415" text-anchor="middle" font-family="'Young Serif',serif" font-style="italic" font-size="13" fill="rgba(45,106,79,.4)" letter-spacing="2">l'arca · belvedere</text>
+    </svg>
+  </div>
+</section>
+
+<!-- CAMERE -->
+<section class="rooms">
+  <div class="tag" style="color:var(--sun)">Dove dormire</div>
+  <h2>14 camere, <em>un fiore ciascuna</em></h2>
+  <p class="rooms-sub">Ogni camera porta il nome e il colore di un fiore — con balcone privato, vista sul mare o sulla piscina, e tutti i comfort moderni.</p>
+  <div class="rooms-grid">
+    <div class="rc">
+      <div class="rc-flower">🌸</div>
+      <div class="rc-name">Ciclamino</div>
+      <div class="rc-desc">Vista sul mare e sul borgo medievale di Belvedere</div>
+    </div>
+    <div class="rc">
+      <div class="rc-flower">🌻</div>
+      <div class="rc-name">Girasole</div>
+      <div class="rc-desc">Balcone con vista sulle montagne del Pollino</div>
+    </div>
+    <div class="rc">
+      <div class="rc-flower">🌹</div>
+      <div class="rc-name">Rosa</div>
+      <div class="rc-desc">Vista sulla piscina, accesso diretto al giardino</div>
+    </div>
+    <div class="rc">
+      <div class="rc-flower">🌿</div>
+      <div class="rc-name">+ 11 camere</div>
+      <div class="rc-desc">Ognuna con il suo nome e il suo carattere unico</div>
+    </div>
+  </div>
+</section>
+
+<!-- RISTORANTE -->
+<section class="rist" id="ristorante">
+  <div class="rist-head">
+    <div>
+      <div class="tag" style="color:var(--terra)">Aperto al pubblico</div>
+      <h2>Ristorante & <em>Cucina</em></h2>
+    </div>
+    <div class="rist-avg">Prezzo medio<br><strong>€30</strong>menù alla carta</div>
+  </div>
+  <div class="tabs">
+    <button class="tab on" onclick="mostra('antipasti',this)">Antipasti</button>
+    <button class="tab" onclick="mostra('primi',this)">Primi</button>
+    <button class="tab" onclick="mostra('secondi',this)">Secondi</button>
+    <button class="tab" onclick="mostra('dolci',this)">Dolci & Colazione</button>
+  </div>
+  <div class="dish-g" id="dg"></div>
+</section>
+
+<!-- HIGHLIGHTS -->
+<section class="highlights" id="highlights">
+  <div class="tag" style="color:var(--warm)">La struttura</div>
+  <h2 style="font-family:'Young Serif',serif;font-size:clamp(32px,4vw,50px);color:#fff;margin-top:8px;">Tutto quello che <em style="font-style:italic;color:var(--warm)">troverete</em></h2>
+  <div class="hl-grid">
+    <div class="hl">
+      <div class="hl-icon">🏊</div>
+      <div class="hl-title">2 piscine</div>
+      <p class="hl-txt">Piscina principale con idromassaggio favoloso, lettini ombreggiati e bar. Piscina bimbi separata. Immersa nel verde, tra gli animali.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🐷</div>
+      <div class="hl-title">Mini-zoo & fattoria</div>
+      <p class="hl-txt">Maiale nero calabrese allo stato brado, oche, anatre, laghetto, animali da cortile. Un'attrazione unica specialmente per i bambini.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🎭</div>
+      <div class="hl-title">Anfiteatro estivo</div>
+      <p class="hl-txt">In estate, spettacoli serali con musica, cabaret, teatro e cultura. Gelato artigianale e dolci fatti in casa mentre si gode lo spettacolo.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🍳</div>
+      <div class="hl-title">Colazione straordinaria</div>
+      <p class="hl-txt">Torta di zucchine fatta in casa, grande assortimento di marmellate proprie, dolci artigianali, prodotti freschi della fattoria ogni mattina.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🏰</div>
+      <div class="hl-title">Vista castello</div>
+      <p class="hl-txt">A 1,5 km dal mare, la struttura gode della vista sul borgo medievale e sul castello aragonese. A nord, le montagne del Parco del Pollino.</p>
+    </div>
+    <div class="hl">
+      <div class="hl-icon">🎉</div>
+      <div class="hl-title">Sala eventi 200 posti</div>
+      <p class="hl-txt">Grande sala polifunzionale per ricevimenti, matrimoni, eventi aziendali. Con giardino, piscina e parcheggio privato incluso.</p>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="revs" id="recensioni">
+  <div class="revs-head">
+    <div class="tag" style="color:var(--terra)">Cosa dicono</div>
+    <h2>224 recensioni, <em>una famiglia</em></h2>
+    <p>TripAdvisor Travellers' Choice · Booking ★8.3 · Trip.com 9.5/10 coppie</p>
+  </div>
+  <div class="rev-grid">
+    <div class="rc2">
+      <div class="rc2-flag">🇮🇹</div>
+      <div class="rc2-stars">★★★★★</div>
+      <p class="rc2-txt">"Ci siamo sentiti a casa. La stanza Ciclamino con vista sul mare e sul borgo è meravigliosa. Dario, il top. Gelato fatto in casa eccezionale. Torneremo!"</p>
+      <div class="rc2-who">— Famiglia italiana · TripAdvisor</div>
+    </div>
+    <div class="rc2">
+      <div class="rc2-flag">🇬🇧</div>
+      <div class="rc2-stars">★★★★★</div>
+      <p class="rc2-txt">"The paradise I recommend. My perfect escape from city stress. Amazing food, warm welcome from Dario. This is my second visit and won't be the last."</p>
+      <div class="rc2-who">— British guest · Booking.com</div>
+    </div>
+    <div class="rc2">
+      <div class="rc2-flag">🇩🇪</div>
+      <div class="rc2-stars">★★★★★</div>
+      <p class="rc2-txt">"Piscina immersa nel verde e tra gli animali — unico! Colazione con prodotti tutti fatti in casa. Il luogo ideale per godere del silenzio lontano dallo stress."</p>
+      <div class="rc2-who">— Ospite tedesco · Trip.com</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="book" id="prenota">
+  <div class="b-left">
+    <div class="tag" style="color:rgba(255,255,255,.6)">Vieni a trovarci</div>
+    <h2>Prenota il tuo<br><em>soggiorno o cena</em></h2>
+    <p>Ristorante aperto al pubblico — prenotazione gradita. Per soggiorni, camere disponibili tutto l'anno. Scriveteci su WhatsApp!</p>
+    <div class="irows">
+      <div class="ir"><div class="ir-icon">📍</div><div class="ir-txt">Contrada Oracchio 30<br>87021 Belvedere Marittimo (CS)</div></div>
+      <div class="ir"><div class="ir-icon">📞</div><div class="ir-txt">0985 89541<br>Cell: 349 870 3796</div></div>
+      <div class="ir"><div class="ir-icon">🍽️</div><div class="ir-txt">Ristorante: menù €30<br>Colazione inclusa per gli ospiti</div></div>
+      <div class="ir"><div class="ir-icon">🐾</div><div class="ir-txt">Animali benvenuti<br>€5 a notte per animale</div></div>
+    </div>
+    <a href="https://wa.me/393498703796?text=Buongiorno!%20Vorrei%20prenotare%20all'Arca%20di%20Anna%20Brambilla%20😊" class="wa-btn">📱 WhatsApp</a>
+  </div>
+  <div class="b-right">
+    <h3>Invia una richiesta</h3>
+    <form onsubmit="inviato(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg"><label>Tipo di richiesta</label>
+        <select>
+          <option>Cena al ristorante</option>
+          <option>Soggiorno (B&B)</option>
+          <option>Mezza pensione</option>
+          <option>Evento / Ricevimento</option>
+          <option>Pranzo domenicale</option>
+        </select>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Data arrivo</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3–4 persone</option>
+            <option>5–6 persone</option><option>Famiglia (bambini)</option><option>Gruppo 10+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Note (animali, allergie, bambini...)</label>
+        <textarea placeholder="Avete animali domestici? Bambini piccoli? Intolleranze?"></textarea>
+      </div>
+      <button class="sub" type="submit">Invia richiesta</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">L'Arca di <span>Anna</span></div>
+  <div class="f-copy">© 2025 Agriturismo L'Arca di Anna Brambilla · Contrada Oracchio 30 · Belvedere Marittimo (CS) · 0985 89541</div>
+  <a href="https://wa.me/393498703796" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/393498703796?text=Buongiorno!%20Vorrei%20prenotare%20all'Arca%20di%20Anna%20Brambilla%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on',scrollY>60);
+});
+
+const piatti = {
+  antipasti:[
+    {n:'Salumi di maiale nero calabrese',s:'Produzione propria — soppressata, capocollo, lonza',b:'KM 0',p:'12 €'},
+    {n:'Formaggi con confetture',s:'Formaggi locali, confetture fatte in casa',b:'Casa',p:'10 €'},
+    {n:'Antipasto misto della fattoria',s:'Selezione di salumi, formaggi, sott\'oli, olive',b:'Signature',p:'14 €'},
+    {n:'Bruschette al pomodoro',s:'Pane di casa, pomodori dell\'orto, basilico, olio EVO',b:'',p:'6 €'},
+    {n:'Crostini con nduja',s:'Nduja artigianale su crostini di pane casereccio',b:'Piccante',p:'7 €'},
+    {n:'Verdure grigliate dell\'orto',s:'Melanzane, zucchine, peperoni di stagione',b:'Orto',p:'8 €'},
+  ],
+  primi:[
+    {n:'Fileja al ragù di maiale nero',s:'Pasta calabrese, ragù di maiale nero calabrese',b:'Signature',p:'12 €'},
+    {n:'Pasta fatta in casa',s:'Varia ogni giorno — con ragù, pomodoro, o pesto',b:'Casa',p:'11 €'},
+    {n:'Lagane e ceci',s:'Ricetta contadina calabrese, aglio, rosmarino, olio EVO',b:'Vegano',p:'9 €'},
+    {n:'Spaghetti al sugo di pomodoro',s:'Pomodori freschi dell\'orto, basilico, mozzarella',b:'',p:'9 €'},
+    {n:'Pasta e fagioli dell\'azienda',s:'Fagioli di produzione propria, pasta corta, pepe',b:'',p:'9 €'},
+    {n:'Gnocchi al sugo',s:'Gnocchi di patate, sugo lento, parmigiano',b:'',p:'11 €'},
+  ],
+  secondi:[
+    {n:'Maiale nero calabrese',s:'Varie preparazioni — arrosto, alla brace, in umido',b:'Specialty',p:'16 €'},
+    {n:'Pollo ruspante dell\'azienda',s:'Allevato allo stato brado, al forno con erbe',b:'Fattoria',p:'14 €'},
+    {n:'Agnello della zona',s:'Costolette alla brace, patate al forno',b:'',p:'15 €'},
+    {n:'Baccalà alla calabrese',s:'Con peperoni, olive, capperi — piatto autunnale',b:'Stagionale',p:'13 €'},
+    {n:'Contorni dell\'orto',s:'Insalata, patate, verdure — secondo stagione',b:'',p:'5 €'},
+    {n:'Fritto di vegetali',s:'Melanzane, zucchine, peperoni fritti leggeri',b:'Vegano',p:'7 €'},
+  ],
+  dolci:[
+    {n:'Torta di zucchine',s:'La nostra firma — fatta in casa ogni mattina',b:'Famosa',p:'4 €'},
+    {n:'Gelato artigianale',s:'Produzione propria, vari gusti di stagione',b:'Casa',p:'3 €'},
+    {n:'Dolci della colazione',s:'Marmellate, crostate, biscotti — tutto fatto in casa',b:'',p:'4 €'},
+    {n:'Cannolo alla ricotta',s:'Ricotta fresca locale, scorza di cedro',b:'',p:'4 €'},
+  ],
+};
+
+function mostra(cat, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const g = document.getElementById('dg');
+  g.innerHTML = piatti[cat].map((d,i)=>`
+    <div class="dish" style="transition-delay:${i*.05}s">
+      <div>
+        <div class="d-name">${d.n}</div>
+        <div class="d-sub">${d.s}</div>
+        ${d.b?`<span class="d-badge">${d.b}</span>`:''}
+      </div>
+      <div class="d-price">${d.p}</div>
+    </div>`).join('');
+  requestAnimationFrame(()=>g.querySelectorAll('.dish').forEach(d=>d.classList.add('show')));
+}
+mostra('antipasti',document.querySelector('.tab.on'));
+
+function inviato(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.sub');
+  b.textContent='✓ Richiesta inviata!';
+  b.style.background='#52b788';
+}
+</script>
+</body>
+</html>

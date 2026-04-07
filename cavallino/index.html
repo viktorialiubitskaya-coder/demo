@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cavallino Rosso — Hotel Ristorante · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600&family=Crimson+Pro:ital,wght@0,300;0,400;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --forest:  #1e3a2f;
+  --green:   #2d5a42;
+  --sage:    #4a7c5f;
+  --mint:    #e8f2ec;
+  --gold:    #c4a24a;
+  --gold2:   #e8c878;
+  --cream:   #faf8f3;
+  --white:   #ffffff;
+  --text:    #1a2520;
+  --muted:   #5a6e60;
+  --warm:    #f5f0e5;
+  --border:  #d8e8dc;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'Jost',sans-serif;background:var(--cream);color:var(--text);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(30,58,47,.97);backdrop-filter:blur(12px);padding:13px 52px;}
+.logo{font-family:'Cinzel',serif;font-size:16px;letter-spacing:3px;color:#fff;text-decoration:none;text-transform:uppercase;}
+.logo span{color:var(--gold2);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--gold2);}
+.nav-cta{border:1px solid var(--gold);color:var(--gold);padding:9px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.nav-cta:hover{background:var(--gold);color:var(--forest);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#0d2018 0%,#1e3a2f 35%,#2d5a42 65%,#1a3028 100%);
+}
+/* decorative botanical overlay */
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 70% 50% at 75% 30%, rgba(196,162,74,.08) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 20% 70%, rgba(45,90,66,.4) 0%, transparent 70%);
+}
+/* subtle grid */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background-image:linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.015) 1px,transparent 1px);
+  background-size:80px 80px;
+}
+
+/* ornamental ring */
+.ring{position:absolute;top:50%;right:8%;transform:translateY(-50%);width:420px;height:420px;border-radius:50%;border:1px solid rgba(196,162,74,.15);display:flex;align-items:center;justify-content:center;}
+.ring::before{content:'';position:absolute;inset:24px;border-radius:50%;border:1px solid rgba(196,162,74,.08);}
+.ring::after{content:'';position:absolute;inset:56px;border-radius:50%;border:1px solid rgba(196,162,74,.05);}
+
+.hero-content{position:relative;z-index:2;padding:0 52px 88px;animation:rise .9s ease both;}
+@keyframes rise{from{opacity:0;transform:translateY(22px)}to{opacity:1;transform:translateY(0)}}
+.crown{display:flex;align-items:center;gap:16px;margin-bottom:20px;}
+.crown-line{flex:1;max-width:40px;height:1px;background:var(--gold);opacity:.6;}
+.crown-text{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);opacity:.8;}
+.hero-title{font-family:'Cinzel',serif;font-size:clamp(44px,7vw,90px);font-weight:600;letter-spacing:4px;line-height:.92;color:#fff;text-transform:uppercase;margin-bottom:6px;}
+.hero-title span{display:block;font-size:.55em;font-weight:400;letter-spacing:6px;color:var(--gold2);opacity:.8;}
+.hero-sub{font-family:'Crimson Pro',serif;font-size:18px;font-style:italic;color:rgba(255,255,255,.45);margin-bottom:32px;letter-spacing:1px;}
+.hero-desc{font-size:14px;line-height:1.8;color:rgba(255,255,255,.6);max-width:420px;margin-bottom:40px;}
+.hero-btns{display:flex;gap:14px;align-items:center;flex-wrap:wrap;}
+.btn-gold{background:var(--gold);color:var(--forest);padding:15px 34px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;font-weight:500;}
+.btn-gold:hover{background:var(--gold2);transform:translateY(-2px);}
+.btn-outline{color:rgba(255,255,255,.55);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}
+.btn-outline:hover{color:#fff;border-color:rgba(255,255,255,.5);}
+
+/* hero stats */
+.hero-stats{position:absolute;right:52px;bottom:88px;z-index:2;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.hstat{background:rgba(255,255,255,.06);border:1px solid rgba(196,162,74,.2);backdrop-filter:blur(8px);padding:12px 18px;text-align:center;}
+.hstat-n{font-family:'Cinzel',serif;font-size:22px;color:var(--gold2);line-height:1;}
+.hstat-l{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);margin-top:4px;}
+
+/* DIVIDER */
+.divider{background:var(--forest);padding:16px 52px;display:flex;justify-content:space-around;align-items:center;}
+.div-item{font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35);display:flex;align-items:center;gap:10px;}
+.div-item::before{content:'✦';color:var(--gold);opacity:.5;font-size:8px;}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;}
+.about-txt{background:var(--white);padding:88px 68px;display:flex;flex-direction:column;justify-content:center;}
+.stag{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:20px;}
+.about-txt h2{font-family:'Cinzel',serif;font-size:clamp(28px,3vw,42px);font-weight:500;letter-spacing:2px;line-height:1.2;color:var(--forest);margin-bottom:22px;text-transform:uppercase;}
+.about-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.features-mini{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px;}
+.fm{background:var(--mint);padding:16px;display:flex;flex-direction:column;gap:4px;}
+.fm-icon{font-size:18px;}
+.fm-title{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;color:var(--forest);}
+.fm-desc{font-size:12px;color:var(--muted);line-height:1.4;}
+
+.about-visual{background:var(--forest);display:flex;align-items:center;justify-content:center;min-height:540px;position:relative;overflow:hidden;}
+
+/* SERVICES TABS */
+.services{padding:90px 52px;background:var(--warm);}
+.services h2{font-family:'Cinzel',serif;font-size:clamp(28px,4vw,46px);font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--forest);margin-bottom:50px;text-align:center;}
+.srv-tabs{display:flex;justify-content:center;gap:0;border-bottom:2px solid var(--border);margin-bottom:52px;}
+.stb{padding:14px 32px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s;}
+.stb.on{color:var(--forest);border-bottom-color:var(--gold);font-weight:600;}
+.srv-panel{display:none;}
+.srv-panel.on{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.srv-row{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 0;border-bottom:1px solid var(--border);gap:14px;opacity:0;transform:translateY(6px);transition:all .3s;}
+.srv-row.in{opacity:1;transform:translateY(0);}
+.srv-row:nth-child(odd){padding-right:48px;}
+.srv-row:nth-child(even){padding-left:48px;border-left:1px solid var(--border);}
+.srv-name{font-family:'Crimson Pro',serif;font-size:20px;color:var(--text);}
+.srv-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.srv-badge{display:inline-block;margin-top:5px;font-family:'Cinzel',serif;font-size:8px;letter-spacing:1px;padding:2px 8px;background:rgba(196,162,74,.1);color:var(--gold);text-transform:uppercase;}
+.srv-price{font-family:'Cinzel',serif;font-size:14px;color:var(--forest);white-space:nowrap;}
+
+/* WEDDING */
+.wedding{background:var(--forest);padding:90px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.wed-txt .stag{color:var(--gold);}
+.wed-txt h2{font-family:'Cinzel',serif;font-size:clamp(28px,3.5vw,48px);font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#fff;line-height:1.2;margin-bottom:24px;}
+.wed-txt h2 em{display:block;font-family:'Crimson Pro',serif;font-style:italic;font-weight:300;font-size:.7em;letter-spacing:0;text-transform:none;color:rgba(255,255,255,.4);}
+.wed-txt p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.6);margin-bottom:14px;}
+.wed-features{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.wf{display:flex;gap:16px;align-items:flex-start;}
+.wf-icon{width:36px;height:36px;border:1px solid rgba(196,162,74,.3);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.wf-txt{font-size:14px;color:rgba(255,255,255,.7);line-height:1.5;}
+.wed-cta{display:inline-block;margin-top:28px;background:var(--gold);color:var(--forest);padding:15px 32px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.wed-cta:hover{background:var(--gold2);}
+
+.wed-cards{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.wc{background:rgba(255,255,255,.05);border:1px solid rgba(196,162,74,.15);padding:28px 22px;}
+.wc-n{font-family:'Cinzel',serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.wc-v{font-family:'Cinzel',serif;font-size:28px;color:#fff;margin-bottom:6px;}
+.wc-sub{font-size:12px;color:rgba(255,255,255,.4);line-height:1.5;}
+
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--mint);}
+.revs-head{text-align:center;margin-bottom:52px;}
+.revs-head h2{font-family:'Cinzel',serif;font-size:clamp(26px,3.5vw,44px);font-weight:500;letter-spacing:3px;text-transform:uppercase;color:var(--forest);}
+.revs-head p{font-size:12px;color:var(--muted);letter-spacing:1px;margin-top:8px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;}
+.rc{background:#fff;padding:32px;border-bottom:3px solid var(--gold);}
+.rc-stars{color:var(--gold);font-size:12px;letter-spacing:4px;margin-bottom:14px;}
+.rc-txt{font-family:'Crimson Pro',serif;font-style:italic;font-size:17px;line-height:1.65;color:var(--text);margin-bottom:18px;}
+.rc-who{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.rc-occasion{display:inline-block;margin-bottom:10px;font-size:9px;letter-spacing:1px;padding:2px 8px;background:var(--mint);color:var(--sage);font-family:'Cinzel',serif;text-transform:uppercase;}
+
+/* BOOK */
+.book-s{display:grid;grid-template-columns:1fr 1fr;}
+.b-left{background:var(--green);padding:80px 64px;}
+.b-left h2{font-family:'Cinzel',serif;font-size:clamp(26px,3vw,40px);font-weight:500;letter-spacing:3px;text-transform:uppercase;color:#fff;line-height:1.2;margin-bottom:18px;}
+.b-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:28px;}
+.contact-grid{display:flex;flex-direction:column;gap:14px;}
+.cg{display:flex;gap:14px;align-items:flex-start;}
+.cg-icon{width:38px;height:38px;border:1px solid rgba(196,162,74,.3);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.cg-txt{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55;}
+.wa-l{display:inline-block;margin-top:24px;background:#25d366;color:#fff;padding:13px 24px;font-family:'Cinzel',serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.wa-l:hover{opacity:.85;}
+
+.b-right{background:var(--warm);padding:80px 64px;}
+.b-right h3{font-family:'Cinzel',serif;font-size:22px;font-weight:500;letter-spacing:2px;text-transform:uppercase;color:var(--forest);margin-bottom:30px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid var(--border);padding:13px 14px;font-family:'Jost',sans-serif;font-size:14px;color:var(--text);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--forest);color:var(--gold);border:none;padding:16px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;cursor:pointer;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--green);}
+
+footer{background:var(--forest);padding:36px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'Cinzel',serif;font-size:15px;letter-spacing:3px;color:rgba(255,255,255,.3);text-transform:uppercase;}
+.f-logo span{color:var(--gold);}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 18px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}nav.on{padding:12px 20px;}.links{display:none;}
+  .hero-content{padding:100px 20px 60px;}.hero-stats{display:none;}
+  .divider{padding:12px 20px;flex-wrap:wrap;gap:8px;}
+  .about{grid-template-columns:1fr;}.about-txt{padding:60px 20px;}.about-visual{min-height:260px;}
+  .features-mini{grid-template-columns:1fr;}
+  .services{padding:60px 20px;}
+  .srv-tabs{flex-wrap:wrap;}
+  .srv-panel.on{grid-template-columns:1fr;}
+  .srv-row:nth-child(even){padding-left:0;border-left:none;}
+  .srv-row:nth-child(odd){padding-right:0;}
+  .wedding{grid-template-columns:1fr;padding:60px 20px;gap:40px;}
+  .wed-cards{grid-template-columns:1fr 1fr;}
+  .revs{padding:60px 20px;}.rev-grid{grid-template-columns:1fr;}
+  .book-s{grid-template-columns:1fr;}.b-left,.b-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:28px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Cavallino <span>Rosso</span></a>
+  <div class="links">
+    <a href="#about">Il Locale</a>
+    <a href="#menu">Ristorante</a>
+    <a href="#eventi">Matrimoni</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="nav-cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="ring"></div>
+
+  <div class="hero-content">
+    <div class="crown">
+      <div class="crown-line"></div>
+      <div class="crown-text">Belvedere Marittimo · Calabria</div>
+      <div class="crown-line"></div>
+    </div>
+    <h1 class="hero-title">
+      <span>Hotel Ristorante</span>
+      Cavallino<br>Rosso
+    </h1>
+    <p class="hero-sub">Via degli Aragonesi, 21 — dal cuore di Belvedere</p>
+    <p class="hero-desc">Eleganza, qualità e tradizione calabrese in un'unica location. Grande sala banchetti, dehor con piscina, giardino — e una cucina che ha reso il Cavallino Rosso un punto di riferimento nel territorio.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-gold">Prenota un tavolo</a>
+      <a href="#eventi" class="btn-outline">Matrimoni & eventi</a>
+    </div>
+  </div>
+
+  <div class="hero-stats">
+    <div class="hstat"><div class="hstat-n">100%</div><div class="hstat-l">Raccomandazioni sposi</div></div>
+    <div class="hstat"><div class="hstat-n">500</div><div class="hstat-l">Ospiti max per eventi</div></div>
+    <div class="hstat"><div class="hstat-n">Hotel</div><div class="hstat-l">+ Ristorante + Piscina</div></div>
+  </div>
+</section>
+
+<!-- DIVIDER -->
+<div class="divider">
+  <div class="div-item">Ristorante & Hotel</div>
+  <div class="div-item">Matrimoni & Ricevimenti</div>
+  <div class="div-item">Grande sala banchetti</div>
+  <div class="div-item">Dehor con piscina</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-txt">
+    <div class="stag">La nostra storia</div>
+    <h2>Un nome,<br>una garanzia</h2>
+    <p>Il Cavallino Rosso è da sempre sinonimo di qualità e professionalità a Belvedere Marittimo. Cucina di mare, ambienti eleganti, un giardino con piscina e la capacità di accogliere ogni tipo di evento con la stessa cura nei dettagli.</p>
+    <p>Dal pranzo in famiglia alla cena romantica, dal banchetto nuziale alla cena aziendale — il Cavallino Rosso ha gli spazi e lo staff giusto per ogni occasione.</p>
+    <div class="features-mini">
+      <div class="fm">
+        <div class="fm-icon">🍽️</div>
+        <div class="fm-title">Ristorante</div>
+        <div class="fm-desc">Cucina di mare e calabrese, pranzo e cena tutti i giorni</div>
+      </div>
+      <div class="fm">
+        <div class="fm-icon">🏊</div>
+        <div class="fm-title">Piscina & Dehor</div>
+        <div class="fm-desc">Dehor in legno con travi a vista, affacciato sulla piscina</div>
+      </div>
+      <div class="fm">
+        <div class="fm-icon">💒</div>
+        <div class="fm-title">Matrimoni</div>
+        <div class="fm-desc">Fino a 500 ospiti · 100% di coppie soddisfatte</div>
+      </div>
+      <div class="fm">
+        <div class="fm-icon">🏨</div>
+        <div class="fm-title">Hotel</div>
+        <div class="fm-desc">Sistemazione comoda nel cuore di Belvedere Marittimo</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="about-visual">
+    <svg viewBox="0 0 400 480" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:.85">
+      <!-- dark green bg -->
+      <rect width="400" height="480" fill="#0d2018"/>
+      <!-- garden/trees suggestion -->
+      <ellipse cx="80" cy="300" rx="45" ry="60" fill="#1a3525" opacity=".8"/>
+      <ellipse cx="320" cy="280" rx="40" ry="55" fill="#1a3525" opacity=".8"/>
+      <ellipse cx="60" cy="320" rx="30" ry="40" fill="#2d5a42" opacity=".6"/>
+      <ellipse cx="340" cy="310" rx="28" ry="38" fill="#2d5a42" opacity=".6"/>
+      <!-- pool -->
+      <ellipse cx="200" cy="320" rx="110" ry="35" fill="#1e5a6a" opacity=".7"/>
+      <ellipse cx="200" cy="318" rx="100" ry="30" fill="#2a7a8a" opacity=".5"/>
+      <!-- water shimmer -->
+      <path d="M120 315 Q160 310 200 315 Q240 320 280 315" stroke="rgba(255,255,255,.15)" stroke-width="1" fill="none"/>
+      <path d="M130 325 Q170 320 210 325 Q250 330 270 323" stroke="rgba(255,255,255,.1)" stroke-width=".8" fill="none"/>
+      <!-- table settings around pool -->
+      <ellipse cx="140" cy="270" rx="22" ry="8" fill="rgba(255,255,255,.08)"/>
+      <ellipse cx="260" cy="270" rx="22" ry="8" fill="rgba(255,255,255,.08)"/>
+      <!-- building facade suggestion -->
+      <rect x="100" y="80" width="200" height="160" fill="#1e3a2f"/>
+      <rect x="100" y="78" width="200" height="8" fill="#2d5a42"/>
+      <!-- windows arched -->
+      <path d="M130 140 L130 170 Q130 180 145 180 Q160 180 160 170 L160 140" fill="#0d2018"/>
+      <path d="M130 140 Q145 130 160 140" fill="none" stroke="rgba(196,162,74,.3)" stroke-width="1"/>
+      <path d="M180 140 L180 170 Q180 180 195 180 Q210 180 210 170 L210 140" fill="#0d2018"/>
+      <path d="M180 140 Q195 130 210 140" fill="none" stroke="rgba(196,162,74,.3)" stroke-width="1"/>
+      <path d="M230 140 L230 170 Q230 180 245 180 Q260 180 260 170 L260 140" fill="#0d2018"/>
+      <path d="M230 140 Q245 130 260 140" fill="none" stroke="rgba(196,162,74,.3)" stroke-width="1"/>
+      <!-- lanterns -->
+      <rect x="118" y="95" width="8" height="12" rx="2" fill="rgba(196,162,74,.2)"/>
+      <rect x="274" y="95" width="8" height="12" rx="2" fill="rgba(196,162,74,.2)"/>
+      <circle cx="122" cy="94" r="3" fill="rgba(255,220,100,.3)"/>
+      <circle cx="278" cy="94" r="3" fill="rgba(255,220,100,.3)"/>
+      <!-- horse silhouette (cavallino) -->
+      <path d="M185 50 Q190 35 200 38 Q212 35 215 50 Q220 58 212 62 L212 80 Q210 85 205 85 Q200 85 198 80 L198 62 Q190 58 185 50Z" fill="rgba(196,162,74,.3)"/>
+      <path d="M198 80 L195 95" stroke="rgba(196,162,74,.3)" stroke-width="2"/>
+      <path d="M202 80 L199 95" stroke="rgba(196,162,74,.3)" stroke-width="2"/>
+      <path d="M205 82 L208 95" stroke="rgba(196,162,74,.3)" stroke-width="2"/>
+      <path d="M208 80 L212 95" stroke="rgba(196,162,74,.3)" stroke-width="2"/>
+      <!-- stars in sky -->
+      <circle cx="60" cy="40" r="1" fill="rgba(255,255,255,.4)"/>
+      <circle cx="340" cy="30" r="1.5" fill="rgba(255,255,255,.5)"/>
+      <circle cx="170" cy="20" r="1" fill="rgba(255,255,255,.3)"/>
+      <circle cx="290" cy="55" r="1" fill="rgba(255,255,255,.4)"/>
+      <!-- label -->
+      <text x="200" y="450" text-anchor="middle" font-family="'Cinzel',serif" font-size="11" fill="rgba(196,162,74,.3)" letter-spacing="4">BELVEDERE MARITTIMO</text>
+    </svg>
+  </div>
+</section>
+
+<!-- SERVICES / MENU -->
+<section class="services" id="menu">
+  <h2>Ristorante & Cucina</h2>
+  <div class="srv-tabs">
+    <button class="stb on" onclick="showSrv('antipasti',this)">Antipasti</button>
+    <button class="stb" onclick="showSrv('primi',this)">Primi</button>
+    <button class="stb" onclick="showSrv('secondi',this)">Secondi</button>
+    <button class="stb" onclick="showSrv('dolci',this)">Dolci</button>
+  </div>
+  <div id="menu-grid"></div>
+</section>
+
+<!-- WEDDING -->
+<section class="wedding" id="eventi">
+  <div class="wed-txt">
+    <div class="stag">Il giorno più bello</div>
+    <h2>Matrimoni<br>& Ricevimenti<br><em>Un'esperienza indimenticabile</em></h2>
+    <p>Grandi vetrate panoramiche, pavimenti in marmo pregiato, dehor in legno con travi a vista affacciato sulla piscina — il Cavallino Rosso è la location perfetta per il giorno che non dimenticherete mai.</p>
+    <p>Lo staff guidato da Marco segue ogni coppia dall'inizio alla fine, personalizzando ogni dettaglio secondo i desideri degli sposi. Nessun desiderio è troppo grande.</p>
+    <div class="wed-features">
+      <div class="wf"><div class="wf-icon">🌿</div><div class="wf-txt">Giardino con allestimento personalizzabile per cerimonia e aperitivo</div></div>
+      <div class="wf"><div class="wf-icon">👨‍🍳</div><div class="wf-txt">Menu personalizzato con chef — opzioni vegetariane e senza glutine incluse</div></div>
+      <div class="wf"><div class="wf-icon">🎵</div><div class="wf-txt">Spazi per musica dal vivo, ballo e intrattenimento fino a tarda notte</div></div>
+    </div>
+    <a href="#prenota" class="wed-cta">Richiedi informazioni</a>
+  </div>
+
+  <div class="wed-cards">
+    <div class="wc">
+      <div class="wc-n">Capacità</div>
+      <div class="wc-v">500</div>
+      <div class="wc-sub">Ospiti massimi per ricevimento</div>
+    </div>
+    <div class="wc">
+      <div class="wc-n">Soddisfazione</div>
+      <div class="wc-v">100%</div>
+      <div class="wc-sub">Coppie che consiglierebbero il Cavallino Rosso</div>
+    </div>
+    <div class="wc">
+      <div class="wc-n">Menu nozze</div>
+      <div class="wc-v">€70</div>
+      <div class="wc-sub">Prezzo minimo a persona — personalizzabile</div>
+    </div>
+    <div class="wc">
+      <div class="wc-n">Ambienti</div>
+      <div class="wc-v">3</div>
+      <div class="wc-sub">Sale + dehor + giardino disponibili</div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="revs" id="recensioni">
+  <div class="revs-head">
+    <div class="stag" style="text-align:center">Testimonial</div>
+    <h2>Cosa dicono le coppie</h2>
+    <p>Matrimonio.com · 100% di raccomandazioni</p>
+  </div>
+  <div class="rev-grid">
+    <div class="rc">
+      <div class="rc-occasion">Matrimonio</div>
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Marco ed il suo staff si sono superati. Il matrimonio è stato come lo avevamo sempre immaginato, o forse meglio. La cura di ogni dettaglio, il cibo — un'esperienza da sogno."</p>
+      <div class="rc-who">— Alessandra & Giuseppe · Agosto 2024</div>
+    </div>
+    <div class="rc">
+      <div class="rc-occasion">Ricevimento</div>
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Dal buon cibo al buon vino, dalla possibilità di avere tanti invitati insieme al meraviglioso giardino. Tutto ciò che avevamo sognato si è avverato. Lo risceglieremo 1000 volte."</p>
+      <div class="rc-who">— Riccardo & Eleonora · Matrimonio.com</div>
+    </div>
+    <div class="rc">
+      <div class="rc-occasion">Cena di gruppo</div>
+      <div class="rc-stars">★★★★★</div>
+      <p class="rc-txt">"Cucina di ottima qualità con pesce freschissimo. Location perfetta, staff preciso e gentile. Uno dei posti migliori della costa tirrenica cosentina per eventi speciali."</p>
+      <div class="rc-who">— Ospite · Google Maps</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book-s" id="prenota">
+  <div class="b-left">
+    <div class="stag" style="color:rgba(255,255,255,.4)">Contatti & Prenotazioni</div>
+    <h2>Siamo qui<br>per voi</h2>
+    <p>Per prenotare un tavolo, richiedere informazioni su matrimoni ed eventi, o semplicemente per saperne di più — il nostro staff risponde presto.</p>
+    <div class="contact-grid">
+      <div class="cg"><div class="cg-icon">📍</div><div class="cg-txt">Via degli Aragonesi 21<br>87021 Belvedere Marittimo (CS)</div></div>
+      <div class="cg"><div class="cg-icon">📞</div><div class="cg-txt">0985 82770</div></div>
+      <div class="cg"><div class="cg-icon">🕐</div><div class="cg-txt">Pranzo: 12:30 – 15:00<br>Cena: 19:30 – 23:00</div></div>
+      <div class="cg"><div class="cg-icon">💒</div><div class="cg-txt">Matrimoni ed eventi su appuntamento<br>Chiamare per preventivo personalizzato</div></div>
+    </div>
+    <a href="https://wa.me/39098582770?text=Buongiorno!%20Vorrei%20prenotare%20al%20Cavallino%20Rosso%20😊" class="wa-l">📱 WhatsApp</a>
+  </div>
+  <div class="b-right">
+    <h3>Richiedi un tavolo</h3>
+    <form onsubmit="sent(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Data</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3–4 persone</option>
+            <option>5–8 persone</option><option>9–20 persone</option>
+            <option>Evento/Ricevimento (20+)</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg"><label>Tipo di occasione</label>
+        <select>
+          <option>Cena / Pranzo normale</option>
+          <option>Compleanno o ricorrenza</option>
+          <option>Cena aziendale</option>
+          <option>Matrimonio / Ricevimento</option>
+          <option>Altro evento</option>
+        </select>
+      </div>
+      <div class="fg"><label>Note</label><textarea placeholder="Allergie, richieste speciali, info sull'evento..."></textarea></div>
+      <button class="sub" type="submit">Invia richiesta</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Cavallino <span>Rosso</span></div>
+  <div class="f-copy">© 2025 Hotel Ristorante Cavallino Rosso · Via degli Aragonesi 21 · Belvedere Marittimo (CS) · Tel. 0985 82770</div>
+  <a href="https://wa.me/39098582770" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/39098582770?text=Buongiorno!%20Vorrei%20prenotare%20al%20Cavallino%20Rosso%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on',scrollY>60);
+});
+
+const piatti = {
+  antipasti:[
+    {n:'Antipasto di mare',s:'Selezione di crudi e cotti, secondo il pescato del giorno',b:'',p:'16 €'},
+    {n:'Carpaccio di spada e tonno',s:'Pesce spada, tonno rosso, citronette, capperi',b:'Fresco',p:'14 €'},
+    {n:'Fritto di paranza',s:'Pesciolini, frittura calabrese leggera e croccante',b:'',p:'12 €'},
+    {n:'Tagliere di salumi locali',s:'Soppressata, capocollo, formaggi del territorio',b:'KM 0',p:'11 €'},
+    {n:'Cozze in bianco',s:'Cozze fresche, aglio, prezzemolo, vino bianco',b:'',p:'10 €'},
+    {n:'Bruschette miste',s:'Pomodoro fresco, nduja, alici — tre varianti',b:'',p:'7 €'},
+  ],
+  primi:[
+    {n:'Spaghetti alle vongole',s:'Vongole veraci, aglio, olio EVO, prezzemolo',b:'Classico',p:'13 €'},
+    {n:"Linguine all'astice",s:'Mezza astice, pomodorini, basilico fresco',b:'Signature',p:'22 €'},
+    {n:'Paccheri al sugo di mare',s:'Frutti di mare misti, pomodoro fresco',b:'',p:'14 €'},
+    {n:'Fileja al ragù di maiale',s:'Pasta calabrese, ragù lento, pecorino stagionato',b:'Calabrese',p:'11 €'},
+    {n:'Risotto ai crostacei',s:'Gamberi, scampi, bisque ridotta, zafferano',b:'',p:'16 €'},
+    {n:'Orecchiette broccoli e salsiccia',s:'Salsiccia calabrese piccante, broccoli di stagione',b:'',p:'12 €'},
+  ],
+  secondi:[
+    {n:'Grigliata mista di mare',s:'Orata, spigola, calamari — secondo pescato',b:'Del giorno',p:'24 €'},
+    {n:'Tagliata di tonno',s:'Tonno rosso scottato, rucola, parmigiano',b:'Top',p:'20 €'},
+    {n:'Frittura di calamari e gamberi',s:'Leggera, dorata, con maionese di casa',b:'',p:'18 €'},
+    {n:'Agnello alla brace',s:'Costolette di agnello, rosmarino, patate al forno',b:'Carne',p:'16 €'},
+    {n:'Pesce al cartoccio',s:'Secondo il pescato del giorno, con verdure',b:'',p:'22 €'},
+    {n:'Braciolette di maiale',s:'Alla brace, con salmoriglio calabrese',b:'',p:'14 €'},
+  ],
+  dolci:[
+    {n:'Tartufo di Pizzo',s:'Il classico calabrese al cioccolato fondente',b:'',p:'5 €'},
+    {n:'Torta del giorno',s:'Preparata in casa — chiedi al cameriere',b:'Casa',p:'5 €'},
+    {n:'Tiramisù',s:'Ricetta classica, mascarpone, cacao amaro',b:'',p:'5 €'},
+    {n:'Cannolo alla ricotta',s:'Ricotta fresca, scorza di cedro, pistacchi',b:'',p:'4 €'},
+  ],
+};
+
+function showSrv(cat, btn){
+  document.querySelectorAll('.stb').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  const g = document.getElementById('menu-grid');
+  g.innerHTML = `<div class="srv-panel on">${piatti[cat].map((d,i)=>`
+    <div class="srv-row" style="transition-delay:${i*.05}s">
+      <div>
+        <div class="srv-name">${d.n}</div>
+        <div class="srv-sub">${d.s}</div>
+        ${d.b?`<span class="srv-badge">${d.b}</span>`:''}
+      </div>
+      <div class="srv-price">${d.p}</div>
+    </div>`).join('')}</div>`;
+  requestAnimationFrame(()=>g.querySelectorAll('.srv-row').forEach(r=>r.classList.add('in')));
+}
+showSrv('antipasti',document.querySelector('.stb.on'));
+
+function sent(e){
+  e.preventDefault();
+  const b=e.target.querySelector('.sub');
+  b.textContent='✓ Richiesta inviata!';
+  b.style.background=var_green='#2d5a42';
+  b.style.background='#2d5a42';
+  b.style.color='var(--gold2)';
+}
+</script>
+</body>
+</html>

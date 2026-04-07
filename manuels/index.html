@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Manuel's Beach — Lido Ristorante sul Mare · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --sand: #f5f0e8;
+  --cream: #faf7f2;
+  --ocean: #1a4a5c;
+  --deep: #0d2e3a;
+  --wave: #2d7a8a;
+  --gold: #c8a96e;
+  --text: #1a1a1a;
+  --muted: #6b6355;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  background: var(--cream);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* NAV */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 20px 48px;
+  transition: all 0.4s;
+}
+nav.scrolled {
+  background: rgba(13,46,58,0.96);
+  backdrop-filter: blur(12px);
+  padding: 14px 48px;
+}
+.nav-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 22px; font-weight: 300; letter-spacing: 2px;
+  color: white; text-decoration: none;
+}
+.nav-logo span { color: var(--gold); }
+.nav-links { display: flex; gap: 32px; }
+.nav-links a {
+  color: rgba(255,255,255,0.85); text-decoration: none;
+  font-size: 12px; letter-spacing: 2px; text-transform: uppercase;
+  font-weight: 400; transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--gold); }
+.nav-cta {
+  background: var(--gold); color: var(--deep);
+  padding: 10px 24px; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none; font-weight: 500;
+  transition: all 0.2s;
+}
+.nav-cta:hover { background: white; }
+
+/* HERO */
+.hero {
+  height: 100vh; min-height: 640px;
+  position: relative; display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background: linear-gradient(
+    180deg,
+    #0d2e3a 0%,
+    #1a4a5c 30%,
+    #2d7a8a 60%,
+    #3a8fa0 80%,
+    #4aa5b8 100%
+  );
+}
+/* Animated waves */
+.waves {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  height: 220px; overflow: hidden;
+}
+.wave {
+  position: absolute; bottom: 0; left: -100%; width: 300%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0px, transparent 80px,
+    rgba(255,255,255,0.04) 80px, rgba(255,255,255,0.04) 160px
+  );
+  animation: waveMove 12s linear infinite;
+}
+.wave:nth-child(2) { animation-delay: -4s; opacity: 0.6; height: 80%; }
+.wave:nth-child(3) { animation-delay: -8s; opacity: 0.4; height: 60%; }
+@keyframes waveMove { to { transform: translateX(33.33%); } }
+
+/* sun glow */
+.sun {
+  position: absolute; top: 15%; left: 50%; transform: translateX(-50%);
+  width: 160px; height: 160px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(255,220,120,0.4) 0%, transparent 70%);
+  animation: pulse 4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100%{transform:translateX(-50%) scale(1);opacity:0.7} 50%{transform:translateX(-50%) scale(1.1);opacity:1} }
+
+/* horizon line */
+.horizon {
+  position: absolute; bottom: 38%; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.15), transparent);
+}
+
+.hero-content {
+  position: relative; z-index: 2;
+  padding: 0 48px 80px; width: 100%;
+  animation: heroIn 1.2s ease forwards;
+}
+@keyframes heroIn { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-tag {
+  display: inline-block;
+  font-size: 11px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 20px;
+}
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(56px, 9vw, 120px);
+  font-weight: 300; line-height: 0.9;
+  color: white; margin-bottom: 8px;
+}
+.hero-title em { font-style: italic; color: var(--gold); }
+.hero-sub {
+  font-size: 13px; letter-spacing: 3px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); margin-bottom: 40px;
+}
+.hero-actions { display: flex; gap: 16px; align-items: center; }
+.btn-primary {
+  background: var(--gold); color: var(--deep);
+  padding: 16px 36px; font-size: 11px; letter-spacing: 3px;
+  text-transform: uppercase; text-decoration: none; font-weight: 500;
+  transition: all 0.3s; display: inline-block;
+}
+.btn-primary:hover { background: white; transform: translateY(-2px); }
+.btn-ghost {
+  color: rgba(255,255,255,0.7); font-size: 12px; letter-spacing: 2px;
+  text-transform: uppercase; text-decoration: none;
+  border-bottom: 1px solid rgba(255,255,255,0.3); padding-bottom: 2px;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { color: white; border-color: white; }
+
+.hero-badges {
+  position: absolute; right: 48px; bottom: 80px; z-index: 2;
+  display: flex; flex-direction: column; gap: 8px; align-items: flex-end;
+}
+.badge {
+  background: rgba(255,255,255,0.1); backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.15);
+  padding: 8px 16px; font-size: 11px; letter-spacing: 1px;
+  color: rgba(255,255,255,0.85);
+}
+.badge strong { color: var(--gold); }
+
+/* STRIP */
+.strip {
+  background: var(--deep); padding: 18px 48px;
+  display: flex; gap: 48px; justify-content: center;
+  border-bottom: 1px solid rgba(200,169,110,0.2);
+}
+.strip-item {
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  color: rgba(255,255,255,0.5); display: flex; align-items: center; gap: 8px;
+}
+.strip-item::before {
+  content:''; width: 4px; height: 4px; border-radius: 50%; background: var(--gold);
+}
+
+/* ABOUT */
+.about { display: grid; grid-template-columns: 1fr 1fr; min-height: 600px; }
+.about-text {
+  background: var(--ocean); padding: 80px;
+  display: flex; flex-direction: column; justify-content: center;
+}
+.section-label {
+  font-size: 10px; letter-spacing: 4px; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 24px;
+}
+.about-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(36px, 4vw, 54px); font-weight: 300; line-height: 1.1;
+  color: white; margin-bottom: 24px;
+}
+.about-text h2 em { font-style: italic; color: var(--gold); }
+.about-text p {
+  font-size: 15px; line-height: 1.8; color: rgba(255,255,255,0.65);
+  max-width: 420px; margin-bottom: 16px;
+}
+.about-visual {
+  background: var(--deep);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+.sea-illustration {
+  width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+}
+.sea-svg { width: 100%; height: 100%; }
+
+/* MENU */
+.menu-section { padding: 100px 48px; background: var(--cream); }
+.menu-section .section-label { color: var(--ocean); }
+.menu-header { margin-bottom: 60px; }
+.menu-header h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 64px); font-weight: 300; line-height: 1;
+  color: var(--deep);
+}
+.menu-header h2 em { font-style: italic; color: var(--wave); }
+
+.menu-categories { display: flex; gap: 8px; margin-bottom: 48px; }
+.cat-btn {
+  padding: 10px 24px; font-size: 11px; letter-spacing: 2px;
+  text-transform: uppercase; border: 1px solid var(--ocean);
+  background: transparent; color: var(--ocean); cursor: pointer;
+  transition: all 0.2s; font-family: 'Jost', sans-serif;
+}
+.cat-btn.active, .cat-btn:hover {
+  background: var(--ocean); color: white;
+}
+
+.menu-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+.menu-item {
+  padding: 28px 0; border-bottom: 1px solid rgba(0,0,0,0.08);
+  display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 20px; opacity: 0; transform: translateY(10px);
+  transition: all 0.4s;
+}
+.menu-item.visible { opacity: 1; transform: translateY(0); }
+.menu-item:nth-child(odd) { padding-right: 48px; }
+.menu-item:nth-child(even) { padding-left: 48px; border-left: 1px solid rgba(0,0,0,0.08); }
+.item-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 400; color: var(--deep);
+}
+.item-desc { font-size: 12px; color: var(--muted); margin-top: 4px; letter-spacing: 0.3px; }
+.item-price {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 18px; color: var(--gold); white-space: nowrap; font-weight: 600;
+}
+
+/* EXPERIENCE */
+.experience {
+  background: var(--deep); padding: 100px 48px;
+  display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px;
+}
+.exp-card {
+  padding: 48px 40px; border: 1px solid rgba(255,255,255,0.06);
+  transition: background 0.3s;
+}
+.exp-card:hover { background: rgba(255,255,255,0.03); }
+.exp-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 72px; font-weight: 300; line-height: 1;
+  color: rgba(255,255,255,0.08); margin-bottom: -20px;
+}
+.exp-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 26px; font-weight: 300; color: white; margin-bottom: 16px;
+}
+.exp-title em { font-style: italic; color: var(--gold); }
+.exp-text { font-size: 14px; line-height: 1.7; color: rgba(255,255,255,0.5); }
+
+/* REVIEWS */
+.reviews { padding: 100px 48px; background: var(--sand); }
+.reviews-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; margin-top: 60px; }
+.review-card {
+  background: white; padding: 36px;
+  border-top: 3px solid var(--gold);
+}
+.review-stars { color: var(--gold); font-size: 14px; margin-bottom: 16px; letter-spacing: 3px; }
+.review-text {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 17px; font-style: italic; line-height: 1.6; color: var(--deep);
+  margin-bottom: 20px;
+}
+.review-author { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); }
+
+/* BOOKING */
+.booking {
+  background: var(--ocean); padding: 100px 48px;
+  display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center;
+}
+.booking-text h2 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(40px, 5vw, 60px); font-weight: 300; line-height: 1.1;
+  color: white; margin-bottom: 16px;
+}
+.booking-text h2 em { font-style: italic; color: var(--gold); }
+.booking-text p { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,0.6); }
+
+.booking-form { display: flex; flex-direction: column; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 8px; }
+.form-group label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.4); }
+.form-group input, .form-group select {
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.15);
+  padding: 14px 16px; color: white; font-family: 'Jost', sans-serif; font-size: 14px;
+  outline: none; transition: border-color 0.2s;
+}
+.form-group input:focus, .form-group select:focus { border-color: var(--gold); }
+.form-group select option { background: var(--deep); }
+.form-submit {
+  background: var(--gold); color: var(--deep); padding: 18px;
+  font-size: 11px; letter-spacing: 3px; text-transform: uppercase;
+  font-weight: 500; border: none; cursor: pointer; font-family: 'Jost', sans-serif;
+  transition: all 0.2s; margin-top: 8px;
+}
+.form-submit:hover { background: white; transform: translateY(-2px); }
+
+/* INFO */
+.info-bar {
+  background: var(--deep); padding: 48px;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  border-top: 1px solid rgba(200,169,110,0.2);
+}
+.info-item { padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.06); }
+.info-item:first-child { padding-left: 0; }
+.info-item:last-child { border-right: none; }
+.info-label { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.info-value { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.7); }
+
+/* FOOTER */
+footer {
+  background: #060e12; padding: 40px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.footer-logo {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 20px; font-weight: 300; letter-spacing: 2px; color: rgba(255,255,255,0.4);
+}
+.footer-logo span { color: var(--gold); }
+.footer-copy { font-size: 11px; color: rgba(255,255,255,0.2); letter-spacing: 1px; }
+.footer-wa {
+  background: #25d366; color: white; padding: 12px 24px;
+  font-size: 11px; letter-spacing: 2px; text-transform: uppercase;
+  text-decoration: none; font-weight: 500; transition: opacity 0.2s;
+}
+.footer-wa:hover { opacity: 0.85; }
+
+/* WA FLOAT */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 200;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25d366; display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.4);
+  text-decoration: none; transition: transform 0.2s;
+  animation: floatIn 0.5s 1s both;
+}
+@keyframes floatIn { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+.wa-float:hover { transform: scale(1.1); }
+.wa-float svg { width: 28px; height: 28px; fill: white; }
+
+/* MENU TAB VISIBILITY */
+.menu-panel { display: none; }
+.menu-panel.active { display: contents; }
+
+@media (max-width: 768px) {
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 12px 20px; }
+  .nav-links { display: none; }
+  .hero-content { padding: 0 24px 60px; }
+  .hero-badges { right: 24px; bottom: 60px; }
+  .strip { gap: 20px; padding: 14px 24px; flex-wrap: wrap; }
+  .about { grid-template-columns: 1fr; }
+  .about-text { padding: 60px 24px; }
+  .about-visual { height: 300px; }
+  .menu-section { padding: 60px 24px; }
+  .menu-grid { grid-template-columns: 1fr; }
+  .menu-item:nth-child(even) { padding-left: 0; border-left: none; }
+  .menu-item:nth-child(odd) { padding-right: 0; }
+  .experience { grid-template-columns: 1fr; padding: 60px 24px; }
+  .reviews { padding: 60px 24px; }
+  .reviews-grid { grid-template-columns: 1fr; }
+  .booking { grid-template-columns: 1fr; padding: 60px 24px; gap: 40px; }
+  .form-row { grid-template-columns: 1fr; }
+  .info-bar { grid-template-columns: 1fr 1fr; gap: 32px; padding: 40px 24px; }
+  .info-item { border-right: none; padding: 0; }
+  footer { flex-direction: column; gap: 20px; padding: 32px 24px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Manuel's <span>Beach</span></a>
+  <div class="nav-links">
+    <a href="#menu">Menu</a>
+    <a href="#esperienza">Il Lido</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="https://wa.me/393337296733" class="nav-cta">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="sun"></div>
+  <div class="horizon"></div>
+  <div class="waves">
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+  <div class="hero-content">
+    <div class="hero-tag">Belvedere Marittimo · Calabria</div>
+    <h1 class="hero-title">Manuel's<br><em>Beach</em></h1>
+    <p class="hero-sub">Lido · Ristorante sul mare</p>
+    <div class="hero-actions">
+      <a href="#prenota" class="btn-primary">Prenota un tavolo</a>
+      <a href="#menu" class="btn-ghost">Scopri il menu</a>
+    </div>
+  </div>
+  <div class="hero-badges">
+    <div class="badge">★★★★★ · <strong>8.9/10</strong> TheFork</div>
+    <div class="badge"><strong>586</strong> recensioni · TripAdvisor</div>
+    <div class="badge">Pesce fresco <strong>ogni giorno</strong></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item">Aperto tutto il giorno</div>
+  <div class="strip-item">Terrazza direttamente sul mare</div>
+  <div class="strip-item">Prenotazione online</div>
+  <div class="strip-item">Tra Diamante e Belvedere</div>
+</div>
+
+<!-- ABOUT -->
+<section class="about" id="esperienza">
+  <div class="about-text">
+    <div class="section-label">La nostra storia</div>
+    <h2>Più che un ristorante —<br><em>un'esperienza sul mare</em></h2>
+    <p>Situati in una cornice naturalistica privilegiata tra Diamante e Belvedere Marittimo, offriamo ai nostri ospiti la combinazione perfetta tra spiaggia attrezzata, cucina di mare e relax totale.</p>
+    <p>Il nostro menu cambia ogni giorno in base al pescato fresco e agli ingredienti locali di stagione. Ogni piatto racconta il sapore autentico della Calabria.</p>
+  </div>
+  <div class="about-visual">
+    <svg class="sea-svg" viewBox="0 0 600 500" xmlns="http://www.w3.org/2000/svg">
+      <!-- sky -->
+      <rect width="600" height="500" fill="#0d2e3a"/>
+      <!-- sun -->
+      <circle cx="300" cy="140" r="60" fill="rgba(255,220,100,0.15)"/>
+      <circle cx="300" cy="140" r="40" fill="rgba(255,220,100,0.25)"/>
+      <circle cx="300" cy="140" r="22" fill="rgba(255,220,100,0.6)"/>
+      <!-- horizon glow -->
+      <ellipse cx="300" cy="260" rx="240" ry="30" fill="rgba(255,200,80,0.08)"/>
+      <!-- sea -->
+      <path d="M0 260 Q150 250 300 260 Q450 270 600 260 L600 500 L0 500 Z" fill="#1a4a5c"/>
+      <!-- waves -->
+      <path d="M0 290 Q75 285 150 290 Q225 295 300 290 Q375 285 450 290 Q525 295 600 290" stroke="rgba(255,255,255,0.08)" stroke-width="1.5" fill="none"/>
+      <path d="M0 320 Q100 315 200 320 Q300 325 400 320 Q500 315 600 320" stroke="rgba(255,255,255,0.06)" stroke-width="1" fill="none"/>
+      <path d="M0 350 Q120 345 240 350 Q360 355 480 350 Q540 348 600 350" stroke="rgba(255,255,255,0.05)" stroke-width="1" fill="none"/>
+      <!-- boat silhouette -->
+      <path d="M380 248 L420 248 L415 260 L385 260 Z" fill="rgba(255,255,255,0.2)"/>
+      <line x1="400" y1="248" x2="400" y2="224" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+      <path d="M400 224 L418 240 L400 240 Z" fill="rgba(255,255,255,0.15)"/>
+      <!-- umbrella & table suggestion -->
+      <path d="M140 340 Q200 310 260 340" stroke="rgba(200,169,110,0.4)" stroke-width="2" fill="rgba(200,169,110,0.1)"/>
+      <line x1="200" y1="320" x2="200" y2="390" stroke="rgba(200,169,110,0.3)" stroke-width="1.5"/>
+      <ellipse cx="200" cy="390" rx="20" ry="4" fill="rgba(0,0,0,0.2)"/>
+      <!-- text -->
+      <text x="300" y="460" text-anchor="middle" font-family="'Cormorant Garamond', serif" font-size="13" fill="rgba(200,169,110,0.4)" letter-spacing="4">C O N T R A D A · P I A N O · D E L L E · D O N N E</text>
+    </svg>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-header">
+    <div class="section-label">Cucina di mare</div>
+    <h2>Il nostro <em>menu</em></h2>
+  </div>
+  <div class="menu-categories">
+    <button class="cat-btn active" onclick="showCat('antipasti', this)">Antipasti</button>
+    <button class="cat-btn" onclick="showCat('primi', this)">Primi</button>
+    <button class="cat-btn" onclick="showCat('secondi', this)">Secondi</button>
+    <button class="cat-btn" onclick="showCat('dolci', this)">Dolci</button>
+  </div>
+  <div class="menu-grid" id="menu-grid"></div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="experience">
+  <div class="exp-card">
+    <div class="exp-number">01</div>
+    <div class="exp-title">Spiaggia <em>attrezzata</em></div>
+    <p class="exp-text">Ombrelloni ben distanziati, mare cristallino con sabbia dorata caraibica. Privacy e relax in riva al Tirreno, con bagnino sempre presente.</p>
+  </div>
+  <div class="exp-card">
+    <div class="exp-number">02</div>
+    <div class="exp-title">Ristorante <em>sul mare</em></div>
+    <p class="exp-text">La nostra terrazza in legno bianco si affaccia direttamente sul mare. Pranzo e cena con menu che cambia ogni giorno seguendo il pescato locale.</p>
+  </div>
+  <div class="exp-card">
+    <div class="exp-number">03</div>
+    <div class="exp-title">Bar & <em>cocktail</em></div>
+    <p class="exp-text">Dal mattino fino a tarda sera. Cocktail, aperitivi, bibite fresche e dolci artigianali. Il tutto con vista sull'isola di Dino e il tramonto tirrenico.</p>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="recensioni">
+  <div class="section-label" style="color:var(--ocean)">Cosa dicono i nostri ospiti</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);font-weight:300;color:var(--deep);margin-bottom:0">
+    586 recensioni, <em style="font-style:italic;color:var(--wave)">una certezza</em>
+  </h2>
+  <div class="reviews-grid">
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Terrazza in legno bianco che si affaccia sul mare turchese e cristallino. Piatti squisiti, porzioni abbondanti, prezzi assolutamente onesti."</p>
+      <div class="review-author">— Marco T. · TripAdvisor</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Festeggiato l'anniversario di matrimonio. Tutto perfetto: dalle portate abbondantissime e buonissime al servizio gentilissimo. Voto 15 su 10."</p>
+      <div class="review-author">— Anna E. · TheFork</div>
+    </div>
+    <div class="review-card">
+      <div class="review-stars">★★★★★</div>
+      <p class="review-text">"Siamo tornati come ogni anno. Location suggestiva, cibo ottimo, pesce freschissimo. Continueremo con piacere a frequentare questo ristorante."</p>
+      <div class="review-author">— Famiglia Russo · TripAdvisor</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking" id="prenota">
+  <div class="booking-text">
+    <div class="section-label" style="color:var(--gold)">Prenota il tuo tavolo</div>
+    <h2>Un tavolo <em>sul mare</em> ti aspetta</h2>
+    <p style="margin-top:16px">Pranzo: 12:30 – 15:30<br>Cena: 20:00 – 23:30<br><br>Per gruppi e eventi speciali scrivici su WhatsApp.</p>
+    <a href="https://wa.me/393337296733?text=Buongiorno,%20vorrei%20prenotare%20un%20tavolo%20da%20Manuel's%20Beach" 
+       style="display:inline-block;margin-top:24px;background:transparent;border:1px solid rgba(200,169,110,0.4);color:var(--gold);padding:14px 28px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all 0.2s">
+      📱 Scrivi su WhatsApp
+    </a>
+  </div>
+  <form class="booking-form" onsubmit="handleBook(event)">
+    <div class="form-row">
+      <div class="form-group">
+        <label>Nome</label>
+        <input type="text" placeholder="Il tuo nome">
+      </div>
+      <div class="form-group">
+        <label>Telefono</label>
+        <input type="tel" placeholder="+39">
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group">
+        <label>Data</label>
+        <input type="date">
+      </div>
+      <div class="form-group">
+        <label>Persone</label>
+        <select>
+          <option>2 persone</option>
+          <option>3 persone</option>
+          <option>4 persone</option>
+          <option>5–6 persone</option>
+          <option>7+ persone</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label>Servizio</label>
+      <select>
+        <option>Pranzo (12:30 – 15:30)</option>
+        <option>Cena (20:00 – 23:30)</option>
+      </select>
+    </div>
+    <button type="submit" class="form-submit">Invia richiesta</button>
+  </form>
+</section>
+
+<!-- INFO -->
+<div class="info-bar">
+  <div class="info-item">
+    <div class="info-label">Indirizzo</div>
+    <div class="info-value">Contrada Piano delle Donne<br>Uscita Diamante Sud<br>Belvedere Marittimo (CS)</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Orari</div>
+    <div class="info-value">Tutti i giorni<br>08:00 – 00:00<br>Ristorante: 12:30 e 20:00</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Contatti</div>
+    <div class="info-value">+39 333 729 6733<br>+39 392 591 1752<br>Instagram @manuels.beach</div>
+  </div>
+  <div class="info-item">
+    <div class="info-label">Servizi</div>
+    <div class="info-value">Accesso disabili<br>Parcheggio gratuito<br>Carte di credito · Wi-Fi</div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Manuel's <span>Beach</span></div>
+  <div class="footer-copy">© 2025 Manuel's Beach · Belvedere Marittimo · Calabria</div>
+  <a href="https://wa.me/393337296733" class="footer-wa">WhatsApp</a>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/393337296733?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20da%20Manuel's%20Beach%20😊" class="wa-float" target="_blank">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+// Nav scroll
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Menu data
+const menuData = {
+  antipasti: [
+    { name: 'Antipasto di mare', desc: 'Selezione di crudi e cotti del giorno', price: '16 €' },
+    { name: 'Crudités di pesce', desc: 'Gamberi, tonno, ricciola, salmone', price: '25 €' },
+    { name: 'Frittura di fragaglia', desc: 'Pesciolini fritti croccanti, limone', price: '12 €' },
+    { name: 'Insalata di mare', desc: 'Polpo, seppie, gamberetti, olive', price: '14 €' },
+    { name: 'Tortino di alici', desc: 'Alici fresche gratinate alle erbe', price: '10 €' },
+    { name: 'Polipetti affogati', desc: 'Polpetti al sugo di pomodoro locale', price: '13 €' },
+  ],
+  primi: [
+    { name: 'Spaghetti alle vongole', desc: 'Vongole veraci, aglio, prezzemolo, vino bianco', price: '13 €' },
+    { name: 'Linguine all\'astice', desc: 'Mezza astice, pomodorini, basilico', price: '20 €' },
+    { name: 'Linguine Manuel\'s Beach', desc: 'La nostra firma: frutti di mare misti', price: '13 €' },
+    { name: 'Paccheri alla pescatrice', desc: 'Rana pescatrice, capperi, olive', price: '14 €' },
+    { name: 'Linguine al polpo', desc: 'Polpo tenero, pomodorini, scorza di limone', price: '13 €' },
+    { name: 'Tagliolini all\'astice', desc: 'Specialty della casa, ricca di sapore', price: '22 €' },
+  ],
+  secondi: [
+    { name: 'Grigliata mista di mare', desc: 'Secondo il pescato del giorno', price: '22 €' },
+    { name: 'Astice alla catalana', desc: 'Astice con pomodorini e cipolla', price: '25 €' },
+    { name: 'Tagliata di tonno rosso', desc: 'Tonno rosso scottato, sesamo, rucola', price: '20 €' },
+    { name: 'Pesce spada ai ferri', desc: 'Con salmoriglio calabrese', price: '18 €' },
+    { name: 'Frittura mista', desc: 'Calamari, gamberi, alici, croccante', price: '16 €' },
+    { name: 'Carpaccio di pesce spada', desc: 'Con limone, capperi, olio EVO', price: '14 €' },
+  ],
+  dolci: [
+    { name: 'Tartufo di Pizzo', desc: 'Il classico calabrese, al cioccolato', price: '5 €' },
+    { name: 'Tartufo al cedro', desc: 'Specialty locale, agrumato e fresco', price: '5 €' },
+    { name: 'Tiramisù della casa', desc: 'Ricetta tradizionale, preparato al momento', price: '5 €' },
+    { name: 'Panna cotta', desc: 'Con coulis di frutti di bosco', price: '4 €' },
+  ]
+};
+
+function showCat(cat, btn) {
+  document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(cat);
+}
+
+function renderMenu(cat) {
+  const grid = document.getElementById('menu-grid');
+  const items = menuData[cat];
+  grid.innerHTML = items.map((item, i) => `
+    <div class="menu-item" style="animation-delay:${i*0.06}s">
+      <div>
+        <div class="item-name">${item.name}</div>
+        <div class="item-desc">${item.desc}</div>
+      </div>
+      <div class="item-price">${item.price}</div>
+    </div>
+  `).join('');
+  setTimeout(() => {
+    grid.querySelectorAll('.menu-item').forEach(el => el.classList.add('visible'));
+  }, 50);
+}
+
+renderMenu('antipasti');
+
+// Booking form
+function handleBook(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Richiesta inviata ✓';
+  btn.style.background = '#2d7a8a';
+  btn.style.color = 'white';
+}
+
+// Scroll reveal for menu items
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) e.target.classList.add('visible');
+  });
+}, { threshold: 0.1 });
+</script>
+</body>
+</html>
