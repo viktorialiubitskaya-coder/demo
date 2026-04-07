@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panta Rei — Ristorante Mediterraneo · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #0f1a24;
+  --navy:   #162535;
+  --teal:   #1d7a72;
+  --teal2:  #24a99e;
+  --sky:    #e8f4f3;
+  --white:  #fafcfc;
+  --sand:   #f2ede6;
+  --gold:   #d4a84b;
+  --muted:  #6b8090;
+  --border: rgba(255,255,255,0.1);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;background:var(--white);color:var(--ink);overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:24px 56px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(15,26,36,.96);backdrop-filter:blur(14px);padding:16px 56px;}
+.logo{font-family:'DM Serif Display',serif;font-size:22px;color:#fff;text-decoration:none;letter-spacing:.3px;}
+.logo em{font-style:italic;color:var(--teal2);}
+.links{display:flex;gap:32px;}
+.links a{color:rgba(255,255,255,.75);text-decoration:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:#fff;}
+.cta-nav{background:var(--teal);color:#fff;padding:10px 24px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.cta-nav:hover{background:var(--teal2);}
+
+/* HERO */
+.hero{height:100vh;min-height:640px;display:flex;align-items:flex-end;position:relative;overflow:hidden;}
+.hero-bg{position:absolute;inset:0;}
+.hero-bg::before{
+  content:'';position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1800&q=80');
+  background-size:cover;background-position:center;
+}
+/* dark overlay */
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(110deg, rgba(15,26,36,.92) 0%, rgba(15,26,36,.75) 50%, rgba(29,122,114,.35) 100%);
+}
+
+/* floating geometry */
+.geo{position:absolute;pointer-events:none;}
+.geo-1{top:18%;right:12%;width:300px;height:300px;border:1px solid rgba(255,255,255,.06);border-radius:50%;animation:rotate 40s linear infinite;}
+.geo-2{top:25%;right:18%;width:180px;height:180px;border:1px solid rgba(36,169,158,.15);border-radius:50%;animation:rotate 28s linear infinite reverse;}
+.geo-3{bottom:25%;left:8%;width:120px;height:120px;border:1px solid rgba(255,255,255,.04);transform:rotate(45deg);animation:float 6s ease-in-out infinite;}
+@keyframes rotate{to{transform:rotate(360deg);}}
+@keyframes float{0%,100%{transform:rotate(45deg) translateY(0);}50%{transform:rotate(45deg) translateY(-12px);}}
+
+/* wave line */
+.waveline{position:absolute;bottom:0;left:0;right:0;height:120px;overflow:hidden;}
+.waveline svg{position:absolute;bottom:0;width:200%;animation:wv 14s linear infinite;}
+@keyframes wv{to{transform:translateX(-50%);}}
+
+.hero-content{position:relative;z-index:2;padding:0 56px 80px;animation:up .9s ease both;}
+@keyframes up{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-tag{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--teal2);margin-bottom:18px;}
+.hero-title{font-family:'DM Serif Display',serif;font-size:clamp(60px,10vw,130px);line-height:.88;color:#fff;margin-bottom:12px;}
+.hero-title em{font-style:italic;color:rgba(255,255,255,.5);}
+.hero-lead{font-size:15px;letter-spacing:.3px;line-height:1.7;color:rgba(255,255,255,.55);max-width:440px;margin-bottom:36px;}
+.hero-btns{display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.btn-p{background:var(--teal);color:#fff;padding:16px 36px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .25s;}
+.btn-p:hover{background:var(--teal2);transform:translateY(-2px);}
+.btn-s{color:rgba(255,255,255,.6);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:2px;transition:all .2s;}
+.btn-s:hover{color:#fff;border-color:rgba(255,255,255,.6);}
+
+.hero-pills{position:absolute;right:56px;bottom:80px;z-index:2;display:flex;flex-direction:column;gap:10px;align-items:flex-end;}
+.pill{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);backdrop-filter:blur(8px);padding:10px 18px;font-size:12px;color:rgba(255,255,255,.8);display:flex;align-items:center;gap:10px;}
+.pill-dot{width:6px;height:6px;border-radius:50%;background:var(--teal2);}
+
+/* STRIP */
+.strip{background:var(--ink);padding:0 56px;display:flex;overflow:hidden;}
+.strip-item{padding:20px 0;flex:1;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.35);text-align:center;border-right:1px solid rgba(255,255,255,.06);}
+.strip-item:last-child{border-right:none;}
+.strip-item strong{display:block;font-size:16px;color:#fff;font-family:'DM Serif Display',serif;font-weight:400;letter-spacing:0;margin-bottom:4px;}
+
+/* CONCEPT */
+.concept{display:grid;grid-template-columns:5fr 4fr;min-height:580px;}
+.concept-txt{background:var(--navy);padding:90px 72px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--teal2);margin-bottom:20px;}
+.concept-txt h2{font-family:'DM Serif Display',serif;font-size:clamp(38px,4vw,58px);line-height:1.05;color:#fff;margin-bottom:24px;}
+.concept-txt h2 em{font-style:italic;color:rgba(255,255,255,.4);}
+.concept-txt p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.55);margin-bottom:14px;max-width:420px;}
+.concept-visual{background:var(--teal);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+
+/* MENU */
+.menu-s{padding:100px 56px;background:var(--white);}
+.menu-head{display:grid;grid-template-columns:1fr auto;align-items:end;margin-bottom:52px;gap:24px;}
+.menu-head h2{font-family:'DM Serif Display',serif;font-size:clamp(38px,5vw,62px);line-height:1;color:var(--ink);}
+.menu-head h2 em{font-style:italic;color:var(--teal);}
+.menu-avg{font-size:12px;color:var(--muted);text-align:right;line-height:1.6;}
+.menu-avg strong{display:block;font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);}
+
+.tabs{display:flex;gap:4px;margin-bottom:44px;border-bottom:1px solid #e0e8e8;}
+.tab{padding:12px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;background:transparent;border:none;color:var(--muted);cursor:pointer;font-family:'DM Sans',sans-serif;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .2s;}
+.tab.on{color:var(--teal);border-bottom-color:var(--teal);font-weight:500;}
+
+.dish-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;}
+.dish{display:flex;justify-content:space-between;align-items:flex-start;padding:22px 0;border-bottom:1px solid #e8f0f0;gap:16px;opacity:0;transform:translateY(6px);transition:all .3s;}
+.dish.show{opacity:1;transform:translateY(0);}
+.dish:nth-child(odd){padding-right:48px;}
+.dish:nth-child(even){padding-left:48px;border-left:1px solid #e8f0f0;}
+.d-name{font-family:'DM Serif Display',serif;font-size:19px;color:var(--ink);}
+.d-sub{font-size:12px;color:var(--muted);margin-top:3px;line-height:1.4;}
+.d-tag{display:inline-block;font-size:9px;letter-spacing:1px;background:var(--sky);color:var(--teal);padding:2px 7px;border-radius:2px;margin-top:5px;}
+.d-price{font-size:15px;color:var(--teal);font-weight:500;white-space:nowrap;}
+
+/* FEATURES */
+.features{background:var(--sky);padding:80px 56px;}
+.feat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:52px;background:#d0e4e3;}
+.feat{background:var(--white);padding:40px 30px;}
+.feat-num{font-family:'DM Serif Display',serif;font-size:48px;color:var(--teal);line-height:1;margin-bottom:12px;opacity:.3;}
+.feat-title{font-family:'DM Serif Display',serif;font-size:20px;color:var(--ink);margin-bottom:10px;}
+.feat-txt{font-size:13px;line-height:1.7;color:var(--muted);}
+
+/* REVIEWS */
+.reviews-s{padding:90px 56px;background:var(--ink);}
+.reviews-s h2{font-family:'DM Serif Display',serif;font-size:clamp(34px,4vw,52px);color:#fff;margin-bottom:6px;}
+.reviews-s h2 em{font-style:italic;color:rgba(255,255,255,.3);}
+.rev-bar{font-size:12px;color:rgba(255,255,255,.35);letter-spacing:1px;margin-bottom:52px;}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rev{padding:32px;border:1px solid rgba(255,255,255,.07);position:relative;overflow:hidden;}
+.rev::before{content:'"';position:absolute;top:10px;right:18px;font-family:'DM Serif Display',serif;font-size:80px;color:rgba(29,122,114,.15);line-height:1;}
+.rev-score{font-family:'DM Serif Display',serif;font-size:13px;color:var(--teal2);letter-spacing:2px;margin-bottom:14px;}
+.rev-txt{font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.75);margin-bottom:20px;}
+.rev-who{font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+
+/* BOOK */
+.book-s{display:grid;grid-template-columns:1fr 1fr;}
+.book-left{background:var(--teal);padding:80px 64px;display:flex;flex-direction:column;justify-content:center;}
+.book-left h2{font-family:'DM Serif Display',serif;font-size:clamp(36px,4vw,52px);color:#fff;margin-bottom:20px;line-height:1.1;}
+.book-left h2 em{font-style:italic;color:rgba(255,255,255,.5);}
+.book-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.7);margin-bottom:28px;}
+.info-blocks{display:flex;flex-direction:column;gap:12px;}
+.ib{display:flex;gap:14px;align-items:flex-start;}
+.ib-icon{width:32px;height:32px;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.ib-txt{font-size:14px;color:rgba(255,255,255,.75);line-height:1.55;}
+.wa-link{display:inline-block;margin-top:28px;padding:13px 26px;border:1px solid rgba(255,255,255,.3);color:#fff;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .2s;}
+.wa-link:hover{background:rgba(255,255,255,.1);}
+
+.book-right{background:var(--sand);padding:80px 64px;}
+.book-right h3{font-family:'DM Serif Display',serif;font-size:28px;color:var(--ink);margin-bottom:32px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:16px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid #d8e4e3;padding:13px 16px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--teal);}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.fg textarea{resize:vertical;min-height:80px;}
+.sub{width:100%;background:var(--teal);color:#fff;border:none;padding:16px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'DM Sans',sans-serif;cursor:pointer;transition:all .2s;margin-top:8px;}
+.sub:hover{background:var(--teal2);}
+
+/* FOOTER */
+footer{background:#0a1520;padding:38px 56px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.f-logo{font-family:'DM Serif Display',serif;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo em{font-style:italic;color:var(--teal2);}
+.f-copy{font-size:11px;color:rgba(255,255,255,.2);}
+.f-wa{background:#25d366;color:#fff;padding:11px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;transition:opacity .2s;}
+.f-wa:hover{opacity:.85;}
+
+/* float */
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.35);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+
+@media(max-width:768px){
+  nav{padding:16px 20px;}
+  nav.on{padding:12px 20px;}
+  .links{display:none;}
+  .hero-content{padding:0 20px 60px;}
+  .hero-pills{display:none;}
+  .strip{padding:0 20px;flex-wrap:wrap;}
+  .strip-item{flex:1 1 50%;border-right:none;border-bottom:1px solid rgba(255,255,255,.06);}
+  .concept{grid-template-columns:1fr;}
+  .concept-txt{padding:60px 20px;}
+  .concept-visual{height:260px;}
+  .menu-s,.features,.reviews-s{padding:60px 20px;}
+  .menu-head{grid-template-columns:1fr;}
+  .dish-grid{grid-template-columns:1fr;}
+  .dish:nth-child(even){padding-left:0;border-left:none;}
+  .dish:nth-child(odd){padding-right:0;}
+  .feat-grid{grid-template-columns:1fr 1fr;}
+  .rev-grid{grid-template-columns:1fr;}
+  .book-s{grid-template-columns:1fr;}
+  .book-left,.book-right{padding:60px 20px;}
+  .fg-row{grid-template-columns:1fr;}
+  footer{padding:32px 20px;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="logo">Panta <em>Rei</em></a>
+  <div class="links">
+    <a href="#concept">Il Ristorante</a>
+    <a href="#menu">Menu</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="cta-nav">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="geo geo-1"></div>
+  <div class="geo geo-2"></div>
+  <div class="geo geo-3"></div>
+  <div class="waveline">
+    <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,60 C180,100 360,20 540,60 C720,100 900,20 1080,60 C1260,100 1440,40 1440,60 L1440,120 L0,120 Z" fill="rgba(250,252,252,0.04)"/>
+      <path d="M0,80 C200,40 400,100 600,70 C800,40 1000,90 1200,65 C1320,52 1380,72 1440,80 L1440,120 L0,120 Z" fill="rgba(250,252,252,0.03)"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Belvedere Marittimo · Vista su Diamante</div>
+    <h1 class="hero-title">Panta<br><em>Rei</em></h1>
+    <p class="hero-lead">Cucina mediterranea creativa, terrazza panoramica sul mare Tirreno. Ogni piatto racconta il territorio — con uno sguardo contemporaneo.</p>
+    <div class="hero-btns">
+      <a href="#prenota" class="btn-p">Prenota un tavolo</a>
+      <a href="#menu" class="btn-s">Scopri il menu</a>
+    </div>
+  </div>
+
+  <div class="hero-pills">
+    <div class="pill"><div class="pill-dot"></div>Cucina mediterranea creativa</div>
+    <div class="pill"><div class="pill-dot"></div>Terrazza panoramica</div>
+    <div class="pill"><div class="pill-dot"></div>Pesce fresco di giornata · Prezzo medio €40</div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-item"><strong>Mediterraneo</strong>Cucina creativa</div>
+  <div class="strip-item"><strong>Terrazza</strong>Vista mare aperta</div>
+  <div class="strip-item"><strong>€40</strong>Prezzo medio</div>
+  <div class="strip-item"><strong>Senza glutine</strong>Opzioni disponibili</div>
+</div>
+
+<!-- CONCEPT -->
+<section class="concept" id="concept">
+  <div class="concept-txt">
+    <div class="tag">La nostra filosofia</div>
+    <h2>Tutto scorre,<br><em>tutto cambia</em></h2>
+    <p>Come diceva Eraclito — Panta Rei, tutto scorre. È questo il principio che guida la nostra cucina: un menu che cambia con le stagioni, i piatti che si evolvono seguendo il pescato del giorno e gli ingredienti del territorio calabrese.</p>
+    <p>La terrazza affacciata sul mare di Diamante è il palcoscenico perfetto per una cucina mediterranea che rispetta la tradizione ma non ha paura di sorprendere.</p>
+  </div>
+  <div class="concept-visual" style="padding:0;overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=900&q=80"
+      alt="Terrazza Panta Rei - vista mare Belvedere Marittimo"
+      style="width:100%;height:100%;min-height:580px;object-fit:cover;display:block;"
+    />
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-s" id="menu">
+  <div class="menu-head">
+    <div>
+      <div class="tag" style="color:var(--teal)">Cucina creativa di mare</div>
+      <h2>Il nostro <em>menu</em></h2>
+    </div>
+    <div class="menu-avg">
+      Prezzo medio<br>
+      <strong>€40</strong>
+      bevande escluse
+    </div>
+  </div>
+
+  <div class="tabs">
+    <button class="tab on" onclick="showCat('antipasti',this)">Antipasti</button>
+    <button class="tab" onclick="showCat('primi',this)">Primi</button>
+    <button class="tab" onclick="showCat('secondi',this)">Secondi</button>
+    <button class="tab" onclick="showCat('dolci',this)">Dolci</button>
+  </div>
+
+  <div class="dish-grid" id="dish-grid"></div>
+</section>
+
+<!-- FEATURES -->
+<section class="features">
+  <div class="tag" style="color:var(--teal)">Perché sceglierci</div>
+  <h2 style="font-family:'DM Serif Display',serif;font-size:clamp(34px,4vw,52px);color:var(--ink);margin-top:8px;">L'<em style="font-style:italic;color:var(--teal)">esperienza</em> Panta Rei</h2>
+  <div class="feat-grid">
+    <div class="feat">
+      <div class="feat-num">01</div>
+      <div class="feat-title">Terrazza panoramica</div>
+      <p class="feat-txt">Una delle terrazze più apprezzate di Belvedere — vista aperta sul Tirreno e sulle luci di Diamante. Ideale per cene romantiche o serate speciali.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-num">02</div>
+      <div class="feat-title">Pesce di giornata</div>
+      <p class="feat-txt">Il menu cambia ogni giorno seguendo il pescato locale. Tonno con granella di pistacchi, fusillo alla gricia di gamberi — cucina creativa ma autentica.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-num">03</div>
+      <div class="feat-title">Carta vini curata</div>
+      <p class="feat-txt">15 etichette bianche, rosati e rossi selezionati. Il nostro staff è felice di consigliarti il vino perfetto per accompagnare ogni piatto.</p>
+    </div>
+    <div class="feat">
+      <div class="feat-num">04</div>
+      <div class="feat-title">Opzioni senza glutine</div>
+      <p class="feat-txt">Ampia scelta per celiaci e intolleranti. Ogni piatto può essere adattato — senza rinunciare al gusto o alla qualità degli ingredienti.</p>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY PIATTI -->
+<section style="background:var(--white);padding:0;">
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:4px;">
+    <div style="position:relative;overflow:hidden;height:300px;">
+      <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=700&q=80"
+           alt="Pesce fresco Panta Rei"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,36,.85));padding:18px 20px;">
+        <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#fff;">Pesce di giornata</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:4px;">Fresco, locale, ogni giorno diverso</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:300px;">
+      <img src="https://images.unsplash.com/photo-1473093226795-af9932fe5856?w=700&q=80"
+           alt="Pasta con frutti di mare Panta Rei"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,36,.85));padding:18px 20px;">
+        <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#fff;">Pasta di mare</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:4px;">Spaghetti vongole · Fusillo gamberi</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:300px;">
+      <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=700&q=80"
+           alt="Ristorante con vista mare"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,36,.85));padding:18px 20px;">
+        <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#fff;">Serata in terrazza</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:4px;">Atmosfera unica sul Tirreno</div>
+      </div>
+    </div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 2fr;gap:4px;margin-top:4px;">
+    <div style="position:relative;overflow:hidden;height:240px;">
+      <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80"
+           alt="Dolci Panta Rei"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .5s;"
+           onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,36,.8));padding:14px 18px;">
+        <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;color:#fff;">Dolci di casa</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:240px;">
+      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=1000&q=80"
+           alt="Tonno con pistacchi - signature dish Panta Rei"
+           style="width:100%;height:100%;object-fit:cover;display:block;object-position:center 40%;transition:transform .5s;"
+           onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(15,26,36,.8));padding:14px 18px;display:flex;justify-content:space-between;align-items:flex-end;">
+        <div>
+          <div style="font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#fff;">Tonno con granella di pistacchi</div>
+          <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.55);margin-top:3px;">Il piatto più richiesto — signature Panta Rei</div>
+        </div>
+        <div style="background:var(--teal);color:#fff;padding:6px 14px;font-size:10px;letter-spacing:2px;text-transform:uppercase;white-space:nowrap;">Specialty</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-s" id="recensioni">
+  <div class="tag">Cosa dicono di noi</div>
+  <h2>Un'atmosfera <em>unica</em></h2>
+  <p class="rev-bar">TheFork · Cucina mediterranea · Belvedere Marittimo</p>
+  <div class="rev-grid">
+    <div class="rev">
+      <div class="rev-score">★★★★★</div>
+      <p class="rev-txt">"Un'atmosfera magica e panoramica. Il tonno con granella di pistacchi e il fusillo alla gricia di gamberi erano fuori dal comune. Ottimo rapporto qualità-prezzo."</p>
+      <div class="rev-who">— Ospite TheFork</div>
+    </div>
+    <div class="rev">
+      <div class="rev-score">★★★★★</div>
+      <p class="rev-txt">"Siamo stati sia a pranzo che a cena e ogni volta è stata fantastica. Il pesce è servito con creatività mantenendo sapori autentici. L'amaro al cedro finale era eccezionale."</p>
+      <div class="rev-who">— Mario G. · TheFork</div>
+    </div>
+    <div class="rev">
+      <div class="rev-score">★★★★★</div>
+      <p class="rev-txt">"I ravioli alla pescatrice e gli spaghetti con vongole e pistacchi erano davvero ottimi — pesce fresco di giornata. Location riservata con vista sul mare. Consigliatissimo."</p>
+      <div class="rev-who">— Daniela S. · TheFork</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book-s" id="prenota">
+  <div class="book-left">
+    <div class="tag" style="color:rgba(255,255,255,.5)">Vieni a trovarci</div>
+    <h2>Prenota il<br>tuo tavolo <em>in terrazza</em></h2>
+    <p>Per vivere al meglio l'esperienza Panta Rei — soprattutto per i tavoli in terrazza — ti consigliamo di prenotare in anticipo, specialmente nel fine settimana.</p>
+    <div class="info-blocks">
+      <div class="ib"><div class="ib-icon">📍</div><div class="ib-txt">Belvedere Marittimo (CS)<br>Vista su Diamante · Calabria</div></div>
+      <div class="ib"><div class="ib-icon">🕐</div><div class="ib-txt">Pranzo: 12:30 – 15:00<br>Cena: 19:30 – 23:00</div></div>
+      <div class="ib"><div class="ib-icon">🐾</div><div class="ib-txt">Cani ammessi · Opzioni senza glutine<br>Carte di credito accettate</div></div>
+    </div>
+    <a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20da%20Panta%20Rei%20😊" class="wa-link">📱 Scrivi su WhatsApp</a>
+  </div>
+  <div class="book-right">
+    <h3>Invia una richiesta</h3>
+    <form onsubmit="sent(event)">
+      <div class="fg-row">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Data</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3 persone</option>
+            <option>4 persone</option><option>5–6 persone</option><option>7+</option>
+          </select>
+        </div>
+      </div>
+      <div class="fg-row">
+        <div class="fg"><label>Servizio</label>
+          <select><option>Cena (19:30)</option><option>Pranzo (12:30)</option></select>
+        </div>
+        <div class="fg"><label>Posto preferito</label>
+          <select><option>Terrazza (panoramica)</option><option>Sala interna</option><option>Indifferente</option></select>
+        </div>
+      </div>
+      <div class="fg"><label>Note (allergie, occasioni...)</label><textarea placeholder="Celiaco, anniversario, compleanno..."></textarea></div>
+      <button class="sub" type="submit">Invia richiesta di prenotazione</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="f-logo">Panta <em>Rei</em></div>
+  <div class="f-copy">© 2025 Panta Rei · Belvedere Marittimo (CS) · Calabria</div>
+  <a href="https://wa.me/39" class="f-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20da%20Panta%20Rei%20😊" class="waf">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('on', scrollY>60);
+});
+
+const dishes = {
+  antipasti:[
+    {name:'Antipasto Panta Rei',sub:'Selezione di crudi e cotti del giorno',tag:'Specialty',price:'18 €'},
+    {name:'Pepata di cozze',sub:'Cozze fresche, pepe nero, vino bianco, prezzemolo',tag:'',price:'12 €'},
+    {name:'Fantasia di mare',sub:'Crudi misti, gamberi, polpo, seppie',tag:'Crudo',price:'16 €'},
+    {name:'Carpaccio di tonno',sub:'Tonno rosso, citronette, capperi di Pantelleria',tag:'',price:'15 €'},
+    {name:'Tartare di spigola',sub:'Con avocado, scorza di limone, olio EVO',tag:'Fresco',price:'14 €'},
+    {name:'Polipetti in umido',sub:'Pomodorini, olive, peperoncino di Diamante',tag:'',price:'13 €'},
+  ],
+  primi:[
+    {name:'Fusillo alla gricia di gamberi',sub:'Gamberi rossi, guanciale croccante, pecorino',tag:'Specialty',price:'16 €'},
+    {name:'Ravioli alla pescatrice',sub:'Pescatrice, pomodorini gialli, erbe aromatiche',tag:'',price:'15 €'},
+    {name:'Spaghetti vongole e pistacchi',sub:'Vongole veraci, pesto di pistacchi di Bronte',tag:'Creativo',price:'15 €'},
+    {name:'Linguine all\'astice',sub:'Mezza astice, bisque ridotta, basilico',tag:'',price:'22 €'},
+    {name:'Risotto ai frutti di mare',sub:'Cozze, vongole, gamberi, zafferano',tag:'',price:'16 €'},
+    {name:'Paccheri alla pescatora',sub:'Pesce misto del giorno, pomodoro fresco',tag:'',price:'14 €'},
+  ],
+  secondi:[
+    {name:'Spigola agli agrumi',sub:'Filetto di spigola, salsa al cedro, finocchietto',tag:'Leggerezza',price:'22 €'},
+    {name:'Rombo al forno',sub:'Con patate, olive taggiasche, pomodori',tag:'',price:'24 €'},
+    {name:'Tonno con granella di pistacchi',sub:'Tonno scottato, crema di pistacchi, radicchio',tag:'Specialty',price:'20 €'},
+    {name:'Frittura mista di mare',sub:'Calamari, gamberi, alici — pastella leggera',tag:'Classico',price:'18 €'},
+    {name:'Grigliata del pescatore',sub:'Secondo il pescato del giorno',tag:'',price:'24 €'},
+    {name:'Scampi in padella',sub:'Con burro, aglio, scorza di limone, timo',tag:'',price:'26 €'},
+  ],
+  dolci:[
+    {name:'Semifreddo alla casa',sub:'Cambia ogni giorno — chiedi al cameriere',tag:'',price:'6 €'},
+    {name:'Tiramisù del Panta Rei',sub:'Ricetta originale, mascarpone e savoiardi',tag:'',price:'6 €'},
+    {name:'Panna cotta al bergamotto',sub:'Con salsa al bergamotto di Reggio Calabria',tag:'Territorio',price:'5 €'},
+    {name:'Amaro al cedro',sub:'Produzione locale — perfetto per chiudere',tag:'',price:'4 €'},
+  ],
+};
+
+function showCat(cat, btn){
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('on'));
+  btn.classList.add('on');
+  const g = document.getElementById('dish-grid');
+  g.innerHTML = dishes[cat].map((d,i)=>`
+    <div class="dish" style="transition-delay:${i*.05}s">
+      <div>
+        <div class="d-name">${d.name}</div>
+        <div class="d-sub">${d.sub}</div>
+        ${d.tag?`<span class="d-tag">${d.tag}</span>`:''}
+      </div>
+      <div class="d-price">${d.price}</div>
+    </div>`).join('');
+  requestAnimationFrame(()=>{
+    g.querySelectorAll('.dish').forEach(d=>d.classList.add('show'));
+  });
+}
+showCat('antipasti', document.querySelector('.tab.on'));
+
+function sent(e){
+  e.preventDefault();
+  const b = e.target.querySelector('.sub');
+  b.textContent='✓ Richiesta inviata!';
+  b.style.background='#1d7a72';
+}
+</script>
+</body>
+</html>
