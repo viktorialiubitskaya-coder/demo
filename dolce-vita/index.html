@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>La Dolce Vita · Bar Pizzeria · Diamante</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Sans:ital,wght@0,300;0,400;1,300&display=swap" rel="stylesheet">
+<style>
+:root{--sky:#1a5a8a;--azure:#2a80b8;--sun:#e8b830;--sun2:#f0cc50;--white:#ffffff;--off:#f8f9fa;--ink:#0a1824;--muted:#4a6a7a;--border:rgba(26,90,138,.15);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--off);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+[lang="en"]{display:none;}body.en [lang="it"]{display:none;}body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:var(--sky);color:#fff;font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Syne',sans-serif;border:none;border-radius:20px;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(10,24,36,.97);backdrop-filter:blur(12px);padding:13px 52px;}
+.logo{font-family:'Syne',sans-serif;font-size:18px;font-weight:800;color:#fff;text-decoration:none;letter-spacing:1px;text-transform:uppercase;}
+.logo span{color:var(--sun);}
+.links{display:flex;gap:24px;}.links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Syne',sans-serif;transition:color .2s;}.links a:hover{color:var(--sun);}
+.nav-cta{background:var(--sun);color:var(--ink);padding:9px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;border-radius:20px;transition:all .2s;}.nav-cta:hover{background:var(--sun2);}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:linear-gradient(135deg,#0a1824 0%,#1a3a5a 40%,#1a5a8a 70%,#2a80b8 100%);}
+.hbg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 50% at 30% 50%,rgba(232,184,48,.12) 0%,transparent 60%);}
+/* sun rays */
+.sun-rays{position:absolute;right:0;top:0;bottom:0;width:55%;overflow:hidden;}
+.ray{position:absolute;top:50%;right:0;width:120%;height:3px;background:linear-gradient(to right,transparent,rgba(232,184,48,.06));transform-origin:right center;}
+.ray:nth-child(1){transform:translateY(-50%) rotate(-30deg);}
+.ray:nth-child(2){transform:translateY(-50%) rotate(-15deg);}
+.ray:nth-child(3){transform:translateY(-50%) rotate(0deg);}
+.ray:nth-child(4){transform:translateY(-50%) rotate(15deg);}
+.ray:nth-child(5){transform:translateY(-50%) rotate(30deg);}
+.hc{position:relative;z-index:2;padding:80px 60px;animation:su .9s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.htag{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--sun);margin-bottom:20px;}
+.hh{font-family:'Syne',sans-serif;font-size:clamp(52px,8vw,100px);font-weight:800;line-height:.9;color:#fff;margin-bottom:10px;text-transform:uppercase;}
+.hh span{color:var(--sun);display:block;}
+.hsub{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.35);font-family:'Syne',sans-serif;margin-bottom:26px;}
+.hdesc{font-size:17px;line-height:1.8;color:rgba(255,255,255,.55);max-width:420px;margin-bottom:44px;}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.bts{background:var(--sun);color:var(--ink);padding:15px 32px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;border-radius:30px;transition:all .3s;}.bts:hover{background:var(--sun2);transform:translateY(-2px);}
+.btl{color:rgba(255,255,255,.45);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;font-family:'Syne',sans-serif;transition:all .2s;}.btl:hover{color:#fff;}
+/* hero right — bar counter illustration */
+.hv{position:relative;z-index:2;display:flex;align-items:center;justify-content:center;padding:40px;}
+/* ORARI */
+.orari{background:var(--sky);color:#fff;padding:16px 52px;display:flex;gap:40px;align-items:center;overflow:hidden;}
+.oi{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;white-space:nowrap;color:rgba(255,255,255,.6);}
+.oi b{color:#fff;}
+/* ABOUT */
+.about{padding:90px 52px;background:var(--off);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.tag{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sky);margin-bottom:14px;}
+.about h2{font-family:'Syne',sans-serif;font-size:clamp(32px,3.5vw,50px);font-weight:800;color:var(--ink);margin-bottom:20px;text-transform:uppercase;line-height:.95;}
+.about h2 span{color:var(--sky);}
+.about p{font-size:16px;line-height:1.85;color:var(--muted);margin-bottom:14px;}
+.qt{background:#fff;border-left:4px solid var(--sun);padding:18px 22px;margin-top:20px;}
+.qt p{font-size:18px;line-height:1.55;color:var(--ink);font-style:italic;}
+.qt cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:6px;font-style:normal;font-family:'Syne',sans-serif;}
+/* MENU */
+.menus{padding:90px 52px;background:var(--white);}
+.mh h2{font-family:'Syne',sans-serif;font-size:clamp(36px,4.5vw,60px);font-weight:800;text-transform:uppercase;color:var(--ink);margin-bottom:48px;}
+.mh h2 span{color:var(--sky);}
+.mg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.mc{background:var(--off);padding:32px 26px;border-radius:16px;border-bottom:4px solid var(--sky);transition:all .3s;}.mc:hover{transform:translateY(-6px);box-shadow:0 12px 32px rgba(26,90,138,.15);}
+.mct{font-family:'Syne',sans-serif;font-size:14px;font-weight:700;color:var(--sky);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px;}
+.mch{font-family:'Syne',sans-serif;font-size:22px;font-weight:800;color:var(--ink);margin-bottom:10px;}
+.mcd{font-size:14px;line-height:1.6;color:var(--muted);}
+.mcp{font-family:'Syne',sans-serif;font-size:18px;font-weight:700;color:var(--sky);margin-top:12px;}
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--sky);}
+.rh h2{font-family:'Syne',sans-serif;font-size:clamp(36px,4.5vw,60px);font-weight:800;text-transform:uppercase;color:#fff;margin-bottom:8px;}
+.rh h2 span{color:var(--sun);}
+.rbar{font-size:12px;color:rgba(255,255,255,.5);margin-bottom:40px;font-family:'Syne',sans-serif;letter-spacing:1px;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:rgba(255,255,255,.1);padding:28px;border-radius:12px;}
+.rvs{color:var(--sun);font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+.rvt{font-size:16px;line-height:1.65;color:rgba(255,255,255,.8);margin-bottom:12px;font-style:italic;}
+.rvw{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.4);}
+/* BOOK */
+.book{padding:90px 52px;background:var(--off);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.bl h2{font-family:'Syne',sans-serif;font-size:clamp(28px,3vw,44px);font-weight:800;text-transform:uppercase;color:var(--ink);margin-bottom:16px;}
+.bl h2 span{color:var(--sky);}
+.bl p{font-size:16px;line-height:1.8;color:var(--muted);margin-bottom:24px;}
+.ir{display:flex;gap:12px;align-items:flex-start;margin-bottom:10px;}
+.iri{width:32px;height:32px;background:var(--sky);color:#fff;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;border-radius:8px;}
+.irt{font-size:15px;color:var(--ink);line-height:1.55;}
+.wal{display:inline-block;margin-top:20px;background:#25d366;color:#fff;padding:13px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;border-radius:30px;}
+.bf{display:flex;flex-direction:column;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-family:'Syne',sans-serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select{background:#fff;border:2px solid rgba(26,90,138,.1);padding:12px 14px;font-family:'DM Sans',sans-serif;font-size:15px;color:var(--ink);outline:none;border-radius:10px;transition:border-color .2s;}.fg input:focus,.fg select:focus{border-color:var(--sky);}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sub{width:100%;background:var(--sky);color:#fff;border:none;padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Syne',sans-serif;font-weight:700;cursor:pointer;border-radius:10px;transition:all .2s;}.sub:hover{background:var(--azure);}
+footer{background:var(--ink);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.fl{font-family:'Syne',sans-serif;font-size:16px;font-weight:800;text-transform:uppercase;color:rgba(255,255,255,.2);letter-spacing:1px;}.fl span{color:var(--sun);}
+.fc{font-size:12px;color:rgba(255,255,255,.3);}
+.fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Syne',sans-serif;font-weight:700;border-radius:20px;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hero{grid-template-columns:1fr;}.hv{display:none;}.hc{padding:40px 20px 72px;}.orari{padding:12px 20px;gap:20px;}.about{grid-template-columns:1fr;padding:60px 20px;}.menus,.revs,.book{padding:60px 20px;}.mg{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo">La <span>Dolce</span> Vita</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Bar</span><span lang="en">About</span></a>
+    <a href="#menu">Menu</a>
+    <a href="#book"><span lang="it">Contatti</span><span lang="en">Contact</span></a>
+  </div>
+  <a href="https://wa.me/393473616038" class="nav-cta"><span lang="it">📱 WhatsApp</span><span lang="en">📱 WhatsApp</span></a>
+</nav>
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="sun-rays"><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div><div class="ray"></div></div>
+  <div class="hc">
+    <div class="htag" lang="it">Diamante · Bar · Pizzeria forno a legna · Via Panoramica</div>
+    <div class="htag" lang="en">Diamante · Bar · Wood-fired pizza · Via Panoramica</div>
+    <h1 class="hh">LA<span>DOLCE VITA</span></h1>
+    <p class="hsub" lang="it">Dal mattino a mezzanotte · Antonio</p>
+    <p class="hsub" lang="en">Morning to midnight · Antonio</p>
+    <p class="hdesc" lang="it">Il cuore pulsante di Diamante. Dalla colazione al dopocena — bar, pizzeria forno a legna, pasticceria artigianale. Antonio e la sua squadra sono il posto dove inizia e finisce ogni giornata a Diamante.</p>
+    <p class="hdesc" lang="en">The beating heart of Diamante. From breakfast to after-dinner — bar, wood-fired pizzeria, artisan pastry. Antonio and his team are the spot where every day in Diamante begins and ends.</p>
+    <div class="hbtns">
+      <a href="https://wa.me/393473616038?text=Ciao!%20Vorrei%20info%20su%20La%20Dolce%20Vita%20di%20Diamante%20😊" class="bts"><span lang="it">📱 Scrivici su WhatsApp</span><span lang="en">📱 Write on WhatsApp</span></a>
+      <a href="#menu" class="btl"><span lang="it">Scopri il menu</span><span lang="en">See the menu</span></a>
+    </div>
+  </div>
+  <div class="hv">
+    <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px;opacity:.85">
+      <rect width="300" height="340" fill="rgba(0,0,0,0)"/>
+      <!-- coffee cup -->
+      <ellipse cx="150" cy="200" rx="65" ry="25" fill="#1a1208" opacity=".8"/>
+      <rect x="85" y="150" width="130" height="55" rx="8" fill="#2a1e0e" opacity=".8"/>
+      <ellipse cx="150" cy="150" rx="65" ry="20" fill="#3a2a14" opacity=".8"/>
+      <ellipse cx="150" cy="148" rx="55" ry="14" fill="rgba(80,40,15,.7)"/>
+      <!-- steam -->
+      <path d="M130 135 Q125 115 130 100 Q135 85 128 70" stroke="rgba(255,255,255,.15)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M150 130 Q145 110 150 95 Q155 80 148 65" stroke="rgba(255,255,255,.12)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M170 133 Q165 113 170 98 Q175 83 168 68" stroke="rgba(255,255,255,.1)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- saucer -->
+      <ellipse cx="150" cy="210" rx="75" ry="14" fill="#3a2a14" opacity=".7"/>
+      <!-- sun/star deco -->
+      <circle cx="150" cy="55" r="30" fill="rgba(232,184,48,.08)"/>
+      <circle cx="150" cy="55" r="20" fill="rgba(232,184,48,.1)"/>
+      <circle cx="150" cy="55" r="10" fill="rgba(232,184,48,.2)"/>
+      <!-- ★4.4 -->
+      <text x="150" y="290" text-anchor="middle" font-family="'Syne',sans-serif" font-weight="800" font-size="20" fill="rgba(232,184,48,.5)" letter-spacing="2">★4.4</text>
+      <text x="150" y="315" text-anchor="middle" font-family="'Syne',sans-serif" font-size="10" fill="rgba(255,255,255,.25)" letter-spacing="3">412 RECENSIONI</text>
+    </svg>
+  </div>
+</section>
+<div class="orari">
+  <div class="oi">🕖 <b lang="it">Aperto 7:00–24:00</b><b lang="en">Open 7:00–24:00</b></div>
+  <div class="oi">☕ <b lang="it">Colazione</b><b lang="en">Breakfast</b></div>
+  <div class="oi">🍕 <b lang="it">Pizza forno a legna</b><b lang="en">Wood-fired pizza</b></div>
+  <div class="oi">🍰 <b lang="it">Pasticceria artigianale</b><b lang="en">Artisan pastry</b></div>
+  <div class="oi">★ <b>4.4 · 412 rec.</b></div>
+</div>
+<section class="about" id="about">
+  <div>
+    <div class="tag" lang="it">Il nostro locale</div><div class="tag" lang="en">About us</div>
+    <h2 lang="it">UN POSTO <span>UNICO</span><br>A DIAMANTE</h2>
+    <h2 lang="en">A <span>UNIQUE</span> SPOT<br>IN DIAMANTE</h2>
+    <p lang="it">Antonio gestisce La Dolce Vita sulla Via Panoramica di Diamante con un'energia contagiosa. Aperto dalle 7 a mezzanotte, è il posto dove i diamantesi fanno colazione, i turisti scoprono i dolci locali e tutti finiscono la serata con una pizza.</p>
+    <p lang="en">Antonio runs La Dolce Vita on Diamante's Via Panoramica with infectious energy. Open from 7am to midnight, it's where the locals have breakfast, tourists discover local pastries, and everyone ends the evening with a pizza.</p>
+    <p lang="it">Pizza forno a legna, cornetti freschi ogni mattina, torte artigianali e il caffè più amato di Diamante. "The best place around — Antonio is the best!" scrivono i clienti.</p>
+    <p lang="en">Wood-fired pizza, fresh croissants every morning, artisan cakes and the most beloved coffee in Diamante. "The best place around — Antonio is the best!" write the customers.</p>
+    <div class="qt">
+      <p lang="it">"The best place around, just love the food, cake, pizza and staff. Antonio is the best! 🇮🇹🇮🇹🇮🇹"</p>
+      <p lang="en">"The best place around, just love the food, cake, pizza and staff. Antonio is the best! 🇮🇹🇮🇹🇮🇹"</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+  <svg viewBox="0 0 300 300" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px">
+    <rect width="300" height="300" fill="rgba(26,90,138,.05)" rx="20"/>
+    <circle cx="150" cy="150" r="100" fill="none" stroke="rgba(26,90,138,.1)" stroke-width="1"/>
+    <circle cx="150" cy="150" r="70" fill="none" stroke="rgba(232,184,48,.1)" stroke-width="1"/>
+    <!-- pizza slices -->
+    <path d="M150 150 L230 100 A90 90 0 0 1 230 200Z" fill="rgba(232,184,48,.15)"/>
+    <path d="M150 150 L230 200 A90 90 0 0 1 150 240Z" fill="rgba(26,90,138,.12)"/>
+    <path d="M150 150 L150 240 A90 90 0 0 1 70 200Z" fill="rgba(232,184,48,.1)"/>
+    <path d="M150 150 L70 200 A90 90 0 0 1 70 100Z" fill="rgba(26,90,138,.15)"/>
+    <path d="M150 150 L70 100 A90 90 0 0 1 150 60Z" fill="rgba(232,184,48,.12)"/>
+    <path d="M150 150 L150 60 A90 90 0 0 1 230 100Z" fill="rgba(26,90,138,.1)"/>
+    <!-- center -->
+    <circle cx="150" cy="150" r="25" fill="rgba(232,184,48,.2)"/>
+    <text x="150" y="156" text-anchor="middle" font-family="'Syne',sans-serif" font-weight="800" font-size="14" fill="rgba(26,90,138,.6)">PIZZA</text>
+    <text x="150" y="285" text-anchor="middle" font-family="'Syne',sans-serif" font-weight="700" font-size="10" fill="rgba(26,90,138,.3)" letter-spacing="2">FORNO A LEGNA</text>
+  </svg>
+</section>
+<section class="menus" id="menu">
+  <div class="mh">
+    <div class="tag" lang="it">Tutto il giorno</div><div class="tag" lang="en">All day</div>
+    <h2 lang="it">IL NOSTRO <span>MENU</span></h2><h2 lang="en">OUR <span>MENU</span></h2>
+  </div>
+  <div class="mg">
+    <div class="mc"><div class="mct" lang="it">Mattina</div><div class="mct" lang="en">Morning</div><div class="mch" lang="it">Bar & Colazione</div><div class="mch" lang="en">Bar & Breakfast</div><div class="mcd" lang="it">Cornetti freschi, cappuccino, caffè, brioches, paste artigianali. Anche cornetto con prosciutto e mozzarella su richiesta.</div><div class="mcd" lang="en">Fresh croissants, cappuccino, coffee, artisan pastries. Ham and mozzarella croissant available on request.</div><div class="mcp" lang="it">da €1,50</div><div class="mcp" lang="en">from €1.50</div></div>
+    <div class="mc"><div class="mct" lang="it">Pranzo & Sera</div><div class="mct" lang="en">Lunch & Dinner</div><div class="mch" lang="it">Pizza forno a legna</div><div class="mch" lang="en">Wood-fired pizza</div><div class="mcd" lang="it">Pizza napoletana con forno a legna. "I've never had a better pizza than here." Margherita, marinara, speciali della casa, pizze del giorno.</div><div class="mcd" lang="en">Neapolitan pizza from a wood-fired oven. "I've never had a better pizza than here." Margherita, marinara, house specials, daily pizzas.</div><div class="mcp" lang="it">da €7</div><div class="mcp" lang="en">from €7</div></div>
+    <div class="mc"><div class="mct" lang="it">Sempre</div><div class="mct" lang="en">All day</div><div class="mch" lang="it">Pasticceria & Dolci</div><div class="mch" lang="en">Pastry & Desserts</div><div class="mcd" lang="it">Torte artigianali, dolci locali, tartufo di Pizzo, semifreddi. Tutto fatto con amore da Antonio e la sua squadra.</div><div class="mcd" lang="en">Artisan cakes, local sweets, Pizzo truffle, semifreddos. All made with love by Antonio and his team.</div><div class="mcp" lang="it">da €3</div><div class="mcp" lang="en">from €3</div></div>
+  </div>
+</section>
+<section class="revs" id="reviews">
+  <div class="rh">
+    <div class="tag" style="color:var(--sun);font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px" lang="it">Cosa dicono</div>
+    <div class="tag" style="color:var(--sun);font-family:'Syne',sans-serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;margin-bottom:12px" lang="en">What they say</div>
+    <h2 lang="it"><span>★4.4</span> · 412 CLIENTI FELICI</h2><h2 lang="en"><span>★4.4</span> · 412 HAPPY CUSTOMERS</h2>
+    <div class="rbar">Google Maps · Via Panoramica · Diamante</div>
+  </div>
+  <div class="rg">
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"I've never had a better pizza than here. 💯 Really nice place to eat-in."</p><p class="rvt" lang="en">"I've never had a better pizza than here. 💯 Really nice place to eat-in."</p><div class="rvw">🌍 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Perfect breakfast place. If you know how to speak Italian the owner will also make you a croissant with prosciutto and mozzarella. Everything was fresh and tasty."</p><p class="rvt" lang="en">"Perfect breakfast place. The owner also makes you a croissant with prosciutto and mozzarella. Everything was fresh and tasty."</p><div class="rvw">🌍 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"The best place around, just love the food, cake, pizza and staff. Antonio is the best! Excellent experience — a beautiful surprise. Highly recommend."</p><p class="rvt" lang="en">"The best place around, just love the food, cake, pizza and staff. Antonio is the best! Excellent experience — a beautiful surprise. Highly recommend."</p><div class="rvw">🌍 Google Maps</div></div>
+  </div>
+</section>
+<section class="book" id="book">
+  <div class="bl">
+    <div class="tag" lang="it">Dove siamo</div><div class="tag" lang="en">Find us</div>
+    <h2 lang="it">VIENI A <span>TROVARCI</span></h2><h2 lang="en">COME AND <span>VISIT</span></h2>
+    <p lang="it">Siamo sulla Via Panoramica di Diamante — facili da trovare. Per grandi gruppi o eventi speciali, scrivici su WhatsApp.</p>
+    <p lang="en">We're on Diamante's Via Panoramica — easy to find. For large groups or special events, write to us on WhatsApp.</p>
+    <div class="ir"><div class="iri">📍</div><div class="irt">Via Panoramica · Diamante (CS)</div></div>
+    <div class="ir"><div class="iri">📞</div><div class="irt">347 361 6038 (Antonio)</div></div>
+    <div class="ir"><div class="iri">🕐</div><div class="irt"><span lang="it">7:00 – 24:00 · Tutti i giorni</span><span lang="en">7:00 – 24:00 · Every day</span></div></div>
+    <div class="ir"><div class="iri">🍕</div><div class="irt"><span lang="it">Pizza disponibile da pranzo</span><span lang="en">Pizza available from lunch</span></div></div>
+    <a href="https://wa.me/393473616038?text=Ciao%20Antonio!%20Volevo%20info%20su%20La%20Dolce%20Vita%20😊" class="wal">📱 WhatsApp Antonio</a>
+  </div>
+  <div class="bf">
+    <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+    <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+    <div class="fg"><label lang="it">Messaggio</label><label lang="en">Message</label><input type="text" placeholder="..."></div>
+    <button class="sub" onclick="sent(this)"><span lang="it">Invia</span><span lang="en">Send</span></button>
+  </div>
+</section>
+<footer>
+  <div class="fl">La <span>Dolce</span> Vita</div>
+  <div class="fc">© 2025 La Dolce Vita · Via Panoramica · Diamante (CS) · 347 361 6038</div>
+  <a href="https://wa.me/393473616038" class="fwa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393473616038" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function sent(b){b.textContent='✓';b.style.background='#3a8a4a';}
+</script>
+</body>
+</html>

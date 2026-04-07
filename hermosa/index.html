@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parrucchiere Hermosa · Mario · Diamante</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--sage:#4a7060;--sage2:#5a8a78;--sage3:#6aaa90;--fog:#e8ede8;--cream:#f6f8f4;--dark:#0e1a14;--ink:#1a2a20;--muted:#6a7a70;--border:rgba(74,112,96,.15);--light:#d4e0d0;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'DM Sans',sans-serif;overflow-x:hidden;}
+[lang="en"]{display:none;}body.en [lang="it"]{display:none;}body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(74,112,96,.12);border:1px solid var(--border);color:var(--sage);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'DM Sans',sans-serif;border-radius:4px;}
+body.ho .lang-btn{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:rgba(255,255,255,.7);}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(14,26,20,.97);backdrop-filter:blur(12px);border-bottom:1px solid rgba(74,112,96,.2);padding:13px 52px;}
+.logo{font-family:'DM Serif Display',serif;font-size:20px;font-style:italic;color:#fff;text-decoration:none;}
+.logo b{font-style:normal;color:var(--sage3);font-weight:400;}
+.links{display:flex;gap:26px;}.links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}.links a:hover{color:var(--sage3);}
+.nav-cta{border:1px solid var(--sage);color:var(--sage3);padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:4px;transition:all .2s;}.nav-cta:hover{background:var(--sage);color:#fff;}
+/* HERO */
+.hero{min-height:100vh;position:relative;display:flex;align-items:center;overflow:hidden;background:var(--dark);}
+.hbg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 75% 40%,rgba(74,112,96,.2) 0%,transparent 60%);}
+.hbg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 45% 40% at 25% 60%,rgba(74,112,96,.08) 0%,transparent 55%);}
+.hbg{position:absolute;inset:0;}
+/* horizontal lines texture */
+.hbg-tex{position:absolute;inset:0;background:repeating-linear-gradient(0deg,rgba(255,255,255,.012) 0px,transparent 1px,transparent 48px);}
+/* right visual — scissors / geometry */
+.hv{position:absolute;right:52px;top:50%;transform:translateY(-50%);z-index:2;}
+.hc{position:relative;z-index:2;padding:80px 60px;max-width:620px;animation:su .9s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.htag{font-size:11px;letter-spacing:5px;text-transform:uppercase;color:var(--sage3);margin-bottom:22px;}
+.hh{font-family:'DM Serif Display',serif;font-size:clamp(52px,8vw,100px);font-style:italic;line-height:.95;color:#fff;margin-bottom:12px;}
+.hh span{font-style:normal;color:var(--sage3);}
+.hsub{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:26px;}
+.hdesc{font-size:16px;line-height:1.85;color:rgba(255,255,255,.5);max-width:420px;margin-bottom:44px;}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.bts{background:var(--sage);color:#fff;padding:15px 34px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;border-radius:4px;transition:all .3s;}.bts:hover{background:var(--sage2);transform:translateY(-2px);}
+.btl{color:rgba(255,255,255,.4);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:2px;transition:all .2s;}.btl:hover{color:#fff;}
+.hrating{position:absolute;bottom:44px;left:60px;z-index:2;background:rgba(255,255,255,.05);border:1px solid rgba(74,112,96,.2);padding:16px 22px;display:flex;gap:16px;align-items:center;border-radius:8px;backdrop-filter:blur(8px);}
+.hrv{font-family:'DM Serif Display',serif;font-size:44px;color:var(--sage3);}
+.hri .hrs{color:var(--sage3);font-size:14px;letter-spacing:2px;}
+.hri .hrl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:3px;}
+/* strip */
+.strip{background:var(--sage);display:grid;grid-template-columns:repeat(4,1fr);}
+.si{padding:14px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.2);}
+.si:last-child{border-right:none;}
+.siv{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:#fff;}
+.sil{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-top:3px;}
+/* ABOUT */
+.about{padding:90px 52px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--sage);margin-bottom:14px;}
+.about h2{font-family:'DM Serif Display',serif;font-size:clamp(32px,3.5vw,50px);font-style:italic;line-height:1.1;color:var(--ink);margin-bottom:20px;}
+.about h2 span{color:var(--sage);font-style:normal;}
+.about p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:14px;}
+.qt{background:var(--fog);border-left:4px solid var(--sage);padding:18px 22px;margin-top:20px;border-radius:0 8px 8px 0;}
+.qt p{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:var(--ink);line-height:1.55;}
+.qt cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+/* SERVIZI */
+.svz{padding:90px 52px;background:var(--fog);}
+.sv-h h2{font-family:'DM Serif Display',serif;font-size:clamp(36px,4vw,56px);font-style:italic;color:var(--ink);margin-bottom:44px;}
+.sv-h h2 span{color:var(--sage);}
+.svg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.sv{background:var(--cream);padding:30px 24px;border-radius:12px;border:1px solid var(--border);transition:all .3s;}
+.sv:hover{transform:translateY(-5px);border-color:var(--sage2);box-shadow:0 10px 28px rgba(74,112,96,.12);}
+.svt{font-family:'DM Serif Display',serif;font-size:22px;font-style:italic;color:var(--ink);margin-bottom:8px;}
+.svt span{color:var(--sage);}
+.svd{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:14px;}
+.svp{font-family:'DM Serif Display',serif;font-size:20px;color:var(--sage);}
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--dark);}
+.rh h2{font-family:'DM Serif Display',serif;font-size:clamp(36px,4.5vw,58px);font-style:italic;color:#fff;margin-bottom:6px;}
+.rh h2 span{color:var(--sage3);font-style:normal;}
+.rbar{font-size:12px;color:rgba(255,255,255,.3);margin-bottom:40px;letter-spacing:1px;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:rgba(255,255,255,.04);padding:28px;border-radius:12px;border-top:3px solid var(--sage);}
+.rvs{color:var(--sage3);font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+.rvt{font-family:'DM Serif Display',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:12px;}
+.rvw{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);}
+/* BOOK */
+.book{padding:90px 52px;background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.bl h2{font-family:'DM Serif Display',serif;font-size:clamp(32px,3.5vw,48px);font-style:italic;color:var(--ink);margin-bottom:16px;}
+.bl p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:22px;}
+.ir{display:flex;gap:12px;align-items:center;margin-bottom:10px;}
+.iri{width:32px;height:32px;background:rgba(74,112,96,.12);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.irt{font-size:14px;color:var(--ink);line-height:1.5;}
+.wal{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#25d366;color:#fff;padding:13px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;border-radius:8px;}
+.bf{display:flex;flex-direction:column;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select{background:var(--fog);border:1px solid var(--border);padding:12px 14px;border-radius:8px;font-family:'DM Sans',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}.fg input:focus,.fg select:focus{border-color:var(--sage);}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+.sub{background:var(--sage);color:#fff;border:none;padding:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'DM Sans',sans-serif;font-weight:500;cursor:pointer;border-radius:8px;width:100%;transition:all .2s;}.sub:hover{background:var(--sage2);}
+footer{background:var(--dark);padding:28px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;}
+.fl{font-family:'DM Serif Display',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.2);}.fl b{font-style:normal;color:var(--sage3);font-weight:400;}
+.fc{font-size:12px;color:var(--muted);}
+.fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;border-radius:8px;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:40px 20px 80px;}.hv{display:none;}.hrating{left:20px;bottom:24px;}.strip{grid-template-columns:1fr 1fr;}.about{grid-template-columns:1fr;padding:60px 20px;}.svz,.revs,.book{padding:60px 20px;}.svg{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body" class="ho">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo"><b>Hermosa</b> · Mario</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Salone</span><span lang="en">The Salon</span></a>
+    <a href="#servizi"><span lang="it">Servizi</span><span lang="en">Services</span></a>
+    <a href="#book"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393479588417" class="nav-cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+<section class="hero">
+  <div class="hbg"></div><div class="hbg-tex"></div>
+  <div class="hv">
+    <svg viewBox="0 0 300 360" xmlns="http://www.w3.org/2000/svg" style="width:320px;opacity:.85">
+      <rect width="300" height="360" fill="rgba(0,0,0,0)"/>
+      <!-- barber pole -->
+      <rect x="120" y="40" width="60" height="260" rx="8" fill="#1a2a1e" stroke="rgba(74,112,96,.3)" stroke-width="1.5"/>
+      <path d="M120 60 Q150 70 180 60 L180 85 Q150 95 120 85Z" fill="rgba(74,112,96,.25)"/>
+      <path d="M120 100 Q150 110 180 100 L180 125 Q150 135 120 125Z" fill="rgba(255,255,255,.06)"/>
+      <path d="M120 140 Q150 150 180 140 L180 165 Q150 175 120 165Z" fill="rgba(74,112,96,.25)"/>
+      <path d="M120 180 Q150 190 180 180 L180 205 Q150 215 120 205Z" fill="rgba(255,255,255,.06)"/>
+      <path d="M120 220 Q150 230 180 220 L180 245 Q150 255 120 245Z" fill="rgba(74,112,96,.25)"/>
+      <!-- scissors -->
+      <g transform="translate(50,100)" opacity=".6">
+        <line x1="0" y1="0" x2="50" y2="50" stroke="#4a7060" stroke-width="2.5"/>
+        <line x1="50" y1="0" x2="0" y2="50" stroke="#4a7060" stroke-width="2.5"/>
+        <circle cx="0" cy="0" r="8" stroke="#4a7060" stroke-width="2" fill="none"/>
+        <circle cx="50" cy="50" r="8" stroke="#4a7060" stroke-width="2" fill="none"/>
+      </g>
+      <!-- comb -->
+      <g transform="translate(200,120)" opacity=".4">
+        <rect x="0" y="0" width="55" height="12" rx="3" fill="none" stroke="#5a8a78" stroke-width="1.5"/>
+        <line x1="8" y1="12" x2="8" y2="28" stroke="#5a8a78" stroke-width="2"/>
+        <line x1="16" y1="12" x2="16" y2="24" stroke="#5a8a78" stroke-width="2"/>
+        <line x1="24" y1="12" x2="24" y2="28" stroke="#5a8a78" stroke-width="2"/>
+        <line x1="32" y1="12" x2="32" y2="24" stroke="#5a8a78" stroke-width="2"/>
+        <line x1="40" y1="12" x2="40" y2="28" stroke="#5a8a78" stroke-width="2"/>
+        <line x1="48" y1="12" x2="48" y2="24" stroke="#5a8a78" stroke-width="2"/>
+      </g>
+      <!-- ★4.6 -->
+      <text x="150" y="330" text-anchor="middle" font-family="'DM Serif Display',serif" font-size="22" fill="rgba(74,112,96,.35)" letter-spacing="2">★ 4.6</text>
+      <text x="150" y="355" text-anchor="middle" font-family="'DM Sans',sans-serif" font-size="10" fill="rgba(255,255,255,.2)" letter-spacing="4">HERMOSA · MARIO</text>
+    </svg>
+  </div>
+  <div class="hc">
+    <div class="htag" lang="it">Parrucchiere · Diamante · Dal centro</div>
+    <div class="htag" lang="en">Hairdresser · Diamante · In the centre</div>
+    <h1 class="hh"><span>Hermosa</span><br>di Mario</h1>
+    <p class="hsub" lang="it">Uomo · Donna · Bambino</p>
+    <p class="hsub" lang="en">Men · Women · Children</p>
+    <p class="hdesc" lang="it">Mario conosce il suo mestiere — e lo fa con cura, ascoltando davvero cosa vuoi. Clienti che vengono da Cetraro apposta solo per lui. Risultati che parlano da soli da 30 anni.</p>
+    <p class="hdesc" lang="en">Mario knows his craft — and he does it carefully, truly listening to what you want. Clients who come all the way from Cetraro just for him. Results that speak for themselves for 30 years.</p>
+    <div class="hbtns">
+      <a href="https://wa.me/393479588417?text=Ciao%20Mario!%20Vorrei%20prenotare%20un%20appuntamento%20da%20Hermosa%20😊" class="bts"><span lang="it">📱 Prenota ora</span><span lang="en">📱 Book now</span></a>
+      <a href="#servizi" class="btl"><span lang="it">Scopri i servizi</span><span lang="en">See services</span></a>
+    </div>
+  </div>
+  <div class="hrating">
+    <div class="hrv">4.6</div>
+    <div class="hri"><div class="hrs">★★★★★</div><div class="hrl" lang="it">22 rec. Google</div><div class="hrl" lang="en">22 Google reviews</div></div>
+  </div>
+</section>
+<div class="strip">
+  <div class="si"><div class="siv">4.6</div><div class="sil">Google Maps</div></div>
+  <div class="si"><div class="siv" lang="it">Mario</div><div class="siv" lang="en">Mario</div><div class="sil" lang="it">Il patron</div><div class="sil" lang="en">The owner</div></div>
+  <div class="si"><div class="siv" lang="it">Fedeli</div><div class="siv" lang="en">Loyal</div><div class="sil" lang="it">Da 30 anni</div><div class="sil" lang="en">For 30 years</div></div>
+  <div class="si"><div class="siv">Centro</div><div class="sil">Diamante</div></div>
+</div>
+<section class="about" id="about">
+  <div>
+    <div class="tag" lang="it">Il salone</div><div class="tag" lang="en">The salon</div>
+    <h2 lang="it">Il tuo capello,<br><span>curato</span> sul serio</h2>
+    <h2 lang="en">Your hair,<br>truly <span>cared for</span></h2>
+    <p lang="it">Mario gestisce Hermosa nel cuore di Diamante con una semplicità rara — pulito, ordinato, accogliente. Non impone il suo gusto: capisce il tuo. Per questo le clienti lo seguono da decenni, alcune persino venendo da altri paesi ogni volta.</p>
+    <p lang="en">Mario runs Hermosa in the heart of Diamante with a rare simplicity — clean, tidy, welcoming. He doesn't impose his taste: he understands yours. That's why clients follow him for decades, some even coming from other towns each time.</p>
+    <p lang="it">Eccellente per uomo, donna e bambini. Specializzato in colori e tagli personalizzati. Puntuale e preciso — "si vede che è un esperto."</p>
+    <p lang="en">Excellent for men, women and children. Specialised in personalised colour and cuts. Punctual and precise — "you can tell he's an expert."</p>
+    <div class="qt">
+      <p lang="it">"Il salone è impeccabilmente pulito e arredato con gusto. Mario è una persona deliziosa e competente. A differenza di altri parrucchieri, cura davvero il tuo gusto in tagli, colori e stili."</p>
+      <p lang="en">"The salon is spotlessly clean and tastefully decorated. Mario is a delightful and competent person. Unlike other hairdressers, he really caters to your taste in cuts, colours and styles."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+  <svg viewBox="0 0 280 280" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:240px">
+    <rect width="280" height="280" fill="rgba(74,112,96,.04)" rx="16"/>
+    <circle cx="140" cy="120" r="80" fill="none" stroke="rgba(74,112,96,.1)" stroke-width="1"/>
+    <circle cx="140" cy="120" r="55" fill="rgba(74,112,96,.06)"/>
+    <!-- leaf shapes -->
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(74,112,96,.2)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(90,138,120,.15)" transform="rotate(45,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(74,112,96,.2)" transform="rotate(90,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(90,138,120,.15)" transform="rotate(135,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(74,112,96,.18)" transform="rotate(180,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(90,138,120,.12)" transform="rotate(225,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(74,112,96,.18)" transform="rotate(270,140,120)"/>
+    <ellipse cx="140" cy="50" rx="18" ry="32" fill="rgba(90,138,120,.12)" transform="rotate(315,140,120)"/>
+    <circle cx="140" cy="120" r="18" fill="rgba(74,112,96,.2)"/>
+    <text x="140" y="225" text-anchor="middle" font-family="'DM Serif Display',serif" font-style="italic" font-size="22" fill="rgba(74,112,96,.4)">Hermosa</text>
+    <text x="140" y="256" text-anchor="middle" font-size="10" fill="rgba(74,112,96,.25)" letter-spacing="4">MARIO · DIAMANTE</text>
+  </svg>
+</section>
+<section class="svz" id="servizi">
+  <div class="sv-h">
+    <div class="tag" lang="it">I servizi</div><div class="tag" lang="en">Services</div>
+    <h2 lang="it">Per te,<br><span>al meglio</span></h2>
+    <h2 lang="en">For you,<br><span>at its best</span></h2>
+  </div>
+  <div class="svg">
+    <div class="sv"><div class="svt" lang="it"><span>Taglio</span> Donna</div><div class="svt" lang="en">Women's <span>Cut</span></div><div class="svd" lang="it">Taglio personalizzato su consulenza morfologica, asciugatura inclusa.</div><div class="svd" lang="en">Personalised cut with morphological consultation, blow-dry included.</div><div class="svp" lang="it">da €22</div><div class="svp" lang="en">from €22</div></div>
+    <div class="sv"><div class="svt" lang="it"><span>Colore</span> & Mèches</div><div class="svt" lang="en"><span>Colour</span> & Highlights</div><div class="svd" lang="it">Tinte permanenti, mèches, balayage. Colori precisi che durano.</div><div class="svd" lang="en">Permanent colour, highlights, balayage. Precise colours that last.</div><div class="svp" lang="it">da €38</div><div class="svp" lang="en">from €38</div></div>
+    <div class="sv"><div class="svt" lang="it">Taglio <span>Uomo</span></div><div class="svt" lang="en">Men's <span>Cut</span></div><div class="svd" lang="it">Taglio preciso, rifinitura barba, styling. Per una cura impeccabile.</div><div class="svd" lang="en">Precise cut, beard finish, styling. For impeccable grooming.</div><div class="svp" lang="it">da €15</div><div class="svp" lang="en">from €15</div></div>
+    <div class="sv"><div class="svt" lang="it"><span>Piega</span> & Styling</div><div class="svt" lang="en"><span>Blow-dry</span> & Styling</div><div class="svd" lang="it">Piega professionale, capelli lisci, mossi o ricci. Effetto garantito.</div><div class="svd" lang="en">Professional blow-dry, straight, wavy or curly. Guaranteed effect.</div><div class="svp" lang="it">da €16</div><div class="svp" lang="en">from €16</div></div>
+    <div class="sv"><div class="svt" lang="it"><span>Bambini</span></div><div class="svt" lang="en"><span>Children's</span> cut</div><div class="svd" lang="it">Taglio per bambini con tanta pazienza. Mario ha il dono della calma.</div><div class="svd" lang="en">Children's cut with great patience. Mario has the gift of calm.</div><div class="svp" lang="it">da €12</div><div class="svp" lang="en">from €12</div></div>
+    <div class="sv"><div class="svt" lang="it"><span>Trattamenti</span></div><div class="svt" lang="en"><span>Treatments</span></div><div class="svd" lang="it">Idratante, ristrutturante, anti-crespo. Capelli sani e luminosi.</div><div class="svd" lang="en">Hydrating, restructuring, anti-frizz. Healthy and luminous hair.</div><div class="svp" lang="it">da €28</div><div class="svp" lang="en">from €28</div></div>
+  </div>
+</section>
+<section class="revs" id="reviews">
+  <div class="rh">
+    <div class="tag" style="color:var(--sage3)" lang="it">Cosa dicono</div><div class="tag" style="color:var(--sage3)" lang="en">What they say</div>
+    <h2 lang="it">22 voci,<br><span>fiducia</span> da decenni</h2>
+    <h2 lang="en">22 voices,<br><span>trust</span> for decades</h2>
+    <div class="rbar">Google Maps ★4.6 · Diamante · Galleria dell'Immacolata</div>
+  </div>
+  <div class="rg">
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Frequento questo salone da 30 anni — e non mi sembra poca cosa per una cliente che viene da Cetraro ogni volta. Cortesia, gentilezza e capello impeccabile. Consigliatissimo."</p><p class="rvt" lang="en">"I've been going to this salon for 30 years — and that's no small thing for a client who travels from Cetraro each time. Courtesy, kindness and impeccable hair. Highly recommended."</p><div class="rvw">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Il salone è impeccabilmente pulito e arredato con gusto. Mario è una persona deliziosa e competente. A differenza di altri parrucchieri, cura davvero il tuo gusto in tagli, colori e stili."</p><p class="rvt" lang="en">"The salon is spotlessly clean and tastefully decorated. Mario is a delightful and competent person. Unlike other hairdressers, he really caters to your taste in cuts, colours and styles."</p><div class="rvw">🌍 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Un parrucchiere molto preparato, educato, gentile, cortese e professionale. Si sforza sempre di essere puntuale e preciso. Mi soddisfa sempre con il colore e la messa in piega. Lo consiglio vivamente."</p><p class="rvt" lang="en">"A very knowledgeable, courteous, kind and professional hairdresser. He always tries to be punctual and precise. He always satisfies me with colour and styling. I definitely recommend him."</p><div class="rvw">🇮🇹 Google Maps</div></div>
+  </div>
+</section>
+<section class="book" id="book">
+  <div class="bl">
+    <div class="tag" lang="it">Prenota</div><div class="tag" lang="en">Book</div>
+    <h2 lang="it">Il tuo appuntamento con Mario</h2>
+    <h2 lang="en">Your appointment with Mario</h2>
+    <p lang="it">Mario lavora su appuntamento. WhatsApp è il modo più comodo per prenotare. In estate prenota con qualche giorno di anticipo.</p>
+    <p lang="en">Mario works by appointment. WhatsApp is the easiest way to book. In summer, book a few days in advance.</p>
+    <div class="ir"><div class="iri">📍</div><div class="irt">Galleria dell'Immacolata 36G · Via B. Croce · Diamante</div></div>
+    <div class="ir"><div class="iri">📞</div><div class="irt">347 958 8417 (Mario)</div></div>
+    <div class="ir"><div class="iri">🕐</div><div class="irt"><span lang="it">Mar–Ven: 9:30–13:30 · 17–21 · Sab: 9:30–18:30<br>Lunedì e domenica: chiuso</span><span lang="en">Tue–Fri: 9:30–13:30 · 17–21 · Sat: 9:30–18:30<br>Mon & Sun: closed</span></div></div>
+    <a href="https://wa.me/393479588417?text=Ciao%20Mario!%20Vorrei%20prenotare%20un%20appuntamento%20da%20Hermosa%20😊" class="wal">📱 <span lang="it">WhatsApp Mario</span><span lang="en">WhatsApp Mario</span></a>
+  </div>
+  <form class="bf" onsubmit="sent(event)">
+    <div class="fgr">
+      <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+      <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+    </div>
+    <div class="fg"><label lang="it">Servizio</label><label lang="en">Service</label>
+      <select><option lang="it">Taglio donna</option><option lang="en">Women's cut</option><option lang="it">Taglio uomo</option><option lang="en">Men's cut</option><option lang="it">Colore / Mèches</option><option lang="en">Colour / Highlights</option><option lang="it">Piega</option><option lang="en">Blow-dry</option><option lang="it">Bambino</option><option lang="en">Child</option></select>
+    </div>
+    <div class="fgr">
+      <div class="fg"><label lang="it">Giorno</label><label lang="en">Day</label><input type="date"></div>
+      <div class="fg"><label lang="it">Orario</label><label lang="en">Time</label><select><option lang="it">Mattina</option><option lang="en">Morning</option><option lang="it">Pomeriggio</option><option lang="en">Afternoon</option></select></div>
+    </div>
+    <button class="sub"><span lang="it">Invia richiesta</span><span lang="en">Send request</span></button>
+  </form>
+</section>
+<footer>
+  <div class="fl"><b>Hermosa</b> · Mario</div>
+  <div class="fc">© 2025 Parrucchiere Hermosa · Via B. Croce · Diamante (CS) · 347 958 8417</div>
+  <a href="https://wa.me/393479588417" class="fwa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393479588417" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>{const s=scrollY>60;document.getElementById('nav').classList.toggle('on',s);document.getElementById('body').classList.toggle('ho',!s);});
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a7a4a';}
+</script>
+</body>
+</html>

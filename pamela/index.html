@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Parrucchiera Pamela · Diamante</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#080606;--dark:#120c0c;--card:#1a1010;--rose:#b03060;--rose2:#d04878;--blush:#f8e0ec;--cream:#faf5f8;--warm:#f0e8ec;--muted:#a08090;--border:rgba(176,48,96,.12);--ink:#1a0810;}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--cream);color:var(--ink);font-family:'Nunito',sans-serif;overflow-x:hidden;}
+[lang="en"]{display:none;}body.en [lang="it"]{display:none;}body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(176,48,96,.12);border:1px solid var(--border);color:var(--rose);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Nunito',sans-serif;border-radius:20px;}
+body.ho .lang-btn{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.15);color:#fff;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(8,6,6,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:13px 52px;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-style:italic;color:#fff;text-decoration:none;}
+.logo b{font-style:normal;color:var(--rose2);font-weight:400;}
+.links{display:flex;gap:26px;}.links a{color:rgba(255,255,255,.6);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}.links a:hover{color:var(--rose2);}
+.nav-cta{background:var(--rose);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:24px;transition:all .2s;}.nav-cta:hover{background:var(--rose2);}
+/* HERO split */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;padding-top:80px;}
+.hl{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:80px 60px;position:relative;overflow:hidden;}
+.hl::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 35% 50%,rgba(176,48,96,.15) 0%,transparent 65%);}
+/* petals */
+.petals{position:absolute;inset:0;pointer-events:none;}
+.petal{position:absolute;border-radius:50% 50% 50% 0;background:rgba(176,48,96,.18);animation:fall linear infinite;}
+.petal:nth-child(1){width:9px;height:13px;left:12%;animation-duration:10s;}
+.petal:nth-child(2){width:7px;height:10px;left:38%;animation-duration:13s;animation-delay:2s;}
+.petal:nth-child(3){width:8px;height:12px;left:62%;animation-duration:9s;animation-delay:5s;}
+.petal:nth-child(4){width:6px;height:9px;left:82%;animation-duration:11s;animation-delay:3s;}
+@keyframes fall{0%{top:-20px;opacity:0;transform:rotate(0deg);}20%{opacity:.7;}100%{top:110%;opacity:0;transform:rotate(180deg) translateX(20px);}}
+.hlc{position:relative;z-index:1;}
+.hkick{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--rose2);margin-bottom:24px;}
+.hkick::before{content:'';width:22px;height:1px;background:var(--rose2);}
+.hh{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,90px);font-weight:300;line-height:.95;color:#fff;margin-bottom:10px;}
+.hh i{font-style:italic;color:var(--rose2);display:block;}
+.hsub{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:28px;}
+.hdesc{font-size:15px;line-height:1.9;color:rgba(255,255,255,.5);max-width:380px;margin-bottom:40px;}
+.hbtns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btr{background:var(--rose);color:#fff;padding:15px 32px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:30px;transition:all .3s;}.btr:hover{background:var(--rose2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(176,48,96,.35);}
+.btl{color:rgba(255,255,255,.45);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}.btl:hover{color:#fff;}
+.hrating{position:absolute;bottom:44px;left:60px;z-index:1;display:flex;gap:14px;align-items:center;}
+.hrv{font-family:'Cormorant Garamond',serif;font-size:50px;font-weight:300;color:var(--rose2);line-height:1;}
+.hri .hrs{color:var(--rose2);font-size:15px;letter-spacing:2px;}
+.hri .hrl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:3px;}
+.hr2{background:var(--dark);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hr2::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 55% 45%,rgba(176,48,96,.1) 0%,transparent 65%);}
+/* strip */
+.strip{background:var(--rose);display:grid;grid-template-columns:repeat(4,1fr);}
+.si{padding:15px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.2);}
+.si:last-child{border-right:none;}
+.siv{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-style:italic;}
+.sil{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px;}
+/* ABOUT */
+.about{background:var(--warm);padding:90px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:14px;}
+.about h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.5vw,50px);font-weight:300;line-height:1.1;color:var(--ink);margin-bottom:20px;}
+.about h2 i{font-style:italic;color:var(--rose);}
+.about p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:14px;}
+.qt{background:#fff;border-left:4px solid var(--rose);padding:18px 22px;margin-top:20px;}
+.qt p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:var(--ink);line-height:1.55;}
+.qt cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+/* SERVIZI */
+.svz{padding:90px 52px;background:var(--cream);}
+.svg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:44px;}
+.sv{background:#fff;padding:32px 26px;border-radius:16px;border:1px solid var(--border);transition:all .3s;position:relative;overflow:hidden;}
+.sv::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--rose2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.sv:hover{transform:translateY(-5px);box-shadow:0 14px 36px rgba(176,48,96,.1);}
+.sv:hover::before{transform:scaleX(1);}
+.svn{font-family:'Cormorant Garamond',serif;font-size:42px;font-weight:300;color:rgba(176,48,96,.07);line-height:1;margin-bottom:-8px;}
+.svt{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:var(--ink);margin-bottom:8px;}
+.svt i{font-style:italic;color:var(--rose);}
+.svd{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:14px;}
+.svp{font-family:'Cormorant Garamond',serif;font-size:19px;color:var(--rose);}
+/* REVIEWS */
+.revs{background:var(--bg);padding:90px 52px;}
+.rh h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;color:#fff;margin-bottom:6px;}
+.rh h2 i{font-style:italic;color:var(--rose2);}
+.rbar{font-size:12px;color:var(--muted);margin-bottom:40px;letter-spacing:1px;}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:var(--card);padding:28px;border-radius:12px;border-bottom:3px solid var(--rose);}
+.rvs{color:var(--rose2);font-size:13px;letter-spacing:2px;margin-bottom:12px;}
+.rvt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:12px;}
+.rvw{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+/* BOOK */
+.book{padding:90px 52px;background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.bl h2{font-family:'Cormorant Garamond',serif;font-size:clamp(32px,3.5vw,48px);font-weight:300;color:var(--ink);margin-bottom:16px;line-height:1.1;}
+.bl h2 i{font-style:italic;}
+.bl p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:22px;}
+.ir{display:flex;gap:12px;align-items:center;margin-bottom:10px;}
+.iri{width:34px;height:34px;background:rgba(176,48,96,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.irt{font-size:14px;color:#4a2a38;line-height:1.5;}
+.wal{display:inline-flex;align-items:center;gap:8px;margin-top:18px;background:#25d366;color:#fff;padding:13px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:30px;}
+.bf{display:flex;flex-direction:column;gap:13px;}
+.fg{display:flex;flex-direction:column;gap:5px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select{background:#fff;border:1px solid var(--border);padding:12px 14px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:var(--ink);outline:none;transition:border-color .2s;}.fg input:focus,.fg select:focus{border-color:var(--rose);}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:13px;}
+.sub{background:var(--rose);color:#fff;border:none;padding:14px;font-size:11px;letter-spacing:2px;text-transform:uppercase;font-family:'Nunito',sans-serif;font-weight:700;cursor:pointer;border-radius:8px;width:100%;transition:all .2s;}.sub:hover{background:var(--rose2);}
+footer{background:var(--bg);padding:30px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.fl{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.25);}.fl b{font-style:normal;color:var(--rose2);font-weight:400;}
+.fc{font-size:11px;color:var(--muted);}
+.fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;border-radius:20px;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hero{grid-template-columns:1fr;}.hr2{display:none;}.hl{padding:40px 20px 90px;}.hrating{left:20px;}.strip{grid-template-columns:1fr 1fr;}.about{grid-template-columns:1fr;padding:60px 20px;}.svz,.revs,.book{padding:60px 20px;}.svg{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body" class="ho">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo"><b>Pamela</b> Parrucchiera</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Salone</span><span lang="en">The Salon</span></a>
+    <a href="#servizi"><span lang="it">Servizi</span><span lang="en">Services</span></a>
+    <a href="#book"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393383870071" class="nav-cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+<section class="hero">
+  <div class="hl">
+    <div class="petals"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+    <div class="hlc">
+      <div class="hkick" lang="it">Parrucchiera · Diamante · ★5.0</div>
+      <div class="hkick" lang="en">Hairdresser · Diamante · ★5.0</div>
+      <h1 class="hh">Pamela<i>Parrucchiera</i></h1>
+      <p class="hsub" lang="it">Professionalità · Cura · Passione</p>
+      <p class="hsub" lang="en">Professionalism · Care · Passion</p>
+      <p class="hdesc" lang="it">L'unica parrucchiera con 5 stelle su 5 a Diamante. Ogni anno le clienti tornano apposta da tutta Italia solo per affidarsi a Pamela. Acconciature sposa, colori che durano, tagli che valorizzano.</p>
+      <p class="hdesc" lang="en">The only hairdresser with a perfect 5-star rating in Diamante. Every year clients come from all over Italy just to trust Pamela. Bridal styling, long-lasting colour, cuts that flatter.</p>
+      <div class="hbtns">
+        <a href="https://wa.me/393383870071?text=Ciao%20Pamela!%20Vorrei%20prenotare%20un%20appuntamento%20😊" class="btr"><span lang="it">📱 Prenota ora</span><span lang="en">📱 Book now</span></a>
+        <a href="#servizi" class="btl"><span lang="it">Scopri i servizi</span><span lang="en">See services</span></a>
+      </div>
+    </div>
+    <div class="hrating">
+      <div class="hrv">5.0</div>
+      <div class="hri"><div class="hrs">★★★★★</div><div class="hrl" lang="it">56 rec. Google — perfetto</div><div class="hrl" lang="en">56 Google reviews — perfect</div></div>
+    </div>
+  </div>
+  <div class="hr2">
+    <svg viewBox="0 0 380 440" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;opacity:.9;position:relative;z-index:1">
+      <rect width="380" height="440" fill="#080606"/>
+      <!-- mirror oval -->
+      <ellipse cx="190" cy="180" rx="110" ry="140" fill="none" stroke="rgba(176,48,96,.2)" stroke-width="2"/>
+      <ellipse cx="190" cy="180" rx="100" ry="130" fill="none" stroke="rgba(176,48,96,.08)" stroke-width="1"/>
+      <ellipse cx="190" cy="180" rx="90" ry="120" fill="rgba(176,48,96,.025)"/>
+      <!-- hair silhouette -->
+      <path d="M150 100 Q130 80 138 55 Q145 35 170 30 Q190 25 210 30 Q235 35 242 55 Q250 80 230 100 Q220 115 215 120 Q205 130 190 135 Q175 130 165 120 Q160 115 150 100Z" fill="none" stroke="rgba(208,72,120,.2)" stroke-width="2"/>
+      <path d="M145 100 Q120 80 130 50 Q138 28 165 22 Q185 17 210 22 Q235 28 248 50 Q258 80 235 100" fill="none" stroke="rgba(208,72,120,.12)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- scissors deco -->
+      <g transform="translate(270,60)" opacity=".5">
+        <line x1="0" y1="0" x2="22" y2="22" stroke="var(--rose2)" stroke-width="1.5"/>
+        <line x1="22" y1="0" x2="0" y2="22" stroke="var(--rose2)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="5" stroke="var(--rose2)" stroke-width="1.5" fill="none"/>
+        <circle cx="22" cy="22" r="5" stroke="var(--rose2)" stroke-width="1.5" fill="none"/>
+      </g>
+      <!-- flower petals deco -->
+      <g transform="translate(60,80)" opacity=".5">
+        <ellipse cx="16" cy="0" rx="7" ry="14" fill="rgba(176,48,96,.2)"/>
+        <ellipse cx="16" cy="0" rx="7" ry="14" fill="rgba(176,48,96,.18)" transform="rotate(45,16,16)"/>
+        <ellipse cx="16" cy="0" rx="7" ry="14" fill="rgba(176,48,96,.2)" transform="rotate(90,16,16)"/>
+        <ellipse cx="16" cy="0" rx="7" ry="14" fill="rgba(176,48,96,.18)" transform="rotate(135,16,16)"/>
+        <circle cx="16" cy="16" r="6" fill="rgba(208,72,120,.3)"/>
+      </g>
+      <!-- ★5.0 -->
+      <text x="190" y="360" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="52" fill="rgba(176,48,96,.2)" font-style="italic">5.0</text>
+      <text x="190" y="390" text-anchor="middle" font-size="16" fill="rgba(208,72,120,.3)" letter-spacing="4">★★★★★</text>
+      <text x="190" y="425" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="12" fill="rgba(176,48,96,.25)" letter-spacing="2">pamela parrucchiera</text>
+    </svg>
+  </div>
+</section>
+<div class="strip">
+  <div class="si"><div class="siv">5.0</div><div class="sil" lang="it">Valutazione perfetta</div><div class="sil" lang="en">Perfect rating</div></div>
+  <div class="si"><div class="siv" lang="it">Sposa</div><div class="siv" lang="en">Bridal</div><div class="sil" lang="it">Acconciature cerimonia</div><div class="sil" lang="en">Wedding styling</div></div>
+  <div class="si"><div class="siv" lang="it">Fedeli</div><div class="siv" lang="en">Loyal</div><div class="sil" lang="it">Clienti di anni</div><div class="sil" lang="en">Long-term clients</div></div>
+  <div class="si"><div class="siv">Via</div><div class="sil">V. Padula 33 · Diamante</div></div>
+</div>
+<section class="about" id="about">
+  <div>
+    <div class="tag" lang="it">Il salone</div><div class="tag" lang="en">The salon</div>
+    <h2 lang="it">L'unica con<br><i>5 stelle perfette</i><br>a Diamante</h2>
+    <h2 lang="en">The only one<br><i>with a perfect</i><br><i>5 stars</i> in Diamante</h2>
+    <p lang="it">Pamela ha costruito negli anni un seguito di clienti fedelissime che tornano ogni estate apposta per affidarsi a lei. Professionista attenta, puntuale, precisa — il risultato è sempre all'altezza delle aspettative.</p>
+    <p lang="en">Over the years, Pamela has built a following of devoted clients who return every summer specifically to trust her with their hair. A careful, punctual and precise professional — the result always exceeds expectations.</p>
+    <p lang="it">Specializzata in acconciature sposa, colorazioni, tagli personalizzati. Capelli fini, ricci, difficili — Pamela trova sempre la soluzione giusta.</p>
+    <p lang="en">Specialised in bridal styling, colouring, and personalised cuts. Fine, curly, difficult hair — Pamela always finds the right solution.</p>
+    <div class="qt">
+      <p lang="it">"Ogni anno, quando veniamo in vacanza in Calabria, io e mia figlia facciamo una tappa fissa da Pamela a Diamante. Professionalità, gentilezza e cura. Consigliatissima a tutti."</p>
+      <p lang="en">"Every year when we come on holiday to Calabria, my daughter and I always make a regular stop at Pamela's in Diamante. Professionalism, kindness and care. Highly recommended to everyone."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+  <svg viewBox="0 0 280 320" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:240px">
+    <rect width="280" height="320" fill="rgba(176,48,96,.04)" rx="16"/>
+    <circle cx="140" cy="130" r="80" fill="none" stroke="rgba(176,48,96,.1)" stroke-width="1"/>
+    <ellipse cx="140" cy="130" rx="55" ry="68" fill="rgba(176,48,96,.05)"/>
+    <ellipse cx="140" cy="130" rx="10" ry="10" fill="rgba(176,48,96,.15)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.2)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.18)" transform="rotate(45,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.2)" transform="rotate(90,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.18)" transform="rotate(135,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.15)" transform="rotate(180,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.15)" transform="rotate(225,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.18)" transform="rotate(270,140,130)"/>
+    <ellipse cx="140" cy="68" rx="12" ry="20" fill="rgba(176,48,96,.15)" transform="rotate(315,140,130)"/>
+    <text x="140" y="250" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-size="20" fill="rgba(176,48,96,.4)" letter-spacing="3">★★★★★</text>
+    <text x="140" y="280" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="22" fill="rgba(176,48,96,.3)">5.0 perfetto</text>
+  </svg>
+</section>
+<section class="svz" id="servizi">
+  <div class="tag" lang="it">I servizi</div><div class="tag" lang="en">Services</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);font-weight:300;color:var(--ink);margin-top:8px" lang="it">Ogni capello, <i style="color:var(--rose)">curato</i></h2>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4vw,54px);font-weight:300;color:var(--ink);margin-top:8px" lang="en">Every hair, <i style="color:var(--rose)">cared for</i></h2>
+  <div class="svg">
+    <div class="sv"><div class="svn">01</div><div class="svt" lang="it">Taglio <i>Donna</i></div><div class="svt" lang="en">Women's <i>Cut</i></div><div class="svd" lang="it">Taglio personalizzato, consulenza morfologica, styling professionale.</div><div class="svd" lang="en">Personalised cut, morphological consultation, professional styling.</div><div class="svp" lang="it">da €25</div><div class="svp" lang="en">from €25</div></div>
+    <div class="sv"><div class="svn">02</div><div class="svt" lang="it">Colore & <i>Balayage</i></div><div class="svt" lang="en">Colour & <i>Balayage</i></div><div class="svd" lang="it">Tinta, mèches, balayage. Colori naturali o vivaci — tutti perfetti.</div><div class="svd" lang="en">Colour, highlights, balayage. Natural or bold — always perfect.</div><div class="svp" lang="it">da €40</div><div class="svp" lang="en">from €40</div></div>
+    <div class="sv"><div class="svn">03</div><div class="svt" lang="it"><i>Sposa</i> & Cerimonie</div><div class="svt" lang="en"><i>Bridal</i> & Occasions</div><div class="svd" lang="it">Acconciature per il giorno più importante — prova e giorno della cerimonia.</div><div class="svd" lang="en">Styling for your most important day — trial and ceremony.</div><div class="svp" lang="it">su preventivo</div><div class="svp" lang="en">by quote</div></div>
+    <div class="sv"><div class="svn">04</div><div class="svt" lang="it"><i>Piega</i> & Styling</div><div class="svt" lang="en"><i>Blow-dry</i> & Styling</div><div class="svd" lang="it">Piega professionale, liscio, mosso, ricci. Che duri tutto il giorno.</div><div class="svd" lang="en">Professional blow-dry, straight, wavy or curly. That lasts all day.</div><div class="svp" lang="it">da €18</div><div class="svp" lang="en">from €18</div></div>
+    <div class="sv"><div class="svn">05</div><div class="svt" lang="it"><i>Trattamenti</i></div><div class="svt" lang="en"><i>Treatments</i></div><div class="svd" lang="it">Keratina, idratante, ristrutturante. Capelli sani, luminosi, forti.</div><div class="svd" lang="en">Keratin, hydration, restructuring. Healthy, shiny, strong hair.</div><div class="svp" lang="it">da €35</div><div class="svp" lang="en">from €35</div></div>
+    <div class="sv"><div class="svn">06</div><div class="svt" lang="it">Bambini & <i>Uomo</i></div><div class="svt" lang="en">Children & <i>Men</i></div><div class="svd" lang="it">Taglio per bambini con tanta pazienza. Taglio uomo preciso.</div><div class="svd" lang="en">Children's cut with great patience. Precise men's cut.</div><div class="svp" lang="it">da €12</div><div class="svp" lang="en">from €12</div></div>
+  </div>
+</section>
+<section class="revs" id="reviews">
+  <div class="rh">
+    <div class="tag" style="color:var(--rose2)" lang="it">Cosa dicono</div><div class="tag" style="color:var(--rose2)" lang="en">What they say</div>
+    <h2 lang="it">56 clienti,<br><i>5 stelle sempre</i></h2>
+    <h2 lang="en">56 clients,<br><i>5 stars always</i></h2>
+    <div class="rbar">Google Maps ★5.0 · Via V. Padula 33 · Diamante</div>
+  </div>
+  <div class="rg">
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Sono stata davvero soddisfatta! L'acconciatura sposa era esattamente come sognavo: elegante, comoda e perfetta fino alla fine della serata. Elena mi ha messa subito a mio agio. Grazie mille!"</p><p class="rvt" lang="en">"I was truly satisfied! The bridal style was exactly as I dreamed: elegant, comfortable, and perfect until the end of the evening. She put me at ease immediately. Thank you!"</p><div class="rvw">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Ogni anno, in vacanza in Calabria, io e mia figlia facciamo tappa da Pamela. Professionalità, gentilezza, cura nei dettagli. Uno sfizio, una coccola. Consigliatissima a tutti."</p><p class="rvt" lang="en">"Every year on holiday in Calabria, my daughter and I stop at Pamela's. Professionalism, kindness, attention to detail. A treat, a pamper session. Highly recommended to everyone."</p><div class="rvw">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Consiglio vivamente questo salone. Attentissime alle esigenze dei clienti e massima professionalità. Pamela ha fatto un miracolo sui miei capelli. Staff gentilissimo."</p><p class="rvt" lang="en">"I highly recommend this salon. Very attentive to clients' needs and maximum professionalism. Pamela performed a miracle on my hair. Very kind staff."</p><div class="rvw">🇮🇹 Google Maps</div></div>
+  </div>
+</section>
+<section class="book" id="book">
+  <div class="bl">
+    <div class="tag" lang="it">Prenota</div><div class="tag" lang="en">Book</div>
+    <h2 lang="it">Il tuo<br><i>momento</i> di bellezza</h2>
+    <h2 lang="en">Your<br><i>beauty</i> moment</h2>
+    <p lang="it">Pamela lavora su appuntamento — prenotare in anticipo è essenziale, specialmente in estate. WhatsApp è il modo più veloce.</p>
+    <p lang="en">Pamela works by appointment — booking in advance is essential, especially in summer. WhatsApp is the fastest way.</p>
+    <div class="ir"><div class="iri">📍</div><div class="irt">Via Vincenzo Padula 33 · Diamante (CS)</div></div>
+    <div class="ir"><div class="iri">📞</div><div class="irt">338 387 0071</div></div>
+    <div class="ir"><div class="iri">🕐</div><div class="irt"><span lang="it">Mar–Ven: 8:30–13 · 15:30–19:30 · Sab: 8:30–19:30<br>Lunedì e domenica: chiuso</span><span lang="en">Tue–Fri: 8:30–13 · 15:30–19:30 · Sat: 8:30–19:30<br>Mon & Sun: closed</span></div></div>
+    <a href="https://wa.me/393383870071?text=Ciao%20Pamela!%20Vorrei%20prenotare%20un%20appuntamento%20😊" class="wal">📱 <span lang="it">Scrivi su WhatsApp</span><span lang="en">Write on WhatsApp</span></a>
+  </div>
+  <form class="bf" onsubmit="sent(event)">
+    <div class="fgr">
+      <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+      <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+    </div>
+    <div class="fg"><label lang="it">Servizio</label><label lang="en">Service</label>
+      <select><option lang="it">Taglio donna</option><option lang="en">Women's cut</option><option lang="it">Colore / Balayage</option><option lang="en">Colour / Balayage</option><option lang="it">Piega</option><option lang="en">Blow-dry</option><option lang="it">Acconciatura sposa</option><option lang="en">Bridal styling</option><option lang="it">Trattamento</option><option lang="en">Treatment</option></select>
+    </div>
+    <div class="fgr">
+      <div class="fg"><label lang="it">Giorno</label><label lang="en">Day</label><input type="date"></div>
+      <div class="fg"><label lang="it">Orario</label><label lang="en">Time</label><select><option lang="it">Mattina</option><option lang="en">Morning</option><option lang="it">Pomeriggio</option><option lang="en">Afternoon</option><option lang="it">Indifferente</option><option lang="en">Any time</option></select></div>
+    </div>
+    <button class="sub"><span lang="it">Invia richiesta</span><span lang="en">Send request</span></button>
+  </form>
+</section>
+<footer>
+  <div class="fl"><b>Pamela</b> Parrucchiera</div>
+  <div class="fc">© 2025 Parrucchiera Pamela · Via V. Padula 33 · Diamante (CS) · 338 387 0071</div>
+  <a href="https://wa.me/393383870071" class="fwa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393383870071" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>{const s=scrollY>60;document.getElementById('nav').classList.toggle('on',s);document.getElementById('body').classList.toggle('ho',!s);});
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a8a4a';}
+</script>
+</body>
+</html>

@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Locanda del Gigante · Diamante</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{--stone:#1c1814;--dark:#120e0a;--mid:#2a241c;--card:#241e16;--gold:#c8943c;--gold2:#e0aa50;--cream:#f0e8d4;--warm:#e8dcc4;--muted:#8a7a60;--border:rgba(200,148,60,.15);}
+*{margin:0;padding:0;box-sizing:border-box;}html{scroll-behavior:smooth;}
+body{background:var(--dark);color:var(--cream);font-family:'Crimson Text',serif;overflow-x:hidden;}
+[lang="en"]{display:none;}body.en [lang="it"]{display:none;}body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(200,148,60,.1);border:1px solid var(--border);color:var(--gold);font-size:10px;letter-spacing:3px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Crimson Text',serif;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(18,14,10,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:13px 52px;}
+.logo{font-family:'Cinzel',serif;font-size:17px;color:var(--cream);text-decoration:none;letter-spacing:2px;}
+.logo span{color:var(--gold);}
+.links{display:flex;gap:26px;}.links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:10px;letter-spacing:3px;text-transform:uppercase;font-family:'Cinzel',serif;transition:color .2s;}.links a:hover{color:var(--gold);}
+.nav-cta{border:1px solid var(--gold);color:var(--gold);padding:9px 20px;font-size:10px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Cinzel',serif;transition:all .2s;}.nav-cta:hover{background:var(--gold);color:var(--dark);}
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;overflow:hidden;}
+.hbg{position:absolute;inset:0;background:linear-gradient(135deg,#080604 0%,#1c1410 35%,#2a1e10 65%,#1c1410 100%);}
+.hbg::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(45deg,rgba(200,148,60,.02) 0px,transparent 1px,transparent 28px);}
+.hbg::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 80% 50%,rgba(200,148,60,.12) 0%,transparent 60%);}
+/* stone arch decoration */
+.arch{position:absolute;right:52px;top:50%;transform:translateY(-50%);width:320px;height:420px;border:2px solid rgba(200,148,60,.12);border-radius:160px 160px 0 0;display:flex;align-items:center;justify-content:center;}
+.arch::before{content:'';position:absolute;inset:20px;border:1px solid rgba(200,148,60,.07);border-radius:140px 140px 0 0;}
+.arch-inner{text-align:center;padding:30px;}
+.ai-v{font-family:'Cinzel',serif;font-size:52px;font-weight:700;color:var(--gold);line-height:1;}
+.ai-s{color:var(--gold2);font-size:16px;letter-spacing:3px;margin:6px 0;}
+.ai-l{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);font-family:'Cinzel',serif;}
+.ai-sep{width:40px;height:1px;background:rgba(200,148,60,.3);margin:14px auto;}
+.ai-q{font-style:italic;font-size:14px;color:rgba(255,255,255,.45);line-height:1.6;max-width:200px;}
+.hc{position:relative;z-index:2;padding:80px 60px;max-width:620px;animation:su .9s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+.hkick{font-family:'Cinzel',serif;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--gold);margin-bottom:28px;display:flex;align-items:center;gap:12px;}
+.hkick::before{content:'✦';font-size:8px;}
+.hh{font-family:'Cinzel',serif;font-size:clamp(44px,7vw,88px);font-weight:700;line-height:.95;color:var(--cream);margin-bottom:10px;letter-spacing:1px;}
+.hh span{display:block;color:var(--gold);font-weight:400;}
+.hsub{font-family:'Cinzel',serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:30px;}
+.hdesc{font-size:19px;line-height:1.8;color:rgba(255,255,255,.55);max-width:460px;margin-bottom:44px;font-style:italic;}
+.hbtns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btg{background:var(--gold);color:var(--dark);padding:15px 34px;font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:600;transition:all .3s;}.btg:hover{background:var(--gold2);}
+.btl{color:rgba(255,255,255,.45);font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.15);padding-bottom:2px;font-family:'Cinzel',serif;transition:all .2s;}.btl:hover{color:var(--cream);}
+/* NUMBERS */
+.nums{background:var(--mid);display:grid;grid-template-columns:repeat(4,1fr);border-top:2px solid var(--gold);}
+.ni{padding:18px 20px;text-align:center;border-right:1px solid rgba(200,148,60,.1);}
+.ni:last-child{border-right:none;}
+.niv{font-family:'Cinzel',serif;font-size:22px;color:var(--gold);}
+.nil{font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.35);margin-top:4px;}
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;}
+.avis{background:var(--stone);display:flex;align-items:center;justify-content:center;min-height:500px;}
+.atxt{background:var(--card);padding:80px 56px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-family:'Cinzel',serif;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:16px;}
+.atxt h2{font-family:'Cinzel',serif;font-size:clamp(28px,3vw,44px);font-weight:600;color:var(--cream);margin-bottom:22px;letter-spacing:1px;line-height:1.2;}
+.atxt h2 span{color:var(--gold);}
+.atxt p{font-size:17px;line-height:1.85;color:rgba(255,255,255,.55);margin-bottom:14px;}
+.qt{margin-top:24px;border-left:3px solid var(--gold);padding:16px 20px;background:rgba(200,148,60,.05);}
+.qt p{font-style:italic;font-size:18px;color:rgba(255,255,255,.7);line-height:1.55;}
+.qt cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;font-family:'Cinzel',serif;}
+/* MENU */
+.menus{padding:90px 52px;background:var(--dark);}
+.mh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.mh h2{font-family:'Cinzel',serif;font-size:clamp(36px,4.5vw,60px);font-weight:600;color:var(--cream);letter-spacing:1px;}
+.mh h2 span{color:var(--gold);}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:rgba(200,148,60,.08);}
+.dish{background:var(--card);padding:28px;display:flex;justify-content:space-between;gap:14px;border-left:3px solid transparent;transition:all .25s;}
+.dish:hover{border-left-color:var(--gold);}
+.dn{font-family:'Cinzel',serif;font-size:18px;color:var(--cream);letter-spacing:.5px;margin-bottom:5px;}
+.ds{font-size:14px;color:rgba(255,255,255,.4);line-height:1.5;}
+.dp{font-family:'Cinzel',serif;font-size:16px;color:var(--gold);white-space:nowrap;}
+/* REVIEWS */
+.revs{padding:90px 52px;background:var(--mid);}
+.rh{margin-bottom:44px;}
+.rh h2{font-family:'Cinzel',serif;font-size:clamp(32px,4vw,54px);color:var(--cream);letter-spacing:1px;margin-bottom:6px;}
+.rh h2 span{color:var(--gold);}
+.rbar{font-size:12px;color:var(--muted);}
+.rg{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:var(--card);padding:28px;border-top:2px solid var(--gold);}
+.rvs{color:var(--gold2);font-size:14px;letter-spacing:2px;margin-bottom:12px;}
+.rvt{font-style:italic;font-size:17px;line-height:1.65;color:rgba(255,255,255,.65);margin-bottom:14px;}
+.rvw{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+/* BOOK */
+.book{display:grid;grid-template-columns:1fr 1fr;}
+.bl{background:linear-gradient(135deg,#1c1810,#2a2018);padding:80px 56px;border-right:1px solid var(--border);}
+.bl h2{font-family:'Cinzel',serif;font-size:clamp(28px,3vw,44px);color:var(--cream);margin-bottom:18px;letter-spacing:1px;}
+.bl p{font-size:17px;line-height:1.8;color:rgba(255,255,255,.5);margin-bottom:28px;}
+.ir{display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;}
+.iri{width:34px;height:34px;border:1px solid rgba(200,148,60,.2);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0;}
+.irt{font-size:15px;color:rgba(255,255,255,.65);line-height:1.55;}
+.wal{display:inline-block;margin-top:24px;background:#25d366;color:#fff;padding:13px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Cinzel',serif;}
+.br{background:var(--card);padding:80px 56px;}
+.br h3{font-family:'Cinzel',serif;font-size:24px;color:var(--cream);letter-spacing:1px;margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.fg label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select{background:var(--mid);border:1px solid rgba(200,148,60,.15);padding:12px 14px;font-family:'Crimson Text',serif;font-size:15px;color:var(--cream);outline:none;transition:border-color .2s;}.fg input:focus,.fg select:focus{border-color:var(--gold);}
+.fg select option{background:var(--dark);}
+.fgr{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sub{width:100%;background:var(--gold);color:var(--dark);border:none;padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'Cinzel',serif;font-weight:600;cursor:pointer;transition:all .2s;margin-top:6px;}.sub:hover{background:var(--gold2);}
+footer{background:var(--dark);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.fl{font-family:'Cinzel',serif;font-size:16px;color:rgba(255,255,255,.2);letter-spacing:1px;}.fl span{color:var(--gold);}
+.fc{font-size:12px;color:var(--muted);}
+.fwa{background:#25d366;color:#fff;padding:10px 18px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-family:'Cinzel',serif;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}.waf:hover{transform:scale(1.1);}.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hc{padding:40px 20px 80px;}.arch{display:none;}.nums{grid-template-columns:1fr 1fr;}.about{grid-template-columns:1fr;}.avis{min-height:200px;}.atxt{padding:60px 20px;}.menus,.revs{padding:60px 20px;}.dg{grid-template-columns:1fr;}.rg{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.bl,.br{padding:60px 20px;}.fgr{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo"><span>Locanda</span> del Gigante</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Locale</span><span lang="en">About</span></a>
+    <a href="#menu">Menu</a>
+    <a href="#book"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393287476554" class="nav-cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+<section class="hero">
+  <div class="hbg"></div>
+  <div class="arch">
+    <div class="arch-inner">
+      <div class="ai-v">4.9</div>
+      <div class="ai-s">★★★★★</div>
+      <div class="ai-l">12 <span lang="it">recensioni</span><span lang="en">reviews</span></div>
+      <div class="ai-sep"></div>
+      <div class="ai-q" lang="it">"Cibo di qualità, atmosfera tranquilla, Evasio fantastico."</div>
+      <div class="ai-q" lang="en">"Quality food, peaceful atmosphere, fantastic Evasio."</div>
+    </div>
+  </div>
+  <div class="hc">
+    <div class="hkick" lang="it">Diamante · Centro Storico · Cucina tradizionale</div>
+    <div class="hkick" lang="en">Diamante · Historic Centre · Traditional cuisine</div>
+    <h1 class="hh">Locanda<span>del Gigante</span></h1>
+    <p class="hsub" lang="it">Tradizione · Innovazione · Evasio</p>
+    <p class="hsub" lang="en">Tradition · Innovation · Evasio</p>
+    <p class="hdesc" lang="it">Nuova locanda nel cuore del centro storico di Diamante — a pochi passi dal lungomare. Atmosfera tranquilla e raccolta, cucina tradizionale con un tocco creativo. Perfetta per una cena romantica o in buona compagnia.</p>
+    <p class="hdesc" lang="en">A new inn in the heart of Diamante's historic centre — steps from the seafront. Peaceful, intimate atmosphere, traditional cuisine with a creative touch. Perfect for a romantic dinner or a night out with friends.</p>
+    <div class="hbtns">
+      <a href="https://wa.me/393287476554?text=Ciao!%20Vorrei%20prenotare%20alla%20Locanda%20del%20Gigante%20😊" class="btg"><span lang="it">📱 Prenota su WhatsApp</span><span lang="en">📱 Book on WhatsApp</span></a>
+      <a href="#menu" class="btl"><span lang="it">Scopri il menu</span><span lang="en">Explore the menu</span></a>
+    </div>
+  </div>
+</section>
+<div class="nums">
+  <div class="ni"><div class="niv">4.9</div><div class="nil" lang="it">★ Google Maps</div><div class="nil" lang="en">★ Google Maps</div></div>
+  <div class="ni"><div class="niv" lang="it">Nuovo</div><div class="niv" lang="en">New</div><div class="nil" lang="it">Centro storico</div><div class="nil" lang="en">Historic centre</div></div>
+  <div class="ni"><div class="niv">Ven</div><div class="nil" lang="it">Sab Dom aperto</div><div class="nil" lang="en">Sat Sun open</div></div>
+  <div class="ni"><div class="niv">Evasio</div><div class="nil" lang="it">Il patron</div><div class="nil" lang="en">The owner</div></div>
+</div>
+<section class="about" id="about">
+  <div class="avis">
+    <svg viewBox="0 0 360 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:280px;opacity:.9">
+      <rect width="360" height="420" fill="#120e0a"/>
+      <!-- stone arch window -->
+      <path d="M80 360 L80 200 Q80 100 180 100 Q280 100 280 200 L280 360Z" fill="none" stroke="rgba(200,148,60,.2)" stroke-width="2"/>
+      <path d="M100 360 L100 205 Q100 120 180 120 Q260 120 260 205 L260 360Z" fill="none" stroke="rgba(200,148,60,.1)" stroke-width="1"/>
+      <!-- candles -->
+      <rect x="155" y="280" width="10" height="60" rx="3" fill="#3a2a10"/>
+      <ellipse cx="160" cy="278" rx="5" ry="8" fill="rgba(200,148,60,.6)"/>
+      <ellipse cx="160" cy="274" rx="3" ry="5" fill="rgba(240,200,80,.8)"/>
+      <rect x="210" y="295" width="8" height="50" rx="3" fill="#3a2a10"/>
+      <ellipse cx="214" cy="293" rx="4" ry="7" fill="rgba(200,148,60,.6)"/>
+      <!-- table -->
+      <ellipse cx="180" cy="345" rx="80" ry="20" fill="#2a1e10"/>
+      <rect x="100" y="340" width="160" height="8" rx="4" fill="#3a2a14"/>
+      <!-- wine glass -->
+      <path d="M170 300 Q170 330 160 340 Q175 342 195 340 Q185 330 185 300 Q177.5 295 170 300Z" fill="none" stroke="rgba(200,148,60,.35)" stroke-width="1.5"/>
+      <rect x="175" y="340" width="5" height="10" fill="rgba(200,148,60,.3)"/>
+      <!-- warm glow -->
+      <ellipse cx="180" cy="300" rx="80" ry="60" fill="rgba(200,148,60,.05)"/>
+      <!-- stars -->
+      <text x="120" y="160" font-size="10" fill="rgba(200,148,60,.4)">✦</text>
+      <text x="230" y="170" font-size="8" fill="rgba(200,148,60,.3)">✦</text>
+      <text x="90" y="220" font-size="6" fill="rgba(200,148,60,.3)">✦</text>
+      <text x="180" y="390" text-anchor="middle" font-family="'Cinzel',serif" font-size="11" fill="rgba(200,148,60,.25)" letter-spacing="2">LOCANDA DEL GIGANTE</text>
+    </svg>
+  </div>
+  <div class="atxt">
+    <div class="tag" lang="it">Il nostro locale</div><div class="tag" lang="en">About us</div>
+    <h2 lang="it">Un tocco di<br><span>sapori antichi</span><br>in un posto nuovo</h2>
+    <h2 lang="en">A touch of<br><span>ancient flavours</span><br>in a new place</h2>
+    <p lang="it">Evasio ha aperto la Locanda del Gigante nel centro storico di Diamante per offrire qualcosa di diverso: cucina tradizionale con un tocco innovativo, in un'atmosfera tranquilla e raccolta. A due passi dal lungomare, ideale per una cena speciale.</p>
+    <p lang="en">Evasio opened Locanda del Gigante in Diamante's historic centre to offer something different: traditional cuisine with an innovative touch, in a peaceful and intimate setting. Steps from the seafront, perfect for a special dinner.</p>
+    <p lang="it">Aperto il venerdì e sabato sera e la domenica a pranzo. Piccolo e accogliente — prenotare è essenziale.</p>
+    <p lang="en">Open Friday and Saturday evenings and Sunday lunch. Small and welcoming — reservations are essential.</p>
+    <div class="qt">
+      <p lang="it">"Una nuova locanda con un tocco di altri tempi nei piatti. Nel centro storico, a due passi dal lungomare. Atmosfera tranquilla, cibo di ottima qualità. Bravo, Evasio!"</p>
+      <p lang="en">"A newly opened inn with a touch of old-world flair in its dishes. Historic centre, steps from the seafront. Peaceful atmosphere, excellent food. Well done, Evasio!"</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+</section>
+<section class="menus" id="menu">
+  <div class="mh">
+    <div>
+      <div class="tag" lang="it">Cucina della tradizione</div><div class="tag" lang="en">Traditional cooking</div>
+      <h2 lang="it">Il <span>Menu</span></h2><h2 lang="en">Our <span>Menu</span></h2>
+    </div>
+    <div style="font-size:15px;color:var(--muted);max-width:220px;line-height:1.6;text-align:right;font-style:italic" lang="it">Menu rotante secondo stagione e mercato.</div>
+    <div style="font-size:15px;color:var(--muted);max-width:220px;line-height:1.6;text-align:right;font-style:italic" lang="en">Rotating menu by season and market.</div>
+  </div>
+  <div class="dg">
+    <div class="dish"><div><div class="dn" lang="it">Antipasto della locanda</div><div class="dn" lang="en">Locanda antipasto</div><div class="ds" lang="it">Selezione di salumi, formaggi, sott'oli calabresi</div><div class="ds" lang="en">Selection of cured meats, cheeses, Calabrian pickles</div></div><div class="dp">12 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Fileja al ragù</div><div class="dn" lang="en">Fileja with ragù</div><div class="ds" lang="it">Pasta calabrese, ragù lento della tradizione</div><div class="ds" lang="en">Calabrian pasta, slow traditional ragù</div></div><div class="dp">13 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Pasta al pesce spada</div><div class="dn" lang="en">Swordfish pasta</div><div class="ds" lang="it">Pesce spada fresco, pomodorino, basilico, capperi</div><div class="ds" lang="en">Fresh swordfish, cherry tomato, basil, capers</div></div><div class="dp">14 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Carne alla brace</div><div class="dn" lang="en">Grilled meat</div><div class="ds" lang="it">Selezione del giorno — chiedi al cameriere</div><div class="ds" lang="en">Daily selection — ask your waiter</div></div><div class="dp">15 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Pesce del giorno</div><div class="dn" lang="en">Fish of the day</div><div class="ds" lang="it">Fresco del mercato mattutino</div><div class="ds" lang="en">Fresh from the morning market</div></div><div class="dp">dal 14 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Dolce della casa</div><div class="dn" lang="en">House dessert</div><div class="ds" lang="it">Tartufo di Pizzo o dolce del giorno</div><div class="ds" lang="en">Pizzo truffle or dessert of the day</div></div><div class="dp">5 €</div></div>
+  </div>
+</section>
+<section class="revs" id="reviews">
+  <div class="rh">
+    <div class="tag" lang="it">Cosa dicono</div><div class="tag" lang="en">What they say</div>
+    <h2 lang="it"><span>★4.9</span> · Un gioiello nascosto</h2>
+    <h2 lang="en"><span>★4.9</span> · A hidden gem</h2>
+    <div class="rbar">Google Maps · Diamante, Calabria</div>
+  </div>
+  <div class="rg">
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Una nuova locanda con un tocco di altri tempi nei piatti. Situata nel centro storico, a pochi passi dal lungomare — offre un'atmosfera tranquilla e rilassante, perfetta per una cena romantica. Cibo di qualità eccellente. Bravo, Evasio!"</p><p class="rvt" lang="en">"A newly opened inn with a touch of old-world flair in its dishes. Located in the historic centre, just steps from the seafront — peaceful and relaxing atmosphere, perfect for a romantic dinner. Excellent quality food. Well done, Evasio!"</p><div class="rvw">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Posto piccolo e accogliente, cibo tradizionale eccellente, e un proprietario amichevole. Ci torneremo assolutamente!"</p><p class="rvt" lang="en">"Small but cosy place, excellent traditional food, and a friendly owner. We'll definitely be back!"</p><div class="rvw">🌍 Google Maps</div></div>
+    <div class="rv"><div class="rvs">★★★★★</div><p class="rvt" lang="it">"Ottima ospitalità e cibo di qualità con cucina tradizionale e innovativa a un eccellente rapporto qualità-prezzo."</p><p class="rvt" lang="en">"Excellent hospitality and quality food with traditional and innovative cuisine at an excellent quality-price ratio."</p><div class="rvw">🌍 Google Maps</div></div>
+  </div>
+</section>
+<section class="book" id="book">
+  <div class="bl">
+    <div class="tag" lang="it">Dove siamo</div><div class="tag" lang="en">Find us</div>
+    <h2 lang="it">Prenota il tuo tavolo</h2><h2 lang="en">Reserve your table</h2>
+    <p lang="it">Piccolo e accogliente — i posti sono limitati. Prenotare è essenziale, specialmente nel weekend. WhatsApp è il modo più veloce per contattare Evasio.</p>
+    <p lang="en">Small and cosy — seating is limited. Reservations are essential, especially on weekends. WhatsApp is the fastest way to reach Evasio.</p>
+    <div class="ir"><div class="iri">📍</div><div class="irt">Via Mario Pagano 9 · Diamante (CS) — <span lang="it">Centro storico</span><span lang="en">Historic centre</span></div></div>
+    <div class="ir"><div class="iri">📞</div><div class="irt">328 747 6554 (Evasio)</div></div>
+    <div class="ir"><div class="iri">🕐</div><div class="irt"><span lang="it">Ven–Sab: 19–23 · Dom: 12–15<br>Lun–Gio: chiuso</span><span lang="en">Fri–Sat: 19–23 · Sun: 12–15<br>Mon–Thu: closed</span></div></div>
+    <a href="https://wa.me/393287476554?text=Ciao%20Evasio!%20Vorrei%20prenotare%20alla%20Locanda%20del%20Gigante%20😊" class="wal">📱 WhatsApp Evasio</a>
+  </div>
+  <div class="br">
+    <h3 lang="it">Richiesta di prenotazione</h3><h3 lang="en">Reservation request</h3>
+    <form onsubmit="sent(event)">
+      <div class="fgr">
+        <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+        <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fgr">
+        <div class="fg"><label lang="it">Data</label><label lang="en">Date</label><input type="date"></div>
+        <div class="fg"><label lang="it">Persone</label><label lang="en">Guests</label><select><option>2</option><option>3-4</option><option>5-6</option><option>7+</option></select></div>
+      </div>
+      <div class="fg"><label lang="it">Note (allergie, occasione...)</label><label lang="en">Notes (allergies, occasion...)</label><input type="text" placeholder="..."></div>
+      <button class="sub"><span lang="it">Invia richiesta</span><span lang="en">Send request</span></button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="fl"><span>Locanda</span> del Gigante</div>
+  <div class="fc">© 2025 Locanda del Gigante · Via M. Pagano 9 · Diamante (CS) · 328 747 6554</div>
+  <a href="https://wa.me/393287476554" class="fwa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393287476554" class="waf"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a6a2a';}
+</script>
+</body>
+</html>
