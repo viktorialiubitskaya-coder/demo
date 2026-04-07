@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trattoria Da Nella — Cucina Calabrese · Belvedere Marittimo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,600&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terracotta: #c0522a;
+  --rust:       #9e3d1b;
+  --cream:      #fdf6ec;
+  --warm:       #f5ead8;
+  --parchment:  #e8d5b7;
+  --dark:       #2a1a0e;
+  --mid:        #5c3d22;
+  --text:       #3a2410;
+  --muted:      #8a6a4a;
+  --green:      #4a6741;
+  --gold:       #b8892a;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family:'Lato',sans-serif; background:var(--cream); color:var(--text); overflow-x:hidden; }
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:100;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:22px 52px; transition:all .4s;
+}
+nav.scrolled { background:rgba(42,26,14,.95); backdrop-filter:blur(10px); padding:14px 52px; }
+.nav-logo { font-family:'Playfair Display',serif; font-size:21px; color:#fff; text-decoration:none; letter-spacing:.5px; }
+.nav-logo span { color:var(--terracotta); font-style:italic; }
+.nav-links { display:flex; gap:30px; }
+.nav-links a { color:rgba(255,255,255,.8); text-decoration:none; font-size:12px; letter-spacing:2px; text-transform:uppercase; transition:color .2s; }
+.nav-links a:hover { color:var(--parchment); }
+.nav-book { background:var(--terracotta); color:#fff; padding:10px 22px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:all .2s; }
+.nav-book:hover { background:var(--rust); }
+
+/* ── HERO ── */
+.hero { min-height:100vh; display:flex; align-items:center; position:relative; overflow:hidden; }
+.hero-bg {
+  position:absolute; inset:0;
+  background-image: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80');
+  background-size:cover; background-position:center;
+}
+/* dark overlay for text readability */
+.hero-bg::after {
+  content:''; position:absolute; inset:0;
+  background: linear-gradient(100deg, rgba(30,10,4,.88) 0%, rgba(30,10,4,.75) 50%, rgba(30,10,4,.4) 100%);
+}
+/* decorative pasta shapes */
+.pasta-deco {
+  position:absolute; right:8%; top:50%; transform:translateY(-50%);
+  width:380px; height:380px; opacity:.12;
+}
+.pasta-deco svg { width:100%; height:100%; }
+
+.hero-content { position:relative; z-index:2; padding:0 52px; max-width:640px; animation:fadeUp .9s ease both; }
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+
+.hero-eyebrow { font-size:10px; letter-spacing:5px; text-transform:uppercase; color:var(--terracotta); margin-bottom:22px; display:flex; align-items:center; gap:10px; }
+.hero-eyebrow::before { content:''; width:32px; height:1px; background:var(--terracotta); }
+.hero-title { font-family:'Playfair Display',serif; font-size:clamp(52px,8vw,100px); line-height:.95; font-weight:700; color:#fff; margin-bottom:10px; }
+.hero-title em { font-style:italic; color:var(--parchment); font-weight:400; }
+.hero-subtitle { font-size:13px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-bottom:36px; }
+.hero-desc { font-size:16px; line-height:1.8; color:rgba(255,255,255,.65); margin-bottom:40px; max-width:460px; }
+.hero-cta { display:flex; gap:16px; align-items:center; flex-wrap:wrap; }
+.btn-main { background:var(--terracotta); color:#fff; padding:15px 34px; font-size:11px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; transition:all .25s; }
+.btn-main:hover { background:var(--rust); transform:translateY(-2px); }
+.btn-outline { color:rgba(255,255,255,.6); font-size:12px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; border-bottom:1px solid rgba(255,255,255,.25); padding-bottom:2px; transition:all .2s; }
+.btn-outline:hover { color:#fff; border-color:#fff; }
+
+.hero-stars { position:absolute; right:52px; top:50%; transform:translateY(-50%); z-index:2; }
+.star-card { background:rgba(255,255,255,.07); border:1px solid rgba(255,255,255,.1); backdrop-filter:blur(6px); padding:18px 22px; margin-bottom:12px; text-align:center; }
+.star-num { font-family:'Playfair Display',serif; font-size:36px; font-weight:700; color:var(--parchment); line-height:1; }
+.star-label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.4); margin-top:4px; }
+.star-dots { color:var(--terracotta); font-size:14px; letter-spacing:2px; margin-top:6px; }
+
+/* ── RIBBON ── */
+.ribbon { background:var(--terracotta); padding:14px 52px; display:flex; gap:0; justify-content:space-around; }
+.rib-item { font-size:10px; letter-spacing:3px; text-transform:uppercase; color:rgba(255,255,255,.75); display:flex; align-items:center; gap:8px; }
+.rib-item::before { content:'✦'; font-size:8px; color:rgba(255,255,255,.4); }
+
+/* ── STORY ── */
+.story { display:grid; grid-template-columns:1fr 1fr; }
+.story-text { background:var(--dark); padding:90px 64px; display:flex; flex-direction:column; justify-content:center; }
+.section-tag { font-size:10px; letter-spacing:4px; text-transform:uppercase; color:var(--terracotta); margin-bottom:20px; }
+.story-text h2 { font-family:'Playfair Display',serif; font-size:clamp(34px,3.5vw,50px); font-weight:400; line-height:1.15; color:#fff; margin-bottom:24px; }
+.story-text h2 em { font-style:italic; color:var(--parchment); }
+.story-text p { font-size:15px; line-height:1.85; color:rgba(255,255,255,.6); margin-bottom:14px; }
+.story-quote { margin-top:28px; padding-left:20px; border-left:3px solid var(--terracotta); }
+.story-quote p { font-family:'Playfair Display',serif; font-size:18px; font-style:italic; color:var(--parchment); line-height:1.55; }
+.story-quote cite { display:block; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); margin-top:10px; font-style:normal; }
+
+.story-visual { background:var(--mid); display:flex; align-items:center; justify-content:center; min-height:520px; position:relative; overflow:hidden; }
+.kitchen-art { width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:40px; }
+
+/* ── MENU ── */
+.menu-section { padding:90px 52px; background:var(--cream); }
+.menu-top { display:flex; justify-content:space-between; align-items:flex-end; margin-bottom:50px; flex-wrap:wrap; gap:20px; }
+.menu-top h2 { font-family:'Playfair Display',serif; font-size:clamp(36px,4vw,56px); font-weight:400; color:var(--dark); }
+.menu-top h2 em { font-style:italic; color:var(--terracotta); }
+.menu-note { font-size:12px; color:var(--muted); max-width:260px; line-height:1.6; text-align:right; }
+
+.menu-tabs { display:flex; gap:0; border-bottom:2px solid var(--parchment); margin-bottom:44px; }
+.tab { padding:12px 28px; font-size:11px; letter-spacing:2px; text-transform:uppercase; background:transparent; border:none; cursor:pointer; color:var(--muted); font-family:'Lato',sans-serif; border-bottom:2px solid transparent; margin-bottom:-2px; transition:all .2s; }
+.tab.active { color:var(--terracotta); border-bottom-color:var(--terracotta); font-weight:700; }
+.tab:hover:not(.active) { color:var(--mid); }
+
+.menu-list { display:grid; grid-template-columns:1fr 1fr; gap:0; }
+.menu-row { display:flex; justify-content:space-between; align-items:baseline; padding:20px 0; border-bottom:1px solid var(--parchment); gap:16px; opacity:0; transform:translateX(-8px); transition:all .35s; }
+.menu-row.show { opacity:1; transform:translateX(0); }
+.menu-row:nth-child(odd) { padding-right:44px; }
+.menu-row:nth-child(even) { padding-left:44px; border-left:1px solid var(--parchment); }
+.dish-name { font-family:'Playfair Display',serif; font-size:19px; color:var(--dark); }
+.dish-sub { font-size:12px; color:var(--muted); margin-top:3px; line-height:1.4; }
+.dish-price { font-size:15px; color:var(--terracotta); font-weight:700; white-space:nowrap; }
+
+/* ── PRODUCTS ── */
+.products { background:var(--warm); padding:80px 52px; }
+.products-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:52px; }
+.prod-card { background:#fff; padding:36px 28px; border-top:3px solid var(--terracotta); }
+.prod-icon { font-size:32px; margin-bottom:16px; }
+.prod-title { font-family:'Playfair Display',serif; font-size:22px; color:var(--dark); margin-bottom:10px; }
+.prod-text { font-size:13px; line-height:1.7; color:var(--muted); }
+
+/* ── REVIEWS ── */
+.reviews { padding:90px 52px; background:var(--dark); }
+.reviews h2 { font-family:'Playfair Display',serif; font-size:clamp(34px,4vw,52px); font-weight:400; color:#fff; margin-bottom:8px; }
+.reviews h2 em { font-style:italic; color:var(--parchment); }
+.reviews-sub { font-size:13px; color:rgba(255,255,255,.4); letter-spacing:1px; margin-bottom:52px; }
+.reviews-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.rev-card { padding:32px 28px; border:1px solid rgba(255,255,255,.08); position:relative; }
+.rev-card::before { content:'"'; position:absolute; top:16px; left:20px; font-family:'Playfair Display',serif; font-size:72px; color:rgba(192,82,42,.2); line-height:1; }
+.rev-text { font-family:'Playfair Display',serif; font-style:italic; font-size:16px; line-height:1.65; color:rgba(255,255,255,.8); margin-bottom:18px; margin-top:24px; }
+.rev-stars { color:var(--terracotta); font-size:12px; letter-spacing:3px; margin-bottom:8px; }
+.rev-author { font-size:11px; letter-spacing:2px; text-transform:uppercase; color:rgba(255,255,255,.35); }
+
+/* ── BOOK ── */
+.book { display:grid; grid-template-columns:1fr 1fr; background:var(--warm); }
+.book-info { padding:80px 64px; background:var(--terracotta); }
+.book-info h2 { font-family:'Playfair Display',serif; font-size:clamp(34px,3.5vw,50px); font-weight:400; color:#fff; margin-bottom:20px; line-height:1.15; }
+.book-info h2 em { font-style:italic; }
+.book-info p { font-size:15px; line-height:1.8; color:rgba(255,255,255,.8); margin-bottom:28px; }
+.info-row { display:flex; flex-direction:column; gap:14px; margin-top:32px; }
+.info-line { display:flex; gap:14px; align-items:flex-start; }
+.info-dot { width:8px; height:8px; border-radius:50%; background:rgba(255,255,255,.4); margin-top:6px; flex-shrink:0; }
+.info-txt { font-size:14px; color:rgba(255,255,255,.85); line-height:1.5; }
+
+.book-form { padding:80px 64px; }
+.book-form h3 { font-family:'Playfair Display',serif; font-size:28px; font-weight:400; color:var(--dark); margin-bottom:32px; }
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; }
+.fg { display:flex; flex-direction:column; gap:7px; }
+.fg.full { grid-column:1/-1; }
+.fg label { font-size:10px; letter-spacing:2px; text-transform:uppercase; color:var(--muted); }
+.fg input, .fg select, .fg textarea {
+  background:#fff; border:1px solid var(--parchment); padding:13px 14px;
+  font-family:'Lato',sans-serif; font-size:14px; color:var(--dark); outline:none;
+  transition:border-color .2s;
+}
+.fg input:focus, .fg select:focus, .fg textarea:focus { border-color:var(--terracotta); }
+.fg textarea { resize:vertical; min-height:80px; }
+.submit { margin-top:20px; background:var(--terracotta); color:#fff; border:none; padding:16px 32px; font-size:11px; letter-spacing:3px; text-transform:uppercase; font-family:'Lato',sans-serif; cursor:pointer; transition:all .2s; width:100%; }
+.submit:hover { background:var(--rust); }
+
+/* ── FOOTER ── */
+footer { background:var(--dark); padding:40px 52px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px; border-top:1px solid rgba(255,255,255,.05); }
+.footer-logo { font-family:'Playfair Display',serif; font-size:18px; color:rgba(255,255,255,.35); }
+.footer-logo span { color:var(--terracotta); font-style:italic; }
+.footer-info { font-size:12px; color:rgba(255,255,255,.2); text-align:center; }
+.footer-wa { background:#25d366; color:#fff; padding:11px 22px; font-size:11px; letter-spacing:2px; text-transform:uppercase; text-decoration:none; transition:opacity .2s; }
+.footer-wa:hover { opacity:.85; }
+
+/* float */
+.wa-float { position:fixed; bottom:28px; right:28px; z-index:200; width:56px; height:56px; border-radius:50%; background:#25d366; display:flex; align-items:center; justify-content:center; text-decoration:none; box-shadow:0 4px 18px rgba(37,211,102,.4); transition:transform .2s; animation:popIn .4s 1s both; }
+@keyframes popIn { from{opacity:0;transform:scale(0)} to{opacity:1;transform:scale(1)} }
+.wa-float:hover { transform:scale(1.1); }
+.wa-float svg { width:28px; height:28px; fill:#fff; }
+
+@media(max-width:768px){
+  nav { padding:16px 20px; }
+  nav.scrolled { padding:12px 20px; }
+  .nav-links { display:none; }
+  .hero-content { padding:100px 24px 60px; }
+  .hero-stars { display:none; }
+  .ribbon { padding:12px 20px; gap:12px; flex-wrap:wrap; }
+  .story { grid-template-columns:1fr; }
+  .story-text { padding:60px 24px; }
+  .story-visual { min-height:260px; }
+  .menu-section, .products, .reviews { padding:60px 24px; }
+  .menu-list { grid-template-columns:1fr; }
+  .menu-row:nth-child(even) { padding-left:0; border-left:none; }
+  .menu-row:nth-child(odd) { padding-right:0; }
+  .products-grid { grid-template-columns:1fr; }
+  .reviews-grid { grid-template-columns:1fr; }
+  .book { grid-template-columns:1fr; }
+  .book-info, .book-form { padding:60px 24px; }
+  .form-grid { grid-template-columns:1fr; }
+  footer { padding:32px 20px; flex-direction:column; text-align:center; }
+}
+</style>
+</head>
+<body>
+
+<nav id="nav">
+  <a href="#" class="nav-logo">Da <span>Nella</span></a>
+  <div class="nav-links">
+    <a href="#storia">La Trattoria</a>
+    <a href="#menu">Menu</a>
+    <a href="#recensioni">Recensioni</a>
+    <a href="#prenota">Prenota</a>
+  </div>
+  <a href="#prenota" class="nav-book">Prenota</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+
+  <!-- decorative -->
+  <div class="pasta-deco">
+    <svg viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="200" cy="200" r="160" stroke="white" stroke-width="1" stroke-dasharray="8 6"/>
+      <circle cx="200" cy="200" r="110" stroke="white" stroke-width="0.5" stroke-dasharray="4 8"/>
+      <ellipse cx="200" cy="200" rx="60" ry="140" stroke="white" stroke-width="0.8"/>
+      <ellipse cx="200" cy="200" rx="140" ry="60" stroke="white" stroke-width="0.8"/>
+      <line x1="40" y1="200" x2="360" y2="200" stroke="white" stroke-width="0.5"/>
+      <line x1="200" y1="40" x2="200" y2="360" stroke="white" stroke-width="0.5"/>
+      <circle cx="200" cy="200" r="12" fill="white" opacity="0.15"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Belvedere Marittimo · Calabria</div>
+    <h1 class="hero-title">Trattoria<br><em>Da Nella</em></h1>
+    <p class="hero-subtitle">Cucina calabrese · Terrazza con vista</p>
+    <p class="hero-desc">La cucina di casa, quella vera. Pasta fresca fatta a mano, ingredienti del territorio, ricette tramandate di generazione in generazione. Il sapore autentico della Calabria.</p>
+    <div class="hero-cta">
+      <a href="#prenota" class="btn-main">Prenota un tavolo</a>
+      <a href="#menu" class="btn-outline">Scopri il menu</a>
+    </div>
+  </div>
+
+  <div class="hero-stars">
+    <div class="star-card">
+      <div class="star-num">9.0</div>
+      <div class="star-dots">★★★★★</div>
+      <div class="star-label">TheFork · 231 rec.</div>
+    </div>
+    <div class="star-card">
+      <div class="star-num" style="font-size:24px;padding-top:4px">Terrazza</div>
+      <div class="star-label">Con vista panoramica</div>
+    </div>
+  </div>
+</section>
+
+<!-- RIBBON -->
+<div class="ribbon">
+  <div class="rib-item">Cucina calabrese autentica</div>
+  <div class="rib-item">Pasta fresca ogni giorno</div>
+  <div class="rib-item">Terrazza panoramica</div>
+  <div class="rib-item">Aperto a pranzo e cena</div>
+</div>
+
+<!-- STORY -->
+<section class="story" id="storia">
+  <div class="story-text">
+    <div class="section-tag">La nostra storia</div>
+    <h2>La cucina di <em>nonna Nella</em></h2>
+    <p>Una trattoria che profuma di casa. Dove il sugo cuoce lentamente dalle prime ore del mattino, la pasta è tirata a mano sul tavolo di legno e ogni piatto racconta la tradizione calabrese più vera.</p>
+    <p>Siamo nel cuore di Belvedere Marittimo, con una terrazza che guarda il mare e un menu che cambia seguendo le stagioni e il mercato locale. Niente di complicato — solo sapori genuini e una grande accoglienza.</p>
+    <div class="story-quote">
+      <p>"Si entra come clienti e si esce come di famiglia."</p>
+      <cite>— Recensione TheFork ★★★★★</cite>
+    </div>
+  </div>
+  <div class="story-visual" style="background:none;padding:0;overflow:hidden;">
+    <img
+      src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80"
+      alt="Cucina calabrese - Trattoria Da Nella"
+      style="width:100%;height:100%;object-fit:cover;min-height:520px;display:block;"
+    />
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="menu-top">
+    <div>
+      <div class="section-tag" style="color:var(--terracotta)">Cucina del territorio</div>
+      <h2>Il nostro <em>menu</em></h2>
+    </div>
+    <div class="menu-note">Il menu cambia ogni giorno seguendo la stagione. Tutto preparato con ingredienti locali e ricette della tradizione calabrese.</div>
+  </div>
+
+  <div class="menu-tabs">
+    <button class="tab active" onclick="showTab('antipasti',this)">Antipasti</button>
+    <button class="tab" onclick="showTab('primi',this)">Primi</button>
+    <button class="tab" onclick="showTab('secondi',this)">Secondi</button>
+    <button class="tab" onclick="showTab('dolci',this)">Dolci</button>
+  </div>
+
+  <div class="menu-list" id="menu-list"></div>
+</section>
+
+<!-- GALLERY -->
+<section class="products" style="padding-bottom:0">
+  <div class="section-tag" style="color:var(--terracotta)">La nostra cucina</div>
+  <h2 style="font-family:'Playfair Display',serif;font-size:clamp(34px,4vw,50px);font-weight:400;color:var(--dark);margin-bottom:40px">La differenza <em style="font-style:italic;color:var(--terracotta)">si vede</em></h2>
+
+  <!-- 3-col photo grid -->
+  <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px;margin-bottom:6px;">
+    <div style="position:relative;overflow:hidden;height:320px;">
+      <img src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?w=700&q=80"
+           alt="Pasta fresca calabrese"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;"
+           onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(42,26,14,.8));padding:16px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:#fff;">Pasta fresca</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.6);margin-top:3px;">Fatta a mano ogni giorno</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:320px;">
+      <img src="https://images.unsplash.com/photo-1600891964599-f61ba0e24092?w=700&q=80"
+           alt="Piatto tipico calabrese"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;"
+           onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(42,26,14,.8));padding:16px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:#fff;">Sapori calabresi</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.6);margin-top:3px;">Prodotti locali, ricette di famiglia</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:320px;">
+      <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=700&q=80"
+           alt="Terrazza con vista mare Belvedere Marittimo"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;"
+           onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(42,26,14,.8));padding:16px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:17px;color:#fff;">La terrazza</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.6);margin-top:3px;">Vista panoramica sul mare</div>
+      </div>
+    </div>
+  </div>
+  <!-- second row: 2 photos -->
+  <div style="display:grid;grid-template-columns:2fr 1fr;gap:6px;margin-bottom:80px;">
+    <div style="position:relative;overflow:hidden;height:220px;">
+      <img src="https://images.unsplash.com/photo-1528207776546-365bb710ee93?w=1000&q=80"
+           alt="Antipasto calabrese nduja salumi"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;"
+           onmouseover="this.style.transform='scale(1.03)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(42,26,14,.75));padding:14px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:#fff;">Antipasto della casa</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.6);margin-top:3px;">Salumi, formaggi e prodotti calabresi</div>
+      </div>
+    </div>
+    <div style="position:relative;overflow:hidden;height:220px;">
+      <img src="https://images.unsplash.com/photo-1551024601-bec78aea704b?w=600&q=80"
+           alt="Dolci tradizionali calabresi"
+           style="width:100%;height:100%;object-fit:cover;display:block;transition:transform .4s;"
+           onmouseover="this.style.transform='scale(1.04)'" onmouseout="this.style.transform='scale(1)'"/>
+      <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(42,26,14,.75));padding:14px 18px;">
+        <div style="font-family:'Playfair Display',serif;font-style:italic;font-size:16px;color:#fff;">Dolci di casa</div>
+        <div style="font-size:11px;letter-spacing:1px;color:rgba(255,255,255,.6);margin-top:3px;">Tartufo, cannolo e torte</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="recensioni">
+  <div class="section-tag" style="color:var(--terracotta)">Cosa dicono</div>
+  <h2>231 recensioni,<br><em>una famiglia</em></h2>
+  <p class="reviews-sub">TheFork · 9.0/10 · Cucina italiana &amp; calabrese</p>
+  <div class="reviews-grid">
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"La cena è stata ottima, consigliatissimo! Si percepisce la cura negli ingredienti e la passione di chi cucina. Torneremo sicuramente."</p>
+      <div class="rev-author">— Ospite TheFork</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Terrazza meravigliosa, cibo genuino e personale gentilissimo. La pasta fresca era una favola — si sente che è fatta con le mani."</p>
+      <div class="rev-author">— Famiglia Marchetti · TheFork</div>
+    </div>
+    <div class="rev-card">
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-text">"Siamo capitati per caso e siamo rimasti colpiti. Cucina calabrese vera, porzioni abbondanti, prezzi onestissimi. Consigliato a tutti."</p>
+      <div class="rev-author">— Marco V. · TheFork</div>
+    </div>
+  </div>
+</section>
+
+<!-- BOOK -->
+<section class="book" id="prenota">
+  <div class="book-info">
+    <div class="section-tag" style="color:rgba(255,255,255,.6)">Vieni a trovarci</div>
+    <h2>Prenota il<br><em>tuo tavolo</em></h2>
+    <p>Per garantirti il tavolo migliore — specialmente in terrazza — ti consigliamo di prenotare. Anche per WhatsApp, risponderemo presto.</p>
+    <div class="info-row">
+      <div class="info-line"><div class="info-dot"></div><div class="info-txt">Belvedere Marittimo (CS), Calabria</div></div>
+      <div class="info-line"><div class="info-dot"></div><div class="info-txt">Pranzo: 12:30 – 15:00<br>Cena: 19:30 – 23:00</div></div>
+      <div class="info-line"><div class="info-dot"></div><div class="info-txt">Terrazza disponibile in estate<br>Sala interna tutto l'anno</div></div>
+    </div>
+    <a href="https://wa.me/39?text=Buongiorno!%20Vorrei%20prenotare%20un%20tavolo%20da%20Nella%20😊" 
+       style="display:inline-block;margin-top:28px;background:rgba(255,255,255,.15);color:#fff;padding:13px 26px;font-size:11px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;transition:all .2s">
+      📱 Scrivi su WhatsApp
+    </a>
+  </div>
+  <div class="book-form">
+    <h3>Invia una richiesta</h3>
+    <form onsubmit="handleSend(event)">
+      <div class="form-grid">
+        <div class="fg"><label>Nome</label><input type="text" placeholder="Il tuo nome"></div>
+        <div class="fg"><label>Telefono</label><input type="tel" placeholder="+39"></div>
+        <div class="fg"><label>Data</label><input type="date"></div>
+        <div class="fg"><label>Persone</label>
+          <select>
+            <option>2 persone</option><option>3 persone</option>
+            <option>4 persone</option><option>5–6 persone</option><option>7+ persone</option>
+          </select>
+        </div>
+        <div class="fg"><label>Servizio</label>
+          <select>
+            <option>Pranzo (12:30)</option><option>Cena (19:30)</option>
+          </select>
+        </div>
+        <div class="fg"><label>Terrazza</label>
+          <select>
+            <option>Sì, preferisco terrazza</option><option>Sala interna va bene</option><option>Indifferente</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Note</label><textarea placeholder="Allergie, occasioni speciali, richieste particolari..."></textarea></div>
+      </div>
+      <button class="submit" type="submit">Invia richiesta di prenotazione</button>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">Trattoria da <span>Nella</span></div>
+  <div class="footer-info">© 2025 Trattoria Da Nella · Belvedere Marittimo (CS) · Calabria</div>
+  <a href="https://wa.me/39" class="footer-wa">WhatsApp</a>
+</footer>
+
+<a href="https://wa.me/39?text=Ciao!%20Vorrei%20prenotare%20un%20tavolo%20da%20Nella%20😊" class="wa-float">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+  </svg>
+</a>
+
+<script>
+window.addEventListener('scroll', () => {
+  document.getElementById('nav').classList.toggle('scrolled', scrollY > 60);
+});
+
+const menu = {
+  antipasti: [
+    { name:"Antipasto della casa", sub:"Salumi locali, formaggi, olive, sott'oli", price:"10 €" },
+    { name:"Bruschette al pomodoro", sub:"Pane di casa, pomodori, basilico, olio EVO", price:"6 €" },
+    { name:"Crostini con 'nduja", sub:"Nduja artigianale sciolta, crostini croccanti", price:"7 €" },
+    { name:"Verdure grigliate", sub:"Melanzane, zucchine, peperoni di stagione", price:"8 €" },
+    { name:"Frittata di erbe", sub:"Uova fresche, erbe aromatiche del giardino", price:"7 €" },
+    { name:"Tagliere misto", sub:"Selezione di prodotti tipici calabresi", price:"13 €" },
+  ],
+  primi: [
+    { name:"Fileja al ragù", sub:"Pasta calabrese, ragù lento di maiale", price:"10 €" },
+    { name:"Rigatoni alla 'nduja", sub:"Nduja, pelati, pecorino grattugiato", price:"11 €" },
+    { name:"Pasta e fagioli", sub:"Ricetta della nonna, con peperoncino fresco", price:"9 €" },
+    { name:"Spaghetti al sugo di mare", sub:"Cozze, vongole, gamberi, pomodorini", price:"13 €" },
+    { name:"Lagane e ceci", sub:"Piatto povero della tradizione, ricco di sapore", price:"9 €" },
+    { name:"Fusilli con peperoni cruschi", sub:"Peperoni essiccati, ricotta salata, basilico", price:"10 €" },
+  ],
+  secondi: [
+    { name:"Maialino al forno", sub:"Arrostito lentamente con erbe aromatiche", price:"14 €" },
+    { name:"Agnello scottadito", sub:"Costolette di agnello alla brace, rosmarino", price:"15 €" },
+    { name:"Baccalà alla calabrese", sub:"Pomodoro, peperoni, olive, capperi", price:"13 €" },
+    { name:"Polpette al sugo", sub:"Carne mista, sugo della casa, pane carasau", price:"11 €" },
+    { name:"Fritto misto di mare", sub:"Secondo disponibilità del giorno", price:"14 €" },
+    { name:"Pesce alla griglia", sub:"Del giorno, con salmoriglio calabrese", price:"16 €" },
+  ],
+  dolci: [
+    { name:"Tartufo di Pizzo", sub:"Il classico, al cioccolato fondente", price:"4 €" },
+    { name:"Cannolo calabrese", sub:"Ricotta fresca, scorza di cedro", price:"4 €" },
+    { name:"Torta della casa", sub:"Cambia ogni giorno — chiedi al cameriere", price:"4 €" },
+    { name:"Semifreddo al bergamotto", sub:"Agrume tipico calabrese", price:"5 €" },
+  ],
+};
+
+function showTab(cat, btn) {
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderMenu(cat);
+}
+
+function renderMenu(cat) {
+  const list = document.getElementById('menu-list');
+  list.innerHTML = menu[cat].map((d,i) => `
+    <div class="menu-row" style="transition-delay:${i*.055}s">
+      <div>
+        <div class="dish-name">${d.name}</div>
+        <div class="dish-sub">${d.sub}</div>
+      </div>
+      <div class="dish-price">${d.price}</div>
+    </div>`).join('');
+  requestAnimationFrame(() => {
+    list.querySelectorAll('.menu-row').forEach(r => r.classList.add('show'));
+  });
+}
+renderMenu('antipasti');
+
+function handleSend(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.submit');
+  btn.textContent = '✓ Richiesta inviata!';
+  btn.style.background = 'var(--green)';
+}
+</script>
+</body>
+</html>
