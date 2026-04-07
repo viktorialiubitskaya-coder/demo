@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ristopub Naif · Praia a Mare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0c0c0c;--dark:#111;--card:#181818;--mid:#1e1e1e;
+  --amber:#c87820;--amber2:#e09030;--rust:#8b3010;
+  --cream:#f0ebe0;--muted:#888;--border:rgba(255,255,255,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--cream);font-family:'IBM Plex Sans',sans-serif;overflow-x:hidden;}
+[lang="en"]{display:none;}
+body.en [lang="it"]{display:none;}
+body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(255,255,255,.07);border:1px solid var(--border);color:var(--cream);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(12,12,12,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:12px 52px;}
+.logo{font-family:'Oswald',sans-serif;font-size:22px;font-weight:600;color:var(--cream);text-decoration:none;letter-spacing:3px;text-transform:uppercase;}
+.logo span{color:var(--amber);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.55);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--amber);}
+.cta{background:var(--amber);color:#fff;padding:9px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .2s;}
+.cta:hover{background:var(--amber2);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;}
+.hero-bg{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,#080808 0%,#1a0c04 40%,#2a1408 65%,#c87820 120%);
+}
+.hero-bg::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 65% 50%,rgba(200,120,32,.2) 0%,transparent 65%);}
+/* animated ember particles */
+.embers{position:absolute;inset:0;pointer-events:none;overflow:hidden;}
+.ember{position:absolute;width:3px;height:3px;border-radius:50%;background:var(--amber);animation:rise linear infinite;}
+.ember:nth-child(1){left:20%;animation-duration:4s;animation-delay:0s;width:2px;height:2px;}
+.ember:nth-child(2){left:45%;animation-duration:5s;animation-delay:1.5s;width:3px;height:3px;background:var(--amber2);}
+.ember:nth-child(3){left:70%;animation-duration:3.5s;animation-delay:.8s;width:2px;height:2px;}
+.ember:nth-child(4){left:80%;animation-duration:6s;animation-delay:2.5s;width:4px;height:4px;background:var(--amber2);}
+.ember:nth-child(5){left:35%;animation-duration:4.5s;animation-delay:3s;width:2px;height:2px;}
+@keyframes rise{0%{bottom:-10px;opacity:0;transform:translateX(0);}20%{opacity:1;}80%{opacity:.4;}100%{bottom:110%;opacity:0;transform:translateX(30px);}}
+/* big NAIF watermark */
+.hero-wm{position:absolute;right:-3%;top:50%;transform:translateY(-50%);font-family:'Oswald',sans-serif;font-size:clamp(200px,28vw,360px);font-weight:700;line-height:1;color:rgba(200,120,32,.05);pointer-events:none;letter-spacing:-5px;}
+
+.hero-content{position:relative;z-index:2;padding:0 52px 88px;animation:su .9s ease both;}
+@keyframes su{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+.hero-badge{display:inline-flex;align-items:center;gap:10px;background:rgba(200,120,32,.15);border:1px solid rgba(200,120,32,.3);padding:6px 16px;font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--amber2);margin-bottom:22px;}
+.hero-badge::before{content:'●';animation:blink 1.5s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-h{font-family:'Oswald',sans-serif;font-size:clamp(60px,11vw,150px);font-weight:700;line-height:.88;color:var(--cream);margin-bottom:12px;letter-spacing:2px;text-transform:uppercase;}
+.hero-h em{color:var(--amber);font-style:normal;}
+.hero-sub{font-size:12px;letter-spacing:5px;text-transform:uppercase;color:rgba(255,255,255,.35);margin-bottom:28px;}
+.hero-desc{font-size:16px;line-height:1.8;color:rgba(255,255,255,.55);max-width:480px;margin-bottom:44px;}
+.hero-btns{display:flex;gap:14px;flex-wrap:wrap;align-items:center;}
+.btn-a{background:var(--amber);color:#fff;padding:16px 36px;font-size:12px;letter-spacing:3px;text-transform:uppercase;text-decoration:none;font-weight:500;transition:all .3s;}
+.btn-a:hover{background:var(--amber2);transform:translateY(-2px);}
+.btn-b{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border:1px solid rgba(255,255,255,.15);padding:15px 28px;transition:all .2s;}
+.btn-b:hover{border-color:rgba(255,255,255,.4);color:var(--cream);}
+.hero-pills{position:absolute;right:52px;bottom:88px;z-index:2;display:flex;flex-direction:column;gap:8px;align-items:flex-end;}
+.hp{background:rgba(0,0,0,.4);border:1px solid var(--border);backdrop-filter:blur(8px);padding:10px 16px;font-size:12px;color:rgba(255,255,255,.7);}
+.hp strong{color:var(--amber2);}
+
+/* NUMBERS */
+.numbers{background:var(--amber);display:grid;grid-template-columns:repeat(4,1fr);}
+.ni{padding:18px 20px;border-right:1px solid rgba(255,255,255,.2);text-align:center;}
+.ni:last-child{border-right:none;}
+.ni-v{font-family:'Oswald',sans-serif;font-size:28px;font-weight:700;color:#fff;line-height:1;}
+.ni-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px;}
+
+/* ABOUT */
+.about{display:grid;grid-template-columns:1fr 1fr;}
+.about-vis{background:var(--mid);display:flex;align-items:center;justify-content:center;min-height:500px;overflow:hidden;}
+.about-txt{background:var(--dark);padding:80px 60px;display:flex;flex-direction:column;justify-content:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--amber);margin-bottom:16px;}
+.about-txt h2{font-family:'Oswald',sans-serif;font-size:clamp(34px,4vw,54px);font-weight:600;color:var(--cream);margin-bottom:22px;text-transform:uppercase;letter-spacing:1px;}
+.about-txt h2 em{color:var(--amber);font-style:normal;}
+.about-txt p{font-size:15px;line-height:1.85;color:rgba(255,255,255,.5);margin-bottom:14px;}
+.quote-box{margin-top:24px;border-left:4px solid var(--amber);padding:16px 20px;background:rgba(200,120,32,.06);}
+.quote-box p{font-size:16px;line-height:1.6;color:rgba(255,255,255,.75);font-style:italic;}
+.quote-box cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+
+/* MENU */
+.menu-s{padding:90px 52px;background:var(--bg);}
+.mh{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:52px;flex-wrap:wrap;gap:20px;}
+.mh h2{font-family:'Oswald',sans-serif;font-size:clamp(44px,6vw,80px);font-weight:700;color:var(--cream);text-transform:uppercase;letter-spacing:1px;}
+.mh h2 em{color:var(--amber);font-style:normal;}
+.dish-g{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);}
+.dish{background:var(--card);padding:28px;display:flex;justify-content:space-between;align-items:flex-start;gap:14px;border-bottom:2px solid transparent;transition:all .25s;}
+.dish:hover{background:var(--mid);border-bottom-color:var(--amber);}
+.dn{font-family:'Oswald',sans-serif;font-size:20px;font-weight:500;color:var(--cream);letter-spacing:.5px;margin-bottom:5px;}
+.ds{font-size:12px;color:var(--muted);line-height:1.5;}
+.dt{display:inline-block;margin-top:6px;font-size:9px;letter-spacing:2px;padding:2px 8px;background:rgba(200,120,32,.15);color:var(--amber);}
+.dp{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;color:var(--amber);white-space:nowrap;}
+
+/* REVIEWS */
+.reviews{padding:90px 52px;background:var(--dark);}
+.rv-h h2{font-family:'Oswald',sans-serif;font-size:clamp(40px,5vw,72px);font-weight:700;color:var(--cream);text-transform:uppercase;margin-bottom:6px;}
+.rv-h h2 em{color:var(--amber);font-style:normal;}
+.rv-bar{font-size:12px;color:var(--muted);margin-bottom:44px;letter-spacing:1px;}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:var(--card);padding:28px;border-top:2px solid var(--amber);}
+.rv-stars{color:var(--amber2);font-size:13px;letter-spacing:2px;margin-bottom:12px;}
+.rv-txt{font-size:15px;line-height:1.7;color:rgba(255,255,255,.7);margin-bottom:14px;font-style:italic;}
+.rv-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* BOOK */
+.book{display:grid;grid-template-columns:1fr 1fr;}
+.b-left{background:var(--amber);padding:80px 56px;}
+.b-left h2{font-family:'Oswald',sans-serif;font-size:clamp(36px,4vw,54px);font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:18px;}
+.b-left p{font-size:15px;line-height:1.8;color:rgba(255,255,255,.8);margin-bottom:28px;}
+.ir{display:flex;gap:14px;align-items:flex-start;margin-bottom:12px;}
+.ir-i{width:36px;height:36px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0;}
+.ir-t{font-size:14px;color:rgba(255,255,255,.85);line-height:1.55;}
+.wa-l{display:inline-block;margin-top:24px;background:#25d366;color:#fff;padding:13px 26px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;}
+.b-right{background:var(--mid);padding:80px 56px;}
+.b-right h3{font-family:'Oswald',sans-serif;font-size:26px;font-weight:600;color:var(--cream);text-transform:uppercase;letter-spacing:1px;margin-bottom:28px;}
+.fg{display:flex;flex-direction:column;gap:7px;margin-bottom:14px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:var(--card);border:1px solid var(--border);padding:13px 14px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:var(--cream);outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--amber);}
+.fg select option{background:var(--dark);}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.fg textarea{resize:vertical;min-height:72px;}
+.sub{width:100%;background:var(--amber);color:#fff;border:none;padding:14px;font-size:11px;letter-spacing:3px;text-transform:uppercase;font-family:'IBM Plex Sans',sans-serif;cursor:pointer;font-weight:600;transition:all .2s;margin-top:6px;}
+.sub:hover{background:var(--amber2);}
+footer{background:var(--bg);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.f-logo{font-family:'Oswald',sans-serif;font-size:18px;font-weight:600;letter-spacing:3px;color:rgba(255,255,255,.25);text-transform:uppercase;}
+.f-logo span{color:var(--amber);}
+.f-copy{font-size:11px;color:var(--muted);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;font-weight:600;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hero-content{padding:0 20px 60px;}.hero-pills{display:none;}.numbers{grid-template-columns:1fr 1fr;}.about{grid-template-columns:1fr;}.about-vis{min-height:240px;}.about-txt{padding:60px 20px;}.menu-s,.reviews{padding:60px 20px;}.dish-g{grid-template-columns:1fr;}.rv-grid{grid-template-columns:1fr;}.book{grid-template-columns:1fr;}.b-left,.b-right{padding:60px 20px;}.fg-r{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo"><span>N</span>AIF</a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Locale</span><span lang="en">About</span></a>
+    <a href="#menu">Menu</a>
+    <a href="#prenota"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393292503022" class="cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="embers"><div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div><div class="ember"></div></div>
+  <div class="hero-wm" lang="it">NAIF</div>
+  <div class="hero-content">
+    <div class="hero-badge" lang="it">● Ristopub · Praia a Mare</div>
+    <div class="hero-badge" lang="en">● Gastropub · Praia a Mare</div>
+    <h1 class="hero-h"><em>RISTOPUB</em><br>NAIF</h1>
+    <p class="hero-sub" lang="it">Carne · Birra · Atmosfera · Roberto</p>
+    <p class="hero-sub" lang="en">Meat · Beer · Atmosphere · Roberto</p>
+    <p class="hero-desc" lang="it">Un posto nuovo, bello e fuori dall'ordinario nel cuore di Praia a Mare. Carne di altissima qualità, CALA craft beer calabrese, ambiente curato nei dettagli. Roberto e la cucina di sua moglie.</p>
+    <p class="hero-desc" lang="en">A new, beautiful and extraordinary place in the heart of Praia a Mare. Top-quality meat, CALA Calabrian craft beer, meticulous decor. Roberto and his wife's cooking.</p>
+    <div class="hero-btns">
+      <a href="https://wa.me/393292503022?text=Ciao!%20Vorrei%20prenotare%20al%20Naif%20😊" class="btn-a"><span lang="it">📱 Prenota su WhatsApp</span><span lang="en">📱 Book on WhatsApp</span></a>
+      <a href="#menu" class="btn-b"><span lang="it">Vedi il menu</span><span lang="en">See menu</span></a>
+    </div>
+  </div>
+  <div class="hero-pills">
+    <div class="hp"><strong>★4.7</strong> · 95 rec Google</div>
+    <div class="hp"><strong lang="it">Carne premium</strong><strong lang="en">Premium meat</strong></div>
+    <div class="hp"><strong>CALA</strong> <span lang="it">birra artigianale calabrese</span><span lang="en">Calabrian craft beer</span></div>
+  </div>
+</section>
+<div class="numbers">
+  <div class="ni"><div class="ni-v">★4.7</div><div class="ni-l" lang="it">Google · 95 rec.</div><div class="ni-l" lang="en">Google · 95 rev.</div></div>
+  <div class="ni"><div class="ni-v" lang="it">Carne</div><div class="ni-v" lang="en">Meat</div><div class="ni-l" lang="it">Premium quality</div><div class="ni-l" lang="en">Premium quality</div></div>
+  <div class="ni"><div class="ni-v">CALA</div><div class="ni-l" lang="it">Birra craft calabrese</div><div class="ni-l" lang="en">Calabrian craft beer</div></div>
+  <div class="ni"><div class="ni-v" lang="it">Sera</div><div class="ni-v" lang="en">Evenings</div><div class="ni-l" lang="it">Aperto ogni sera</div><div class="ni-l" lang="en">Open every evening</div></div>
+</div>
+<section class="about" id="about">
+  <div class="about-vis">
+    <svg viewBox="0 0 380 420" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:300px;opacity:.9">
+      <rect width="380" height="420" fill="#111"/>
+      <!-- grill -->
+      <rect x="60" y="260" width="260" height="100" rx="8" fill="#1a1a1a"/>
+      <rect x="60" y="255" width="260" height="12" rx="4" fill="#222"/>
+      <!-- grill grates -->
+      <g stroke="rgba(200,120,32,.4)" stroke-width="2" stroke-linecap="round">
+        <line x1="80" y1="255" x2="80" y2="358"/>
+        <line x1="110" y1="255" x2="110" y2="358"/>
+        <line x1="140" y1="255" x2="140" y2="358"/>
+        <line x1="170" y1="255" x2="170" y2="358"/>
+        <line x1="200" y1="255" x2="200" y2="358"/>
+        <line x1="230" y1="255" x2="230" y2="358"/>
+        <line x1="260" y1="255" x2="260" y2="358"/>
+        <line x1="290" y1="255" x2="290" y2="358"/>
+        <line x1="320" y1="255" x2="320" y2="358"/>
+      </g>
+      <!-- meat on grill -->
+      <ellipse cx="150" cy="280" rx="60" ry="20" fill="#5a1c0c" opacity=".9"/>
+      <ellipse cx="150" cy="277" rx="55" ry="17" fill="#7a2a10"/>
+      <ellipse cx="240" cy="285" rx="50" ry="18" fill="#5a1c0c" opacity=".9"/>
+      <ellipse cx="240" cy="282" rx="45" ry="15" fill="#7a2a10"/>
+      <!-- grill marks -->
+      <line x1="120" y1="275" x2="130" y2="285" stroke="rgba(30,10,5,.5)" stroke-width="3"/>
+      <line x1="140" y1="272" x2="150" y2="282" stroke="rgba(30,10,5,.5)" stroke-width="3"/>
+      <line x1="160" y1="274" x2="170" y2="284" stroke="rgba(30,10,5,.5)" stroke-width="3"/>
+      <!-- flames below -->
+      <path d="M90 370 Q95 350 100 360 Q105 348 110 370Z" fill="rgba(200,80,20,.5)"/>
+      <path d="M140 375 Q148 355 155 365 Q162 350 168 375Z" fill="rgba(200,100,20,.45)"/>
+      <path d="M200 370 Q208 352 214 362 Q220 350 226 370Z" fill="rgba(200,80,20,.4)"/>
+      <path d="M260 372 Q267 356 272 366 Q277 352 283 372Z" fill="rgba(200,100,20,.45)"/>
+      <!-- beer bottle -->
+      <rect x="30" y="180" width="22" height="80" rx="5" fill="#1a3010"/>
+      <rect x="34" y="158" width="14" height="26" rx="3" fill="#1a3010"/>
+      <rect x="36" y="152" width="10" height="10" rx="2" fill="#c8a030"/>
+      <text x="41" y="225" text-anchor="middle" font-family="'Oswald',sans-serif" font-size="8" fill="rgba(200,160,48,.6)" font-weight="700">CALA</text>
+      <!-- steak fork -->
+      <rect x="330" y="160" width="6" height="100" rx="3" fill="rgba(255,255,255,.2)"/>
+      <rect x="322" y="160" width="4" height="30" rx="2" fill="rgba(255,255,255,.15)"/>
+      <rect x="336" y="160" width="4" height="30" rx="2" fill="rgba(255,255,255,.15)"/>
+      <!-- smoke -->
+      <path d="M140 255 Q135 235 140 215" stroke="rgba(255,255,255,.08)" stroke-width="3" fill="none" stroke-linecap="round"/>
+      <path d="M200 250 Q196 230 200 210" stroke="rgba(255,255,255,.07)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <path d="M260 255 Q265 232 260 210" stroke="rgba(255,255,255,.07)" stroke-width="2" fill="none" stroke-linecap="round"/>
+      <!-- warm light -->
+      <ellipse cx="190" cy="310" rx="130" ry="50" fill="rgba(200,120,32,.06)"/>
+      <text x="190" y="400" text-anchor="middle" font-family="'Oswald',sans-serif" font-size="11" fill="rgba(200,120,32,.25)" letter-spacing="4" font-weight="600">PREMIUM MEAT</text>
+    </svg>
+  </div>
+  <div class="about-txt">
+    <div class="tag" lang="it">Il locale</div>
+    <div class="tag" lang="en">About</div>
+    <h2 lang="it">Bello, buono<br>e <em>NAIF</em></h2>
+    <h2 lang="en">Beautiful, delicious<br>and <em>NAIF</em></h2>
+    <p lang="it">Un locale curato nei minimi dettagli nel centro di Praia a Mare. Roberto in sala, la moglie in cucina — un duo che non delude mai. Carne eccezionale, birra artigianale calabrese CALA, e un'atmosfera che ti fa venire voglia di tornare.</p>
+    <p lang="en">A place meticulously crafted in the heart of Praia a Mare. Roberto in the dining room, his wife in the kitchen — a duo that never disappoints. Exceptional meat, CALA Calabrian craft beer, and an atmosphere that keeps you coming back.</p>
+    <p lang="it">Aperto dal lunedì (tranne il mercoledì), la sera. Prenotare è vivamente consigliato — i tavoli si riempiono.</p>
+    <p lang="en">Open Monday to Sunday (except Wednesday), evenings only. Booking strongly recommended — tables fill up fast.</p>
+    <div class="quote-box">
+      <p lang="it">"Amazing all-you-can-eat meat — plentiful and exceptionally high quality. Un posto unico e carino. Complimenti a Roberto e alla cucina eccezionale di sua moglie."</p>
+      <p lang="en">"Amazing all-you-can-eat meat — plentiful and exceptionally high quality. A quaint and unique place. Kudos to Roberto and his wife's amazing cooking."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+</section>
+<section class="menu-s" id="menu">
+  <div class="mh">
+    <div>
+      <div class="tag" lang="it">La nostra cucina</div>
+      <div class="tag" lang="en">Our kitchen</div>
+      <h2 lang="it"><em>CARNE</em> &amp; ALTRO</h2>
+      <h2 lang="en"><em>MEAT</em> &amp; MORE</h2>
+    </div>
+  </div>
+  <div class="dish-g">
+    <div class="dish"><div><div class="dn" lang="it">Stinco di maiale</div><div class="dn" lang="en">Pork shank</div><div class="ds" lang="it">Cotto lentamente, morbidissimo — "eccezionale"</div><div class="ds" lang="en">Slow-cooked, incredibly tender — "exceptional"</div><div class="dt" lang="it">TOP</div><div class="dt" lang="en">TOP</div></div><div class="dp">18 €</div></div>
+    <div class="dish"><div><div class="dn">Ribs</div><div class="ds" lang="it">Costine di maiale alla brace, BBQ della casa</div><div class="ds" lang="en">Barbecued pork ribs, house BBQ sauce</div><div class="dt">Signature</div></div><div class="dp">16 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Tagliata di manzo</div><div class="dn" lang="en">Sliced beef</div><div class="ds" lang="it">Con rucola, parmigiano, pomodorini</div><div class="ds" lang="en">With rocket, parmesan, cherry tomatoes</div></div><div class="dp">16 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Crocchetta di patate</div><div class="dn" lang="en">Potato croquette</div><div class="ds" lang="it">Con peperone crusco — "SUPERB!"</div><div class="ds" lang="en">With crusco pepper — "SUPERB!"</div><div class="dt" lang="it">Antipasto</div><div class="dt" lang="en">Starter</div></div><div class="dp">6 €</div></div>
+    <div class="dish"><div><div class="dn" lang="it">Costata alla brace</div><div class="dn" lang="en">Grilled rib-eye</div><div class="ds" lang="it">Carne di prima scelta, cotta alla perfezione</div><div class="ds" lang="en">Prime cut, cooked to perfection</div><div class="dt" lang="it">Premium</div><div class="dt" lang="en">Premium</div></div><div class="dp">22 €</div></div>
+    <div class="dish"><div><div class="dn">CALA Craft Beer</div><div class="ds" lang="it">Birra artigianale calabrese — la scelta giusta</div><div class="ds" lang="en">Calabrian craft beer — the right choice</div></div><div class="dp">5 €</div></div>
+  </div>
+</section>
+<section class="reviews">
+  <div class="rv-h">
+    <div class="tag" lang="it">Cosa dicono</div>
+    <div class="tag" lang="en">What they say</div>
+    <h2 lang="it"><em>★4.7</em> · 95 VOCI</h2>
+    <h2 lang="en"><em>★4.7</em> · 95 VOICES</h2>
+    <div class="rv-bar">Google Maps · Praia a Mare</div>
+  </div>
+  <div class="rv-grid">
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Excellent food, warm ambiance, very welcoming staff. The food is up there with the very best! Stinco e ribs eccezionali."</p><p class="rv-txt" lang="en">"Excellent food, warm ambiance, very welcoming staff. The food is up there with the very best! Exceptional shank and ribs."</p><div class="rv-who">🌍 Google Maps</div></div>
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Un posto nuovo, bello e fuori dall'ordinario. Ho mangiato un costato di manzo che si scioglieva in bocca nonostante l'avessi chiesto ben cotto. La birra CALA è una vera delizia."</p><p class="rv-txt" lang="en">"A new, beautiful, out-of-the-ordinary place. Veal rib that melted in my mouth even though I'd asked for it well-done. CALA beer is a real delight."</p><div class="rv-who">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Amazing all-you-can-eat meat, plentiful and exceptionally high quality. Complimenti a Roberto e alla cucina eccezionale di sua moglie. Definitely worth a try!"</p><p class="rv-txt" lang="en">"Amazing all-you-can-eat meat, plentiful and exceptionally high quality. Kudos to Roberto and his wife's amazing cooking. Definitely worth a try!"</p><div class="rv-who">🌍 Google Maps</div></div>
+  </div>
+</section>
+<section class="book" id="prenota">
+  <div class="b-left">
+    <div class="tag" style="color:rgba(255,255,255,.5)" lang="it">Dove siamo</div>
+    <div class="tag" style="color:rgba(255,255,255,.5)" lang="en">Find us</div>
+    <h2 lang="it">PRENOTA<br>IL TUO POSTO</h2>
+    <h2 lang="en">BOOK<br>YOUR SPOT</h2>
+    <p lang="it">Aperto ogni sera tranne il mercoledì. Prenotare è consigliato — il locale è piccolo e i tavoli si riempiono subito.</p>
+    <p lang="en">Open every evening except Wednesday. Booking recommended — the place is small and tables fill up fast.</p>
+    <div class="ir"><div class="ir-i">📍</div><div class="ir-t">Via Cristoforo Colombo 14 · Praia a Mare (CS)</div></div>
+    <div class="ir"><div class="ir-i">📞</div><div class="ir-t">329 250 3022</div></div>
+    <div class="ir"><div class="ir-i">🕐</div><div class="ir-t"><span lang="it">Lun–Mar–Gio–Ven–Sab–Dom · 20:00–24:00<br>Mercoledì chiuso</span><span lang="en">Mon–Tue–Thu–Fri–Sat–Sun · 20:00–24:00<br>Closed Wednesday</span></div></div>
+    <a href="https://wa.me/393292503022?text=Ciao!%20Vorrei%20prenotare%20al%20Naif%20😊" class="wa-l">📱 WhatsApp</a>
+  </div>
+  <div class="b-right">
+    <h3 lang="it">INVIA UNA RICHIESTA</h3>
+    <h3 lang="en">SEND A REQUEST</h3>
+    <form onsubmit="s(event)">
+      <div class="fg-r">
+        <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+        <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+      </div>
+      <div class="fg-r">
+        <div class="fg"><label lang="it">Data</label><label lang="en">Date</label><input type="date"></div>
+        <div class="fg"><label lang="it">Persone</label><label lang="en">Guests</label><select><option>2</option><option>3–4</option><option>5–6</option><option>7+</option></select></div>
+      </div>
+      <div class="fg"><label lang="it">Note</label><label lang="en">Notes</label><textarea placeholder="..."></textarea></div>
+      <button class="sub" type="submit"><span lang="it">INVIA RICHIESTA</span><span lang="en">SEND REQUEST</span></button>
+    </form>
+  </div>
+</section>
+<footer>
+  <div class="f-logo"><span>N</span>AIF</div>
+  <div class="f-copy">© 2025 Ristopub Naif · Via C. Colombo 14 · Praia a Mare · 329 250 3022</div>
+  <a href="https://wa.me/393292503022" class="f-wa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393292503022" class="waf"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>60));
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function s(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a5a2a';}
+</script>
+</body>
+</html>

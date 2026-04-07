@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Janet's Luxury · Parrucchiere · Praia a Mare</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Nunito:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0e0808;--dark:#140c0c;--card:#1a1010;
+  --rose:#c04878;--rose2:#e06898;--pink:#f0a8c8;--blush:#f8e8f0;
+  --cream:#faf5f8;--warm:#f0e8ec;--muted:#a08090;--border:rgba(255,255,255,.07);
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--cream);color:#1a0810;font-family:'Nunito',sans-serif;overflow-x:hidden;}
+[lang="en"]{display:none;}
+body.en [lang="it"]{display:none;}
+body.en [lang="en"]{display:revert;}
+.lang-btn{position:fixed;top:20px;right:76px;z-index:200;background:rgba(192,72,120,.1);border:1px solid rgba(192,72,120,.2);color:var(--rose);font-size:11px;letter-spacing:2px;text-transform:uppercase;padding:7px 14px;cursor:pointer;font-family:'Nunito',sans-serif;border-radius:20px;}
+body.hero-dark .lang-btn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15);color:#fff;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:22px 52px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;}
+nav.on{background:rgba(14,8,8,.97);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:13px 52px;}
+.logo{font-family:'Cormorant Garamond',serif;font-size:22px;font-style:italic;color:#fff;text-decoration:none;letter-spacing:1px;}
+.logo span{font-style:normal;color:var(--pink);}
+.links{display:flex;gap:28px;}
+.links a{color:rgba(255,255,255,.65);text-decoration:none;font-size:11px;letter-spacing:3px;text-transform:uppercase;transition:color .2s;}
+.links a:hover{color:var(--pink);}
+.cta{background:var(--rose);color:#fff;padding:10px 22px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:30px;font-weight:600;transition:all .2s;}
+.cta:hover{background:var(--rose2);}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;position:relative;padding-top:80px;}
+.hero-left{background:var(--bg);display:flex;flex-direction:column;justify-content:center;padding:80px 60px;position:relative;overflow:hidden;}
+.hero-left::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 65% 55% at 35% 50%,rgba(192,72,120,.15) 0%,transparent 65%);}
+/* floating petals */
+.petals{position:absolute;inset:0;pointer-events:none;}
+.petal{position:absolute;width:8px;height:12px;border-radius:50% 50% 50% 0;background:rgba(192,72,120,.2);animation:petfall linear infinite;}
+.petal:nth-child(1){left:15%;animation-duration:9s;animation-delay:0s;}
+.petal:nth-child(2){left:40%;animation-duration:12s;animation-delay:2s;width:6px;height:9px;}
+.petal:nth-child(3){left:65%;animation-duration:10s;animation-delay:5s;}
+.petal:nth-child(4){left:85%;animation-duration:8s;animation-delay:3s;width:5px;height:8px;}
+@keyframes petfall{0%{top:-20px;opacity:0;transform:rotate(0deg);}20%{opacity:.7;}100%{top:110%;opacity:0;transform:rotate(180deg) translateX(20px);}}
+
+.hero-lc{position:relative;z-index:1;}
+.hero-kicker{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:5px;text-transform:uppercase;color:var(--pink);margin-bottom:26px;}
+.hero-kicker::before{content:'';width:24px;height:1px;background:var(--pink);}
+.hero-h{font-family:'Cormorant Garamond',serif;font-size:clamp(52px,7vw,88px);font-weight:300;line-height:.95;color:#fff;margin-bottom:12px;}
+.hero-h em{font-style:italic;color:var(--pink);}
+.hero-sub{font-size:12px;letter-spacing:4px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-bottom:30px;}
+.hero-desc{font-size:15px;line-height:1.9;color:rgba(255,255,255,.5);max-width:380px;margin-bottom:42px;}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap;align-items:center;}
+.btn-r{background:var(--rose);color:#fff;padding:15px 34px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:30px;font-weight:600;transition:all .3s;}
+.btn-r:hover{background:var(--rose2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(192,72,120,.35);}
+.btn-l{color:rgba(255,255,255,.5);font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-bottom:1px solid rgba(255,255,255,.2);padding-bottom:2px;transition:all .2s;}
+.btn-l:hover{color:#fff;}
+.hero-rating{position:absolute;bottom:48px;left:60px;z-index:1;display:flex;gap:16px;align-items:center;}
+.hr-v{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:var(--pink);line-height:1;}
+.hr-info .hr-stars{color:var(--rose2);font-size:14px;letter-spacing:2px;}
+.hr-info .hr-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.3);margin-top:3px;}
+.hero-right{background:var(--dark);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;}
+.hero-right::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 70% 60% at 55% 45%,rgba(192,72,120,.1) 0%,transparent 65%);}
+
+/* STRIP */
+.strip{background:var(--rose);display:grid;grid-template-columns:repeat(4,1fr);}
+.si{padding:16px 20px;text-align:center;border-right:1px solid rgba(255,255,255,.2);}
+.si:last-child{border-right:none;}
+.si-v{font-family:'Cormorant Garamond',serif;font-size:18px;color:#fff;font-style:italic;}
+.si-l{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.6);margin-top:3px;}
+
+/* ABOUT */
+.about{background:var(--warm);padding:90px 52px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.tag{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:var(--rose);margin-bottom:16px;}
+.about h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.5vw,52px);font-weight:300;line-height:1.1;color:#1a0810;margin-bottom:22px;}
+.about h2 em{font-style:italic;color:var(--rose);}
+.about p{font-size:15px;line-height:1.9;color:var(--muted);margin-bottom:14px;}
+.quote-box{margin-top:24px;background:#fff;border-left:4px solid var(--rose);padding:20px 24px;}
+.quote-box p{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:#1a0810;line-height:1.55;}
+.quote-box cite{display:block;font-size:11px;letter-spacing:1px;color:var(--muted);margin-top:8px;font-style:normal;}
+.about-vis{display:flex;align-items:center;justify-content:center;}
+
+/* SERVIZI */
+.servizi{padding:90px 52px;background:var(--cream);}
+.sv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px;}
+.sv{background:#fff;padding:36px 28px;border-radius:16px;border:1px solid rgba(192,72,120,.08);transition:all .3s;position:relative;overflow:hidden;}
+.sv::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--rose),var(--rose2));transform:scaleX(0);transform-origin:left;transition:transform .3s;}
+.sv:hover{transform:translateY(-6px);box-shadow:0 16px 40px rgba(192,72,120,.12);}
+.sv:hover::before{transform:scaleX(1);}
+.sv-num{font-family:'Cormorant Garamond',serif;font-size:48px;font-weight:300;color:rgba(192,72,120,.08);line-height:1;margin-bottom:-10px;}
+.sv-name{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:300;color:#1a0810;margin-bottom:8px;}
+.sv-name em{font-style:italic;color:var(--rose);}
+.sv-desc{font-size:13px;line-height:1.7;color:var(--muted);margin-bottom:16px;}
+.sv-price{font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rose);}
+
+/* REVIEWS */
+.reviews{background:var(--bg);padding:90px 52px;}
+.rv-head h2{font-family:'Cormorant Garamond',serif;font-size:clamp(36px,4.5vw,58px);font-weight:300;color:#fff;margin-bottom:6px;}
+.rv-head h2 em{font-style:italic;color:var(--pink);}
+.rv-bar{font-size:12px;color:var(--muted);margin-bottom:44px;letter-spacing:1px;}
+.rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.rv{background:var(--card);padding:30px;border-radius:12px;border:1px solid var(--border);border-bottom:3px solid var(--rose);}
+.rv-stars{color:var(--rose2);font-size:13px;letter-spacing:2px;margin-bottom:12px;}
+.rv-txt{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:16px;line-height:1.65;color:rgba(255,255,255,.7);margin-bottom:14px;}
+.rv-who{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+
+/* PRENOTA */
+.prenota{padding:90px 52px;background:var(--warm);display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.p-txt h2{font-family:'Cormorant Garamond',serif;font-size:clamp(34px,3.5vw,50px);font-weight:300;color:#1a0810;margin-bottom:18px;line-height:1.1;}
+.p-txt h2 em{font-style:italic;}
+.p-txt p{font-size:15px;line-height:1.85;color:var(--muted);margin-bottom:24px;}
+.ci{display:flex;gap:12px;align-items:center;margin-bottom:12px;}
+.ci-i{width:36px;height:36px;background:rgba(192,72,120,.1);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:15px;}
+.ci-t{font-size:14px;color:#4a2a38;line-height:1.5;}
+.wa-l{display:inline-flex;align-items:center;gap:10px;margin-top:20px;background:#25d366;color:#fff;padding:13px 26px;font-size:12px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:30px;font-weight:600;}
+.pf{display:flex;flex-direction:column;gap:14px;}
+.fg{display:flex;flex-direction:column;gap:6px;}
+.fg label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.fg input,.fg select,.fg textarea{background:#fff;border:1px solid rgba(192,72,120,.15);padding:13px 14px;border-radius:8px;font-family:'Nunito',sans-serif;font-size:14px;color:#1a0810;outline:none;transition:border-color .2s;}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose);}
+.fg-r{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+.sub{background:var(--rose);color:#fff;border:none;padding:15px;font-size:12px;letter-spacing:2px;text-transform:uppercase;font-family:'Nunito',sans-serif;font-weight:600;cursor:pointer;border-radius:8px;width:100%;transition:all .2s;}
+.sub:hover{background:var(--rose2);}
+footer{background:var(--bg);padding:32px 52px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;border-top:1px solid var(--border);}
+.f-logo{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:18px;color:rgba(255,255,255,.3);}
+.f-logo span{font-style:normal;color:var(--pink);}
+.f-copy{font-size:11px;color:var(--muted);}
+.f-wa{background:#25d366;color:#fff;padding:10px 20px;font-size:11px;letter-spacing:2px;text-transform:uppercase;text-decoration:none;border-radius:20px;}
+.waf{position:fixed;bottom:28px;right:28px;z-index:200;width:56px;height:56px;border-radius:50%;background:#25d366;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 4px 20px rgba(37,211,102,.4);transition:transform .2s;animation:pop .4s 1s both;}
+@keyframes pop{from{opacity:0;transform:scale(0)}to{opacity:1;transform:scale(1)}}
+.waf:hover{transform:scale(1.1);}
+.waf svg{width:28px;height:28px;fill:#fff;}
+@media(max-width:768px){nav{padding:14px 20px;}nav.on{padding:10px 20px;}.links{display:none;}.hero{grid-template-columns:1fr;}.hero-right{display:none;}.hero-left{padding:40px 20px 100px;}.hero-rating{left:20px;}.strip{grid-template-columns:1fr 1fr;}.about{grid-template-columns:1fr;padding:60px 20px;}.about-vis{display:none;}.servizi,.reviews,.prenota{padding:60px 20px;}.sv-grid{grid-template-columns:1fr;}.rv-grid{grid-template-columns:1fr;}.prenota{grid-template-columns:1fr;gap:40px;}.fg-r{grid-template-columns:1fr;}footer{padding:24px 20px;flex-direction:column;text-align:center;}.lang-btn{right:20px;}}
+</style>
+</head>
+<body id="body" class="hero-dark">
+<button class="lang-btn" onclick="tl()">EN / IT</button>
+<nav id="nav">
+  <a href="#" class="logo">Janet's <span>Luxury</span></a>
+  <div class="links">
+    <a href="#about"><span lang="it">Il Salone</span><span lang="en">The Salon</span></a>
+    <a href="#servizi"><span lang="it">Servizi</span><span lang="en">Services</span></a>
+    <a href="#prenota"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+  </div>
+  <a href="https://wa.me/393791013330" class="cta"><span lang="it">Prenota</span><span lang="en">Book</span></a>
+</nav>
+<section class="hero">
+  <div class="hero-left">
+    <div class="petals"><div class="petal"></div><div class="petal"></div><div class="petal"></div><div class="petal"></div></div>
+    <div class="hero-lc">
+      <div class="hero-kicker" lang="it">Parrucchiere · Praia a Mare</div>
+      <div class="hero-kicker" lang="en">Hair Salon · Praia a Mare</div>
+      <h1 class="hero-h">Janet's<br><em>Luxury</em></h1>
+      <p class="hero-sub" lang="it">Professionalità · Passione · Precisione</p>
+      <p class="hero-sub" lang="en">Professionalism · Passion · Precision</p>
+      <p class="hero-desc" lang="it">Un'esperienza di bellezza che non dimenticherai. Janet — parrucchiera di talento, attenta a ogni dettaglio — ti farà sentire almeno 10 anni più giovane. Lo dicono le clienti che tornano ogni anno.</p>
+      <p class="hero-desc" lang="en">A beauty experience you won't forget. Janet — a talented hairdresser, attentive to every detail — will make you feel at least 10 years younger. That's what clients who return every year say.</p>
+      <div class="hero-btns">
+        <a href="https://wa.me/393791013330?text=Ciao!%20Vorrei%20prenotare%20da%20Janet's%20Luxury%20😊" class="btn-r"><span lang="it">📱 Prenota su WhatsApp</span><span lang="en">📱 Book on WhatsApp</span></a>
+        <a href="#servizi" class="btn-l"><span lang="it">Scopri i servizi</span><span lang="en">See services</span></a>
+      </div>
+    </div>
+    <div class="hero-rating">
+      <div class="hr-v">4.8</div>
+      <div class="hr-info"><div class="hr-stars">★★★★★</div><div class="hr-l" lang="it">50 recensioni Google</div><div class="hr-l" lang="en">50 Google reviews</div></div>
+    </div>
+  </div>
+  <div class="hero-right">
+    <svg viewBox="0 0 420 500" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:340px;opacity:.9;position:relative;z-index:1">
+      <rect width="420" height="500" fill="#0e0808"/>
+      <!-- ornate mirror frame -->
+      <rect x="80" y="30" width="260" height="360" rx="130" fill="none" stroke="rgba(192,72,120,.2)" stroke-width="2.5"/>
+      <rect x="90" y="40" width="240" height="340" rx="120" fill="none" stroke="rgba(192,72,120,.08)" stroke-width="1"/>
+      <rect x="100" y="50" width="220" height="320" rx="110" fill="rgba(192,72,120,.03)"/>
+      <!-- woman reflection — abstract -->
+      <ellipse cx="210" cy="165" rx="30" ry="36" fill="none" stroke="rgba(240,168,200,.15)" stroke-width="1.5"/>
+      <!-- hair flow -->
+      <path d="M180 155 Q160 130 168 95 Q175 65 200 58 Q225 52 245 65 Q265 80 260 110 Q255 135 242 150" fill="none" stroke="rgba(192,72,120,.25)" stroke-width="2.5" stroke-linecap="round"/>
+      <path d="M188 152 Q170 142 165 115 Q162 88 180 75" fill="none" stroke="rgba(192,72,120,.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <path d="M232 152 Q250 140 253 113 Q256 86 240 74" fill="none" stroke="rgba(192,72,120,.15)" stroke-width="1.5" stroke-linecap="round"/>
+      <!-- salon chair -->
+      <rect x="155" y="300" width="110" height="75" rx="14" fill="#1a0c10" stroke="rgba(192,72,120,.15)" stroke-width="1"/>
+      <rect x="148" y="305" width="12" height="55" rx="5" fill="#1a0c10"/>
+      <rect x="260" y="305" width="12" height="55" rx="5" fill="#1a0c10"/>
+      <!-- scissors decoration -->
+      <g transform="translate(330,80)" opacity=".5">
+        <line x1="0" y1="0" x2="22" y2="22" stroke="var(--rose2)" stroke-width="1.5"/>
+        <line x1="22" y1="0" x2="0" y2="22" stroke="var(--rose2)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="5" stroke="var(--rose2)" stroke-width="1.5" fill="none"/>
+        <circle cx="22" cy="22" r="5" stroke="var(--rose2)" stroke-width="1.5" fill="none"/>
+      </g>
+      <!-- product bottles on shelf -->
+      <rect x="48" y="200" width="30" height="4" fill="rgba(192,72,120,.15)"/>
+      <rect x="51" y="176" width="7" height="24" rx="3" fill="rgba(240,168,200,.12)"/>
+      <rect x="62" y="180" width="7" height="20" rx="3" fill="rgba(240,168,200,.1)"/>
+      <!-- warm rose glow -->
+      <ellipse cx="210" cy="220" rx="100" ry="80" fill="rgba(192,72,120,.04)"/>
+      <!-- brand -->
+      <text x="210" y="480" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="14" fill="rgba(240,168,200,.2)" letter-spacing="3">janet's luxury</text>
+    </svg>
+  </div>
+</section>
+<div class="strip">
+  <div class="si"><div class="si-v">4.8</div><div class="si-l" lang="it">50 recensioni</div><div class="si-l" lang="en">50 reviews</div></div>
+  <div class="si"><div class="si-v" lang="it">Taglio</div><div class="si-v" lang="en">Cut</div><div class="si-l" lang="it">Colore · Piega · Trattamenti</div><div class="si-l" lang="en">Colour · Blow-dry · Treatments</div></div>
+  <div class="si"><div class="si-v" lang="it">Puntuale</div><div class="si-v" lang="en">Punctual</div><div class="si-l" lang="it">Su appuntamento</div><div class="si-l" lang="en">By appointment</div></div>
+  <div class="si"><div class="si-v">Via</div><div class="si-l">C. Alvaro 8 · Praia a Mare</div></div>
+</div>
+<section class="about" id="about">
+  <div>
+    <div class="tag" lang="it">Il salone</div>
+    <div class="tag" lang="en">The salon</div>
+    <h2 lang="it">Bellezza che<br><em>si ricorda</em></h2>
+    <h2 lang="en">Beauty you<br><em>remember</em></h2>
+    <p lang="it">Janet non è solo una parrucchiera — è un'artista dell'acconciatura. Attenta a ogni dettaglio, precisa, puntuale. Il risultato è sempre eccellente e le clienti la ringraziano con recensioni commoventi.</p>
+    <p lang="en">Janet is not just a hairdresser — she's a hair artist. Attentive to every detail, precise, punctual. The result is always excellent and clients thank her with moving reviews.</p>
+    <p lang="it">Uomini, donne, bambini — tutti trovano da Janet la cura che meritano. Un'intera famiglia può passare un pomeriggio con lei e uscire rinnovata.</p>
+    <p lang="en">Men, women, children — everyone finds the care they deserve at Janet's. An entire family can spend an afternoon with her and leave renewed.</p>
+    <div class="quote-box">
+      <p lang="it">"Janet è stato davvero magnifico. Io, mio marito e mia figlia abbiamo trascorso un intero pomeriggio con lei e ci ha fatti sembrare nuovamente nuovi — con professionalità, pazienza e prodotti eccellenti."</p>
+      <p lang="en">"Janet was truly magnificent. My husband, daughter and I spent a whole afternoon with her, and she made us look brand new again — with professionalism, patience and excellent products."</p>
+      <cite>— Google Maps ★★★★★</cite>
+    </div>
+  </div>
+  <div class="about-vis">
+    <svg viewBox="0 0 300 340" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:260px">
+      <rect width="300" height="340" fill="rgba(192,72,120,.04)" rx="16"/>
+      <!-- floral arrangement -->
+      <circle cx="150" cy="120" r="55" fill="none" stroke="rgba(192,72,120,.12)" stroke-width="1"/>
+      <circle cx="150" cy="120" r="35" fill="rgba(192,72,120,.06)"/>
+      <!-- petals -->
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.2)" transform="rotate(0,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.18)" transform="rotate(45,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.2)" transform="rotate(90,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.18)" transform="rotate(135,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.2)" transform="rotate(180,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.18)" transform="rotate(225,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.2)" transform="rotate(270,150,120)"/>
+      <ellipse cx="150" cy="75" rx="14" ry="22" fill="rgba(192,72,120,.18)" transform="rotate(315,150,120)"/>
+      <!-- center -->
+      <circle cx="150" cy="120" r="16" fill="rgba(192,72,120,.25)"/>
+      <circle cx="150" cy="120" r="8" fill="rgba(240,168,200,.4)"/>
+      <!-- stars / sparkles -->
+      <text x="80" y="55" font-size="14" fill="rgba(192,72,120,.4)">✦</text>
+      <text x="205" y="60" font-size="10" fill="rgba(192,72,120,.3)">✦</text>
+      <text x="58" y="165" font-size="8" fill="rgba(192,72,120,.35)">✦</text>
+      <text x="222" y="170" font-size="12" fill="rgba(192,72,120,.3)">✦</text>
+      <!-- scissors below -->
+      <g transform="translate(120,215)" opacity=".5">
+        <line x1="0" y1="0" x2="30" y2="30" stroke="var(--rose)" stroke-width="1.5"/>
+        <line x1="30" y1="0" x2="0" y2="30" stroke="var(--rose)" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="6" stroke="var(--rose)" stroke-width="1.5" fill="none"/>
+        <circle cx="30" cy="30" r="6" stroke="var(--rose)" stroke-width="1.5" fill="none"/>
+      </g>
+      <text x="150" y="310" text-anchor="middle" font-family="'Cormorant Garamond',serif" font-style="italic" font-size="13" fill="rgba(192,72,120,.35)" letter-spacing="2">luxury</text>
+    </svg>
+  </div>
+</section>
+<section class="servizi" id="servizi">
+  <div class="tag" lang="it">I nostri servizi</div>
+  <div class="tag" lang="en">Our services</div>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,58px);font-weight:300;color:#1a0810;margin-top:8px" lang="it">Ogni capello, <em style="font-style:italic;color:var(--rose)">curato</em></h2>
+  <h2 style="font-family:'Cormorant Garamond',serif;font-size:clamp(38px,4.5vw,58px);font-weight:300;color:#1a0810;margin-top:8px" lang="en">Every hair, <em style="font-style:italic;color:var(--rose)">cared for</em></h2>
+  <div class="sv-grid">
+    <div class="sv"><div class="sv-num">01</div><div class="sv-name" lang="it">Taglio <em>Donna</em></div><div class="sv-name" lang="en">Women's <em>Cut</em></div><div class="sv-desc" lang="it">Taglio personalizzato, consulenza morfologica, styling. Capelli corti, medi, lunghi.</div><div class="sv-desc" lang="en">Personalised cut, morphological consultation, styling.</div><div class="sv-price" lang="it">da €25</div><div class="sv-price" lang="en">from €25</div></div>
+    <div class="sv"><div class="sv-num">02</div><div class="sv-name" lang="it">Colore & <em>Balayage</em></div><div class="sv-name" lang="en">Colour & <em>Balayage</em></div><div class="sv-desc" lang="it">Tinta, mèches, balayage. Colori che valorizzano e durano nel tempo.</div><div class="sv-desc" lang="en">Colour, highlights, balayage. Shades that enhance and last.</div><div class="sv-price" lang="it">da €40</div><div class="sv-price" lang="en">from €40</div></div>
+    <div class="sv"><div class="sv-num">03</div><div class="sv-name" lang="it"><em>Piega</em> & Acconciature</div><div class="sv-name" lang="en"><em>Blow-dry</em> & Styling</div><div class="sv-desc" lang="it">Piega professionale, acconciature per matrimoni e cerimonie.</div><div class="sv-desc" lang="en">Professional blow-dry, wedding and occasion hairstyles.</div><div class="sv-price" lang="it">da €18</div><div class="sv-price" lang="en">from €18</div></div>
+    <div class="sv"><div class="sv-num">04</div><div class="sv-name" lang="it"><em>Trattamenti</em></div><div class="sv-name" lang="en"><em>Treatments</em></div><div class="sv-desc" lang="it">Keratina, idratante, ristrutturante. Capelli sani e luminosi.</div><div class="sv-desc" lang="en">Keratin, hydration, restructuring. Healthy, shiny hair.</div><div class="sv-price" lang="it">da €35</div><div class="sv-price" lang="en">from €35</div></div>
+    <div class="sv"><div class="sv-num">05</div><div class="sv-name" lang="it">Taglio <em>Uomo</em></div><div class="sv-name" lang="en">Men's <em>cut</em></div><div class="sv-desc" lang="it">Taglio preciso, sfumatura, styling. Anche barbershop.</div><div class="sv-desc" lang="en">Precise cut, fade, styling. Barbershop too.</div><div class="sv-price" lang="it">da €15</div><div class="sv-price" lang="en">from €15</div></div>
+    <div class="sv"><div class="sv-num">06</div><div class="sv-name" lang="it">Taglio <em>Bambini</em></div><div class="sv-name" lang="en">Children's <em>cut</em></div><div class="sv-desc" lang="it">Ambiente accogliente, pazienza infinita. Anche i più piccoli meritano il meglio.</div><div class="sv-desc" lang="en">Welcoming environment, infinite patience. Even the littlest ones deserve the best.</div><div class="sv-price" lang="it">da €12</div><div class="sv-price" lang="en">from €12</div></div>
+  </div>
+</section>
+<section class="reviews" id="reviews">
+  <div class="rv-head">
+    <div class="tag" style="color:var(--pink)">Google Maps</div>
+    <h2 lang="it">50 clienti, <em>un'artista</em></h2>
+    <h2 lang="en">50 clients, <em>one artist</em></h2>
+    <div class="rv-bar">Google Maps ★4.8 · Via C. Alvaro 8 · Praia a Mare</div>
+  </div>
+  <div class="rv-grid">
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Non riesco a dare più di 5 stelle, altrimenti ne metterei 10. Ogni volta è una fantastica esperienza da ogni prospettiva. Precisa, professionale, puntuale. Quando vado, esco sentendomi almeno 10 anni più giovane."</p><p class="rv-txt" lang="en">"I can't give more than 5 stars, otherwise 10 wouldn't be enough. Every time it's a fantastic experience from every perspective. Precise, professional, punctual. I leave feeling at least 10 years younger."</p><div class="rv-who">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Janet è stata davvero magnifica. Io, mio marito e mia figlia abbiamo trascorso un intero pomeriggio con lei e ci ha fatti sembrare nuovamente nuovi di zecca, con professionalità e pazienza."</p><p class="rv-txt" lang="en">"Janet was truly magnificent. My husband, daughter and I spent a whole afternoon with her, and she made us look brand new again — with professionalism and patience."</p><div class="rv-who">🇮🇹 Google Maps</div></div>
+    <div class="rv"><div class="rv-stars">★★★★★</div><p class="rv-txt" lang="it">"Sono venuta qui per la prima volta di recente. È stata un'esperienza meravigliosa. Janet era puntuale, gentile e professionale. Il risultato era davvero eccellente."</p><p class="rv-txt" lang="en">"I came here for the first time recently and it was a wonderful experience. Janet was punctual, kind and professional. The result was truly excellent."</p><div class="rv-who">🇮🇹 Google Maps</div></div>
+  </div>
+</section>
+<section class="prenota" id="prenota">
+  <div class="p-txt">
+    <div class="tag" lang="it">Prenota</div>
+    <div class="tag" lang="en">Book</div>
+    <h2 lang="it">Il tuo<br><em>momento</em></h2>
+    <h2 lang="en">Your<br><em>moment</em></h2>
+    <p lang="it">Janet lavora su appuntamento — prenotare in anticipo è essenziale. WhatsApp è il modo più veloce.</p>
+    <p lang="en">Janet works by appointment — booking in advance is essential. WhatsApp is the fastest way.</p>
+    <div class="ci"><div class="ci-i">📍</div><div class="ci-t">Via C. Alvaro 8 · Praia a Mare (CS)</div></div>
+    <div class="ci"><div class="ci-i">📞</div><div class="ci-t">379 101 3330</div></div>
+    <div class="ci"><div class="ci-i">🕐</div><div class="ci-t"><span lang="it">Mar–Ven: 8:30–19:00 · Sab: 8:30–19:00<br>Lun e Dom: chiuso</span><span lang="en">Tue–Fri: 8:30–19:00 · Sat: 8:30–19:00<br>Mon & Sun: closed</span></div></div>
+    <a href="https://wa.me/393791013330?text=Ciao!%20Vorrei%20prenotare%20da%20Janet's%20Luxury%20😊" class="wa-l">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+      <span lang="it">Scrivi su WhatsApp</span><span lang="en">Write on WhatsApp</span>
+    </a>
+  </div>
+  <form class="pf" onsubmit="sent(event)">
+    <div class="fg-r">
+      <div class="fg"><label lang="it">Nome</label><label lang="en">Name</label><input type="text" placeholder="..."></div>
+      <div class="fg"><label lang="it">Telefono</label><label lang="en">Phone</label><input type="tel" placeholder="+39"></div>
+    </div>
+    <div class="fg"><label lang="it">Servizio</label><label lang="en">Service</label>
+      <select><option lang="it">Taglio donna</option><option lang="en">Women's cut</option><option lang="it">Colorazione / Balayage</option><option lang="en">Colour / Balayage</option><option lang="it">Piega</option><option lang="en">Blow-dry</option><option lang="it">Trattamento</option><option lang="en">Treatment</option><option lang="it">Taglio uomo</option><option lang="en">Men's cut</option><option lang="it">Taglio bambino/a</option><option lang="en">Child's cut</option></select>
+    </div>
+    <div class="fg-r">
+      <div class="fg"><label lang="it">Giorno</label><label lang="en">Day</label><input type="date"></div>
+      <div class="fg"><label lang="it">Orario</label><label lang="en">Time</label><select><option lang="it">Mattina</option><option lang="en">Morning</option><option lang="it">Pomeriggio</option><option lang="en">Afternoon</option><option lang="it">Indifferente</option><option lang="en">Any time</option></select></div>
+    </div>
+    <div class="fg"><label lang="it">Note</label><label lang="en">Notes</label><input type="text" placeholder="..."></div>
+    <button class="sub" type="submit"><span lang="it">Invia richiesta</span><span lang="en">Send request</span></button>
+  </form>
+</section>
+<footer>
+  <div class="f-logo">Janet's <span>Luxury</span></div>
+  <div class="f-copy">© 2025 Janet's Luxury · Via C. Alvaro 8 · Praia a Mare (CS) · Tel. 379 101 3330</div>
+  <a href="https://wa.me/393791013330" class="f-wa">WhatsApp</a>
+</footer>
+<a href="https://wa.me/393791013330" class="waf"><svg viewBox="0 0 24 24"><path fill="white" d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg></a>
+<script>
+window.addEventListener('scroll',()=>{const s=scrollY>60;document.getElementById('nav').classList.toggle('on',s);document.getElementById('body').classList.toggle('hero-dark',!s);});
+function tl(){const b=document.getElementById('body');b.classList.toggle('en');document.querySelector('.lang-btn').textContent=b.classList.contains('en')?'IT':'EN';}
+function sent(e){e.preventDefault();const b=e.target.querySelector('.sub');b.textContent='✓';b.style.background='#3a5a2a';}
+</script>
+</body>
+</html>
