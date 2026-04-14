@@ -1,627 +1,668 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- Open Graph / WhatsApp / Telegram preview -->
-  <meta property="og:type" content="website"/>
-  <meta property="og:title" content="Ristorante Serrago — Tradizione · Innovazione · Praia a Mare"/>
-  <meta property="og:description" content="Alta cucina calabrese contemporanea. Gnocchi di patata viola, tonno scottato, dessert che stupiscono. ★ 4.8 su Google · 144 recensioni"/>
-  <meta property="og:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=630&fit=crop&q=85"/>
-  <meta property="og:image:width" content="1200"/>
-  <meta property="og:image:height" content="630"/>
-  <meta property="og:url" content="https://viktorialiubitskaya-coder.github.io/demo/serrago/"/>
-  <meta name="twitter:card" content="summary_large_image"/>
-  <meta name="twitter:title" content="Ristorante Serrago — Tradizione · Innovazione · Praia a Mare"/>
-  <meta name="twitter:description" content="Alta cucina calabrese contemporanea. Gnocchi di patata viola, tonno scottato, dessert che stupiscono. ★ 4.8 su Google · 144 recensioni"/>
-  <meta name="twitter:image" content="https://images.unsplash.com/photo-1544025162-d76694265947?w=1200&h=630&fit=crop&q=85"/>
-<title>Serrago — Tradizione · Innovazione · Praia a Mare</title>
-<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,300;0,6..96,400;1,6..96,300;1,6..96,400&family=Helvetica+Neue:wght@100;300;400&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Ristorante Serrago — Tradizione &amp; Innovazione · Praia a Mare</title>
+<meta name="description" content="Ristorante Serrago — cucina di pesce tra tradizione e innovazione. Via della Grotta 15, Praia a Mare. Solo tre sere a settimana.">
+<meta property="og:title" content="Ristorante Serrago — Praia a Mare">
+<meta property="og:description" content="Tradizione e innovazione. Solo venerdì, sabato e domenica. ★4.8 · 144 recensioni.">
+<meta property="og:type" content="restaurant.restaurant">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Restaurant","name":"Ristorante Serrago","alternateName":"Serrago Tradizione Innovazione","servesCuisine":["Italian","Seafood","Contemporary"],"address":{"@type":"PostalAddress","streetAddress":"Via della Grotta, 15","addressLocality":"Praia a Mare","addressRegion":"CS","postalCode":"87028","addressCountry":"IT"},"telephone":"+393802384386","priceRange":"€€€","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Friday","Saturday"],"opens":"19:30","closes":"23:30"},{"@type":"OpeningHoursSpecification","dayOfWeek":["Sunday"],"opens":"12:00","closes":"14:30"}],"aggregateRating":{"@type":"AggregateRating","ratingValue":"4.8","reviewCount":"144"}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --ink:#0D0D0D;--paper:#F7F5F0;--warm:#EDEBE4;
-  --accent:#1A1A1A;--gold:#8B6914;--rule:rgba(13,13,13,.12);
-  --red:#8B1A1A;
+    --paper:#F7F4EE;--paper2:#EFEAE0;--white:#FCFAF5;
+    --ink:#1A1D24;--ink2:#252932;--slate:#3D4550;--mute:#6B7280;--line:#C4BAA8;
+    --wine:#A43D2E;--wine-d:#862F22;--gold:#C4A875;--gold-d:#A88D5B;
+    --dark-bg:#141720;--border:rgba(26,29,36,.1);--border-s:rgba(26,29,36,.05);
+    --shadow:0 20px 40px rgba(26,29,36,.08);
 }
-html{scroll-behavior:smooth}
-body{
-  background:var(--paper);color:var(--ink);
-  font-family:'Space Grotesk',sans-serif;font-weight:300;
-  overflow-x:hidden;
-}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--paper);scroll-behavior:smooth}
+body{font-family:'Manrope',system-ui,sans-serif;background:var(--paper);color:var(--ink);line-height:1.7;overflow-x:hidden;-webkit-font-smoothing:antialiased;font-weight:400}
+h1,h2,h3,h4{font-family:'DM Serif Display',serif;font-weight:400;line-height:1.08;color:var(--ink);letter-spacing:-.015em}
+h1 em,h2 em,h3 em{font-style:italic;color:var(--wine);font-family:'DM Serif Display',serif}
+img{display:block;max-width:100%;height:auto}
+::selection{background:var(--wine);color:var(--paper)}
 
-/* ── EDITORIAL GRID ── */
-.page{max-width:1200px;margin:0 auto;padding:0 48px}
+/* LANG */
+.t-en{display:none}
+p.t-en,h1.t-en,h2.t-en,h3.t-en,div.t-en,span.t-en{display:none}
+body.lang-en .t-it{display:none!important}
+body.lang-en .t-en{display:inline!important}
+body.lang-en p.t-en,body.lang-en h1.t-en,body.lang-en h2.t-en,body.lang-en h3.t-en,body.lang-en div.t-en{display:block!important}
 
-/* ── MASTHEAD ── */
-.masthead{
-  border-bottom:2px solid var(--ink);
-  padding:32px 0 20px;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:end;
-  gap:20px;
-}
-.mast-left{
-  font-size:10px;letter-spacing:.18em;text-transform:uppercase;
-  color:rgba(13,13,13,.45);line-height:2;
-}
-.mast-center{text-align:center}
-.mast-logo{
-  font-family:'Bodoni Moda',serif;
-  font-size:clamp(42px,6vw,72px);
-  font-weight:300;
-  letter-spacing:.06em;
-  line-height:.95;
-  display:block;
-}
-.mast-tagline{
-  font-size:10px;letter-spacing:.35em;text-transform:uppercase;
-  color:rgba(13,13,13,.45);margin-top:8px;display:block;
-}
-.mast-right{
-  text-align:right;
-  font-size:10px;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(13,13,13,.45);line-height:2;
-}
-.mast-right a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--ink);font-weight:400}
+.lang-toggle{position:fixed;top:20px;right:20px;z-index:100;display:flex;gap:2px;background:rgba(26,29,36,.9);backdrop-filter:blur(12px);border-radius:6px;padding:3px}
+.lang-btn{padding:6px 12px;border:none;background:transparent;color:rgba(247,244,238,.6);font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;cursor:pointer;border-radius:4px;transition:all .25s;letter-spacing:1.5px}
+.lang-btn.active{background:var(--paper);color:var(--ink)}
 
-/* ── SECTION RULES ── */
-.section-rule{
-  border-top:1px solid var(--ink);
-  padding:10px 0 6px;
-  display:flex;
-  justify-content:space-between;
-  align-items:baseline;
-  margin-bottom:0;
-}
-.sr-label{font-size:10px;letter-spacing:.2em;text-transform:uppercase;font-weight:400}
-.sr-num{font-size:10px;color:rgba(13,13,13,.35);font-family:'Bodoni Moda',serif;font-style:italic}
+/* SCROLL PROGRESS */
+.scroll-progress{position:fixed;top:0;left:0;width:0%;height:2px;background:var(--wine);z-index:9999}
 
-/* ── HERO SPREAD ── */
-.hero-spread{
-  display:grid;
-  grid-template-columns:3fr 2fr;
-  gap:0;
-  min-height:72vh;
-  border-bottom:1px solid var(--rule);
-  margin-bottom:0;
-}
-.hero-img{
-  position:relative;overflow:hidden;
-  background:var(--ink);
-}
-.hero-img img{
-  width:100%;height:100%;object-fit:cover;
-  opacity:.88;display:block;
-  transition:transform .8s ease;
-}
-.hero-img:hover img{transform:scale(1.02)}
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:99;padding:22px clamp(20px,5vw,48px);display:flex;align-items:center;justify-content:space-between;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0));backdrop-filter:blur(4px);transition:background .4s,padding .3s,backdrop-filter .4s}
+nav.scrolled{background:rgba(20,16,14,.92);backdrop-filter:blur(14px);padding:14px clamp(20px,5vw,48px);border-bottom:1px solid rgba(247,244,238,.06)}
+.nav-logo{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.25rem;color:var(--paper);text-decoration:none;letter-spacing:-.01em}
+.nav-logo em{font-style:italic;color:var(--gold)}
+.nav-links{display:flex;gap:32px;list-style:none}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(247,244,238,.85);text-decoration:none;transition:color .25s;text-shadow:0 1px 8px rgba(0,0,0,.5)}
+.nav-links a:hover{color:var(--gold)}
+.nav-mobile{display:none;background:none;border:none;color:var(--paper);font-size:22px;cursor:pointer}
 
-.hero-text{
-  padding:48px 40px;
-  display:flex;flex-direction:column;
-  justify-content:space-between;
-  border-left:1px solid var(--rule);
-}
-.hero-overline{
-  font-size:10px;letter-spacing:.2em;text-transform:uppercase;
-  color:var(--gold);display:flex;align-items:center;gap:10px;
-  margin-bottom:auto;
-}
-.hero-overline::before{content:'';width:20px;height:1px;background:var(--gold)}
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translateY(0)}
+.stagger-parent.visible .stagger-child{opacity:1;transform:translateY(0)}
+.stagger-child{opacity:0;transform:translateY(30px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.stagger-child:nth-child(1){transition-delay:0s}
+.stagger-child:nth-child(2){transition-delay:.1s}
+.stagger-child:nth-child(3){transition-delay:.2s}
+.stagger-child:nth-child(4){transition-delay:.3s}
+.stagger-child:nth-child(5){transition-delay:.4s}
+.stagger-child:nth-child(6){transition-delay:.5s}
+.stagger-child:nth-child(7){transition-delay:.6s}
+.stagger-child:nth-child(8){transition-delay:.7s}
 
-.hero-headline{
-  font-family:'Bodoni Moda',serif;
-  font-size:clamp(36px,4vw,56px);
-  font-weight:300;
-  line-height:1.08;
-  margin:auto 0;
-}
-.hero-headline em{font-style:italic;color:var(--gold)}
+/* HERO — fullscreen cinematic */
+.hero{position:relative;height:100vh;min-height:640px;overflow:hidden;color:var(--paper);display:flex;align-items:center;justify-content:center;background:#1a1a1a}
+.hero-bg{position:absolute;inset:0;background:url('photos/hero.png') center center/cover no-repeat;will-change:transform;animation:kenburns 25s ease-in-out infinite alternate;z-index:0}
+@keyframes kenburns{0%{transform:scale(1.03) translate3d(0,0,0)}100%{transform:scale(1.10) translate3d(-1.5%,-1%,0)}}
+@media(prefers-reduced-motion:reduce){.hero-bg{animation:none;transform:scale(1.03)}}
+.hero-overlay{position:absolute;inset:0;z-index:1;pointer-events:none;background:linear-gradient(to bottom,rgba(0,0,0,.4) 0%,rgba(0,0,0,.55) 40%,rgba(0,0,0,.75) 100%)}
 
-.hero-body{
-  font-size:14px;line-height:1.9;
-  color:rgba(13,13,13,.6);
-  margin:32px 0;
-  border-top:1px solid var(--rule);
-  padding-top:24px;
-}
+.hero-body{position:relative;z-index:2;text-align:center;padding:0 24px;max-width:760px}
+.hero-eyebrow{font-family:'Manrope',sans-serif;font-size:.7rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:30px;text-shadow:0 2px 15px rgba(0,0,0,.6);opacity:0;transform:translateY(20px);animation:heroUp .9s .2s cubic-bezier(.16,1,.3,1) forwards}
+.hero-eyebrow::before{content:''}
 
-.hero-stars{
-  display:flex;align-items:center;gap:12px;
-  font-size:11px;color:rgba(13,13,13,.5);
-  border-top:1px solid var(--rule);padding-top:20px;
-}
-.stars-gold{color:var(--gold);font-size:14px;letter-spacing:2px}
+.hero h1{margin-bottom:0;line-height:.95;letter-spacing:-.01em;text-shadow:0 4px 30px rgba(0,0,0,.7),0 2px 10px rgba(0,0,0,.5)}
+.hero h1 .l1{display:block;font-family:'DM Serif Display',serif;font-style:normal;font-weight:400;font-size:clamp(3.5rem,8vw,6rem);color:#fff;opacity:0;transform:translateY(20px);animation:heroUp 1s .35s cubic-bezier(.16,1,.3,1) forwards}
+.hero h1 em{display:block;font-family:'DM Serif Display',serif;font-style:italic;font-weight:400;font-size:clamp(3rem,7vw,5.5rem);color:#C8A96E;opacity:0;transform:translateY(20px);animation:heroUp 1s .5s cubic-bezier(.16,1,.3,1) forwards}
 
-/* ── THREE COLUMNS ── */
-.three-col{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  border-bottom:1px solid var(--rule);
-}
-.tcol{padding:40px 32px;border-right:1px solid var(--rule)}
-.tcol:last-child{border-right:none}
-.tcol-num{
-  font-family:'Bodoni Moda',serif;font-size:48px;font-style:italic;
-  color:rgba(13,13,13,.12);line-height:1;margin-bottom:16px;display:block;
-}
-.tcol-title{font-family:'Bodoni Moda',serif;font-size:20px;font-weight:400;margin-bottom:10px}
-.tcol-text{font-size:13px;line-height:1.8;color:rgba(13,13,13,.55)}
+.hero-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,#C8A96E,transparent);margin:28px auto;opacity:0;transform:scaleX(0);animation:heroLine 1s .65s cubic-bezier(.16,1,.3,1) forwards}
+@keyframes heroLine{to{opacity:1;transform:scaleX(1)}}
 
-/* ── MENU EDITORIAL ── */
-.menu-spread{
-  display:grid;
-  grid-template-columns:1fr 2px 1fr;
-  gap:0;
-  padding:48px 0;
-  border-bottom:1px solid var(--rule);
-}
-.menu-divider{background:var(--rule)}
-.menu-col{padding:0 40px}
-.menu-col:first-child{padding-left:0}
-.menu-col:last-child{padding-right:0}
-.menu-col-title{
-  font-family:'Bodoni Moda',serif;font-size:11px;
-  letter-spacing:.25em;text-transform:uppercase;
-  margin-bottom:32px;color:rgba(13,13,13,.4);
-  display:flex;align-items:center;gap:12px;
-}
-.menu-col-title::after{content:'';flex:1;height:1px;background:var(--rule)}
+.hero-lead{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.1rem;color:rgba(255,255,255,.85);margin:0 auto 36px;max-width:600px;line-height:1.5;font-weight:400;text-shadow:0 2px 15px rgba(0,0,0,.6);opacity:0;transform:translateY(20px);animation:heroUp .9s .8s cubic-bezier(.16,1,.3,1) forwards}
 
-.dish{margin-bottom:28px;padding-bottom:28px;border-bottom:1px solid var(--rule)}
-.dish:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-.dish-header{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:6px}
-.dish-name{font-family:'Bodoni Moda',serif;font-size:18px;font-weight:400}
-.dish-dots{flex:1;border-bottom:1px dotted rgba(13,13,13,.2);margin:0 4px;margin-bottom:3px}
-.dish-price{font-size:14px;font-family:'Bodoni Moda',serif;color:var(--gold)}
-.dish-desc{font-size:12px;color:rgba(13,13,13,.5);line-height:1.65}
-.dish-tag{display:inline-block;font-size:9px;letter-spacing:.12em;text-transform:uppercase;color:var(--red);margin-top:6px}
+.hero-meta{display:inline-flex;gap:0;align-items:stretch;justify-content:center;margin-bottom:36px;font-size:.75rem;flex-wrap:wrap;opacity:0;transform:translateY(20px);animation:heroUp .9s .9s cubic-bezier(.16,1,.3,1) forwards}
+.hero-meta-item{padding:0 22px;display:flex;flex-direction:column;align-items:center;gap:4px;border-right:1px solid rgba(255,255,255,.18);text-shadow:0 2px 15px rgba(0,0,0,.6)}
+.hero-meta-item:last-child{border-right:none}
+.hero-meta-val{font-family:'DM Serif Display',serif;font-size:1.4rem;color:#fff;line-height:1}
+.hero-meta-val em{color:#C8A96E;font-style:italic}
+.hero-meta-lbl{font-family:'Manrope',sans-serif;font-size:.65rem;color:rgba(255,255,255,.65);letter-spacing:.18em;text-transform:uppercase}
 
-/* ── GALLERY MOSAIC ── */
-.mosaic{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  grid-template-rows:260px 180px;
-  gap:3px;
-  border-bottom:1px solid var(--rule);
-}
-.mos-item{overflow:hidden;position:relative;background:var(--warm)}
-.mos-item:nth-child(1){grid-column:span 2;grid-row:span 2}
-.mos-item:nth-child(3){grid-column:span 2}
-.mos-item img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease;display:block;opacity:.9}
-.mos-item:hover img{transform:scale(1.04)}
-.mos-caption{
-  position:absolute;bottom:10px;left:12px;
-  font-size:9px;letter-spacing:.12em;text-transform:uppercase;
-  color:rgba(255,255,255,.6);
-}
+.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;opacity:0;transform:translateY(20px);animation:heroUp .9s 1.05s cubic-bezier(.16,1,.3,1) forwards}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:15px 28px;font-family:'Manrope',sans-serif;font-weight:600;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;text-decoration:none;transition:all .3s;border:none;cursor:pointer;border-radius:0}
+.btn-primary{background:var(--wine);color:var(--paper);box-shadow:0 4px 20px rgba(164,61,46,.35)}
+.btn-primary:hover{background:var(--wine-d);transform:translateY(-2px);box-shadow:0 8px 28px rgba(164,61,46,.5)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+.btn-ghost:hover{border-color:#C8A96E;color:#C8A96E}
 
-/* ── QUOTE ── */
-.pull-quote{
-  padding:72px 0;
-  text-align:center;
-  border-bottom:1px solid var(--rule);
-  position:relative;
-}
-.pq-marks{
-  font-family:'Bodoni Moda',serif;font-size:120px;
-  color:rgba(13,13,13,.06);line-height:.7;
-  position:absolute;top:20px;left:50%;transform:translateX(-50%);
-}
-.pq-text{
-  font-family:'Bodoni Moda',serif;
-  font-size:clamp(20px,3vw,34px);
-  font-weight:300;font-style:italic;
-  line-height:1.4;max-width:700px;margin:0 auto 20px;
-  position:relative;z-index:1;
-}
-.pq-attr{font-size:10px;letter-spacing:.2em;text-transform:uppercase;color:rgba(13,13,13,.4)}
+.hero-scroll{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:10px;z-index:2;opacity:0;animation:heroUp 1s 1.3s cubic-bezier(.16,1,.3,1) forwards}
+.hero-scroll .lbl{font-family:'Manrope',sans-serif;font-size:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.3em;color:rgba(255,255,255,.6);text-shadow:0 2px 8px rgba(0,0,0,.5)}
+.hero-scroll .line{width:1px;height:32px;background:linear-gradient(180deg,rgba(200,169,110,0),#C8A96E);animation:scrollPulse 2.2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:.5;transform:scaleY(.7);transform-origin:top}50%{opacity:1;transform:scaleY(1)}}
 
-/* ── BOOKING ── */
-.booking-spread{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:0;
-  padding:56px 0;
-  border-bottom:1px solid var(--rule);
-}
-.book-info{padding-right:56px;border-right:1px solid var(--rule)}
-.book-form-wrap{padding-left:56px}
+@keyframes heroUp{to{opacity:1;transform:translateY(0)}}
 
-.info-table{width:100%;border-collapse:collapse;margin-top:24px}
-.info-table tr{border-bottom:1px solid var(--rule)}
-.info-table td{padding:14px 0;font-size:13px;vertical-align:top}
-.info-table td:first-child{
-  font-size:10px;letter-spacing:.14em;text-transform:uppercase;
-  color:rgba(13,13,13,.4);width:40%;font-weight:400;padding-right:16px;
-}
+/* SECTIONS */
+.sec{padding:clamp(90px,10vw,140px) clamp(20px,5vw,48px)}
+.wrap{max-width:1180px;margin:0 auto}
+.tag{display:inline-block;font-family:'Manrope',sans-serif;font-size:11px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:var(--wine);margin-bottom:16px}
+.tag::before{content:'— '}
+.tag::after{content:' —'}
+.hdg{font-size:clamp(2.2rem,5vw,3.6rem);color:var(--ink);margin-bottom:24px;letter-spacing:-.02em;line-height:1.05}
+.desc{font-size:1rem;color:var(--slate);max-width:640px;line-height:1.75}
 
-.form-label{font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:rgba(13,13,13,.4);display:block;margin-bottom:6px}
-.form-input{
-  width:100%;background:transparent;border:none;border-bottom:1px solid var(--ink);
-  padding:10px 0;font-family:'Space Grotesk',sans-serif;font-size:13px;
-  color:var(--ink);outline:none;transition:border-color .2s;margin-bottom:24px;
-}
-.form-input:focus{border-bottom-color:var(--gold)}
-.form-input::placeholder{color:rgba(13,13,13,.3)}
-.form-select{
-  width:100%;background:transparent;border:none;border-bottom:1px solid var(--ink);
-  padding:10px 0;font-family:'Space Grotesk',sans-serif;font-size:13px;
-  color:var(--ink);outline:none;margin-bottom:24px;cursor:pointer;
-  -webkit-appearance:none;
-}
-.form-select option{background:var(--paper)}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.btn-book{
-  width:100%;background:var(--ink);color:var(--paper);border:none;
-  padding:16px;font-family:'Space Grotesk',sans-serif;font-size:11px;
-  font-weight:400;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;
-  transition:background .3s;margin-top:8px;
-}
-.btn-book:hover{background:var(--gold)}
+/* HOURS SECTION — USP */
+.hours-sec{background:var(--dark-bg);color:var(--paper);position:relative;overflow:hidden}
+.hours-sec::before{content:'SERRAGO';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'DM Serif Display',serif;font-size:clamp(8rem,22vw,20rem);font-weight:400;color:rgba(247,244,238,.025);letter-spacing:-.06em;line-height:1;pointer-events:none;white-space:nowrap;font-style:italic}
+.hours-grid{position:relative;display:grid;grid-template-columns:1fr 1.5fr;gap:clamp(32px,5vw,80px);align-items:center;z-index:1}
+.hours-sec .tag{color:var(--gold)}
+.hours-sec .hdg{color:var(--paper)}
+.hours-sec .desc{color:rgba(247,244,238,.7)}
+.hours-table{display:flex;flex-direction:column;gap:0}
+.hours-row{display:flex;justify-content:space-between;padding:18px 0;border-bottom:1px solid rgba(247,244,238,.1);align-items:center}
+.hours-row:first-child{border-top:1px solid rgba(247,244,238,.1)}
+.hours-day{font-family:'DM Serif Display',serif;font-size:1.25rem;color:var(--paper)}
+.hours-time{font-family:'Manrope',sans-serif;font-size:.88rem;color:rgba(247,244,238,.7);font-weight:500;letter-spacing:.5px}
+.hours-row.open .hours-time{color:var(--gold)}
+.hours-row.open .hours-day{color:var(--gold)}
+.hours-row.open{background:rgba(196,168,117,.04)}
+.hours-row.closed .hours-day{color:rgba(247,244,238,.35)}
+.hours-row.closed .hours-time{color:rgba(247,244,238,.3);font-style:italic}
 
-/* ── FOOTER ── */
-.footer-rule{
-  border-top:2px solid var(--ink);
-  padding:28px 0;
-  display:grid;
-  grid-template-columns:1fr auto 1fr;
-  align-items:center;
-  gap:20px;
-}
-.foot-left{font-size:11px;color:rgba(13,13,13,.4);line-height:1.8}
-.foot-center{
-  font-family:'Bodoni Moda',serif;font-size:22px;
-  text-align:center;letter-spacing:.06em;
-}
-.foot-right{
-  text-align:right;font-size:11px;
-  color:rgba(13,13,13,.4);line-height:1.8;
-}
+/* STORIA */
+.storia{background:var(--paper)}
+.storia-layout{display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(32px,5vw,80px);align-items:end}
+.storia-text{padding-right:clamp(0px,4vw,40px)}
+.storia-pull{font-family:'DM Serif Display',serif;font-size:clamp(1.4rem,2.5vw,1.9rem);font-style:italic;color:var(--wine);line-height:1.3;margin:24px 0 28px;padding:0 0 0 24px;border-left:2px solid var(--wine);max-width:500px}
+.storia-image{position:relative;overflow:hidden;box-shadow:var(--shadow)}
+.storia-image img{width:100%;height:580px;object-fit:cover;transition:transform 8s cubic-bezier(.16,1,.3,1)}
+.storia-image:hover img{transform:scale(1.04)}
+.storia-image-caption{position:absolute;bottom:0;left:0;right:0;padding:20px 24px;background:linear-gradient(180deg,transparent 0%,rgba(20,23,32,.85) 100%);color:var(--paper)}
+.storia-image-caption span{font-family:'Manrope',sans-serif;font-size:10px;letter-spacing:3px;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:4px}
+.storia-image-caption h4{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.1rem;color:var(--paper);font-weight:400}
 
-/* ── DEMO BANNER ── */
-.demo-strip{
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  background:var(--ink);color:var(--paper);
-  padding:12px 48px;
-  display:flex;align-items:center;justify-content:space-between;gap:20px;
-}
-.ds-text{font-size:11px;letter-spacing:.08em;opacity:.7;display:flex;align-items:center;gap:12px}
-.ds-badge{font-size:9px;letter-spacing:.15em;text-transform:uppercase;background:var(--gold);color:var(--ink);padding:3px 10px;font-weight:500}
-.ds-btns{display:flex;gap:10px}
-.ds-btn{padding:8px 20px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;border:none;font-family:'Space Grotesk',sans-serif;font-weight:400;transition:all .2s}
-.ds-btn-p{background:var(--gold);color:var(--ink)}.ds-btn-p:hover{opacity:.85}
-.ds-btn-s{background:transparent;color:var(--paper);border:1px solid rgba(255,255,255,.25)}.ds-btn-s:hover{background:rgba(255,255,255,.08)}
+/* PIATTI (dishes gallery — editorial) */
+.piatti{background:var(--white)}
+.piatti-head{display:grid;grid-template-columns:2fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.piatti-head .desc{color:var(--slate)}
+.piatti-grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.piatto{position:relative;overflow:hidden;background:var(--ink);transition:transform .4s cubic-bezier(.16,1,.3,1)}
+.piatto img{width:100%;height:100%;object-fit:cover;transition:transform .7s cubic-bezier(.16,1,.3,1)}
+.piatto:hover img{transform:scale(1.05)}
+.piatto-caption{position:absolute;left:0;right:0;bottom:0;padding:20px 22px;color:var(--paper);background:linear-gradient(180deg,transparent 0%,rgba(20,23,32,.88) 100%)}
+.piatto-name{font-family:'DM Serif Display',serif;font-size:1.15rem;color:var(--paper);line-height:1.2;margin-bottom:4px}
+.piatto-cat{font-family:'Manrope',sans-serif;font-size:9px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;color:var(--gold)}
+/* Asymmetric editorial grid */
+.piatto:nth-child(1){grid-column:span 7;aspect-ratio:16/11}
+.piatto:nth-child(2){grid-column:span 5;aspect-ratio:5/6}
+.piatto:nth-child(3){grid-column:span 4;aspect-ratio:1}
+.piatto:nth-child(4){grid-column:span 4;aspect-ratio:1}
+.piatto:nth-child(5){grid-column:span 4;aspect-ratio:1}
+.piatto:nth-child(6){grid-column:span 6;aspect-ratio:4/3}
+.piatto:nth-child(7){grid-column:span 6;aspect-ratio:4/3}
 
-.reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease}
-.reveal.vis{opacity:1;transform:translateY(0)}
+/* PHILOSOPHY */
+.philo{background:var(--paper)}
+.philo-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:var(--border);border:1px solid var(--border)}
+.philo-tile{padding:44px 32px;background:var(--paper);transition:background .3s}
+.philo-tile:hover{background:var(--paper2)}
+.philo-num{font-family:'DM Serif Display',serif;font-size:1.6rem;color:var(--wine);font-style:italic;margin-bottom:16px;display:block}
+.philo-tile h3{font-family:'DM Serif Display',serif;font-size:1.35rem;color:var(--ink);margin-bottom:10px;font-weight:400}
+.philo-tile p{font-size:.88rem;color:var(--slate);line-height:1.7}
 
+/* REVIEWS */
+.rev-sec{background:var(--white)}
+.rev-head{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:end;margin-bottom:56px}
+.rev-stat-row{display:flex;gap:28px;align-items:baseline;padding-top:16px;border-top:1px solid var(--border)}
+.rev-stat{display:flex;flex-direction:column;gap:2px}
+.rev-stat-val{font-family:'DM Serif Display',serif;font-size:2.4rem;color:var(--wine);line-height:1;font-style:italic}
+.rev-stat-lbl{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--mute);font-weight:600}
+.rev-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:2px;background:var(--border);border:1px solid var(--border)}
+.rev-card{padding:36px 32px;background:var(--white);transition:background .3s}
+.rev-card:hover{background:var(--paper)}
+.rev-stars{color:var(--gold);font-size:13px;letter-spacing:3px;margin-bottom:18px}
+.rev-text{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.02rem;color:var(--ink);line-height:1.55;margin-bottom:20px;font-weight:400}
+.rev-who{font-family:'Manrope',sans-serif;font-size:.8rem;font-weight:700;letter-spacing:1.5px;color:var(--wine);text-transform:uppercase}
+.rev-src{font-size:.72rem;color:var(--mute);margin-top:2px;letter-spacing:.5px}
+
+/* BOOKING */
+.book{background:var(--dark-bg);color:var(--paper)}
+.book .tag{color:var(--gold)}
+.book .hdg{color:var(--paper)}
+.book-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(40px,5vw,80px);align-items:start}
+.book-info h3{font-family:'Manrope',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--gold);margin-top:28px;margin-bottom:10px}
+.book-info h3:first-child{margin-top:0}
+.book-info p{font-size:.95rem;color:rgba(247,244,238,.82);margin-bottom:2px}
+.book-phone{font-family:'DM Serif Display',serif;font-size:1.8rem;font-style:italic;color:var(--paper);text-decoration:none;display:inline-block;margin-top:6px}
+.book-phone:hover{color:var(--gold)}
+.soc{display:flex;gap:10px;margin-top:14px}
+.soc a{width:42px;height:42px;border-radius:50%;background:rgba(247,244,238,.08);border:1px solid rgba(247,244,238,.14);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:all .25s}
+.soc a:hover{background:var(--wine);border-color:var(--wine);transform:translateY(-2px)}
+.soc svg{width:17px;height:17px;fill:var(--paper);transition:fill .25s}
+.book-form{background:rgba(247,244,238,.04);border:1px solid rgba(247,244,238,.1);padding:36px}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-family:'Manrope',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:rgba(247,244,238,.65);margin-bottom:6px}
+.fg input,.fg select,.fg textarea{width:100%;padding:13px 14px;border:1px solid rgba(247,244,238,.15);font-family:'Manrope',sans-serif;font-size:14px;color:var(--paper);background:rgba(247,244,238,.04);outline:none;transition:border-color .25s;font-weight:400}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--gold)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.btn-book{width:100%;padding:15px;background:var(--wine);color:var(--paper);border:none;font-family:'Manrope',sans-serif;font-weight:700;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;cursor:pointer;transition:background .3s;margin-top:6px}
+.btn-book:hover{background:var(--wine-d)}
+.book-hint{margin-top:16px;padding:14px 16px;background:rgba(196,168,117,.08);border:1px solid rgba(196,168,117,.2);font-size:.82rem;color:rgba(247,244,238,.75);line-height:1.5}
+.book-hint strong{color:var(--gold)}
+
+/* MAP */
+.map-wrap{position:relative}
+.map-wrap iframe{width:100%;height:400px;border:none;display:block;filter:saturate(.75) contrast(1.05) brightness(.95)}
+.map-card{position:absolute;bottom:28px;left:clamp(20px,5vw,48px);background:var(--ink);color:var(--paper);padding:24px 28px;box-shadow:var(--shadow);max-width:340px}
+.map-card h3{font-family:'DM Serif Display',serif;font-size:1.3rem;color:var(--paper);margin-bottom:8px;line-height:1.1}
+.map-card h3 em{color:var(--gold);font-style:italic}
+.map-card p{font-size:.85rem;color:rgba(247,244,238,.72);line-height:1.5}
+.map-card a{color:var(--gold);text-decoration:none;font-weight:600}
+
+/* FOOTER */
+footer{background:var(--ink);color:var(--paper);padding:60px clamp(20px,5vw,48px) 32px}
+.foot-inner{max-width:1180px;margin:0 auto;display:flex;justify-content:space-between;align-items:flex-end;flex-wrap:wrap;gap:28px;padding-bottom:28px;border-bottom:1px solid rgba(247,244,238,.08)}
+.foot-brand{font-family:'DM Serif Display',serif;font-size:1.5rem;color:var(--paper);margin-bottom:6px}
+.foot-brand em{font-style:italic;color:var(--gold)}
+.foot-addr{font-size:.85rem;color:rgba(247,244,238,.55);line-height:1.6}
+.foot-addr a{color:var(--gold);text-decoration:none}
+.foot-nav{display:flex;gap:24px;flex-wrap:wrap}
+.foot-nav a{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(247,244,238,.55);text-decoration:none;transition:color .25s}
+.foot-nav a:hover{color:var(--gold)}
+.foot-copy{max-width:1180px;margin:22px auto 0;text-align:center;font-size:.72rem;color:rgba(247,244,238,.3)}
+.foot-copy a{color:var(--gold);text-decoration:none}
+
+/* WHATSAPP */
+.wa{position:fixed;bottom:28px;right:28px;z-index:98;width:56px;height:56px;background:#25D366;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 22px rgba(37,211,102,.4);text-decoration:none;transition:transform .3s,box-shadow .3s}
+.wa:hover{transform:scale(1.08);box-shadow:0 12px 30px rgba(37,211,102,.5)}
+.wa svg{width:26px;height:26px;fill:#fff}
+
+/* RESPONSIVE */
 @media(max-width:900px){
-  .page{padding:0 20px}
-  .masthead{grid-template-columns:1fr;text-align:center}.mast-left,.mast-right{display:none}
-  .hero-spread,.booking-spread{grid-template-columns:1fr}
-  .hero-img{min-height:280px}
-  .hero-text{padding:32px 0;border-left:none;border-top:1px solid var(--rule)}
-  .three-col{grid-template-columns:1fr}
-  .tcol{border-right:none;border-bottom:1px solid var(--rule)}
-  .menu-spread{grid-template-columns:1fr}.menu-divider{display:none}
-  .menu-col{padding:0}.menu-col:first-child{padding-bottom:32px;border-bottom:1px solid var(--rule);margin-bottom:32px}
-  .mosaic{grid-template-columns:1fr 1fr;grid-template-rows:auto}
-  .mos-item:nth-child(1){grid-column:span 2;height:240px}
-  .mos-item:nth-child(3){grid-column:span 2}
-  .book-info{padding-right:0;border-right:none;border-bottom:1px solid var(--rule);padding-bottom:40px;margin-bottom:40px}
-  .book-form-wrap{padding-left:0}
-  .footer-rule{grid-template-columns:1fr;text-align:center}
-  .foot-left,.foot-right{display:none}
-  .demo-strip{padding:12px 20px;flex-direction:column;gap:8px}
-  .form-row{grid-template-columns:1fr}
+    .hero-meta{flex-direction:column;gap:14px}
+    .hero-meta-item{border-right:none;border-bottom:1px solid rgba(255,255,255,.18);padding:0 0 14px}
+    .hero-meta-item:last-child{border-bottom:none;padding-bottom:0}
+    .storia-layout,.piatti-head,.rev-head,.book-grid{grid-template-columns:1fr}
+    .storia-image img{height:360px}
+    .hours-grid{grid-template-columns:1fr}
+    .philo-grid{grid-template-columns:1fr}
+    .piatti-grid{grid-template-columns:repeat(6,1fr)}
+    .piatto:nth-child(1){grid-column:span 6;aspect-ratio:16/11}
+    .piatto:nth-child(2){grid-column:span 6;aspect-ratio:5/4}
+    .piatto:nth-child(3),.piatto:nth-child(4),.piatto:nth-child(5){grid-column:span 3;aspect-ratio:1}
+    .piatto:nth-child(6),.piatto:nth-child(7){grid-column:span 6;aspect-ratio:4/3}
+}
+@media(max-width:768px){
+    .nav-links{display:none}
+    .nav-mobile{display:block}
+    .fg-row{grid-template-columns:1fr}
+    .foot-inner{flex-direction:column;align-items:flex-start}
+    .hero-ctas{flex-direction:column;align-items:stretch}
+    .hero-ctas .btn{justify-content:center}
+    .rev-grid{grid-template-columns:1fr}
+    .rev-stat-row{flex-wrap:wrap;gap:20px}
+}
+@media(prefers-reduced-motion:reduce){
+    *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
 }
 </style>
 </head>
 <body>
-
-<!-- MASTHEAD -->
-<div class="page">
-  <header class="masthead">
-    <div class="mast-left">
-      Via della Grotta, 15<br>
-      87028 Praia a Mare (CS)<br>
-      +39 380 238 4386
-    </div>
-    <div class="mast-center">
-      <span class="mast-logo">Serrago</span>
-      <span class="mast-tagline">tradizione · innovazione · Calabria</span>
-    </div>
-    <div class="mast-right">
-      Ven–Sab: 19:30–23:30<br>
-      Dom: 12:00–14:30<br>
-      <a href="tel:+393802384386">Prenota →</a>
-    </div>
-  </header>
+<div class="scroll-progress"></div>
+<div class="lang-toggle">
+    <button class="lang-btn active" data-lang="it" onclick="setLang('it')">IT</button>
+    <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
 </div>
 
-<!-- HERO -->
-<div class="page">
-  <div class="section-rule">
-    <span class="sr-label">La cucina</span>
-    <span class="sr-num">I.</span>
-  </div>
-</div>
-<div class="page" style="padding-left:0;padding-right:0;max-width:100%">
-  <div style="max-width:1200px;margin:0 auto;padding:0 48px">
-    <div class="hero-spread">
-      <div class="hero-img">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop" alt="Serrago cucina"/>
-      </div>
-      <div class="hero-text">
-        <div class="hero-overline">Praia a Mare · 2019</div>
-        <h1 class="hero-headline">
-          Dove la <em>tradizione</em><br>
-          diventa<br>
-          <em>linguaggio</em> nuovo
+<nav id="mainNav">
+    <a href="#" class="nav-logo">Ristorante <em>Serrago</em></a>
+    <ul class="nav-links">
+        <li><a href="#orari"><span class="t-it">Orari</span><span class="t-en">Hours</span></a></li>
+        <li><a href="#storia"><span class="t-it">Storia</span><span class="t-en">Story</span></a></li>
+        <li><a href="#piatti"><span class="t-it">Piatti</span><span class="t-en">Dishes</span></a></li>
+        <li><a href="#recensioni"><span class="t-it">Recensioni</span><span class="t-en">Reviews</span></a></li>
+        <li><a href="#prenota"><span class="t-it">Prenota</span><span class="t-en">Book</span></a></li>
+    </ul>
+    <button class="nav-mobile" aria-label="Menu">&#9776;</button>
+</nav>
+
+<!-- HERO (fullscreen cinematic) -->
+<section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-body">
+        <div class="hero-eyebrow"><span class="t-it">Praia a Mare · Dal 2020</span><span class="t-en">Praia a Mare · Since 2020</span></div>
+        <h1>
+            <span class="l1"><span class="t-it">Tradizione</span><span class="t-en">Tradition</span></span>
+            <em><span class="t-it">&amp; Innovazione</span><span class="t-en">&amp; Innovation</span></em>
         </h1>
-        <p class="hero-body">
-          Una cucina che nasce dalla Calabria più profonda e guarda al futuro. Gnocchi di patata viola con orata e lime, tonno scottato, dessert che stupiscono. Una squadra giovane e appassionata nel cuore di Praia a Mare.
-        </p>
-        <div class="hero-stars">
-          <span class="stars-gold">★★★★★</span>
-          <span>4.8 · 144 recensioni Google</span>
+        <div class="hero-divider"></div>
+        <p class="hero-lead t-it">Un piccolo ristorante dove il pesce del Tirreno incontra la tecnica contemporanea. Solo tre sere a settimana, per fare ogni piatto come va fatto.</p>
+        <p class="hero-lead t-en">A small restaurant where Tyrrhenian fish meets contemporary technique. Only three evenings a week, so every plate is made right.</p>
+        <div class="hero-meta">
+            <div class="hero-meta-item">
+                <span class="hero-meta-val"><em>4.8</em></span>
+                <span class="hero-meta-lbl">Google Rating</span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-val">144</span>
+                <span class="hero-meta-lbl"><span class="t-it">Recensioni</span><span class="t-en">Reviews</span></span>
+            </div>
+            <div class="hero-meta-item">
+                <span class="hero-meta-val">3</span>
+                <span class="hero-meta-lbl"><span class="t-it">Sere / settimana</span><span class="t-en">Nights / week</span></span>
+            </div>
         </div>
-      </div>
+        <div class="hero-ctas">
+            <a href="#prenota" class="btn btn-primary"><span class="t-it">Prenota il Tavolo</span><span class="t-en">Reserve a Table</span> &rarr;</a>
+            <a href="#piatti" class="btn btn-ghost"><span class="t-it">I Piatti</span><span class="t-en">The Dishes</span></a>
+        </div>
     </div>
-  </div>
-</div>
-
-<!-- THREE PILLARS -->
-<div class="page">
-  <div class="section-rule" style="margin-top:0">
-    <span class="sr-label">La filosofia</span>
-    <span class="sr-num">II.</span>
-  </div>
-  <div class="three-col reveal">
-    <div class="tcol">
-      <span class="tcol-num">01</span>
-      <div class="tcol-title">Materia prima</div>
-      <p class="tcol-text">Ogni ingrediente viene selezionato da produttori calabresi di fiducia. Il pesce arriva ogni mattina dal porto di Praia. Le verdure dall'entroterra del Pollino.</p>
+    <div class="hero-scroll">
+        <span class="lbl">Scopri</span>
+        <span class="line"></span>
     </div>
-    <div class="tcol">
-      <span class="tcol-num">02</span>
-      <div class="tcol-title">Tecnica moderna</div>
-      <p class="tcol-text">Cotture a bassa temperatura, abbinamenti inattesi, presentazioni che raccontano una storia. La tradizione calabrese interpretata con gli strumenti della cucina contemporanea.</p>
+</section>
+
+<!-- HOURS — USP section -->
+<section class="sec hours-sec" id="orari">
+    <div class="wrap">
+        <div class="hours-grid">
+            <div class="reveal">
+                <p class="tag"><span class="t-it">Gli Orari</span><span class="t-en">The Hours</span></p>
+                <h2 class="hdg t-it">Solo tre sere.<br><em>Ogni piatto, come va fatto.</em></h2>
+                <h2 class="hdg t-en">Only three evenings.<br><em>Every plate, done right.</em></h2>
+                <p class="desc t-it">Apriamo solo venerd&igrave;, sabato e domenica. Nei giorni di chiusura il pescato si controlla, l'impasto riposa, la brigata si prepara. Meno servizi, qualit&agrave; garantita.</p>
+                <p class="desc t-en">We open only on Friday, Saturday and Sunday. On closed days the fish is checked, the dough rests, the brigade prepares. Fewer services, guaranteed quality.</p>
+            </div>
+            <div class="hours-table reveal">
+                <div class="hours-row closed"><span class="hours-day"><span class="t-it">Luned&igrave;</span><span class="t-en">Monday</span></span><span class="hours-time t-it">Chiuso</span><span class="hours-time t-en">Closed</span></div>
+                <div class="hours-row closed"><span class="hours-day"><span class="t-it">Marted&igrave;</span><span class="t-en">Tuesday</span></span><span class="hours-time t-it">Chiuso</span><span class="hours-time t-en">Closed</span></div>
+                <div class="hours-row closed"><span class="hours-day"><span class="t-it">Mercoled&igrave;</span><span class="t-en">Wednesday</span></span><span class="hours-time t-it">Chiuso</span><span class="hours-time t-en">Closed</span></div>
+                <div class="hours-row closed"><span class="hours-day"><span class="t-it">Gioved&igrave;</span><span class="t-en">Thursday</span></span><span class="hours-time t-it">Chiuso</span><span class="hours-time t-en">Closed</span></div>
+                <div class="hours-row open"><span class="hours-day"><span class="t-it">Venerd&igrave;</span><span class="t-en">Friday</span></span><span class="hours-time">19:30 — 23:30</span></div>
+                <div class="hours-row open"><span class="hours-day"><span class="t-it">Sabato</span><span class="t-en">Saturday</span></span><span class="hours-time">19:30 — 23:30</span></div>
+                <div class="hours-row open"><span class="hours-day"><span class="t-it">Domenica</span><span class="t-en">Sunday</span></span><span class="hours-time">12:00 — 14:30</span></div>
+            </div>
+        </div>
     </div>
-    <div class="tcol">
-      <span class="tcol-num">03</span>
-      <div class="tcol-title">Esperienza totale</div>
-      <p class="tcol-text">Pochi tavoli, servizio attento, cantina curata. Una serata da Serrago non è un pasto — è un'esperienza che si ricorda. Per questo apriamo solo tre sere a settimana.</p>
+</section>
+
+<!-- STORIA -->
+<section class="sec storia" id="storia">
+    <div class="wrap">
+        <div class="storia-layout">
+            <div class="storia-text reveal">
+                <p class="tag"><span class="t-it">La Storia</span><span class="t-en">The Story</span></p>
+                <h2 class="hdg t-it">Una <em>vietta</em> laterale, un piccolo salone.</h2>
+                <h2 class="hdg t-en">A <em>side street</em>, a small dining room.</h2>
+                <p class="desc t-it">A pochi passi dalla passeggiata di Praia a Mare, Serrago occupa un locale minuto dove ogni tavolo &egrave; a portata di cucina. La brigata &egrave; giovane, il pesce arriva direttamente dai pescatori del Tirreno, la cantina privilegia vini calabresi e campani.</p>
+                <p class="desc t-en">Steps from the Praia a Mare promenade, Serrago occupies a small room where every table is within reach of the kitchen. The brigade is young, the fish comes straight from Tyrrhenian fishermen, the cellar favours wines from Calabria and Campania.</p>
+                <div class="storia-pull">
+                    <span class="t-it">&ldquo;Finalmente un ristorante di pesce all'altezza. Ottimo servizio. Piatti belli da vedere e superlativi al palato.&rdquo;</span>
+                    <span class="t-en">&ldquo;Finally a seafood restaurant of the level we wanted. Excellent service. Dishes beautiful to look at, superb to the palate.&rdquo;</span>
+                </div>
+                <p class="desc" style="font-size:.85rem;color:var(--mute)">&mdash; Nicola Nappo, Google</p>
+            </div>
+            <div class="storia-image reveal">
+                <img src="photos/photo_09.jpg" alt="Sala Ristorante Serrago">
+                <div class="storia-image-caption">
+                    <span><span class="t-it">Sala Principale</span><span class="t-en">Main Dining Room</span></span>
+                    <h4>Via della Grotta, 15</h4>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
-</div>
+</section>
 
-<!-- MENU -->
-<div class="page">
-  <div class="section-rule">
-    <span class="sr-label">Il menu</span>
-    <span class="sr-num">III.</span>
-  </div>
-  <div class="menu-spread reveal">
-
-    <div class="menu-col">
-      <div class="menu-col-title">Antipasti &amp; Primi</div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Parmigiana di mare</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€16</span>
+<!-- PIATTI (dishes editorial gallery) -->
+<section class="sec piatti" id="piatti">
+    <div class="wrap">
+        <div class="piatti-head">
+            <div class="reveal">
+                <p class="tag"><span class="t-it">I Piatti</span><span class="t-en">The Plates</span></p>
+                <h2 class="hdg t-it">Un men&ugrave; che <em>cambia settimana per settimana</em>.</h2>
+                <h2 class="hdg t-en">A menu that <em>changes week by week</em>.</h2>
+            </div>
+            <p class="desc reveal t-it">Non c'&egrave; un men&ugrave; fisso perch&eacute; non c'&egrave; un pescato fisso. Queste sono alcune delle portate che hanno definito la stagione.</p>
+            <p class="desc reveal t-en">There is no fixed menu because there is no fixed catch. These are some of the plates that have defined the season.</p>
         </div>
-        <div class="dish-desc">Melanzane, pomodoro confit, alici del Cantabrico, stracciatella pugliese, basilico cristallizzato</div>
-        <span class="dish-tag">★ Il più richiesto</span>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Gamberi e finocchio</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€18</span>
+        <div class="piatti-grid reveal stagger-parent">
+            <div class="piatto stagger-child">
+                <img src="photos/photo_02.jpg" alt="Tonno al sesamo" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Antipasto di Mare</span><span class="t-en">Seafood Starter</span></div>
+                    <div class="piatto-name t-it">Tonno al sesamo, salsa &agrave; la moutarde</div>
+                    <div class="piatto-name t-en">Sesame-crusted tuna, mustard cream</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_01.jpg" alt="Bignè al caffè" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat">Dessert</div>
+                    <div class="piatto-name t-it">Bign&eacute; al caff&egrave;, crema al mascarpone</div>
+                    <div class="piatto-name t-en">Coffee cream bign&eacute;, mascarpone</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_04.jpg" alt="Polpo con arancia" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Crudo</span><span class="t-en">Raw</span></div>
+                    <div class="piatto-name t-it">Polpo, arancia, olive</div>
+                    <div class="piatto-name t-en">Octopus, orange, olives</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_05.jpg" alt="Marinati del giorno" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Antipasti</span><span class="t-en">Starters</span></div>
+                    <div class="piatto-name t-it">Marinati del giorno</div>
+                    <div class="piatto-name t-en">Daily marinated fish</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_06.jpg" alt="Provola fritta" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Finger Food</span><span class="t-en">Finger Food</span></div>
+                    <div class="piatto-name t-it">Provola fritta, maionese al basilico</div>
+                    <div class="piatto-name t-en">Fried provola, basil mayo</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_07.jpg" alt="Spaghetti allo scoglio" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Primo</span><span class="t-en">First Course</span></div>
+                    <div class="piatto-name t-it">Spaghetti allo scoglio, pomodorini</div>
+                    <div class="piatto-name t-en">Seafood spaghetti, cherry tomatoes</div>
+                </div>
+            </div>
+            <div class="piatto stagger-child">
+                <img src="photos/photo_03.jpg" alt="Trancio di pesce" loading="lazy">
+                <div class="piatto-caption">
+                    <div class="piatto-cat"><span class="t-it">Secondo</span><span class="t-en">Main Course</span></div>
+                    <div class="piatto-name t-it">Trancio scottato, patate al rosmarino</div>
+                    <div class="piatto-name t-en">Seared fish, rosemary potatoes</div>
+                </div>
+            </div>
         </div>
-        <div class="dish-desc">Gamberi rossi di Mazara crudi, insalata di finocchio al lime, granita di mandarino, bottarga</div>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Gnocchi viola e orata</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€22</span>
-        </div>
-        <div class="dish-desc">Gnocchi di patata viola del Pollino, orata del Tirreno, emulsione al lime, erba cipollina</div>
-        <span class="dish-tag">★ Firma dello chef</span>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Pasta alla 'nduja moderna</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€19</span>
-        </div>
-        <div class="dish-desc">Spaghettone, 'nduja di Spilinga sciolta, pomodoro San Marzano, burro di capra, scorza di limone</div>
-      </div>
     </div>
+</section>
 
-    <div class="menu-divider"></div>
-
-    <div class="menu-col">
-      <div class="menu-col-title">Secondi &amp; Dolci</div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Tonno scottato</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€26</span>
+<!-- PHILOSOPHY -->
+<section class="sec philo">
+    <div class="wrap">
+        <div class="reveal" style="max-width:620px;margin-bottom:52px">
+            <p class="tag"><span class="t-it">La Filosofia</span><span class="t-en">The Philosophy</span></p>
+            <h2 class="hdg t-it">Tre regole. <em>Nessuna eccezione.</em></h2>
+            <h2 class="hdg t-en">Three rules. <em>No exceptions.</em></h2>
         </div>
-        <div class="dish-desc">Filetto di tonno rosso dell'Atlantico, sesamo nero, salsa di soia artigianale, insalatina di capperi</div>
-        <span class="dish-tag">★ Eccellente secondo i clienti</span>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Involtini di pesce spada</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€24</span>
+        <div class="philo-grid reveal">
+            <div class="philo-tile">
+                <span class="philo-num">I.</span>
+                <h3 class="t-it">Il pesce del giorno</h3>
+                <h3 class="t-en">Fish of the day</h3>
+                <p class="t-it">Quello che non &egrave; fresco non entra. Il men&ugrave; si scrive la mattina, dopo il mercato dei pescatori.</p>
+                <p class="t-en">What isn't fresh doesn't come in. The menu is written in the morning, after the fishermen's market.</p>
+            </div>
+            <div class="philo-tile">
+                <span class="philo-num">II.</span>
+                <h3 class="t-it">Piccoli servizi</h3>
+                <h3 class="t-en">Small services</h3>
+                <p class="t-it">Massimo 30 coperti, 3 sere a settimana. Nessun compromesso sulla cura di ogni piatto.</p>
+                <p class="t-en">Maximum 30 seats, 3 nights a week. No compromise on the care of each plate.</p>
+            </div>
+            <div class="philo-tile">
+                <span class="philo-num">III.</span>
+                <h3 class="t-it">Brigata giovane</h3>
+                <h3 class="t-en">Young brigade</h3>
+                <p class="t-it">Tecnica contemporanea, rispetto della tradizione calabrese. Ogni piatto firmato a mano.</p>
+                <p class="t-en">Contemporary technique, respect for Calabrian tradition. Every plate signed by hand.</p>
+            </div>
         </div>
-        <div class="dish-desc">Pesce spada dello Stretto, ripieno di zucchine e caciocavallo, pomodorino arrostito, menta</div>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Pizzo tartufo rivisitato</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€10</span>
-        </div>
-        <div class="dish-desc">Il dolce iconico di Pizzo Calabro, reinterpretato: gelato al tartufo di cioccolato, salsa calda, crumble</div>
-        <span class="dish-tag">★ Imperdibile</span>
-      </div>
-
-      <div class="dish">
-        <div class="dish-header">
-          <span class="dish-name">Cheesecake ai frutti di bosco</span>
-          <span class="dish-dots"></span>
-          <span class="dish-price">€9</span>
-        </div>
-        <div class="dish-desc">Base di frolla al cacao, crema di ricotta calabrese, coulis di lamponi e mirtilli freschi</div>
-      </div>
     </div>
-  </div>
-</div>
+</section>
 
-<!-- MOSAIC -->
-<div class="page" style="padding:0">
-  <div style="max-width:1200px;margin:0 auto">
-    <div class="page">
-      <div class="section-rule">
-        <span class="sr-label">Il locale</span>
-        <span class="sr-num">IV.</span>
-      </div>
+<!-- REVIEWS -->
+<section class="sec rev-sec" id="recensioni">
+    <div class="wrap">
+        <div class="rev-head">
+            <div class="reveal">
+                <p class="tag"><span class="t-it">Le Voci</span><span class="t-en">The Voices</span></p>
+                <h2 class="hdg t-it">Quello che dicono<br><em>quelli che tornano</em>.</h2>
+                <h2 class="hdg t-en">What <em>those who return</em> say.</h2>
+            </div>
+            <div class="reveal">
+                <p class="desc t-it">Recensioni reali da Google. Abbiamo solo scelto le pi&ugrave; sincere.</p>
+                <p class="desc t-en">Real reviews from Google. We just picked the most sincere.</p>
+                <div class="rev-stat-row">
+                    <div class="rev-stat"><span class="rev-stat-val">4.8</span><span class="rev-stat-lbl">Google</span></div>
+                    <div class="rev-stat"><span class="rev-stat-val">144</span><span class="rev-stat-lbl"><span class="t-it">Recensioni</span><span class="t-en">Reviews</span></span></div>
+                </div>
+            </div>
+        </div>
+        <div class="rev-grid reveal">
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Locale molto carino con personale giovane, professionale e sempre attento alle esigenze della clientela. Abbiamo assaggiato diversi antipasti, tutti buonissimi: dai marinati alla...&rdquo;</p>
+                <p class="rev-who">Assunta Sirica</p>
+                <p class="rev-src">Google</p>
+            </div>
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Piacevole scoperta a pochi passi dalla passeggiata di Praia a Mare. Finalmente un ristorante di pesce all'altezza. Ottimo servizio. Piatti belli da vedere e superlativi al palato.&rdquo;</p>
+                <p class="rev-who">Nicola Nappo</p>
+                <p class="rev-src">Google</p>
+            </div>
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Che bello aspettare al ristorante per poi essere ricompensati con piatti davvero eccezionali che danno un significato a quell'attesa. Grazie al fantastico cameriere Giuseppe che ci...&rdquo;</p>
+                <p class="rev-who">Leila Merli</p>
+                <p class="rev-src">Google</p>
+            </div>
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Piccolo locale, accogliente, comodo e decorato con stile semplice ma di gusto. Il servizio &egrave; eccellente, il personale gentile e simpatico, ed i piatti preparati con cura e assoluta...&rdquo;</p>
+                <p class="rev-who">Alexandru Prichinet</p>
+                <p class="rev-src">Google</p>
+            </div>
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Ristorante scelto dal mio fidanzato amante del pesce. Si trova in una piccola vietta del corso principale. Qualit&agrave; del cibo ottima, per me che non sono amante del pesce c'era anche...&rdquo;</p>
+                <p class="rev-who">Letizia Bizzoca</p>
+                <p class="rev-src">Google</p>
+            </div>
+            <div class="rev-card">
+                <div class="rev-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p class="rev-text">&ldquo;Small hidden gem on a side street of Praia a Mare. Beautifully plated seafood dishes, young and attentive staff. One of the best dinners on the Tyrrhenian coast.&rdquo;</p>
+                <p class="rev-who">Google Review</p>
+                <p class="rev-src">Google &middot; EN</p>
+            </div>
+        </div>
     </div>
-    <div class="mosaic">
-      <div class="mos-item">
-        <img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80&fit=crop" alt="Serrago"/>
-        <div class="mos-caption">La cucina</div>
-      </div>
-      <div class="mos-item">
-        <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=800&q=80&fit=crop" alt="Piatti Serrago"/>
-        <div class="mos-caption">I piatti</div>
-      </div>
-      <div class="mos-item">
-        <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=800&q=80&fit=crop" alt="Ambiente"/>
-        <div class="mos-caption">L'ambiente</div>
-      </div>
-      <div class="mos-item">
-        <img src="https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=800&q=80&fit=crop" alt="Dettaglio"/>
-        <div class="mos-caption">Dettagli</div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- PULL QUOTE -->
-<div class="page">
-  <div class="pull-quote reveal">
-    <div class="pq-marks">"</div>
-    <p class="pq-text">Best gnocchi I had in Italy — beautiful purple sweet potato gnocchi with bream and lime. Honestly perfect.</p>
-    <span class="pq-attr">Ospite internazionale · Google Maps · ★★★★★</span>
-  </div>
-</div>
+</section>
 
 <!-- BOOKING -->
-<div class="page">
-  <div class="section-rule">
-    <span class="sr-label">Prenotazioni</span>
-    <span class="sr-num">V.</span>
-  </div>
-  <div class="booking-spread reveal">
-    <div class="book-info">
-      <h2 style="font-family:'Bodoni Moda',serif;font-size:32px;font-weight:300;margin-bottom:16px;line-height:1.2">
-        Ogni tavolo<br>è <em style="font-style:italic;color:var(--gold)">unico</em>
-      </h2>
-      <p style="font-size:14px;line-height:1.85;color:rgba(13,13,13,.55);max-width:340px">
-        Pochi tavoli, servizio dedicato. La prenotazione è consigliata — chiamate o compilate il modulo.
-      </p>
-      <table class="info-table">
-        <tr><td>Apertura</td><td>Ven–Sab: 19:30–23:30<br>Dom: 12:00–14:30<br>Lun–Gio: chiuso</td></tr>
-        <tr><td>Indirizzo</td><td>Via della Grotta, 15<br>87028 Praia a Mare (CS)</td></tr>
-        <tr><td>Telefono</td><td>+39 380 238 4386</td></tr>
-        <tr><td>Prezzi</td><td>Menu completo ~€45–55 p.p.<br>Include antipasto, primo, secondo, dessert</td></tr>
-        <tr><td>Parcheggio</td><td>Lungomare di Praia a Mare<br>A 100 metri dal locale</td></tr>
-      </table>
-    </div>
-    <div class="book-form-wrap">
-      <div style="font-family:'Bodoni Moda',serif;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgba(13,13,13,.35);margin-bottom:32px">Modulo di prenotazione</div>
-      <div class="form-row">
-        <div><label class="form-label">Nome</label><input class="form-input" type="text" placeholder="Marco"/></div>
-        <div><label class="form-label">Cognome</label><input class="form-input" type="text" placeholder="Rossi"/></div>
-      </div>
-      <label class="form-label">Telefono</label>
-      <input class="form-input" type="tel" placeholder="+39 333 000 0000"/>
-      <div class="form-row">
-        <div>
-          <label class="form-label">Data</label>
-          <input class="form-input" type="date"/>
+<section class="sec book" id="prenota">
+    <div class="wrap">
+        <div class="reveal" style="max-width:680px;margin-bottom:48px">
+            <p class="tag"><span class="t-it">Prenotazioni</span><span class="t-en">Reservations</span></p>
+            <h2 class="hdg t-it">Chiamaci, <em>o lascia un messaggio</em>.</h2>
+            <h2 class="hdg t-en">Call us, <em>or leave a message</em>.</h2>
         </div>
-        <div>
-          <label class="form-label">Persone</label>
-          <select class="form-select">
-            <option>2 persone</option>
-            <option selected>3–4 persone</option>
-            <option>5–6 persone</option>
-          </select>
+        <div class="book-grid">
+            <div class="book-info reveal">
+                <h3><span class="t-it">Apertura</span><span class="t-en">Opening</span></h3>
+                <p class="t-it">Venerd&igrave; &amp; Sabato &middot; 19:30 &mdash; 23:30</p>
+                <p class="t-it">Domenica pranzo &middot; 12:00 &mdash; 14:30</p>
+                <p class="t-en">Friday &amp; Saturday &middot; 7:30 PM &mdash; 11:30 PM</p>
+                <p class="t-en">Sunday lunch &middot; 12:00 PM &mdash; 2:30 PM</p>
+
+                <h3><span class="t-it">Telefono</span><span class="t-en">Phone</span></h3>
+                <a href="tel:+393802384386" class="book-phone">+39 380 238 4386</a>
+
+                <h3><span class="t-it">Indirizzo</span><span class="t-en">Address</span></h3>
+                <p>Via della Grotta, 15<br>87028 Praia a Mare (CS)</p>
+
+                <h3><span class="t-it">Contatti</span><span class="t-en">Contact</span></h3>
+                <div class="soc">
+                    <a href="https://wa.me/393802384386" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+                    <a href="tel:+393802384386" aria-label="Phone"><svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.28-.28.67-.36 1.02-.25 1.12.37 2.32.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg></a>
+                </div>
+            </div>
+            <form class="book-form reveal" onsubmit="event.preventDefault();alert('Demo — prenotazione inviata!')">
+                <div class="fg-row">
+                    <div class="fg"><label><span class="t-it">Nome</span><span class="t-en">Name</span></label><input type="text" required></div>
+                    <div class="fg"><label><span class="t-it">Telefono</span><span class="t-en">Phone</span></label><input type="tel" required></div>
+                </div>
+                <div class="fg-row">
+                    <div class="fg"><label><span class="t-it">Data</span><span class="t-en">Date</span></label><input type="date" required></div>
+                    <div class="fg"><label><span class="t-it">Ora</span><span class="t-en">Time</span></label>
+                        <select required><option value="">&mdash;</option><option>12:00</option><option>12:30</option><option>13:00</option><option>13:30</option><option>19:30</option><option>20:00</option><option>20:30</option><option>21:00</option><option>21:30</option></select>
+                    </div>
+                </div>
+                <div class="fg"><label><span class="t-it">Persone</span><span class="t-en">Guests</span></label>
+                    <select required><option value="">&mdash;</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8+</option></select>
+                </div>
+                <div class="fg"><label><span class="t-it">Note (allergie, preferenze)</span><span class="t-en">Notes (allergies, preferences)</span></label><textarea rows="2"></textarea></div>
+                <button type="submit" class="btn-book"><span class="t-it">Richiedi Prenotazione</span><span class="t-en">Request Reservation</span></button>
+                <div class="book-hint"><strong><span class="t-it">Nota:</span><span class="t-en">Note:</span></strong> <span class="t-it">Siamo aperti solo venerd&igrave;, sabato e domenica. Conferma entro 24 ore tramite WhatsApp.</span><span class="t-en">We're open only Friday, Saturday and Sunday. Confirmation within 24 hours via WhatsApp.</span></div>
+            </form>
         </div>
-      </div>
-      <label class="form-label">Occasione speciale</label>
-      <select class="form-select">
-        <option>Nessuna</option>
-        <option>Compleanno</option>
-        <option>Anniversario</option>
-        <option>Cena di lavoro</option>
-        <option>Proposta di matrimonio</option>
-      </select>
-      <button class="btn-book" onclick="alert('✓ Richiesta inviata — vi ricontatteremo presto!')">Invia richiesta →</button>
     </div>
-  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-wrap">
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3083!2d15.786!3d39.894!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x133fdf4015e5ce47%3A0xd587560d556b2e1b!2sRistorante%20Serrago!5e0!3m2!1sit!2sit!4v1700000000000" allowfullscreen loading="lazy" title="Ristorante Serrago"></iframe>
+    <div class="map-card">
+        <h3>Ristorante <em>Serrago</em></h3>
+        <p>Via della Grotta, 15<br>87028 Praia a Mare (CS)<br><a href="tel:+393802384386">+39 380 238 4386</a></p>
+    </div>
 </div>
 
 <!-- FOOTER -->
-<div class="page">
-  <footer class="footer-rule">
-    <div class="foot-left">
-      Via della Grotta, 15 · 87028 Praia a Mare<br>
-      +39 380 238 4386 · P.IVA 03456780782
+<footer>
+    <div class="foot-inner">
+        <div>
+            <div class="foot-brand">Ristorante <em>Serrago</em></div>
+            <p class="foot-addr">Via della Grotta, 15 &middot; Praia a Mare (CS)<br><a href="tel:+393802384386">+39 380 238 4386</a></p>
+        </div>
+        <div class="foot-nav">
+            <a href="#orari"><span class="t-it">Orari</span><span class="t-en">Hours</span></a>
+            <a href="#storia"><span class="t-it">Storia</span><span class="t-en">Story</span></a>
+            <a href="#piatti"><span class="t-it">Piatti</span><span class="t-en">Dishes</span></a>
+            <a href="#recensioni"><span class="t-it">Recensioni</span><span class="t-en">Reviews</span></a>
+            <a href="#prenota"><span class="t-it">Prenota</span><span class="t-en">Book</span></a>
+        </div>
     </div>
-    <div class="foot-center">Serrago</div>
-    <div class="foot-right">
-      © 2025 · Privacy Policy<br>
-      ★ 4.8 / 5 · 144 recensioni
-    </div>
-  </footer>
-</div>
+    <p class="foot-copy">
+        &copy; 2025 Ristorante Serrago &middot;
+        <span class="t-it">Sito web di</span><span class="t-en">Website by</span>
+        <a href="#">Viktoria Agency</a>
+    </p>
+</footer>
 
-<!-- DEMO BANNER -->
-<div class="demo-strip" id="ds">
-  <div class="ds-text">
-    <span class="ds-badge">Demo</span>
-    Pagina demo gratuita per <strong>Ristorante Serrago</strong> — già pronta per l'attivazione
-  </div>
-  <div class="ds-btns">
-    <button class="ds-btn ds-btn-s" onclick="document.getElementById('ds').style.display='none'">✕</button>
-    <button class="ds-btn ds-btn-p" onclick="alert('Contattaci per attivare il sito!')">Voglio questo sito →</button>
-  </div>
-</div>
+<!-- WhatsApp -->
+<a href="https://wa.me/393802384386" class="wa" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
 
 <script>
-const obs=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting)x.target.classList.add('vis')}),{threshold:.08});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+function setLang(l){
+    document.body.classList.toggle('lang-en', l==='en');
+    document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+}
+const nav=document.getElementById('mainNav');
+const prog=document.querySelector('.scroll-progress');
+let ticking=false;
+window.addEventListener('scroll',()=>{
+    if(!ticking){
+        requestAnimationFrame(()=>{
+            const y=window.scrollY;
+            const h=document.body.scrollHeight-window.innerHeight;
+            nav.classList.toggle('scrolled',y>80);
+            prog.style.width=(y/h*100)+'%';
+            ticking=false;
+        });
+        ticking=true;
+    }
+},{passive:true});
+document.addEventListener('DOMContentLoaded',()=>{
+    const obs=new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+            if(e.isIntersecting){
+                e.target.classList.add('visible');
+                obs.unobserve(e.target);
+            }
+        });
+    },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+    document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+});
 </script>
 </body>
 </html>
