@@ -29,9 +29,9 @@ nav.scrolled{background:rgba(27,73,101,.96);padding:12px 40px;backdrop-filter:bl
 .lang-btn.active{background:var(--coral);color:#fff}
 /* HERO panoramic */
 .hero{position:relative;min-height:100vh;color:#fff;overflow:hidden;display:flex;align-items:center}
-.hero-bg{position:absolute;inset:0;z-index:0}
-.hero-bg img{width:100%;height:100%;object-fit:cover}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(27,73,101,.4) 0%,rgba(18,52,71,.55) 60%,rgba(18,52,71,.85) 100%)}
+.hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden;background:#12344a}
+.hero-bg video,.hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,24,36,.45) 0%,rgba(8,24,36,.6) 60%,rgba(8,24,36,.85) 100%);z-index:1;pointer-events:none}
 .hero-inner{position:relative;z-index:1;max-width:1200px;margin:0 auto;padding:0 40px;width:100%}
 .hero-kicker{display:inline-flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--coral);margin-bottom:26px;font-weight:600}
 .hero-kicker::before{content:'';width:40px;height:1px;background:var(--coral)}
@@ -140,7 +140,12 @@ footer{background:var(--ocean-d);color:rgba(240,230,211,.7);padding:48px 40px 28
 </nav>
 
 <section class="hero">
-    <div class="hero-bg"><img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=1600&q=80" alt="Tramonto sul mare"></div>
+    <div class="hero-bg">
+      <video autoplay muted loop playsinline preload="auto" poster="perla-videos/hero-poster.jpg">
+        <source src="perla-videos/hero-opt.webm" type="video/webm">
+        <source src="perla-videos/hero-opt.mp4" type="video/mp4">
+      </video>
+    </div>
     <div class="hero-inner">
         <div class="hero-kicker"><span class="t-it">Scalea · Sul mare</span><span class="t-en">Scalea · On the sea</span></div>
         <h1 class="t-it">La <strong>Perla</strong><br>del Tirreno.</h1>
