@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Backstage Parrucchieri · Mestre Venezia · Taglio Colore Balayage</title>
+<meta name="description" content="Backstage Parrucchieri di Raffaele Simion, Piazza del Mercato 6, Marghera-Venezia. Specialisti in colore, balayage ed extension. Prenota su Fresha.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HairSalon",
+  "name": "Backstage Parrucchieri di Simion Raffaele",
+  "image": "https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1200",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Piazza del Mercato, 6",
+    "addressLocality": "Marghera",
+    "addressRegion": "VE",
+    "postalCode": "30175",
+    "addressCountry": "IT"
+  },
+  "telephone": "+39 041 927436",
+  "openingHours": ["Tu-Sa 09:00-18:30"],
+  "url": "https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY",
+  "priceRange": "€€",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "216"
+  }
+}
+</script>
+
+<style>
+:root {
+  --canvas: #FDF8F5;
+  --surface: #FFFFFF;
+  --ink: #2C1810;
+  --ink-muted: #7A6358;
+  --rose: #D4909A;
+  --rose-light: #F2D9DC;
+  --rose-pale: #FAF0F1;
+  --gold: #C9A96E;
+  --gold-light: #F0E0C0;
+  --gold-pale: #FBF6EE;
+  --border: rgba(201,169,110,0.25);
+  --heading: 'Cormorant Garamond', Georgia, serif;
+  --body: 'Raleway', system-ui, sans-serif;
+  --radius: 12px;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-weight: 400;
+  color: var(--ink);
+  background: var(--canvas);
+  overflow-x: hidden;
+  line-height: 1.7;
+}
+h1,h2,h3,h4 { font-family: var(--heading); font-weight: 400; margin: 0 0 0.4em; line-height: 1.15; letter-spacing: 0.02em; }
+p { margin: 0 0 1em; }
+img { max-width: 100%; display: block; }
+a { color: inherit; text-decoration: none; }
+
+/* LANG */
+.t-en { display: none !important; }
+body.lang-en .t-it { display: none !important; }
+body.lang-en .t-en { display: revert !important; }
+body.lang-en p.t-en, body.lang-en h2.t-en, body.lang-en div.t-en,
+body.lang-en span.t-en, body.lang-en li.t-en { display: block !important; }
+body.lang-en p.t-it, body.lang-en h2.t-it, body.lang-en div.t-it,
+body.lang-en span.t-it, body.lang-en li.t-it { display: none !important; }
+
+/* NAV */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 20px 48px;
+  display: flex; align-items: center; justify-content: space-between;
+  transition: background 0.3s, padding 0.3s, box-shadow 0.3s;
+}
+.nav.scrolled {
+  background: rgba(253,248,245,0.97);
+  padding: 14px 48px;
+  box-shadow: 0 1px 20px rgba(44,24,16,0.08);
+}
+.nav-logo {
+  font-family: var(--heading);
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: var(--gold);
+  text-transform: uppercase;
+  line-height: 1;
+}
+.nav-logo span { display: block; font-size: 0.55rem; font-family: var(--body); font-weight: 300; letter-spacing: 0.3em; color: var(--ink-muted); text-transform: uppercase; margin-top: 3px; }
+.nav-links { display: flex; gap: 36px; align-items: center; }
+.nav-links a { font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 500; color: var(--ink-muted); transition: color 0.2s; }
+.nav-links a:hover { color: var(--gold); }
+.nav-right { display: flex; align-items: center; gap: 20px; }
+.lang-toggle { display: flex; gap: 4px; }
+.lang-btn {
+  background: none; border: 1px solid var(--border);
+  font-family: var(--body); font-size: 0.65rem; letter-spacing: 0.12em;
+  font-weight: 600; color: var(--ink-muted); cursor: pointer;
+  padding: 4px 9px; border-radius: 4px; transition: all 0.2s;
+}
+.lang-btn.active, .lang-btn:hover { background: var(--gold); border-color: var(--gold); color: #fff; }
+.nav-cta {
+  background: var(--rose); color: #fff;
+  font-family: var(--body); font-size: 0.7rem; letter-spacing: 0.14em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 10px 22px; border-radius: 50px; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-cta:hover { background: var(--ink); transform: translateY(-1px); }
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; }
+.hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex; align-items: center; justify-content: center;
+  text-align: center;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0; z-index: 0;
+  background-image: url('https://images.unsplash.com/photo-1560066984-138dadb4c035?w=1600&auto=format&fit=crop&q=80');
+  background-size: cover; background-position: center;
+}
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(160deg, rgba(44,24,16,0.62) 0%, rgba(201,169,110,0.18) 60%, rgba(44,24,16,0.55) 100%);
+}
+.hero-content {
+  position: relative; z-index: 1;
+  padding: 120px 24px 80px;
+  animation: fadeUp 1.2s ease both;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-eyebrow {
+  font-family: var(--body); font-size: 0.68rem; letter-spacing: 0.4em;
+  text-transform: uppercase; color: var(--gold-light); font-weight: 300;
+  margin-bottom: 18px;
+}
+.hero h1 {
+  font-size: clamp(3.2rem, 8vw, 7rem);
+  font-weight: 300; color: #fff;
+  letter-spacing: 0.06em; margin: 0 0 8px;
+  text-transform: uppercase;
+}
+.hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
+.hero-sub {
+  font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.28em;
+  text-transform: uppercase; color: rgba(255,255,255,0.72); font-weight: 300;
+  margin-bottom: 28px;
+}
+.hero-rating {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  margin-bottom: 44px;
+}
+.hero-stars { color: var(--gold-light); font-size: 1.1rem; letter-spacing: 3px; }
+.hero-rating-text { color: rgba(255,255,255,0.75); font-size: 0.75rem; font-weight: 300; letter-spacing: 0.08em; }
+.hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+.btn-primary {
+  background: var(--rose); color: #fff;
+  font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 16px 36px; border-radius: 50px; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.2s; display: inline-block;
+}
+.btn-primary:hover { background: #fff; color: var(--rose); transform: translateY(-2px); }
+.btn-outline {
+  background: transparent; color: #fff;
+  font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 500;
+  padding: 15px 36px; border-radius: 50px; border: 1.5px solid rgba(255,255,255,0.55);
+  cursor: pointer; transition: all 0.2s; display: inline-block;
+}
+.btn-outline:hover { background: rgba(255,255,255,0.12); border-color: #fff; }
+.hero-scroll {
+  position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+  color: rgba(255,255,255,0.5); font-size: 0.6rem; letter-spacing: 0.25em;
+  text-transform: uppercase; font-family: var(--body);
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+}
+.hero-scroll::after {
+  content: ''; display: block; width: 1px; height: 48px;
+  background: linear-gradient(to bottom, rgba(255,255,255,0.5), transparent);
+  animation: scrollLine 2s ease infinite;
+}
+@keyframes scrollLine { 0%,100%{opacity:0.4;transform:scaleY(0.6) translateY(-4px)} 50%{opacity:1;transform:scaleY(1) translateY(4px)} }
+
+/* SECTION COMMON */
+section { padding: 100px 48px; }
+.section-label {
+  font-family: var(--body); font-size: 0.62rem; letter-spacing: 0.45em;
+  text-transform: uppercase; color: var(--rose); font-weight: 600;
+  margin-bottom: 14px; display: block;
+}
+.section-title { font-size: clamp(2.2rem, 4.5vw, 3.6rem); color: var(--ink); }
+.section-title em { font-style: italic; color: var(--gold); }
+.section-divider {
+  width: 60px; height: 1px; background: var(--gold);
+  margin: 20px 0 16px;
+}
+.container { max-width: 1200px; margin: 0 auto; }
+
+/* REVEAL */
+.reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: none; }
+.reveal-delay-1 { transition-delay: 0.1s; }
+.reveal-delay-2 { transition-delay: 0.2s; }
+.reveal-delay-3 { transition-delay: 0.3s; }
+.reveal-delay-4 { transition-delay: 0.4s; }
+
+/* STORIA */
+.storia { background: var(--surface); }
+.storia-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: center;
+}
+.storia-img-wrap {
+  position: relative;
+}
+.storia-img-wrap img {
+  width: 100%; height: 560px; object-fit: cover;
+  border-radius: var(--radius);
+  box-shadow: 24px 24px 0 var(--gold-light);
+}
+.storia-badge {
+  position: absolute; bottom: -20px; right: -20px;
+  background: var(--gold); color: #fff;
+  width: 110px; height: 110px; border-radius: 50%;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  font-family: var(--heading); text-align: center;
+  box-shadow: 0 8px 24px rgba(201,169,110,0.4);
+}
+.storia-badge strong { font-size: 2rem; font-weight: 600; line-height: 1; }
+.storia-badge span { font-size: 0.65rem; font-family: var(--body); letter-spacing: 0.08em; opacity: 0.9; }
+.storia-text p { font-size: 1.05rem; line-height: 1.8; color: var(--ink-muted); }
+.storia-stats {
+  display: grid; grid-template-columns: repeat(3, 1fr);
+  gap: 24px; margin-top: 44px;
+}
+.stat { text-align: center; padding: 24px 16px; background: var(--canvas); border-radius: var(--radius); border: 1px solid var(--border); }
+.stat-num { font-family: var(--heading); font-size: 2.4rem; color: var(--gold); font-weight: 600; line-height: 1; }
+.stat-label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-muted); margin-top: 6px; font-weight: 500; }
+
+/* SERVIZI */
+.servizi { background: var(--canvas); }
+.servizi-grid {
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 20px; margin-top: 60px;
+}
+.servizio-card {
+  background: var(--surface); border-radius: var(--radius);
+  border: 1px solid var(--border);
+  padding: 32px 24px 28px;
+  transition: box-shadow 0.3s, transform 0.3s;
+  text-align: center;
+}
+.servizio-card:hover { box-shadow: 0 16px 48px rgba(201,169,110,0.18); transform: translateY(-4px); }
+.servizio-icon {
+  width: 56px; height: 56px; border-radius: 50%;
+  background: var(--rose-pale); margin: 0 auto 20px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.5rem;
+}
+.servizio-card h3 { font-size: 1.3rem; color: var(--ink); margin-bottom: 8px; }
+.servizio-desc { font-size: 0.78rem; color: var(--ink-muted); line-height: 1.6; margin-bottom: 16px; min-height: 52px; }
+.servizio-price {
+  font-family: var(--heading); font-size: 1.1rem; color: var(--gold);
+  font-weight: 600; letter-spacing: 0.04em;
+}
+.servizio-cta {
+  display: inline-block; margin-top: 16px;
+  font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--rose); font-weight: 600; border-bottom: 1px solid var(--rose);
+  padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+}
+.servizio-cta:hover { color: var(--gold); border-color: var(--gold); }
+
+/* TEAM */
+.team { background: var(--surface); }
+.team-header { text-align: center; margin-bottom: 64px; }
+.team-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 36px; }
+.team-card {
+  text-align: center; padding: 0 16px;
+}
+.team-photo-wrap {
+  position: relative; display: inline-block; margin-bottom: 28px;
+}
+.team-photo {
+  width: 200px; height: 200px; border-radius: 50%; object-fit: cover;
+  border: 3px solid var(--gold-light);
+  box-shadow: 0 8px 32px rgba(201,169,110,0.22);
+}
+.team-photo-placeholder {
+  width: 200px; height: 200px; border-radius: 50%;
+  border: 3px solid var(--gold-light);
+  box-shadow: 0 8px 32px rgba(201,169,110,0.22);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 3rem; color: rgba(255,255,255,0.85);
+  margin: 0 auto;
+}
+.team-photo-placeholder.rose {
+  background: linear-gradient(135deg, #E8A0AA 0%, #C9A96E 100%);
+}
+.team-photo-placeholder.gold {
+  background: linear-gradient(135deg, #C9A96E 0%, #E8C99A 100%);
+}
+.team-photo-placeholder.blush {
+  background: linear-gradient(135deg, #D4909A 0%, #B87090 100%);
+}
+.team-photo-ring {
+  position: absolute; inset: -8px; border-radius: 50%;
+  border: 1px solid var(--border); pointer-events: none;
+}
+.team-card h3 { font-size: 1.7rem; color: var(--ink); margin-bottom: 4px; }
+.team-role { font-size: 0.68rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--rose); font-weight: 600; margin-bottom: 14px; }
+.team-bio { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.7; margin-bottom: 18px; }
+.team-tags { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+.tag {
+  font-size: 0.62rem; letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600;
+  padding: 5px 14px; border-radius: 50px;
+  background: var(--gold-pale); color: var(--gold); border: 1px solid var(--gold-light);
+}
+
+/* GALLERIA */
+.galleria { background: var(--canvas); }
+.galleria-header { text-align: center; margin-bottom: 48px; }
+.gallery-filter {
+  display: flex; gap: 12px; justify-content: center; flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+.filter-btn {
+  font-family: var(--body); font-size: 0.68rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 9px 22px; border-radius: 50px;
+  border: 1.5px solid var(--border); background: transparent; cursor: pointer;
+  color: var(--ink-muted); transition: all 0.2s;
+}
+.filter-btn.active, .filter-btn:hover {
+  background: var(--rose); border-color: var(--rose); color: #fff;
+}
+.gallery-bento {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: auto;
+  gap: 16px;
+}
+.gallery-item {
+  border-radius: var(--radius); overflow: hidden; position: relative;
+  background: var(--gold-light);
+}
+.gallery-item img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.5s ease;
+}
+.gallery-item:hover img { transform: scale(1.05); }
+.gallery-item.tall { grid-row: span 2; }
+.gallery-item.wide { grid-column: span 2; }
+.gallery-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(44,24,16,0.75) 0%, transparent 55%);
+  opacity: 0; transition: opacity 0.3s;
+  display: flex; align-items: flex-end; padding: 20px;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+.gallery-overlay-text { color: #fff; }
+.gallery-overlay-text span { font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold-light); font-family: var(--body); font-weight: 500; }
+.gallery-overlay-text strong { display: block; font-family: var(--heading); font-size: 1.1rem; }
+
+/* RECENSIONI */
+.recensioni { background: var(--surface); overflow: hidden; }
+.recensioni-header { text-align: center; margin-bottom: 60px; }
+.reviews-marquee-wrap {
+  display: flex; gap: 24px;
+  animation: marquee 28s linear infinite;
+  width: max-content;
+}
+.reviews-marquee-wrap:hover { animation-play-state: paused; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+.review-card {
+  background: var(--canvas); border: 1px solid var(--border);
+  border-radius: var(--radius); padding: 32px 28px;
+  width: 340px; flex-shrink: 0;
+}
+.review-stars { color: var(--gold); font-size: 1rem; letter-spacing: 4px; margin-bottom: 14px; }
+.review-text { font-size: 0.9rem; line-height: 1.75; color: var(--ink-muted); font-style: italic; margin-bottom: 20px; }
+.review-author { display: flex; align-items: center; gap: 12px; }
+.review-avatar {
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--rose-light); color: var(--rose);
+  font-family: var(--heading); font-size: 1rem; font-weight: 600;
+  display: flex; align-items: center; justify-content: center;
+}
+.review-name { font-weight: 600; font-size: 0.82rem; color: var(--ink); }
+.review-source { font-size: 0.68rem; color: var(--ink-muted); }
+
+/* RATING AGGREGATE */
+.rating-aggregate {
+  max-width: 480px; margin: 0 auto; text-align: center;
+  background: var(--canvas); border: 1px solid var(--border);
+  border-radius: 20px; padding: 52px 48px;
+  box-shadow: 0 8px 40px rgba(201,169,110,0.1);
+}
+.rating-score {
+  font-family: var(--heading); font-size: 5rem; color: var(--gold);
+  font-weight: 600; line-height: 1; margin-bottom: 8px;
+}
+.rating-aggregate .rating-stars { color: var(--gold); font-size: 1.4rem; letter-spacing: 6px; margin-bottom: 12px; }
+.rating-count { font-size: 0.82rem; color: var(--ink-muted); margin-bottom: 32px; }
+.rating-bars { text-align: left; margin-bottom: 32px; display: flex; flex-direction: column; gap: 8px; }
+.rating-bar-row { display: flex; align-items: center; gap: 10px; }
+.rating-bar-label { font-size: 0.72rem; color: var(--ink-muted); font-weight: 600; width: 20px; flex-shrink: 0; }
+.rating-bar-track { flex: 1; height: 6px; background: var(--gold-light); border-radius: 3px; overflow: hidden; }
+.rating-bar-fill { height: 100%; background: var(--gold); border-radius: 3px; }
+.rating-bar-pct { font-size: 0.68rem; color: var(--ink-muted); width: 28px; flex-shrink: 0; text-align: right; }
+.review-cta-btn {
+  display: inline-block;
+  font-size: 0.72rem; letter-spacing: 0.12em; font-weight: 600;
+  color: var(--rose); border-bottom: 1px solid var(--rose);
+  padding-bottom: 2px; transition: color 0.2s, border-color 0.2s;
+}
+.review-cta-btn:hover { color: var(--gold); border-color: var(--gold); }
+
+/* PRENOTA */
+.prenota { background: linear-gradient(135deg, var(--rose-pale) 0%, var(--gold-pale) 100%); }
+.prenota-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: start; }
+.prenota-info h2 { margin-bottom: 24px; }
+.contact-block { margin-bottom: 32px; }
+.contact-item {
+  display: flex; align-items: flex-start; gap: 16px;
+  margin-bottom: 20px;
+}
+.contact-icon {
+  width: 40px; height: 40px; border-radius: 50%;
+  background: var(--rose); color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+.contact-label { font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); font-weight: 600; }
+.contact-value { font-size: 0.95rem; color: var(--ink); margin-top: 2px; }
+.contact-value a { color: var(--rose); }
+.hours-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 32px; margin-top: 8px; font-size: 0.82rem; }
+.hours-day { color: var(--ink-muted); font-weight: 500; }
+.hours-time { color: var(--ink); }
+.fresha-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  background: var(--ink); color: #fff;
+  font-family: var(--body); font-size: 0.72rem; letter-spacing: 0.15em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 14px 28px; border-radius: 50px;
+  transition: background 0.2s, transform 0.2s; margin-top: 8px;
+}
+.fresha-btn:hover { background: var(--rose); transform: translateY(-2px); }
+.prenota-form { background: var(--surface); border-radius: 16px; padding: 44px; box-shadow: 0 12px 48px rgba(201,169,110,0.12); }
+.prenota-form h3 { font-size: 1.8rem; color: var(--ink); margin-bottom: 28px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+.form-group label { font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600; color: var(--ink-muted); }
+.form-group input, .form-group select, .form-group textarea {
+  font-family: var(--body); font-size: 0.88rem; color: var(--ink);
+  border: 1.5px solid var(--border); border-radius: 8px;
+  padding: 11px 16px; background: var(--canvas);
+  transition: border-color 0.2s; outline: none;
+}
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color: var(--rose); }
+.form-group textarea { resize: vertical; min-height: 80px; }
+.btn-submit {
+  width: 100%; background: var(--rose); color: #fff;
+  font-family: var(--body); font-size: 0.76rem; letter-spacing: 0.18em;
+  text-transform: uppercase; font-weight: 600;
+  padding: 16px 32px; border-radius: 50px; border: none; cursor: pointer;
+  transition: background 0.2s, transform 0.2s; margin-top: 8px;
+}
+.btn-submit:hover { background: var(--ink); transform: translateY(-2px); }
+
+/* MAPPA */
+.mappa { background: var(--canvas); padding: 0; }
+.mappa-inner { position: relative; }
+.mappa iframe { width: 100%; height: 420px; border: none; display: block; }
+.mappa-card {
+  position: absolute; top: 32px; left: 64px;
+  background: var(--surface); border-radius: var(--radius);
+  padding: 24px 28px; box-shadow: 0 8px 32px rgba(44,24,16,0.12);
+  max-width: 280px;
+}
+.mappa-card h4 { font-size: 1.2rem; color: var(--ink); margin-bottom: 8px; }
+.mappa-card p { font-size: 0.8rem; color: var(--ink-muted); margin: 0; line-height: 1.6; }
+.mappa-card .gold-line { width: 32px; height: 2px; background: var(--gold); margin-bottom: 12px; }
+
+/* FOOTER */
+footer {
+  background: var(--ink); color: rgba(255,255,255,0.6);
+  padding: 64px 48px 32px;
+}
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 60px; margin-bottom: 56px; }
+.footer-brand h3 {
+  font-family: var(--heading); font-size: 1.8rem; color: #fff; font-weight: 400;
+  letter-spacing: 0.06em; margin-bottom: 6px; text-transform: uppercase;
+}
+.footer-brand p { font-size: 0.8rem; line-height: 1.7; max-width: 280px; }
+.footer-social { display: flex; gap: 12px; margin-top: 20px; }
+.social-btn {
+  width: 38px; height: 38px; border-radius: 50%;
+  border: 1px solid rgba(255,255,255,0.2); color: rgba(255,255,255,0.6);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem; transition: all 0.2s; text-decoration: none;
+}
+.social-btn:hover { background: var(--rose); border-color: var(--rose); color: #fff; }
+.footer-col h4 { font-family: var(--body); font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase; font-weight: 600; color: #fff; margin-bottom: 20px; }
+.footer-col ul { list-style: none; padding: 0; margin: 0; }
+.footer-col ul li { margin-bottom: 10px; }
+.footer-col ul li a { font-size: 0.82rem; color: rgba(255,255,255,0.55); transition: color 0.2s; }
+.footer-col ul li a:hover { color: var(--gold); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding-top: 28px; display: flex; justify-content: space-between; align-items: center;
+  font-size: 0.72rem;
+}
+.footer-credit a { color: var(--gold); }
+
+/* WHATSAPP */
+.wa-float {
+  position: fixed; bottom: 28px; right: 28px; z-index: 999;
+  width: 56px; height: 56px; border-radius: 50%;
+  background: #25D366; color: #fff;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 6px 24px rgba(37,211,102,0.45);
+  transition: transform 0.2s, box-shadow 0.2s;
+  text-decoration: none;
+}
+.wa-float:hover { transform: scale(1.1); box-shadow: 0 10px 32px rgba(37,211,102,0.55); }
+.wa-float svg { width: 28px; height: 28px; fill: #fff; }
+
+/* MOBILE NAV */
+.mobile-menu {
+  display: none; position: fixed; inset: 0; z-index: 200;
+  background: var(--surface);
+  flex-direction: column; align-items: center; justify-content: center; gap: 32px;
+}
+.mobile-menu.open { display: flex; }
+.mobile-menu a { font-family: var(--heading); font-size: 2rem; color: var(--ink); }
+.mobile-menu-close { position: absolute; top: 24px; right: 28px; background: none; border: none; font-size: 1.6rem; cursor: pointer; color: var(--ink); }
+
+/* RESPONSIVE */
+@media (max-width: 1024px) {
+  .servizi-grid { grid-template-columns: repeat(2, 1fr); }
+  .storia-grid { gap: 48px; }
+  .prenota-grid { gap: 48px; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 768px) {
+  section { padding: 72px 24px; }
+  .nav { padding: 18px 24px; }
+  .nav.scrolled { padding: 12px 24px; }
+  .nav-links, .nav-cta { display: none; }
+  .hamburger { display: flex; }
+  .storia-grid, .prenota-grid, .team-grid { grid-template-columns: 1fr; }
+  .servizi-grid { grid-template-columns: 1fr; }
+  .gallery-bento { grid-template-columns: 1fr 1fr; }
+  .gallery-item.tall, .gallery-item.wide { grid-row: span 1; grid-column: span 1; }
+  .footer-grid { grid-template-columns: 1fr; gap: 36px; }
+  .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
+  .storia-stats { grid-template-columns: repeat(3, 1fr); }
+  .form-row { grid-template-columns: 1fr; }
+  .mappa-card { display: none; }
+  .nav-logo span { display: none; }
+}
+@media (max-width: 480px) {
+  .hero h1 { font-size: 2.8rem; }
+  .gallery-bento { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-logo">
+    Backstage
+    <span>Parrucchieri · Venezia</span>
+  </div>
+  <div class="nav-links">
+    <a href="#servizi"><span class="t-it">Servizi</span><span class="t-en">Services</span></a>
+    <a href="#team">Team</a>
+    <a href="#galleria"><span class="t-it">Galleria</span><span class="t-en">Gallery</span></a>
+    <a href="#prenota"><span class="t-it">Contatti</span><span class="t-en">Contact</span></a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="it" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="nav-cta">
+      <span class="t-it">Prenota</span><span class="t-en">Book Now</span>
+    </a>
+  </div>
+  <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-menu-close" onclick="toggleMobileMenu()">✕</button>
+  <a href="#servizi" onclick="toggleMobileMenu()"><span class="t-it">Servizi</span><span class="t-en">Services</span></a>
+  <a href="#team" onclick="toggleMobileMenu()">Team</a>
+  <a href="#galleria" onclick="toggleMobileMenu()"><span class="t-it">Galleria</span><span class="t-en">Gallery</span></a>
+  <a href="#prenota" onclick="toggleMobileMenu()"><span class="t-it">Contatti</span><span class="t-en">Contact</span></a>
+  <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="btn-primary" style="font-size:0.8rem">
+    <span class="t-it">Prenota Ora</span><span class="t-en">Book Now</span>
+  </a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow t-it">Dal 2005 · Marghera, Venezia</p>
+    <p class="hero-eyebrow t-en">Since 2005 · Marghera, Venice</p>
+    <h1><em>Backstage</em></h1>
+    <p class="hero-sub">Parrucchieri · Venezia</p>
+    <div class="hero-rating">
+      <span class="hero-stars">★★★★★</span>
+      <span class="hero-rating-text">4.8 · 216+ <span class="t-it">recensioni Google</span><span class="t-en">Google reviews</span></span>
+    </div>
+    <div class="hero-actions">
+      <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="btn-primary">
+        <span class="t-it">Prenota su Fresha</span><span class="t-en">Book on Fresha</span>
+      </a>
+      <a href="#servizi" class="btn-outline">
+        <span class="t-it">Scopri i Servizi</span><span class="t-en">Our Services</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="t-it">Scorri</span><span class="t-en">Scroll</span>
+  </div>
+</section>
+
+<!-- STORIA -->
+<section class="storia" id="storia">
+  <div class="container">
+    <div class="storia-grid">
+      <div class="storia-img-wrap reveal">
+        <img src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=800&auto=format&fit=crop&q=80" alt="Interno salone Backstage Parrucchieri Venezia">
+      </div>
+      <div class="storia-text reveal reveal-delay-2">
+        <span class="section-label t-it">La Nostra Storia</span>
+        <span class="section-label t-en">Our Story</span>
+        <h2 class="section-title t-it">Arte e <em>passione</em> per i capelli</h2>
+        <h2 class="section-title t-en">Art and <em>passion</em> for hair</h2>
+        <div class="section-divider"></div>
+        <p class="t-it">Raffaele Simion ha fondato Backstage con un obiettivo preciso: creare uno spazio dove ogni cliente si sente al centro dell'attenzione. Un salone nuovo e accogliente nel cuore di Marghera, dove la cura dei capelli diventa un'esperienza di benessere.</p>
+        <p class="t-en">Raffaele Simion founded Backstage with one clear goal: to create a space where every client feels at the heart of the experience. A fresh, welcoming salon in the heart of Marghera, where hair care becomes a wellness experience.</p>
+        <p class="t-it">Specialisti in colore, balayage e trattamenti su misura — ogni visita è un percorso personalizzato, studiato per esaltare la bellezza naturale di ogni persona.</p>
+        <p class="t-en">Specialists in colour, balayage and bespoke treatments — each visit is a personalised journey, designed to enhance every person's natural beauty.</p>
+        <div class="storia-stats">
+          <div class="stat reveal reveal-delay-1">
+            <div class="stat-num">216+</div>
+            <div class="stat-label t-it">Recensioni Google</div>
+            <div class="stat-label t-en">Google Reviews</div>
+          </div>
+          <div class="stat reveal reveal-delay-2">
+            <div class="stat-num">4.8★</div>
+            <div class="stat-label t-it">Valutazione media</div>
+            <div class="stat-label t-en">Average rating</div>
+          </div>
+          <div class="stat reveal reveal-delay-3">
+            <div class="stat-num">Fresha</div>
+            <div class="stat-label t-it">Prenota online</div>
+            <div class="stat-label t-en">Book online</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVIZI -->
+<section class="servizi" id="servizi">
+  <div class="container">
+    <div style="text-align:center; margin-bottom:60px;">
+      <span class="section-label t-it">Cosa facciamo</span>
+      <span class="section-label t-en">What we do</span>
+      <h2 class="section-title t-it">I Nostri <em>Servizi</em></h2>
+      <h2 class="section-title t-en">Our <em>Services</em></h2>
+      <div class="section-divider" style="margin: 20px auto 0;"></div>
+    </div>
+    <div class="servizi-grid">
+      <div class="servizio-card reveal reveal-delay-1">
+        <div class="servizio-icon">✂️</div>
+        <h3><span class="t-it">Taglio Donna</span><span class="t-en">Women's Cut</span></h3>
+        <p class="servizio-desc t-it">Taglio personalizzato su misura per la tua forma del viso e il tuo stile.</p>
+        <p class="servizio-desc t-en">Bespoke cut tailored to your face shape and personal style.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-2">
+        <div class="servizio-icon">✂️</div>
+        <h3><span class="t-it">Taglio Uomo</span><span class="t-en">Men's Cut</span></h3>
+        <p class="servizio-desc t-it">Taglio maschile classico o moderno, con attenzione ai dettagli.</p>
+        <p class="servizio-desc t-en">Classic or modern men's cut, with attention to every detail.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-3">
+        <div class="servizio-icon">🎨</div>
+        <h3><span class="t-it">Colore & Meches</span><span class="t-en">Colour & Highlights</span></h3>
+        <p class="servizio-desc t-it">Colorazione permanente e schiariture con prodotti professionali di qualità.</p>
+        <p class="servizio-desc t-en">Permanent colour and highlights using professional-grade products.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-4">
+        <div class="servizio-icon">🌿</div>
+        <h3>Balayage</h3>
+        <p class="servizio-desc t-it">Tecnica a mano libera per un effetto naturale luminoso, sfumato su misura.</p>
+        <p class="servizio-desc t-en">Freehand technique for a natural, luminous, bespoke gradient effect.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-1">
+        <div class="servizio-icon">💎</div>
+        <h3><span class="t-it">Extension Capelli</span><span class="t-en">Hair Extensions</span></h3>
+        <p class="servizio-desc t-it">Extension di alta qualità per aggiungere lunghezza e volume in modo naturale.</p>
+        <p class="servizio-desc t-en">High-quality extensions for natural-looking length and volume.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-2">
+        <div class="servizio-icon">✨</div>
+        <h3><span class="t-it">Trattamenti</span><span class="t-en">Treatments</span></h3>
+        <p class="servizio-desc t-it">Maschere nutrienti, cheratina e trattamenti rigeneranti per capelli sani e luminosi.</p>
+        <p class="servizio-desc t-en">Nourishing masks, keratin and regenerating treatments for healthy, shiny hair.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-3">
+        <div class="servizio-icon">💫</div>
+        <h3><span class="t-it">Piega & Styling</span><span class="t-en">Blowdry & Styling</span></h3>
+        <p class="servizio-desc t-it">Piega professionale liscia, mossa o riccia. Styling per eventi e cerimonie.</p>
+        <p class="servizio-desc t-en">Professional blowdry — straight, wavy or curly. Event and bridal styling.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+      <div class="servizio-card reveal reveal-delay-4">
+        <div class="servizio-icon">🌸</div>
+        <h3>Shatush</h3>
+        <p class="servizio-desc t-it">Schiarita delicata con effetto sole per un look naturale e luminoso tutto l'anno.</p>
+        <p class="servizio-desc t-en">Gentle sun-kissed lightening for a natural, luminous look all year round.</p>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-it">Prenota →</a>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="servizio-cta t-en">Book →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TEAM -->
+<section class="team" id="team">
+  <div class="container">
+    <div class="team-header">
+      <span class="section-label t-it">Chi siamo</span>
+      <span class="section-label t-en">Who we are</span>
+      <h2 class="section-title t-it">Il Nostro <em>Team</em></h2>
+      <h2 class="section-title t-en">Our <em>Team</em></h2>
+      <div class="section-divider" style="margin: 20px auto 0;"></div>
+    </div>
+    <div class="team-grid">
+      <div class="team-card reveal">
+        <div class="team-photo-wrap">
+          <div class="team-photo-placeholder rose">✂️</div>
+          <div class="team-photo-ring"></div>
+        </div>
+        <h3 class="t-it">Stilista</h3>
+        <h3 class="t-en">Stylist</h3>
+        <div class="team-role t-it">Taglio & Styling</div>
+        <div class="team-role t-en">Cut & Styling</div>
+        <p class="team-bio t-it">Specializzato nel taglio personalizzato su misura per ogni tipo di capello e forma del viso. Trasforma ogni visita in un'esperienza di bellezza autentica.</p>
+        <p class="team-bio t-en">Specialised in bespoke cuts tailored to every hair type and face shape. Turns every visit into an authentic beauty experience.</p>
+        <div class="team-tags">
+          <span class="tag t-it">Taglio Donna</span><span class="tag t-en">Women's Cut</span>
+          <span class="tag t-it">Taglio Uomo</span><span class="tag t-en">Men's Cut</span>
+          <span class="tag">Styling</span>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-2">
+        <div class="team-photo-wrap">
+          <div class="team-photo-placeholder gold">🎨</div>
+          <div class="team-photo-ring"></div>
+        </div>
+        <h3 class="t-it">Colorista</h3>
+        <h3 class="t-en">Colourist</h3>
+        <div class="team-role t-it">Colore & Balayage</div>
+        <div class="team-role t-en">Colour & Balayage</div>
+        <p class="team-bio t-it">Esperto nelle tecniche di colorazione più ricercate: balayage, shatush e meches a mano libera per un risultato naturale e luminoso.</p>
+        <p class="team-bio t-en">Expert in sought-after colour techniques: balayage, shatush and freehand highlights for a natural, luminous result.</p>
+        <div class="team-tags">
+          <span class="tag">Balayage</span>
+          <span class="tag">Shatush</span>
+          <span class="tag t-it">Colore</span><span class="tag t-en">Colour</span>
+        </div>
+      </div>
+      <div class="team-card reveal reveal-delay-4">
+        <div class="team-photo-wrap">
+          <div class="team-photo-placeholder blush">💎</div>
+          <div class="team-photo-ring"></div>
+        </div>
+        <h3 class="t-it">Specialista Extension</h3>
+        <h3 class="t-en">Extension Specialist</h3>
+        <div class="team-role t-it">Extension & Trattamenti</div>
+        <div class="team-role t-en">Extensions & Treatments</div>
+        <p class="team-bio t-it">Specializzato in extension di alta qualità e trattamenti rigeneranti. Dona lunghezza, volume e vitalità ai capelli con tecniche professionali.</p>
+        <p class="team-bio t-en">Specialised in high-quality extensions and regenerating treatments. Adds length, volume and vitality using professional techniques.</p>
+        <div class="team-tags">
+          <span class="tag t-it">Extension</span><span class="tag t-en">Extensions</span>
+          <span class="tag t-it">Trattamenti</span><span class="tag t-en">Treatments</span>
+          <span class="tag">Keratina</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERIA -->
+<section class="galleria" id="galleria">
+  <div class="container">
+    <div class="galleria-header">
+      <span class="section-label t-it">Portfolio</span>
+      <span class="section-label t-en">Portfolio</span>
+      <h2 class="section-title t-it">La Nostra <em>Arte</em></h2>
+      <h2 class="section-title t-en">Our <em>Art</em></h2>
+      <div class="section-divider" style="margin: 20px auto 0;"></div>
+    </div>
+    <div class="gallery-filter">
+      <button class="filter-btn active"><span class="t-it">Tutti</span><span class="t-en">All</span></button>
+      <button class="filter-btn t-it">Colore</button><button class="filter-btn t-en">Colour</button>
+      <button class="filter-btn t-it">Taglio</button><button class="filter-btn t-en">Cut</button>
+      <button class="filter-btn t-it">Extension</button><button class="filter-btn t-en">Extensions</button>
+      <button class="filter-btn t-it">Trattamenti</button><button class="filter-btn t-en">Treatments</button>
+    </div>
+    <div class="gallery-bento">
+      <div class="gallery-item tall reveal">
+        <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=600&auto=format&fit=crop&q=80" alt="Balayage Venezia">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span>Balayage</span><strong>Raffaele</strong></div>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&auto=format&fit=crop&q=80" alt="Colore capelli Mestre" style="height:220px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span class="t-it">Colore</span><span class="t-en">Colour</span></div>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&auto=format&fit=crop&q=80" alt="Extension capelli" style="height:220px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span class="t-it">Extension</span><span class="t-en">Extensions</span></div>
+        </div>
+      </div>
+      <div class="gallery-item wide reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&auto=format&fit=crop&q=80" alt="Styling Venezia" style="height:280px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span>Styling</span></div>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-2">
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&auto=format&fit=crop&q=80" alt="Taglio donna Mestre" style="height:280px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span class="t-it">Taglio Donna</span><span class="t-en">Women's Cut</span><strong>Raffaele</strong></div>
+        </div>
+      </div>
+      <div class="gallery-item reveal reveal-delay-3">
+        <img src="https://images.unsplash.com/photo-1614267157481-ca2b81ac6fcc?w=600&auto=format&fit=crop&q=80" alt="Shatush Mestre" style="height:280px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span>Shatush</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="recensioni" id="recensioni">
+  <div class="container">
+    <div class="recensioni-header">
+      <span class="section-label t-it">Cosa dicono di noi</span>
+      <span class="section-label t-en">What clients say</span>
+      <h2 class="section-title t-it">Le Loro <em>Parole</em></h2>
+      <h2 class="section-title t-en">Their <em>Words</em></h2>
+      <div class="section-divider" style="margin: 20px auto 0;"></div>
+    </div>
+    <div class="rating-aggregate reveal">
+      <div class="rating-score">4.8</div>
+      <div class="rating-stars">★★★★★</div>
+      <p class="rating-count t-it">Basato su <strong>216 recensioni Google</strong></p>
+      <p class="rating-count t-en">Based on <strong>216 Google reviews</strong></p>
+      <div class="rating-bars">
+        <div class="rating-bar-row"><span class="rating-bar-label">5★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:84%"></div></div><span class="rating-bar-pct">84%</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">4★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:10%"></div></div><span class="rating-bar-pct">10%</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">3★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:4%"></div></div><span class="rating-bar-pct">4%</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">2★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%"></div></div><span class="rating-bar-pct">1%</span></div>
+        <div class="rating-bar-row"><span class="rating-bar-label">1★</span><div class="rating-bar-track"><div class="rating-bar-fill" style="width:1%"></div></div><span class="rating-bar-pct">1%</span></div>
+      </div>
+      <a href="https://www.google.com/maps/search/Backstage+Parrucchieri+Simion+Raffaele+Marghera" target="_blank" class="review-cta-btn t-it">Leggi le recensioni su Google →</a>
+      <a href="https://www.google.com/maps/search/Backstage+Parrucchieri+Simion+Raffaele+Marghera" target="_blank" class="review-cta-btn t-en">Read Google reviews →</a>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="container">
+    <div class="prenota-grid">
+      <div class="prenota-info reveal">
+        <span class="section-label t-it">Vieni a trovarci</span>
+        <span class="section-label t-en">Find us</span>
+        <h2 class="section-title t-it">Prenota il tuo <em>appuntamento</em></h2>
+        <h2 class="section-title t-en">Book your <em>appointment</em></h2>
+        <div class="section-divider"></div>
+        <div class="contact-block">
+          <div class="contact-item">
+            <div class="contact-icon">📍</div>
+            <div>
+              <div class="contact-label t-it">Indirizzo</div>
+              <div class="contact-label t-en">Address</div>
+              <div class="contact-value">Piazza del Mercato, 6<br>30175 Marghera (VE)</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">📞</div>
+            <div>
+              <div class="contact-label t-it">Telefono</div>
+              <div class="contact-label t-en">Phone</div>
+              <div class="contact-value"><a href="tel:+39041927436">041 927 436</a> &nbsp;·&nbsp; <a href="tel:+393928506456">392 850 6456</a></div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-icon">🕐</div>
+            <div>
+              <div class="contact-label t-it">Orari</div>
+              <div class="contact-label t-en">Hours</div>
+              <div class="hours-grid t-it">
+                <span class="hours-day">Lun</span><span class="hours-time">Chiuso</span>
+                <span class="hours-day">Mar–Sab</span><span class="hours-time">09:00–18:30</span>
+                <span class="hours-day">Dom</span><span class="hours-time">Chiuso</span>
+              </div>
+              <div class="hours-grid t-en">
+                <span class="hours-day">Mon</span><span class="hours-time">Closed</span>
+                <span class="hours-day">Tue–Sat</span><span class="hours-time">09:00–18:30</span>
+                <span class="hours-day">Sun</span><span class="hours-time">Closed</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="fresha-btn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          <span class="t-it">Prenota Online su Fresha</span>
+          <span class="t-en">Book Online via Fresha</span>
+        </a>
+      </div>
+      <div class="prenota-form reveal reveal-delay-2">
+        <h3 class="t-it">Invia un <em>messaggio</em></h3>
+        <h3 class="t-en">Send a <em>message</em></h3>
+        <form onsubmit="event.preventDefault(); alert('Grazie! Ti contatteremo presto. / Thank you! We will be in touch soon.')">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="t-it">Nome</label>
+              <label class="t-en">Name</label>
+              <input type="text" placeholder="Maria Rossi" required>
+            </div>
+            <div class="form-group">
+              <label class="t-it">Telefono</label>
+              <label class="t-en">Phone</label>
+              <input type="tel" placeholder="+39 333 000 0000" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="t-it">Data preferita</label>
+              <label class="t-en">Preferred date</label>
+              <input type="date">
+            </div>
+            <div class="form-group">
+              <label class="t-it">Servizio</label>
+              <label class="t-en">Service</label>
+              <select>
+                <option class="t-it">Taglio Donna</option>
+                <option class="t-en">Women's Cut</option>
+                <option>Balayage</option>
+                <option class="t-it">Colore & Meches</option>
+                <option class="t-en">Colour & Highlights</option>
+                <option class="t-it">Extension Capelli</option>
+                <option class="t-en">Hair Extensions</option>
+                <option class="t-it">Trattamento</option>
+                <option class="t-en">Treatment</option>
+                <option class="t-it">Piega & Styling</option>
+                <option class="t-en">Blowdry & Styling</option>
+                <option>Shatush</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="t-it">Note (opzionale)</label>
+            <label class="t-en">Notes (optional)</label>
+            <textarea placeholder="Qualsiasi informazione aggiuntiva..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span class="t-it">Invia Richiesta</span>
+            <span class="t-en">Send Request</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPPA -->
+<div class="mappa">
+  <div class="mappa-inner">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2799.7!2d12.2385!3d45.4654!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477eb8d7e2fc5a0b%3A0x0!2sPiazza+del+Mercato%2C+6%2C+30175+Marghera+VE!5e0!3m2!1sit!2sit!4v1714000000000!5m2!1sit!2sit"
+      allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+      title="Backstage Parrucchieri — Piazza del Mercato 6, Marghera"></iframe>
+    <div class="mappa-card">
+      <div class="gold-line"></div>
+      <h4>Backstage Parrucchieri</h4>
+      <p>Piazza del Mercato, 6<br>30175 Marghera (VE)<br><br>📞 041 927 436</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Backstage</h3>
+        <p class="t-it">Specialisti in colore, balayage ed extension capelli. Il tuo salone di fiducia nel cuore di Marghera, Venezia, dal 2005.</p>
+        <p class="t-en">Specialists in colour, balayage and hair extensions. Your trusted salon in the heart of Marghera, Venice, since 2005.</p>
+        <div class="footer-social">
+          <a href="https://www.facebook.com/p/Backstage-Parrucchieri-Venezia-100063889207388/" target="_blank" class="social-btn" aria-label="Facebook">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </a>
+          <a href="https://wa.me/393928506456" target="_blank" class="social-btn" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://www.fresha.com/lvp/backstage-parrucchieri-di-simion-raffaele-piazza-del-mercato-n6-loRVWY" target="_blank" class="social-btn" aria-label="Fresha">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-it">Servizi</h4>
+        <h4 class="t-en">Services</h4>
+        <ul>
+          <li><a href="#servizi"><span class="t-it">Taglio Donna</span><span class="t-en">Women's Cut</span></a></li>
+          <li><a href="#servizi">Balayage</a></li>
+          <li><a href="#servizi"><span class="t-it">Colore & Meches</span><span class="t-en">Colour & Highlights</span></a></li>
+          <li><a href="#servizi"><span class="t-it">Extension</span><span class="t-en">Extensions</span></a></li>
+          <li><a href="#servizi">Shatush</a></li>
+          <li><a href="#servizi"><span class="t-it">Trattamenti</span><span class="t-en">Treatments</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-it">Info</h4>
+        <h4 class="t-en">Info</h4>
+        <ul>
+          <li><a href="#storia"><span class="t-it">Il Salone</span><span class="t-en">The Salon</span></a></li>
+          <li><a href="#team">Team</a></li>
+          <li><a href="#galleria"><span class="t-it">Galleria</span><span class="t-en">Gallery</span></a></li>
+          <li><a href="#prenota"><span class="t-it">Prenota</span><span class="t-en">Book</span></a></li>
+          <li><a href="tel:+39041927436">041 927 436</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Backstage Parrucchieri di Simion Raffaele · Piazza del Mercato 6, 30175 Marghera (VE)</span>
+      <span class="footer-credit t-it">Sito realizzato da <a href="https://viktoria.agency" target="_blank">Viktoria Agency</a></span>
+      <span class="footer-credit t-en">Website by <a href="https://viktoria.agency" target="_blank">Viktoria Agency</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/393928506456" target="_blank" class="wa-float" aria-label="Contattaci su WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script>
+// Navbar scroll
+(function(){
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll', function(){
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+  }, {passive:true});
+})();
+
+// Language switcher
+function setLang(lang) {
+  document.body.classList.remove('lang-en');
+  if (lang === 'en') document.body.classList.add('lang-en');
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  localStorage.setItem('backstage_lang', lang);
+}
+(function(){
+  var saved = localStorage.getItem('backstage_lang');
+  if (saved === 'en') setLang('en');
+})();
+
+// Mobile menu
+function toggleMobileMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Gallery filter (visual only)
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){ b.classList.remove('active'); });
+    btn.classList.add('active');
+  });
+});
+
+// IntersectionObserver for reveals
+document.addEventListener('DOMContentLoaded', function(){
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+    });
+  }, {threshold: 0.12, rootMargin: '0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){ obs.observe(el); });
+});
+</script>
+</body>
+</html>
