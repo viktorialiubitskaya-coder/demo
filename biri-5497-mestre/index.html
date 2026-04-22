@@ -11,6 +11,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
 
+<!-- Flatpickr CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 <!-- Leaflet CSS -->
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
 
@@ -798,6 +800,130 @@ body.lang-en .en { display: revert; }
   .wa-fab { padding: .85rem; }
 }
 
+/* ════════════════════════════════════════════════════════════════════════ */
+/* BOOKING FORM                                                             */
+/* ════════════════════════════════════════════════════════════════════════ */
+.booking-form {
+  max-width: 680px;
+  margin: 2.5rem auto 0;
+}
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+}
+@media (max-width: 560px) {
+  .booking-grid { grid-template-columns: 1fr; }
+}
+.form-field { display: flex; flex-direction: column; gap: .4rem; }
+.form-label {
+  font-size: .78rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--navy);
+}
+.form-input {
+  font-family: var(--ff-body);
+  font-size: .97rem;
+  color: var(--text);
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: .7rem 1rem;
+  outline: none;
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+  cursor: pointer;
+}
+.form-input:focus {
+  border-color: var(--gold);
+  box-shadow: 0 0 0 3px rgba(192,139,40,.15);
+}
+.form-input::placeholder { color: var(--text-light); }
+
+/* Pax toggle buttons */
+.pax-selector {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: .2rem;
+}
+.pax-btn {
+  min-width: 44px;
+  height: 44px;
+  padding: 0 .8rem;
+  background: var(--white);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius);
+  font-family: var(--ff-body);
+  font-size: .95rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: background var(--transition), border-color var(--transition), color var(--transition);
+}
+.pax-btn:hover { border-color: var(--gold); color: var(--gold); }
+.pax-btn.selected {
+  background: var(--navy);
+  border-color: var(--navy);
+  color: var(--white);
+}
+.pax-btn:focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
+
+/* Error message */
+.form-error {
+  background: #FEF2F2;
+  border: 1px solid #FECACA;
+  border-radius: var(--radius);
+  color: #991B1B;
+  font-size: .88rem;
+  padding: .7rem 1rem;
+  margin-top: 1rem;
+}
+
+/* Submit btn full width */
+.booking-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 1.5rem;
+  padding: 1rem;
+  font-size: .95rem;
+  gap: .6rem;
+}
+.booking-submit svg { width: 20px; height: 20px; }
+
+/* Flatpickr theme overrides — navy/gold */
+.flatpickr-calendar {
+  font-family: var(--ff-body) !important;
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  border: 1px solid var(--border) !important;
+}
+.flatpickr-day.selected,
+.flatpickr-day.selected:hover {
+  background: var(--navy) !important;
+  border-color: var(--navy) !important;
+}
+.flatpickr-day:hover { background: var(--sand) !important; }
+.flatpickr-day.today { border-color: var(--gold) !important; }
+.flatpickr-months .flatpickr-month,
+.flatpickr-current-month,
+.flatpickr-weekdays,
+span.flatpickr-weekday {
+  background: var(--navy) !important;
+  color: var(--white) !important;
+}
+.flatpickr-prev-month svg, .flatpickr-next-month svg { fill: var(--white) !important; }
+.flatpickr-prev-month:hover svg, .flatpickr-next-month:hover svg { fill: var(--gold-light) !important; }
+.flatpickr-day.flatpickr-disabled,
+.flatpickr-day.flatpickr-disabled:hover {
+  color: #CBD5E1 !important;
+  cursor: not-allowed;
+}
+.numInputWrapper:hover { background: var(--sand) !important; }
+.numInput:focus { border-color: var(--gold) !important; }
+
 /* ─── Section heading helper ──────────────────────────────────────────── */
 .sec-header { text-align: center; margin-bottom: .5rem; }
 .sec-header .h2 { color: var(--navy); }
@@ -1182,6 +1308,104 @@ body.lang-en .en { display: revert; }
   </div>
 </section>
 
+<!-- ════════════════════════════════ PRENOTA ═════════════════════════════ -->
+<section class="section section--sand" id="prenota" aria-labelledby="prenota-heading">
+  <div class="container">
+    <div class="sec-header reveal">
+      <p class="eyebrow it">Riservazione</p>
+      <p class="eyebrow en">Reservation</p>
+      <h2 class="h-display h2 mt-2" id="prenota-heading" style="color:var(--navy)">
+        <span class="it">Prenota un Tavolo</span>
+        <span class="en">Book a Table</span>
+      </h2>
+      <p class="subtitle it">Compila il modulo — ti apriremo WhatsApp con il messaggio già pronto.</p>
+      <p class="subtitle en">Fill in the form — we'll open WhatsApp with your message ready to send.</p>
+    </div>
+
+    <form class="booking-form reveal" id="bookingForm" novalidate>
+
+      <div class="booking-grid">
+        <!-- Nome -->
+        <div class="form-field">
+          <label for="bk-nome" class="form-label">
+            <span class="it">Nome</span><span class="en">Name</span>
+            <span aria-hidden="true"> *</span>
+          </label>
+          <input type="text" id="bk-nome" name="nome" class="form-input"
+            autocomplete="given-name" required
+            placeholder="Mario Rossi">
+        </div>
+
+        <!-- Telefono -->
+        <div class="form-field">
+          <label for="bk-tel" class="form-label">
+            <span class="it">Telefono</span><span class="en">Phone</span>
+            <span aria-hidden="true"> *</span>
+          </label>
+          <input type="tel" id="bk-tel" name="tel" class="form-input"
+            autocomplete="tel" required
+            placeholder="+39 333 123 4567">
+        </div>
+
+        <!-- Data -->
+        <div class="form-field">
+          <label for="bk-data" class="form-label">
+            <span class="it">Data</span><span class="en">Date</span>
+            <span aria-hidden="true"> *</span>
+          </label>
+          <input type="text" id="bk-data" name="data" class="form-input"
+            required readonly
+            placeholder="gg/mm/aaaa">
+        </div>
+
+        <!-- Ora -->
+        <div class="form-field">
+          <label for="bk-ora" class="form-label">
+            <span class="it">Ora</span><span class="en">Time</span>
+            <span aria-hidden="true"> *</span>
+          </label>
+          <input type="text" id="bk-ora" name="ora" class="form-input"
+            required readonly
+            placeholder="00:00">
+        </div>
+      </div>
+
+      <!-- Numero persone -->
+      <div class="form-field mt-6">
+        <div class="form-label" id="pax-label">
+          <span class="it">Numero di persone</span>
+          <span class="en">Number of guests</span>
+          <span aria-hidden="true"> *</span>
+        </div>
+        <div class="pax-selector" role="group" aria-labelledby="pax-label">
+          <button type="button" class="pax-btn" data-pax="1">1</button>
+          <button type="button" class="pax-btn" data-pax="2">2</button>
+          <button type="button" class="pax-btn selected" data-pax="3">3</button>
+          <button type="button" class="pax-btn" data-pax="4">4</button>
+          <button type="button" class="pax-btn" data-pax="5">5</button>
+          <button type="button" class="pax-btn" data-pax="6">6</button>
+          <button type="button" class="pax-btn" data-pax="7">7</button>
+          <button type="button" class="pax-btn" data-pax="8">8+</button>
+        </div>
+        <input type="hidden" id="bk-pax" value="3">
+      </div>
+
+      <!-- Error -->
+      <div class="form-error" id="bookingError" role="alert" aria-live="polite" style="display:none"></div>
+
+      <!-- Submit -->
+      <button type="submit" class="btn btn--gold booking-submit">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        <span class="it">Invia su WhatsApp</span>
+        <span class="en">Send via WhatsApp</span>
+      </button>
+
+    </form>
+  </div>
+</section>
+
 <!-- ════════════════════════════════ INFO + ORARI ═════════════════════════ -->
 <section class="section section--sand" id="info" aria-labelledby="info-heading">
   <div class="container">
@@ -1347,6 +1571,8 @@ body.lang-en .en { display: revert; }
       <a href="#recensioni" class="en">Reviews</a>
       <a href="#info" class="it">Orari</a>
       <a href="#info" class="en">Hours</a>
+      <a href="#prenota" class="it">Prenota</a>
+      <a href="#prenota" class="en">Book</a>
       <a href="https://wa.me/393703182015" target="_blank" rel="noopener">WhatsApp</a>
     </nav>
     <div class="footer__copy">
@@ -1366,6 +1592,10 @@ body.lang-en .en { display: revert; }
   <span class="wa-text it">Prenota</span>
   <span class="wa-text en">Book Now</span>
 </a>
+
+<!-- Flatpickr JS + Italian locale -->
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<script src="https://cdn.jsdelivr.net/npm/flatpickr/dist/l10n/it.js"></script>
 
 <!-- ════════════════════════════════ LEAFLET ══════════════════════════════ -->
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
@@ -1457,6 +1687,91 @@ window.addEventListener('load', function() {
       { maxWidth: 260 }
     )
     .openPopup();
+})();
+
+/* ─── Booking Form ───────────────────────────────────────────────────── */
+(function() {
+  if (typeof flatpickr === 'undefined') return;
+
+  // Date picker — disabled Mon(1) + Tue(2), min = today
+  flatpickr('#bk-data', {
+    locale: 'it',
+    dateFormat: 'd/m/Y',
+    minDate: 'today',
+    disable: [
+      function(date) { return date.getDay() === 1 || date.getDay() === 2; }
+    ],
+    disableMobile: false,
+    onReady: function(_, __, fp) {
+      fp.calendarContainer && fp.calendarContainer.setAttribute('aria-label', 'Seleziona data');
+    }
+  });
+
+  // Time picker — pranzo 11-14, cena 19-23:30
+  flatpickr('#bk-ora', {
+    enableTime: true,
+    noCalendar: true,
+    dateFormat: 'H:i',
+    time_24hr: true,
+    minTime: '11:00',
+    maxTime: '23:30',
+    minuteIncrement: 15,
+    disableMobile: false,
+  });
+
+  // Pax selector
+  var paxBtns = document.querySelectorAll('.pax-btn');
+  var paxInput = document.getElementById('bk-pax');
+  paxBtns.forEach(function(btn) {
+    btn.addEventListener('click', function() {
+      paxBtns.forEach(function(b) { b.classList.remove('selected'); });
+      btn.classList.add('selected');
+      paxInput.value = btn.dataset.pax;
+    });
+  });
+
+  // Form submit → WhatsApp
+  document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    var errEl = document.getElementById('bookingError');
+    errEl.style.display = 'none';
+
+    var nome = document.getElementById('bk-nome').value.trim();
+    var tel  = document.getElementById('bk-tel').value.trim();
+    var data = document.getElementById('bk-data').value.trim();
+    var ora  = document.getElementById('bk-ora').value.trim();
+    var pax  = paxInput.value;
+
+    // Validation
+    var missing = [];
+    var isIT = !document.body.classList.contains('lang-en');
+    if (!nome) missing.push(isIT ? 'Nome' : 'Name');
+    if (!tel)  missing.push(isIT ? 'Telefono' : 'Phone');
+    if (!data) missing.push(isIT ? 'Data' : 'Date');
+    if (!ora)  missing.push(isIT ? 'Ora' : 'Time');
+
+    if (missing.length) {
+      errEl.textContent = isIT
+        ? 'Compila i campi obbligatori: ' + missing.join(', ')
+        : 'Please fill in: ' + missing.join(', ');
+      errEl.style.display = 'block';
+      errEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      return;
+    }
+
+    // Build WhatsApp message
+    var paxLabel = pax === '8' ? '8+' : pax;
+    var persone  = isIT
+      ? (paxLabel === '1' ? '1 persona' : paxLabel + ' persone')
+      : (paxLabel === '1' ? '1 guest' : paxLabel + ' guests');
+
+    var msg = isIT
+      ? 'Ciao! Vorrei prenotare un tavolo per ' + persone + ' il ' + data + ' alle ' + ora + '. Mi chiamo ' + nome + ', tel. ' + tel
+      : 'Hello! I would like to book a table for ' + persone + ' on ' + data + ' at ' + ora + '. My name is ' + nome + ', tel. ' + tel;
+
+    var url = 'https://wa.me/393703182015?text=' + encodeURIComponent(msg);
+    window.open(url, '_blank', 'noopener,noreferrer');
+  });
 })();
 
 /* ─── Today highlight in hours table ────────────────────────────────── */
