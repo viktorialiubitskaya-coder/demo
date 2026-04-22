@@ -1,0 +1,1184 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Baco da Seta · Griglieria · Mestre Venezia</title>
+<meta name="description" content="Ristorante Griglieria Baco da Seta — Via Bernardo Bellotto 32, Mestre Venezia. Carne alla brace con frollatura artigianale. Piscina esterna, terrazza riscaldata. 4.6★ · 1313 recensioni.">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Restaurant",
+  "name": "Ristorante Griglieria Baco da Seta",
+  "image": "./photos/photo_09.jpg",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Via Bernardo Bellotto, 32",
+    "addressLocality": "Mestre",
+    "addressRegion": "VE",
+    "postalCode": "30174",
+    "addressCountry": "IT"
+  },
+  "telephone": "+39 333 662 0296",
+  "openingHours": [
+    "Tu-Th 19:30-23:30",
+    "Fr 12:30-15:30,19:30-23:30",
+    "Sa 12:30-15:00,19:30-00:00",
+    "Su 12:30-15:30,19:30-00:00"
+  ],
+  "servesCuisine": "Griglieria Italiana",
+  "priceRange": "€€",
+  "url": "https://www.instagram.com/bacodasetamestre",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.6",
+    "reviewCount": "1313"
+  }
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;0,6..96,600;0,6..96,700;1,6..96,400;1,6..96,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+<style>
+:root {
+  --bg:        #0A0907;
+  --surface:   #131110;
+  --surface-2: #1C1917;
+  --surface-3: #252018;
+  --ember:     #C8820A;
+  --ember-dim: #8A5A06;
+  --ember-glow:rgba(200,130,10,0.15);
+  --cream:     #F2EDE3;
+  --cream-dim: #B8AD9E;
+  --muted:     #6B5F54;
+  --border:    rgba(200,130,10,0.18);
+  --border-sub:rgba(255,255,255,0.06);
+  --heading:   'Bodoni Moda', Georgia, serif;
+  --body:      'Jost', system-ui, sans-serif;
+  --radius:    10px;
+}
+
+*,*::before,*::after{box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  margin:0; background:var(--bg); color:var(--cream);
+  font-family:var(--body); font-weight:400; line-height:1.7;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{font-family:var(--heading);font-weight:600;margin:0 0 .4em;line-height:1.1;letter-spacing:.02em;}
+p{margin:0 0 1em;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* LANG */
+.t-en{display:none!important;}
+body.lang-en .t-it{display:none!important;}
+body.lang-en .t-en{display:revert!important;}
+body.lang-en p.t-en,body.lang-en h2.t-en,body.lang-en div.t-en,
+body.lang-en span.t-en,body.lang-en li.t-en{display:block!important;}
+body.lang-en p.t-it,body.lang-en h2.t-it,body.lang-en div.t-it,
+body.lang-en span.t-it,body.lang-en li.t-it{display:none!important;}
+
+/* NAV */
+.nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:22px 52px;
+  display:flex;align-items:center;justify-content:space-between;
+  transition:background .35s,padding .35s,box-shadow .35s;
+}
+.nav.scrolled{
+  background:rgba(10,9,7,.96);backdrop-filter:blur(12px);
+  padding:14px 52px;
+  box-shadow:0 1px 0 var(--border);
+}
+.nav-logo{
+  font-family:var(--heading);font-size:1.35rem;font-weight:700;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--cream);
+  line-height:1;
+}
+.nav-logo span{
+  display:block;font-size:.52rem;font-family:var(--body);font-weight:300;
+  letter-spacing:.35em;color:var(--ember);text-transform:uppercase;margin-top:3px;
+}
+.nav-links{display:flex;gap:36px;align-items:center;}
+.nav-links a{
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  font-weight:500;color:var(--cream-dim);transition:color .2s;
+}
+.nav-links a:hover{color:var(--ember);}
+.nav-right{display:flex;align-items:center;gap:18px;}
+.lang-toggle{display:flex;gap:4px;}
+.lang-btn{
+  background:none;border:1px solid var(--border);
+  font-family:var(--body);font-size:.65rem;letter-spacing:.12em;font-weight:600;
+  color:var(--cream-dim);cursor:pointer;padding:4px 9px;border-radius:4px;
+  transition:all .2s;
+}
+.lang-btn.active,.lang-btn:hover{background:var(--ember);border-color:var(--ember);color:#000;}
+.nav-cta{
+  background:var(--ember);color:#000;
+  font-family:var(--body);font-size:.68rem;letter-spacing:.16em;
+  text-transform:uppercase;font-weight:600;
+  padding:10px 22px;border-radius:50px;border:none;cursor:pointer;
+  transition:background .2s,transform .2s;
+}
+.nav-cta:hover{background:var(--cream);transform:translateY(-1px);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--cream);transition:all .3s;}
+.mobile-menu{
+  display:none;position:fixed;inset:0;z-index:200;
+  background:var(--surface);flex-direction:column;
+  align-items:center;justify-content:center;gap:36px;
+}
+.mobile-menu.open{display:flex;}
+.mobile-menu a{font-family:var(--heading);font-size:1.8rem;color:var(--cream);letter-spacing:.04em;}
+.mobile-close{position:absolute;top:24px;right:28px;background:none;border:none;font-size:1.4rem;cursor:pointer;color:var(--cream-dim);}
+
+/* HERO */
+.hero{
+  position:relative;min-height:100vh;
+  display:flex;align-items:flex-end;
+  overflow:hidden;
+}
+.hero-bg{
+  position:absolute;inset:0;z-index:0;
+  background:url('./photos/photo_09.jpg') center/cover no-repeat;
+}
+.hero-bg::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(
+    to bottom,
+    rgba(10,9,7,.25) 0%,
+    rgba(10,9,7,.2) 40%,
+    rgba(10,9,7,.75) 75%,
+    rgba(10,9,7,.97) 100%
+  );
+}
+/* ember glow at bottom */
+.hero-bg::before{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:40%;z-index:1;
+  background:radial-gradient(ellipse 80% 60% at 50% 120%,rgba(200,130,10,.22) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-content{
+  position:relative;z-index:2;
+  width:100%;padding:0 52px 80px;
+  animation:fadeUp 1.1s ease both;
+}
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px);}to{opacity:1;transform:none;}}
+.hero-label{
+  font-size:.62rem;letter-spacing:.45em;text-transform:uppercase;
+  font-weight:500;color:var(--ember);margin-bottom:20px;font-family:var(--body);
+}
+.hero h1{
+  font-size:clamp(3rem,7.5vw,7.5rem);
+  font-weight:700;color:var(--cream);
+  letter-spacing:.04em;text-transform:uppercase;margin:0 0 6px;
+  text-shadow:0 4px 32px rgba(0,0,0,.6);
+  line-height:1.0;
+}
+.hero h1 em{font-style:italic;color:var(--ember);font-weight:400;}
+.hero-tagline{
+  font-size:.78rem;letter-spacing:.28em;text-transform:uppercase;
+  color:rgba(242,237,227,.65);font-weight:300;margin:12px 0 28px;
+  font-family:var(--body);
+}
+.hero-quote{
+  font-family:var(--heading);font-style:italic;font-size:clamp(.95rem,1.8vw,1.3rem);
+  color:var(--cream-dim);line-height:1.55;
+  border-left:2px solid var(--ember);padding-left:18px;
+  margin:0 0 36px;max-width:600px;
+  text-shadow:0 2px 8px rgba(0,0,0,.5);
+}
+.hero-quote cite{
+  display:block;font-style:normal;
+  font-family:var(--body);font-size:.68rem;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--ember);margin-top:8px;
+}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin-bottom:32px;}
+.hero-meta{
+  display:flex;align-items:center;gap:24px;
+  font-size:.72rem;letter-spacing:.1em;color:var(--cream-dim);
+  font-family:var(--body);
+}
+.hero-stars{color:var(--ember);letter-spacing:3px;font-size:1rem;}
+.btn-ember{
+  background:var(--ember);color:#000;
+  font-family:var(--body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;padding:14px 32px;border-radius:50px;border:none;cursor:pointer;
+  transition:background .2s,transform .2s;display:inline-block;
+}
+.btn-ember:hover{background:var(--cream);transform:translateY(-2px);}
+.btn-ghost{
+  background:transparent;color:var(--cream);
+  font-family:var(--body);font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:500;padding:13px 32px;border-radius:50px;
+  border:1px solid rgba(242,237,227,.35);cursor:pointer;
+  transition:all .2s;display:inline-block;
+}
+.btn-ghost:hover{background:rgba(242,237,227,.08);border-color:var(--cream);}
+.hero-scroll{
+  position:absolute;bottom:28px;right:52px;z-index:2;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
+.hero-scroll span{
+  font-size:.55rem;letter-spacing:.3em;text-transform:uppercase;
+  color:rgba(242,237,227,.4);font-family:var(--body);writing-mode:vertical-rl;
+}
+.hero-scroll-line{
+  width:1px;height:48px;
+  background:linear-gradient(to bottom,var(--ember),transparent);
+  animation:scrollPulse 2s ease infinite;
+}
+@keyframes scrollPulse{0%,100%{opacity:.3;transform:scaleY(.6);}50%{opacity:1;transform:scaleY(1);}}
+
+/* SECTION COMMON */
+section{padding:100px 52px;}
+.container{max-width:1200px;margin:0 auto;}
+.section-label{
+  font-size:.6rem;letter-spacing:.45em;text-transform:uppercase;
+  color:var(--ember);font-weight:600;font-family:var(--body);
+  display:block;margin-bottom:14px;
+}
+.section-title{font-size:clamp(2rem,4vw,3.4rem);color:var(--cream);}
+.section-title em{font-style:italic;color:var(--ember);}
+.ember-rule{width:48px;height:1px;background:var(--ember);margin:18px 0;}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease;}
+.reveal.visible{opacity:1;transform:none;}
+.reveal-d1{transition-delay:.1s;}
+.reveal-d2{transition-delay:.2s;}
+.reveal-d3{transition-delay:.3s;}
+.reveal-d4{transition-delay:.4s;}
+
+/* LA BRACE */
+.brace{background:var(--surface);}
+.brace-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;}
+.brace-img{position:relative;}
+.brace-img img{
+  width:100%;height:580px;object-fit:cover;border-radius:var(--radius);
+  filter:brightness(.92)contrast(1.05);
+}
+.brace-img::after{
+  content:'';position:absolute;inset:0;border-radius:var(--radius);
+  background:linear-gradient(135deg,rgba(200,130,10,.12) 0%,transparent 60%);
+  pointer-events:none;
+}
+.brace-stat-strip{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:1px;
+  margin-top:24px;background:var(--border);border-radius:var(--radius);
+  overflow:hidden;
+}
+.brace-stat{
+  background:var(--surface-2);padding:18px 16px;text-align:center;
+}
+.brace-stat-num{
+  font-family:var(--heading);font-size:2rem;color:var(--ember);
+  font-weight:700;line-height:1;
+}
+.brace-stat-label{
+  font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;
+  color:var(--muted);margin-top:4px;font-weight:500;
+}
+.brace-text p{font-size:1.02rem;line-height:1.8;color:var(--cream-dim);}
+.brace-pillars{
+  display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:36px;
+}
+.pillar{
+  background:var(--surface-2);border:1px solid var(--border);
+  border-radius:var(--radius);padding:20px 18px;
+}
+.pillar-icon{
+  width:36px;height:36px;margin-bottom:12px;
+  color:var(--ember);
+}
+.pillar h4{
+  font-family:var(--heading);font-size:1rem;color:var(--cream);
+  margin-bottom:6px;
+}
+.pillar p{font-size:.78rem;color:var(--muted);line-height:1.6;margin:0;}
+
+/* MENU */
+.menu-section{background:var(--bg);}
+.menu-header{text-align:center;margin-bottom:64px;}
+.menu-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:2px;background:var(--border-sub);border-radius:var(--radius);
+  overflow:hidden;
+}
+.dish-card{
+  background:var(--surface);padding:40px 32px;
+  transition:background .3s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.dish-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--ember);transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.dish-card:hover::before{transform:scaleX(1);}
+.dish-card:hover{background:var(--surface-2);}
+.dish-num{
+  font-size:.58rem;letter-spacing:.3em;text-transform:uppercase;
+  color:var(--ember-dim);font-family:var(--body);font-weight:500;
+  margin-bottom:20px;
+}
+.dish-img{
+  width:100%;height:200px;object-fit:cover;
+  border-radius:6px;margin-bottom:20px;
+  filter:brightness(.88)contrast(1.08)saturate(1.1);
+}
+.dish-card h3{
+  font-family:var(--heading);font-size:1.35rem;color:var(--cream);
+  margin-bottom:8px;
+}
+.dish-desc{font-size:.8rem;color:var(--cream-dim);line-height:1.65;margin:0;}
+
+/* AMBIENTE */
+.ambiente{background:var(--surface);}
+.ambiente-header{text-align:center;margin-bottom:60px;}
+.ambiente-bento{
+  display:grid;
+  grid-template-columns:1.4fr 1fr 1fr;
+  grid-template-rows:280px 280px;
+  gap:12px;
+}
+.amb-item{border-radius:var(--radius);overflow:hidden;position:relative;}
+.amb-item img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .55s ease;filter:brightness(.82);}
+.amb-item:hover img{transform:scale(1.04);}
+.amb-item.tall{grid-row:span 2;}
+.amb-caption{
+  position:absolute;bottom:0;left:0;right:0;
+  background:linear-gradient(to top,rgba(10,9,7,.88) 0%,transparent 70%);
+  padding:20px 18px 16px;
+  font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;
+  color:var(--ember);font-family:var(--body);font-weight:600;
+}
+
+/* RECENSIONI */
+.recensioni{background:var(--bg);overflow:hidden;}
+.rec-header{text-align:center;margin-bottom:60px;}
+.rec-summary{
+  display:flex;align-items:center;justify-content:center;gap:32px;
+  margin-bottom:52px;padding:28px 36px;
+  background:var(--surface);border:1px solid var(--border);
+  border-radius:var(--radius);max-width:560px;margin-left:auto;margin-right:auto;
+}
+.rec-score{
+  font-family:var(--heading);font-size:4.5rem;color:var(--ember);
+  font-weight:700;line-height:1;
+}
+.rec-detail{text-align:left;}
+.rec-stars{color:var(--ember);font-size:1.1rem;letter-spacing:4px;margin-bottom:4px;}
+.rec-count{font-size:.72rem;color:var(--cream-dim);letter-spacing:.1em;}
+.marquee-track{overflow:hidden;padding:4px 0 12px;}
+.marquee-inner{
+  display:flex;gap:20px;
+  animation:marquee 32s linear infinite;
+  width:max-content;
+}
+.marquee-inner:hover{animation-play-state:paused;}
+@keyframes marquee{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+.rec-card{
+  background:var(--surface);border:1px solid var(--border-sub);
+  border-radius:var(--radius);padding:28px 26px;
+  width:360px;flex-shrink:0;
+}
+.rec-card-stars{color:var(--ember);font-size:.9rem;letter-spacing:4px;margin-bottom:12px;}
+.rec-text{
+  font-size:.85rem;line-height:1.75;color:var(--cream-dim);
+  font-style:italic;margin-bottom:18px;
+}
+.rec-author{display:flex;align-items:center;gap:10px;}
+.rec-avatar{
+  width:34px;height:34px;border-radius:50%;
+  background:var(--surface-3);border:1px solid var(--border);
+  color:var(--ember);font-family:var(--heading);font-size:.9rem;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+}
+.rec-name{font-size:.78rem;font-weight:600;color:var(--cream);}
+.rec-time{font-size:.65rem;color:var(--muted);}
+
+/* PRENOTA */
+.prenota{background:var(--surface);}
+.prenota-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.prenota-info h2{margin-bottom:20px;}
+.contact-item{
+  display:flex;align-items:flex-start;gap:14px;margin-bottom:22px;
+}
+.contact-icon{
+  width:38px;height:38px;border-radius:8px;
+  background:var(--surface-2);border:1px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--ember);flex-shrink:0;
+}
+.contact-label{
+  font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);font-weight:600;margin-bottom:3px;
+}
+.contact-value{font-size:.9rem;color:var(--cream);}
+.contact-value a{color:var(--ember);}
+.hours-table{
+  display:grid;grid-template-columns:auto 1fr;gap:4px 20px;
+  margin-top:6px;font-size:.8rem;
+}
+.hours-day{color:var(--muted);font-weight:500;}
+.hours-time{color:var(--cream);}
+.wa-link{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25D366;color:#fff;
+  font-family:var(--body);font-size:.72rem;letter-spacing:.15em;
+  text-transform:uppercase;font-weight:600;
+  padding:14px 26px;border-radius:50px;
+  transition:background .2s,transform .2s;margin-top:4px;
+}
+.wa-link:hover{background:#1eb558;transform:translateY(-2px);}
+.prenota-form{
+  background:var(--surface-2);border:1px solid var(--border-sub);
+  border-radius:var(--radius);padding:44px;
+}
+.prenota-form h3{
+  font-family:var(--heading);font-size:1.7rem;color:var(--cream);
+  margin-bottom:28px;
+}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px;}
+.form-group{display:flex;flex-direction:column;gap:6px;margin-bottom:14px;}
+.form-group label{
+  font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;
+  font-weight:600;color:var(--muted);
+}
+.form-group input,.form-group select,.form-group textarea{
+  font-family:var(--body);font-size:.85rem;color:var(--cream);
+  background:var(--surface);border:1px solid var(--border-sub);
+  border-radius:6px;padding:10px 14px;
+  transition:border-color .2s;outline:none;
+}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{
+  border-color:var(--ember);
+}
+.form-group select{cursor:pointer;}
+.form-group select option{background:var(--surface);}
+.form-group textarea{resize:vertical;min-height:80px;}
+.btn-submit{
+  width:100%;background:var(--ember);color:#000;
+  font-family:var(--body);font-size:.72rem;letter-spacing:.18em;
+  text-transform:uppercase;font-weight:600;
+  padding:14px;border-radius:50px;border:none;cursor:pointer;
+  transition:background .2s,transform .2s;margin-top:6px;
+}
+.btn-submit:hover{background:var(--cream);transform:translateY(-2px);}
+
+/* MAPPA */
+#map{height:420px;width:100%;filter:brightness(.82)contrast(1.1);}
+.map-wrap{position:relative;}
+.map-card{
+  position:absolute;top:28px;left:52px;z-index:400;
+  background:rgba(19,17,16,.95);backdrop-filter:blur(8px);
+  border:1px solid var(--border);border-radius:var(--radius);
+  padding:22px 26px;max-width:260px;
+}
+.map-card h4{
+  font-family:var(--heading);font-size:1.1rem;color:var(--cream);
+  margin-bottom:6px;
+}
+.map-card p{font-size:.78rem;color:var(--cream-dim);margin:0;line-height:1.6;}
+.map-ember{width:32px;height:2px;background:var(--ember);margin-bottom:10px;}
+
+/* FOOTER */
+footer{background:var(--surface);border-top:1px solid var(--border-sub);padding:56px 52px 32px;}
+.footer-grid{
+  display:grid;grid-template-columns:2fr 1fr 1fr;
+  gap:60px;margin-bottom:48px;
+}
+.footer-brand h3{
+  font-family:var(--heading);font-size:1.6rem;color:var(--cream);
+  font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:8px;
+}
+.footer-brand p{font-size:.8rem;color:var(--muted);line-height:1.7;max-width:300px;}
+.footer-social{display:flex;gap:12px;margin-top:20px;}
+.social-btn{
+  width:36px;height:36px;border-radius:50%;
+  border:1px solid var(--border-sub);color:var(--muted);
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.social-btn:hover{background:var(--ember);border-color:var(--ember);color:#000;}
+.footer-col h4{
+  font-family:var(--body);font-size:.6rem;letter-spacing:.25em;
+  text-transform:uppercase;font-weight:600;color:var(--cream);margin-bottom:18px;
+}
+.footer-col ul{list-style:none;padding:0;margin:0;}
+.footer-col li{margin-bottom:10px;}
+.footer-col a{font-size:.8rem;color:var(--muted);transition:color .2s;}
+.footer-col a:hover{color:var(--ember);}
+.footer-bottom{
+  border-top:1px solid var(--border-sub);padding-top:24px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:.68rem;color:var(--muted);
+}
+.footer-bottom a{color:var(--ember);}
+
+/* WHATSAPP FLOAT */
+.wa-float{
+  position:fixed;bottom:28px;right:28px;z-index:999;
+  width:54px;height:54px;border-radius:50%;
+  background:#25D366;color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(37,211,102,.4);
+  transition:transform .2s,box-shadow .2s;
+}
+.wa-float:hover{transform:scale(1.1);box-shadow:0 10px 32px rgba(37,211,102,.55);}
+.wa-float svg{width:26px;height:26px;fill:#fff;}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .brace-grid,.prenota-grid{grid-template-columns:1fr;gap:48px;}
+  .menu-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;}
+  .ambiente-bento{grid-template-columns:1fr 1fr;grid-template-rows:240px 240px;}
+  .amb-item.tall{grid-row:span 1;}
+}
+@media(max-width:768px){
+  section{padding:72px 24px;}
+  .nav{padding:18px 24px;}
+  .nav.scrolled{padding:12px 24px;}
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  .hero-content{padding:0 24px 72px;}
+  .hero-scroll{right:24px;}
+  .hero h1{font-size:2.8rem;}
+  .brace-pillars,.form-row{grid-template-columns:1fr;}
+  .ambiente-bento{grid-template-columns:1fr;grid-template-rows:auto;}
+  .amb-item{height:240px;}
+  .footer-grid{grid-template-columns:1fr;gap:32px;}
+  .footer-bottom{flex-direction:column;gap:10px;text-align:center;}
+  .map-card{display:none;}
+  .rec-summary{flex-direction:column;gap:16px;text-align:center;}
+  .rec-detail{text-align:center;}
+  .prenota-form{padding:28px 20px;}
+}
+@media(max-width:480px){
+  .hero h1{font-size:2.2rem;}
+  .menu-grid{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="navbar">
+  <div class="nav-logo">
+    Baco da Seta
+    <span>Griglieria · Mestre Venezia</span>
+  </div>
+  <div class="nav-links">
+    <a href="#brace"><span class="t-it">La Brace</span><span class="t-en">The Grill</span></a>
+    <a href="#menu">Menu</a>
+    <a href="#ambiente"><span class="t-it">Ambiente</span><span class="t-en">Spaces</span></a>
+    <a href="#recensioni"><span class="t-it">Recensioni</span><span class="t-en">Reviews</span></a>
+    <a href="#prenota"><span class="t-it">Prenota</span><span class="t-en">Book</span></a>
+  </div>
+  <div class="nav-right">
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="it" onclick="setLang('it')">IT</button>
+      <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+    </div>
+    <a href="https://wa.me/393336620296" target="_blank" class="nav-cta">
+      <span class="t-it">Prenota</span><span class="t-en">Book</span>
+    </a>
+  </div>
+  <button class="hamburger" onclick="toggleMenu()" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" onclick="toggleMenu()">✕</button>
+  <a href="#brace" onclick="toggleMenu()"><span class="t-it">La Brace</span><span class="t-en">The Grill</span></a>
+  <a href="#menu" onclick="toggleMenu()">Menu</a>
+  <a href="#ambiente" onclick="toggleMenu()"><span class="t-it">Ambiente</span><span class="t-en">Spaces</span></a>
+  <a href="#prenota" onclick="toggleMenu()"><span class="t-it">Prenota</span><span class="t-en">Book</span></a>
+  <a href="https://wa.me/393336620296" target="_blank" class="btn-ember">WhatsApp</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <p class="hero-label t-it">Griglieria · Mestre Venezia</p>
+    <p class="hero-label t-en">Charcoal Grill · Mestre Venice</p>
+    <h1>Baco da <em>Seta</em></h1>
+    <p class="hero-tagline t-it">Carne alla brace · Frollatura artigianale · Piscina</p>
+    <p class="hero-tagline t-en">Charcoal grill · Artisan dry-ageing · Pool terrace</p>
+    <blockquote class="hero-quote">
+      <span class="t-it">"La migliore carne alla brace e tartare a Mestre Venezia."</span>
+      <span class="t-en">"The best charcoal grill and tartare in Mestre Venice."</span>
+      <cite>— Greilys Perez · Google ★★★★★</cite>
+    </blockquote>
+    <div class="hero-actions">
+      <a href="#prenota" class="btn-ember">
+        <span class="t-it">Prenota un Tavolo</span><span class="t-en">Reserve a Table</span>
+      </a>
+      <a href="#brace" class="btn-ghost">
+        <span class="t-it">Scopri la Brace</span><span class="t-en">Discover the Grill</span>
+      </a>
+    </div>
+    <div class="hero-meta">
+      <span class="hero-stars">★★★★★</span>
+      <span>4.6 · <span class="t-it">1313 recensioni Google</span><span class="t-en">1313 Google reviews</span></span>
+      <span>·</span>
+      <span>Via Bernardo Bellotto, 32 · Mestre</span>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span class="t-it">Scorri</span>
+    <span class="t-en">Scroll</span>
+    <div class="hero-scroll-line"></div>
+  </div>
+</section>
+
+<!-- LA BRACE -->
+<section class="brace" id="brace">
+  <div class="container">
+    <div class="brace-grid">
+      <div class="reveal">
+        <div class="brace-img">
+          <img src="./photos/photo_03.jpg" alt="Carne alla brace — Baco da Seta Mestre">
+        </div>
+        <div class="brace-stat-strip">
+          <div class="brace-stat">
+            <div class="brace-stat-num">4.6★</div>
+            <div class="brace-stat-label t-it">Rating Google</div>
+            <div class="brace-stat-label t-en">Google Rating</div>
+          </div>
+          <div class="brace-stat">
+            <div class="brace-stat-num">1313</div>
+            <div class="brace-stat-label t-it">Recensioni</div>
+            <div class="brace-stat-label t-en">Reviews</div>
+          </div>
+          <div class="brace-stat">
+            <div class="brace-stat-num">€€</div>
+            <div class="brace-stat-label t-it">Fascia prezzi</div>
+            <div class="brace-stat-label t-en">Price range</div>
+          </div>
+        </div>
+      </div>
+      <div class="reveal reveal-d2">
+        <span class="section-label t-it">La Nostra Arte</span>
+        <span class="section-label t-en">Our Craft</span>
+        <h2 class="section-title t-it">La <em>Brace</em></h2>
+        <h2 class="section-title t-en">The <em>Grill</em></h2>
+        <div class="ember-rule"></div>
+        <p class="t-it">Non è solo una griglieria. È un rito. La carne che serviamo è selezionata con cura, frollata con metodo artigianale e portata sulla brace quando è pronta — non prima.</p>
+        <p class="t-en">This is not just a grill restaurant. It is a ritual. The meat we serve is carefully selected, dry-aged using artisan methods, and brought to the charcoal only when it is ready — not a moment before.</p>
+        <p class="t-it">La frollatura è il segreto: trasforma un buon taglio in qualcosa di straordinario. Ogni morso è equilibrato, succoso, saporito — lo si sente al primo taglio.</p>
+        <p class="t-en">Dry-ageing is the secret: it transforms a good cut into something extraordinary. Each bite is balanced, juicy, flavourful — you can feel it with the first cut.</p>
+        <div class="brace-pillars">
+          <div class="pillar reveal reveal-d1">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/>
+              <path d="M12 6v6l4 2"/>
+            </svg>
+            <h4 class="t-it">Frollatura Artigianale</h4>
+            <h4 class="t-en">Artisan Dry-Ageing</h4>
+            <p class="t-it">Tempi e temperature curati con precisione per esaltare ogni taglio.</p>
+            <p class="t-en">Time and temperature managed with precision to elevate every cut.</p>
+          </div>
+          <div class="pillar reveal reveal-d2">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M12 2a5 5 0 0 1 5 5c0 5-5 13-5 13S7 12 7 7a5 5 0 0 1 5-5z"/>
+              <circle cx="12" cy="7" r="2"/>
+            </svg>
+            <h4 class="t-it">Selezione della Carne</h4>
+            <h4 class="t-en">Meat Selection</h4>
+            <p class="t-it">Solo tagli selezionati, scelti per qualità intrinseca e potenziale alla brace.</p>
+            <p class="t-en">Only selected cuts, chosen for intrinsic quality and grilling potential.</p>
+          </div>
+          <div class="pillar reveal reveal-d3">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M3 22V12L12 3l9 9v10"/>
+              <path d="M9 22v-6h6v6"/>
+            </svg>
+            <h4 class="t-it">Piscina & Terrazza</h4>
+            <h4 class="t-en">Pool & Terrace</h4>
+            <p class="t-it">Spazi relax all'aperto, terrazza riscaldata per ogni stagione.</p>
+            <p class="t-en">Open-air relaxation spaces, heated terrace for every season.</p>
+          </div>
+          <div class="pillar reveal reveal-d4">
+            <svg class="pillar-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M8 14s1.5 2 4 2 4-2 4-2"/>
+              <line x1="9" y1="9" x2="9.01" y2="9"/>
+              <line x1="15" y1="9" x2="15.01" y2="9"/>
+              <circle cx="12" cy="12" r="10"/>
+            </svg>
+            <h4 class="t-it">Servizio Genuino</h4>
+            <h4 class="t-en">Genuine Service</h4>
+            <p class="t-it">Professionale e allo stesso tempo autentico — lo notano tutti.</p>
+            <p class="t-en">Professional yet genuine — every guest notices the difference.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MENU -->
+<section class="menu-section" id="menu">
+  <div class="container">
+    <div class="menu-header reveal">
+      <span class="section-label t-it">I Nostri Piatti</span>
+      <span class="section-label t-en">Our Dishes</span>
+      <h2 class="section-title t-it">Signature <em>Menu</em></h2>
+      <h2 class="section-title t-en">Signature <em>Menu</em></h2>
+      <div class="ember-rule" style="margin:18px auto 0;"></div>
+    </div>
+    <div class="menu-grid">
+      <div class="dish-card reveal">
+        <div class="dish-num">01</div>
+        <img src="./photos/photo_05.jpg" alt="Carne alla Brace — Baco da Seta" class="dish-img">
+        <h3><span class="t-it">Carne alla Brace</span><span class="t-en">Charcoal Grilled Meat</span></h3>
+        <p class="dish-desc t-it">Tagli selezionati, frollatura artigianale, cottura sul fuoco vivo. Il punto di forza assoluto del Baco da Seta — succosa, equilibrata, saporita al primo taglio.</p>
+        <p class="dish-desc t-en">Selected cuts, artisan dry-ageing, cooked over live charcoal. The absolute signature of Baco da Seta — juicy, balanced, flavourful from the first cut.</p>
+      </div>
+      <div class="dish-card reveal reveal-d2">
+        <div class="dish-num">02</div>
+        <img src="./photos/photo_00.jpg" alt="Tartare — Baco da Seta" class="dish-img">
+        <h3>Tartare</h3>
+        <p class="dish-desc t-it">Carne cruda lavorata con cura, in tutta la sua purezza. Un classico eseguito con la stessa attenzione alla materia prima della brace.</p>
+        <p class="dish-desc t-en">Hand-worked raw meat in all its purity. A classic executed with the same attention to prime ingredients as the grill.</p>
+      </div>
+      <div class="dish-card reveal reveal-d3">
+        <div class="dish-num">03</div>
+        <img src="./photos/photo_02.jpg" alt="Gnocchi ragù roast beef — Baco da Seta" class="dish-img">
+        <h3><span class="t-it">Gnocchi al Ragù di Roast Beef</span><span class="t-en">Gnocchi with Roast Beef Ragù</span></h3>
+        <p class="dish-desc t-it">Gnocchi fatti in casa con ragù di roast beef e crema al mascarpone sopraffina — piatto da ordinare ad occhi chiusi.</p>
+        <p class="dish-desc t-en">Handmade gnocchi with roast beef ragù and exquisite mascarpone cream — a dish you order without even looking at the menu.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMBIENTE -->
+<section class="ambiente" id="ambiente">
+  <div class="container">
+    <div class="ambiente-header reveal">
+      <span class="section-label t-it">Gli Spazi</span>
+      <span class="section-label t-en">Our Spaces</span>
+      <h2 class="section-title t-it"><em>Elegante</em> ma non formale</h2>
+      <h2 class="section-title t-en"><em>Elegant</em> without formality</h2>
+      <div class="ember-rule" style="margin:18px auto 0;"></div>
+    </div>
+    <div class="ambiente-bento">
+      <div class="amb-item tall reveal">
+        <img src="./photos/photo_01.jpg" alt="Interno Baco da Seta Mestre">
+        <div class="amb-caption t-it">Sala principale</div>
+        <div class="amb-caption t-en">Main dining room</div>
+      </div>
+      <div class="amb-item reveal reveal-d1">
+        <img src="./photos/photo_06.jpg" alt="Piscina esterna Baco da Seta">
+        <div class="amb-caption t-it">Piscina esterna</div>
+        <div class="amb-caption t-en">Outdoor pool</div>
+      </div>
+      <div class="amb-item reveal reveal-d2">
+        <img src="./photos/photo_07.jpg" alt="Terrazza Baco da Seta">
+        <div class="amb-caption t-it">Terrazza riscaldata</div>
+        <div class="amb-caption t-en">Heated terrace</div>
+      </div>
+      <div class="amb-item reveal reveal-d3">
+        <img src="./photos/photo_08.jpg" alt="Dettaglio sala Baco da Seta">
+        <div class="amb-caption t-it">Cura nei dettagli</div>
+        <div class="amb-caption t-en">Attention to detail</div>
+      </div>
+      <div class="amb-item reveal reveal-d4">
+        <img src="./photos/photo_04.jpg" alt="Aree relax Baco da Seta">
+        <div class="amb-caption t-it">Aree relax</div>
+        <div class="amb-caption t-en">Relaxation areas</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RECENSIONI -->
+<section class="recensioni" id="recensioni">
+  <div class="container">
+    <div class="rec-header reveal">
+      <span class="section-label t-it">Cosa dicono i clienti</span>
+      <span class="section-label t-en">What guests say</span>
+      <h2 class="section-title t-it">Le loro <em>parole</em></h2>
+      <h2 class="section-title t-en">Their <em>words</em></h2>
+      <div class="ember-rule" style="margin:18px auto 0;"></div>
+    </div>
+    <div class="rec-summary reveal">
+      <div class="rec-score">4.6</div>
+      <div class="rec-detail">
+        <div class="rec-stars">★★★★★</div>
+        <div class="rec-count">
+          <span class="t-it">1313 recensioni su Google</span>
+          <span class="t-en">1313 reviews on Google</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="marquee-track">
+    <div class="marquee-inner">
+      <!-- SET 1 — testi reali da Google Places API -->
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"La carne è il vero punto di forza: selezione importante, cottura perfetta e qualità che si sente al primo taglio. La frollatura è fatta come si deve e ogni morso è equilibrato, succoso, saporito."</p>
+        <p class="rec-text t-en">"The meat is the real strength: important selection, perfect cooking and quality you feel at the first cut. The dry-ageing is done right and every bite is balanced, juicy, flavourful."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">G</div>
+          <div><div class="rec-name">Greilys Perez</div><div class="rec-time">Google · <span class="t-it">2 mesi fa</span><span class="t-en">2 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Sono anni che festeggio qui la cena di compleanno e ogni volta è una garanzia! Servizio veloce, staff sempre gentile e attento, piatti ottimi. La carne, come sempre, spettacolare!"</p>
+        <p class="rec-text t-en">"I have been celebrating my birthday dinner here for years and every time it is a guarantee! Fast service, staff always kind and attentive, excellent dishes. The meat, as always, spectacular!"</p>
+        <div class="rec-author">
+          <div class="rec-avatar">A</div>
+          <div><div class="rec-name">Adrian Gomoja</div><div class="rec-time">Google · <span class="t-it">6 mesi fa</span><span class="t-en">6 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Locale stupendo molto ben curato e pulito. Abbiamo mangiato divinamente, la carne è tenerissima e super saporita, il servizio impeccabile. Fuori c'è anche la piscina e un sacco di aree relax."</p>
+        <p class="rec-text t-en">"Stunning, very well-kept and clean venue. We ate divinely, the meat is incredibly tender and super tasty, the service impeccable. Outside there is also the pool and lots of relaxation areas."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">X</div>
+          <div><div class="rec-name">xolata1</div><div class="rec-time">Google · <span class="t-it">6 mesi fa</span><span class="t-en">6 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Anche se era già pieno, ci hanno trovato un tavolo in terrazza riscaldata. Non solo ottima accoglienza, pure la simpatia e la cordialità del personale, piatti molto curati in tutto."</p>
+        <p class="rec-text t-en">"Even though it was already full, they found us a table on the heated terrace. Not only excellent hospitality, but also the friendliness and kindness of the staff, very refined dishes throughout."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">M</div>
+          <div><div class="rec-name">Miriatella</div><div class="rec-time">Google · <span class="t-it">4 mesi fa</span><span class="t-en">4 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Location molto elegante, piscina, ben frequentato. Ingredienti davvero di qualità e porzioni abbondanti. Gnocchi al ragù di roast beef e crema al mascarpone sopraffina! Personale molto cordiale."</p>
+        <p class="rec-text t-en">"Very elegant location, pool, well-frequented. Truly quality ingredients and generous portions. Gnocchi with roast beef ragù and exquisite mascarpone cream! Very friendly staff."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">F</div>
+          <div><div class="rec-name">Francesca Pateri</div><div class="rec-time">Google · <span class="t-it">9 mesi fa</span><span class="t-en">9 months ago</span></div></div>
+        </div>
+      </div>
+      <!-- SET 2 — duplicate per marquee infinito -->
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"La carne è il vero punto di forza: selezione importante, cottura perfetta e qualità che si sente al primo taglio. La frollatura è fatta come si deve e ogni morso è equilibrato, succoso, saporito."</p>
+        <p class="rec-text t-en">"The meat is the real strength: important selection, perfect cooking and quality you feel at the first cut. The dry-ageing is done right and every bite is balanced, juicy, flavourful."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">G</div>
+          <div><div class="rec-name">Greilys Perez</div><div class="rec-time">Google · <span class="t-it">2 mesi fa</span><span class="t-en">2 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Sono anni che festeggio qui la cena di compleanno e ogni volta è una garanzia! Servizio veloce, staff sempre gentile e attento, piatti ottimi. La carne, come sempre, spettacolare!"</p>
+        <p class="rec-text t-en">"I have been celebrating my birthday dinner here for years and every time it is a guarantee! Fast service, staff always kind and attentive, excellent dishes. The meat, as always, spectacular!"</p>
+        <div class="rec-author">
+          <div class="rec-avatar">A</div>
+          <div><div class="rec-name">Adrian Gomoja</div><div class="rec-time">Google · <span class="t-it">6 mesi fa</span><span class="t-en">6 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Locale stupendo molto ben curato e pulito. La carne è tenerissima e super saporita, il servizio impeccabile. Fuori c'è anche la piscina e un sacco di aree relax, veramente un bel ristorante."</p>
+        <p class="rec-text t-en">"Stunning, very well-kept and clean venue. The meat is incredibly tender and super tasty, the service impeccable. Outside there is also the pool and lots of relaxation areas."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">X</div>
+          <div><div class="rec-name">xolata1</div><div class="rec-time">Google · <span class="t-it">6 mesi fa</span><span class="t-en">6 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Anche se era già pieno, ci hanno trovato un tavolo in terrazza riscaldata. Non solo ottima accoglienza, pure la simpatia e la cordialità del personale, piatti molto curati in tutto."</p>
+        <p class="rec-text t-en">"Even though it was already full, they found us a table on the heated terrace. Not only excellent hospitality, but also the friendliness and kindness of the staff, very refined dishes."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">M</div>
+          <div><div class="rec-name">Miriatella</div><div class="rec-time">Google · <span class="t-it">4 mesi fa</span><span class="t-en">4 months ago</span></div></div>
+        </div>
+      </div>
+      <div class="rec-card">
+        <div class="rec-card-stars">★★★★★</div>
+        <p class="rec-text t-it">"Location molto elegante, piscina. Ingredienti di qualità e porzioni abbondanti. Gnocchi al ragù di roast beef e crema al mascarpone sopraffina! Personale molto cordiale, consigliatissimo."</p>
+        <p class="rec-text t-en">"Very elegant location, pool. Quality ingredients and generous portions. Gnocchi with roast beef ragù and exquisite mascarpone cream! Very friendly staff, highly recommended."</p>
+        <div class="rec-author">
+          <div class="rec-avatar">F</div>
+          <div><div class="rec-name">Francesca Pateri</div><div class="rec-time">Google · <span class="t-it">9 mesi fa</span><span class="t-en">9 months ago</span></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRENOTA -->
+<section class="prenota" id="prenota">
+  <div class="container">
+    <div class="prenota-grid">
+      <div class="reveal">
+        <span class="section-label t-it">Vieni a trovarci</span>
+        <span class="section-label t-en">Find us</span>
+        <h2 class="section-title t-it">Prenota il tuo <em>tavolo</em></h2>
+        <h2 class="section-title t-en">Reserve your <em>table</em></h2>
+        <div class="ember-rule"></div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </div>
+          <div>
+            <div class="contact-label t-it">Indirizzo</div>
+            <div class="contact-label t-en">Address</div>
+            <div class="contact-value">Via Bernardo Bellotto, 32<br>30174 Mestre (VE)</div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.4 2 2 0 0 1 3.59 1.22h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.96a16 16 0 0 0 6 6l.92-.92a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 21.73 16.92z"/></svg>
+          </div>
+          <div>
+            <div class="contact-label">WhatsApp</div>
+            <div class="contact-value"><a href="tel:+393336620296">333 662 0296</a></div>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <div>
+            <div class="contact-label t-it">Orari</div>
+            <div class="contact-label t-en">Hours</div>
+            <div class="hours-table t-it">
+              <span class="hours-day">Lun</span><span class="hours-time">Chiuso</span>
+              <span class="hours-day">Mar–Gio</span><span class="hours-time">19:30–23:30</span>
+              <span class="hours-day">Ven</span><span class="hours-time">12:30–15:30 · 19:30–23:30</span>
+              <span class="hours-day">Sab</span><span class="hours-time">12:30–15:00 · 19:30–00:00</span>
+              <span class="hours-day">Dom</span><span class="hours-time">12:30–15:30 · 19:30–00:00</span>
+            </div>
+            <div class="hours-table t-en">
+              <span class="hours-day">Mon</span><span class="hours-time">Closed</span>
+              <span class="hours-day">Tue–Thu</span><span class="hours-time">19:30–23:30</span>
+              <span class="hours-day">Fri</span><span class="hours-time">12:30–15:30 · 19:30–23:30</span>
+              <span class="hours-day">Sat</span><span class="hours-time">12:30–15:00 · 19:30–00:00</span>
+              <span class="hours-day">Sun</span><span class="hours-time">12:30–15:30 · 19:30–00:00</span>
+            </div>
+          </div>
+        </div>
+        <a href="https://wa.me/393336620296" target="_blank" class="wa-link">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          <span class="t-it">Scrivici su WhatsApp</span>
+          <span class="t-en">Message us on WhatsApp</span>
+        </a>
+      </div>
+      <div class="prenota-form reveal reveal-d2">
+        <h3 class="t-it">Invia una <em>richiesta</em></h3>
+        <h3 class="t-en">Send a <em>request</em></h3>
+        <form onsubmit="event.preventDefault();alert('Grazie! Ti ricontatteremo presto. / Thank you! We will be in touch soon.')">
+          <div class="form-row">
+            <div class="form-group">
+              <label class="t-it">Nome</label>
+              <label class="t-en">Name</label>
+              <input type="text" placeholder="Mario Rossi" required>
+            </div>
+            <div class="form-group">
+              <label class="t-it">Telefono / WhatsApp</label>
+              <label class="t-en">Phone / WhatsApp</label>
+              <input type="tel" placeholder="+39 333 000 0000" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="t-it">Data</label>
+              <label class="t-en">Date</label>
+              <input type="date">
+            </div>
+            <div class="form-group">
+              <label class="t-it">Ora</label>
+              <label class="t-en">Time</label>
+              <select>
+                <option>19:30</option>
+                <option>20:00</option>
+                <option>20:30</option>
+                <option>21:00</option>
+                <option class="t-it">12:30 (ven–dom)</option>
+                <option class="t-en">12:30 (fri–sun)</option>
+                <option class="t-it">13:00 (ven–dom)</option>
+                <option class="t-en">13:00 (fri–sun)</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label class="t-it">Coperti</label>
+              <label class="t-en">Guests</label>
+              <select>
+                <option>2</option><option>3</option><option>4</option>
+                <option>5</option><option>6</option><option>7</option>
+                <option>8+</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="t-it">Occasione</label>
+              <label class="t-en">Occasion</label>
+              <select>
+                <option class="t-it">Cena normale</option><option class="t-en">Regular dinner</option>
+                <option class="t-it">Compleanno</option><option class="t-en">Birthday</option>
+                <option class="t-it">Lavoro / Business</option><option class="t-en">Business dinner</option>
+                <option class="t-it">Anniversario</option><option class="t-en">Anniversary</option>
+                <option class="t-it">Altro</option><option class="t-en">Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="t-it">Note (allergie, richieste speciali)</label>
+            <label class="t-en">Notes (allergies, special requests)</label>
+            <textarea placeholder="..."></textarea>
+          </div>
+          <button type="submit" class="btn-submit">
+            <span class="t-it">Invia Richiesta</span>
+            <span class="t-en">Send Request</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAPPA -->
+<div class="map-wrap">
+  <div id="map"></div>
+  <div class="map-card">
+    <div class="map-ember"></div>
+    <h4>Baco da Seta</h4>
+    <p>Via Bernardo Bellotto, 32<br>30174 Mestre (VE)<br><br>
+      <a href="https://maps.google.com/?cid=16225497559503261656" target="_blank" style="color:var(--ember);font-size:.75rem;">
+        <span class="t-it">Apri in Google Maps →</span>
+        <span class="t-en">Open in Google Maps →</span>
+      </a>
+    </p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>Baco da Seta</h3>
+        <p class="t-it">Ristorante Griglieria a Mestre Venezia. Carne alla brace con frollatura artigianale, piscina esterna, terrazza riscaldata. Elegante ma autentico.</p>
+        <p class="t-en">Charcoal grill restaurant in Mestre Venice. Artisan dry-aged meat, outdoor pool, heated terrace. Elegant but authentic.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/bacodasetamestre" target="_blank" class="social-btn" aria-label="Instagram">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+          </a>
+          <a href="https://wa.me/393336620296" target="_blank" class="social-btn" aria-label="WhatsApp">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+          </a>
+          <a href="https://maps.google.com/?cid=16225497559503261656" target="_blank" class="social-btn" aria-label="Google Maps">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-it">Menu</h4>
+        <h4 class="t-en">Menu</h4>
+        <ul>
+          <li><a href="#menu"><span class="t-it">Carne alla Brace</span><span class="t-en">Charcoal Grill</span></a></li>
+          <li><a href="#menu">Tartare</a></li>
+          <li><a href="#menu"><span class="t-it">Gnocchi Ragù Roast Beef</span><span class="t-en">Roast Beef Gnocchi</span></a></li>
+          <li><a href="#menu"><span class="t-it">Antipasti</span><span class="t-en">Starters</span></a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4 class="t-it">Info</h4>
+        <h4 class="t-en">Info</h4>
+        <ul>
+          <li><a href="#brace"><span class="t-it">La Brace</span><span class="t-en">The Grill</span></a></li>
+          <li><a href="#ambiente"><span class="t-it">Piscina & Terrazza</span><span class="t-en">Pool & Terrace</span></a></li>
+          <li><a href="#prenota"><span class="t-it">Orari & Prenotazioni</span><span class="t-en">Hours & Booking</span></a></li>
+          <li><a href="tel:+393336620296">333 662 0296</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 Ristorante Griglieria Baco da Seta · Via Bernardo Bellotto 32, 30174 Mestre (VE)</span>
+      <span class="t-it">Sito realizzato da <a href="https://viktoria.agency" target="_blank">Viktoria Agency</a></span>
+      <span class="t-en">Website by <a href="https://viktoria.agency" target="_blank">Viktoria Agency</a></span>
+    </div>
+  </div>
+</footer>
+
+<!-- WHATSAPP FLOAT -->
+<a href="https://wa.me/393336620296" target="_blank" class="wa-float" aria-label="WhatsApp Baco da Seta">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+</a>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV/XN/WPaU=" crossorigin=""></script>
+<script>
+// Navbar scroll
+(function(){
+  var nav = document.getElementById('navbar');
+  window.addEventListener('scroll',function(){
+    nav.classList.toggle('scrolled',window.scrollY>60);
+  },{passive:true});
+})();
+
+// Language
+function setLang(lang){
+  document.body.classList.remove('lang-en');
+  if(lang==='en') document.body.classList.add('lang-en');
+  document.querySelectorAll('.lang-btn').forEach(function(b){
+    b.classList.toggle('active',b.dataset.lang===lang);
+  });
+  localStorage.setItem('baco_lang',lang);
+}
+(function(){
+  if(localStorage.getItem('baco_lang')==='en') setLang('en');
+})();
+
+// Mobile menu
+function toggleMenu(){
+  document.getElementById('mobileMenu').classList.toggle('open');
+}
+
+// Reveal
+document.addEventListener('DOMContentLoaded',function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target);}
+    });
+  },{threshold:.12,rootMargin:'0px 0px -50px 0px'});
+  document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el);});
+
+  // Leaflet map
+  var map=L.map('map',{scrollWheelZoom:false,zoomControl:true}).setView([45.4782,12.2456],15);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{
+    attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> &copy; <a href="https://carto.com/">CARTO</a>',
+    subdomains:'abcd',maxZoom:20
+  }).addTo(map);
+  var icon=L.divIcon({
+    className:'',
+    html:'<div style="width:36px;height:36px;border-radius:50%;background:#C8820A;border:3px solid #0A0907;display:flex;align-items:center;justify-content:center;box-shadow:0 4px 16px rgba(200,130,10,.5);"><svg width="16" height="16" viewBox="0 0 24 24" fill="#000"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg></div>',
+    iconSize:[36,36],iconAnchor:[18,36],popupAnchor:[0,-36]
+  });
+  L.marker([45.4782,12.2456],{icon:icon})
+    .addTo(map)
+    .bindPopup('<strong style="color:#C8820A">Baco da Seta</strong><br>Via Bernardo Bellotto, 32<br>30174 Mestre (VE)<br><a href="https://maps.google.com/?cid=16225497559503261656" target="_blank" style="color:#C8820A">Google Maps →</a>')
+    .openPopup();
+});
+</script>
+</body>
+</html>
