@@ -1,0 +1,1475 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Ristorante BIRI 5497 — cucina di pesce fresca a Venezia Mestre. Gestito da Silvana e Pino. Via Castellana 105. Prenota via WhatsApp.">
+<title>Ristorante BIRI 5497 — Pesce fresco a Mestre</title>
+
+<!-- Fonts: Playfair Display SC + Karla -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Karla:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Playfair+Display+SC:wght@400;700&display=swap" rel="stylesheet">
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+
+<style>
+/* ─── Design Tokens ────────────────────────────────────────────────────── */
+:root {
+  --cream:       #FDF9F4;
+  --sand:        #EDE3D4;
+  --navy:        #1C3D4F;
+  --navy-dark:   #122835;
+  --gold:        #C08B28;
+  --gold-light:  #D9A94B;
+  --terra:       #9E3E20;
+  --text:        #1E2D35;
+  --text-mid:    #4A6070;
+  --text-light:  #7A9AAC;
+  --white:       #FFFFFF;
+  --border:      rgba(28,61,79,.12);
+
+  --ff-heading: 'Playfair Display SC', Georgia, serif;
+  --ff-body:    'Karla', system-ui, sans-serif;
+
+  --shadow-card: 0 4px 32px rgba(28,61,79,.10);
+  --shadow-sm:   0 2px 8px rgba(28,61,79,.07);
+  --radius:      4px;
+  --radius-lg:   8px;
+  --transition:  200ms ease;
+}
+
+/* ─── Reset & Base ─────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; font-size: 16px; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--cream);
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+ul { list-style: none; }
+
+/* ─── Typography ───────────────────────────────────────────────────────── */
+.h-display {
+  font-family: var(--ff-heading);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+.h1  { font-size: clamp(2.4rem, 6vw, 4.2rem); }
+.h2  { font-size: clamp(1.8rem, 4vw, 2.8rem); }
+.h3  { font-size: clamp(1.3rem, 2.5vw, 1.7rem); }
+.eyebrow {
+  font-family: var(--ff-body);
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+/* ─── Layout Helpers ───────────────────────────────────────────────────── */
+.container { max-width: 1100px; margin-inline: auto; padding-inline: 1.5rem; }
+.section { padding-block: 5rem; }
+.section--sand { background: var(--sand); }
+.section--navy { background: var(--navy-dark); color: var(--white); }
+.text-center { text-align: center; }
+.mt-2 { margin-top: .5rem; }
+.mt-4 { margin-top: 1rem; }
+.mt-6 { margin-top: 1.5rem; }
+.mt-8 { margin-top: 2rem; }
+.mt-12 { margin-top: 3rem; }
+
+/* ─── Scroll Reveal — progressive enhancement ──────────────────────────── */
+/* Default: fully visible. JS adds .js-ready to <body> to enable animations */
+.js-ready .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .6s ease, transform .6s ease;
+}
+.js-ready .reveal.visible { opacity: 1; transform: none; }
+.js-ready .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity .65s ease, transform .65s ease; }
+.js-ready .reveal-right { opacity: 0; transform: translateX( 32px); transition: opacity .65s ease, transform .65s ease; }
+.js-ready .reveal-left.visible, .js-ready .reveal-right.visible { opacity: 1; transform: none; }
+
+/* On narrow viewports, horizontal slide overflows — use vertical only */
+@media (max-width: 768px) {
+  .js-ready .reveal-left,
+  .js-ready .reveal-right {
+    transform: translateY(24px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .js-ready .reveal,
+  .js-ready .reveal-left,
+  .js-ready .reveal-right { opacity: 1; transform: none; transition: none; }
+}
+
+/* ─── Language switcher logic ──────────────────────────────────────────── */
+.en { display: none; }
+body.lang-en .it { display: none; }
+body.lang-en .en { display: revert; }
+
+/* ─── Divider ornament ─────────────────────────────────────────────────── */
+.ornament {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  justify-content: center;
+  margin-block: 1.5rem;
+}
+.ornament::before, .ornament::after {
+  content: '';
+  height: 1px;
+  width: 60px;
+  background: var(--gold);
+  opacity: .5;
+}
+.ornament svg { width: 18px; height: 18px; fill: var(--gold); opacity: .7; }
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* NAV                                                                      */
+/* ════════════════════════════════════════════════════════════════════════ */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: .9rem 0;
+  transition: background var(--transition), box-shadow var(--transition);
+}
+.nav.scrolled {
+  background: var(--navy-dark);
+  box-shadow: 0 2px 24px rgba(0,0,0,.25);
+}
+.nav__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.nav__logo {
+  font-family: var(--ff-heading);
+  font-size: 1.3rem;
+  color: var(--white);
+  letter-spacing: .04em;
+  white-space: nowrap;
+}
+.nav__logo span {
+  display: block;
+  font-family: var(--ff-body);
+  font-size: .6rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--gold-light);
+  margin-top: -.1em;
+}
+.nav__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border: 1px solid rgba(255,255,255,.3);
+  border-radius: 3px;
+  overflow: hidden;
+}
+.lang-toggle button {
+  background: transparent;
+  border: none;
+  color: rgba(255,255,255,.6);
+  font-family: var(--ff-body);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  padding: .28rem .55rem;
+  cursor: pointer;
+  transition: background var(--transition), color var(--transition);
+}
+.lang-toggle button.active {
+  background: var(--gold);
+  color: var(--white);
+}
+.lang-toggle button:hover:not(.active) { background: rgba(255,255,255,.1); color: var(--white); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  font-family: var(--ff-body);
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: .55rem 1.2rem;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+}
+.btn--gold {
+  background: var(--gold);
+  color: var(--white);
+}
+.btn--gold:hover { background: var(--gold-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(192,139,40,.35); }
+.btn--outline-white {
+  background: transparent;
+  color: var(--white);
+  border: 1.5px solid rgba(255,255,255,.6);
+}
+.btn--outline-white:hover { background: rgba(255,255,255,.1); border-color: var(--white); }
+.btn--large {
+  font-size: .9rem;
+  padding: .85rem 2rem;
+}
+.btn--xl {
+  font-size: 1rem;
+  padding: 1rem 2.4rem;
+}
+.btn svg { width: 18px; height: 18px; }
+
+/* hamburger hidden above 768 */
+.nav__hamburger { display: none; }
+
+@media (max-width: 640px) {
+  .nav__cta-text { display: none; }
+  .btn--nav { padding: .5rem .9rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* HERO                                                                     */
+/* ════════════════════════════════════════════════════════════════════════ */
+.hero {
+  position: relative;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  contain: layout;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: url('photos/photo_04.jpg') center center / cover no-repeat;
+  transform: scale(1.04);
+  transition: transform 8s ease;
+}
+.hero__bg.loaded { transform: scale(1); }
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    160deg,
+    rgba(18,40,53,.78) 0%,
+    rgba(18,40,53,.50) 50%,
+    rgba(28,61,79,.30) 100%
+  );
+}
+.hero__content {
+  position: relative;
+  z-index: 2;
+  padding-top: 6rem;
+  padding-bottom: 3rem;
+  color: var(--white);
+}
+.hero__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .4rem;
+  background: rgba(255,255,255,.12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.2);
+  border-radius: 2rem;
+  padding: .4rem 1rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+}
+.hero__badge svg { fill: var(--gold-light); width: 14px; height: 14px; }
+.hero__tagline {
+  color: rgba(255,255,255,.78);
+  font-size: clamp(1.05rem, 2.5vw, 1.3rem);
+  font-style: italic;
+  margin-top: .7rem;
+  max-width: 540px;
+}
+.hero__ctas {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2.5rem;
+  flex-wrap: wrap;
+}
+.hero__scroll {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .4rem;
+  color: rgba(255,255,255,.5);
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  animation: bounce-scroll 2.4s ease infinite;
+}
+.hero__scroll svg { width: 20px; height: 20px; stroke: rgba(255,255,255,.4); fill: none; }
+@keyframes bounce-scroll {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(6px); }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* ABOUT                                                                    */
+/* ════════════════════════════════════════════════════════════════════════ */
+.about__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.about__img-wrap {
+  position: relative;
+}
+.about__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+.about__img-badge {
+  position: absolute;
+  bottom: -1.2rem;
+  right: -1.2rem;
+  background: var(--navy);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.4rem;
+  text-align: center;
+  box-shadow: var(--shadow-card);
+  border: 3px solid var(--cream);
+}
+.about__img-badge .num {
+  display: block;
+  font-family: var(--ff-heading);
+  font-size: 2rem;
+  color: var(--gold-light);
+  line-height: 1;
+}
+.about__img-badge .lbl {
+  font-size: .7rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-top: .2rem;
+}
+.about__body p + p { margin-top: 1rem; }
+.about__body p {
+  color: var(--text-mid);
+  font-size: 1.05rem;
+}
+.about__stats {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.about__stat .val {
+  font-family: var(--ff-heading);
+  font-size: 1.9rem;
+  color: var(--navy);
+  line-height: 1;
+}
+.about__stat .lbl {
+  font-size: .78rem;
+  color: var(--text-mid);
+  margin-top: .2rem;
+}
+
+@media (max-width: 768px) {
+  .about__grid { grid-template-columns: 1fr; gap: 3rem; }
+  .about__img-wrap { overflow: hidden; }
+  .about__img-badge { right: .5rem; bottom: .5rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* SIGNATURE DISH                                                           */
+/* ════════════════════════════════════════════════════════════════════════ */
+.signature {
+  background: var(--navy-dark);
+  color: var(--white);
+}
+.signature__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+.signature__img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  box-shadow: 0 8px 48px rgba(0,0,0,.4);
+}
+.signature__label {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--white);
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  padding: .3rem .8rem;
+  border-radius: 2px;
+  margin-bottom: 1rem;
+}
+.signature__title {
+  font-family: var(--ff-heading);
+  font-size: clamp(2rem, 4vw, 3rem);
+  line-height: 1.1;
+  letter-spacing: .01em;
+}
+.signature__desc {
+  color: rgba(255,255,255,.7);
+  font-size: 1.05rem;
+  margin-top: 1rem;
+  line-height: 1.7;
+}
+.signature__quote {
+  border-left: 3px solid var(--gold);
+  padding: .8rem 1.2rem;
+  margin-top: 1.5rem;
+  background: rgba(255,255,255,.04);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-style: italic;
+  font-size: .95rem;
+  color: rgba(255,255,255,.8);
+}
+
+@media (max-width: 768px) {
+  .signature__inner { grid-template-columns: 1fr; gap: 2.5rem; }
+  .signature__img { aspect-ratio: 4/3; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* MENU HIGHLIGHTS                                                          */
+/* ════════════════════════════════════════════════════════════════════════ */
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.menu-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+  cursor: default;
+}
+.menu-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-card);
+}
+.menu-card__img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+}
+.menu-card__body {
+  padding: 1.4rem 1.4rem 1.6rem;
+}
+.menu-card__tag {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: .4rem;
+}
+.menu-card__title {
+  font-family: var(--ff-heading);
+  font-size: 1.2rem;
+  color: var(--navy);
+  line-height: 1.2;
+}
+.menu-card__desc {
+  font-size: .9rem;
+  color: var(--text-mid);
+  margin-top: .5rem;
+  line-height: 1.55;
+}
+
+@media (max-width: 900px) {
+  .menu-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 580px) {
+  .menu-grid { grid-template-columns: 1fr; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* REVIEWS                                                                  */
+/* ════════════════════════════════════════════════════════════════════════ */
+.reviews__header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.reviews__score {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+}
+.reviews__score .big-num {
+  font-family: var(--ff-heading);
+  font-size: 3.5rem;
+  color: var(--navy);
+  line-height: 1;
+}
+.stars {
+  display: flex;
+  gap: 2px;
+}
+.stars svg { width: 16px; height: 16px; fill: var(--gold); }
+.reviews__count { font-size: .85rem; color: var(--text-mid); margin-top: .2rem; }
+
+.reviews__grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.5rem;
+  margin-top: 2.5rem;
+}
+.review-card {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border);
+  position: relative;
+}
+.review-card::before {
+  content: '\201C';
+  position: absolute;
+  top: .8rem;
+  right: 1.2rem;
+  font-family: Georgia, serif;
+  font-size: 3.5rem;
+  line-height: 1;
+  color: var(--sand);
+}
+.review-card__stars { display: flex; gap: 2px; margin-bottom: .8rem; }
+.review-card__stars svg { width: 14px; height: 14px; fill: var(--gold); }
+.review-card__text {
+  font-size: .93rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+.review-card__footer {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin-top: 1.2rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--sand);
+}
+.review-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--navy);
+  color: var(--white);
+  font-family: var(--ff-heading);
+  font-size: .85rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.review-card__author { font-weight: 700; font-size: .88rem; color: var(--text); }
+.review-card__date { font-size: .78rem; color: var(--text-light); }
+
+@media (max-width: 640px) {
+  .reviews__grid { grid-template-columns: 1fr; }
+  .reviews__header { flex-direction: column; align-items: flex-start; }
+  .reviews__score .big-num { font-size: 2.6rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* INFO + HOURS                                                             */
+/* ════════════════════════════════════════════════════════════════════════ */
+.info__grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.info__block h3 {
+  font-family: var(--ff-heading);
+  font-size: 1.2rem;
+  color: var(--navy);
+  margin-bottom: 1.2rem;
+}
+.hours-table { width: 100%; border-collapse: collapse; table-layout: fixed; }
+.hours-table tr { border-bottom: 1px solid var(--sand); }
+.hours-table tr:last-child { border-bottom: none; }
+.hours-table td { padding: .55rem 0; font-size: .9rem; overflow: hidden; }
+.hours-table td:first-child { color: var(--text-mid); width: 46%; }
+.hours-table td:last-child { font-weight: 600; color: var(--text); }
+.hours-table .closed { color: var(--text-light); font-weight: 400; font-style: italic; }
+.hours-table tr.today td { color: var(--navy); font-weight: 700; }
+
+.info-list { display: flex; flex-direction: column; gap: .9rem; }
+.info-item {
+  display: flex;
+  align-items: flex-start;
+  gap: .9rem;
+}
+.info-icon {
+  width: 36px;
+  height: 36px;
+  background: var(--sand);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.info-icon svg { width: 16px; height: 16px; stroke: var(--navy); fill: none; stroke-width: 1.8; }
+.info-item__label { font-size: .72rem; color: var(--text-light); letter-spacing: .08em; text-transform: uppercase; margin-bottom: .2rem; }
+.info-item__val { font-size: .95rem; color: var(--text); font-weight: 500; }
+
+.services-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-top: 1.5rem;
+}
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: .35rem;
+  background: var(--navy);
+  color: var(--white);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  padding: .35rem .75rem;
+  border-radius: 2rem;
+}
+.chip svg { width: 12px; height: 12px; stroke: var(--gold-light); fill: none; stroke-width: 2; }
+
+@media (max-width: 720px) {
+  .info__grid { grid-template-columns: 1fr; gap: 2rem; }
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* MAP                                                                      */
+/* ════════════════════════════════════════════════════════════════════════ */
+#map {
+  height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-card);
+  margin-top: 1rem;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: var(--radius-lg) !important;
+  box-shadow: var(--shadow-card) !important;
+  font-family: var(--ff-body) !important;
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* CTA BAND                                                                 */
+/* ════════════════════════════════════════════════════════════════════════ */
+.cta-band {
+  background: var(--gold);
+  padding-block: 4rem;
+  text-align: center;
+  color: var(--white);
+}
+.cta-band h2 {
+  font-family: var(--ff-heading);
+  font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+}
+.cta-band p {
+  margin-top: .7rem;
+  font-size: 1.05rem;
+  opacity: .88;
+}
+.cta-band .btn--cta-white {
+  background: var(--white);
+  color: var(--gold);
+  margin-top: 1.8rem;
+  font-size: 1rem;
+  padding: .95rem 2.4rem;
+}
+.cta-band .btn--cta-white:hover {
+  background: var(--cream);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 24px rgba(0,0,0,.15);
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* FOOTER                                                                   */
+/* ════════════════════════════════════════════════════════════════════════ */
+.footer {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,.55);
+  padding-block: 2.5rem;
+  text-align: center;
+}
+.footer__logo {
+  font-family: var(--ff-heading);
+  font-size: 1.4rem;
+  color: var(--white);
+  margin-bottom: .4rem;
+}
+.footer__tagline {
+  font-style: italic;
+  font-size: .85rem;
+}
+.footer__links {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.2rem;
+  font-size: .8rem;
+}
+.footer__links a:hover { color: var(--gold-light); }
+.footer__copy {
+  font-size: .75rem;
+  margin-top: 1.5rem;
+  border-top: 1px solid rgba(255,255,255,.08);
+  padding-top: 1.2rem;
+}
+
+/* ════════════════════════════════════════════════════════════════════════ */
+/* WHATSAPP FAB                                                             */
+/* ════════════════════════════════════════════════════════════════════════ */
+.wa-fab {
+  position: fixed;
+  bottom: 1.8rem;
+  right: 1.8rem;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  background: #25D366;
+  color: var(--white);
+  font-family: var(--ff-body);
+  font-weight: 700;
+  font-size: .82rem;
+  padding: .75rem 1.4rem .75rem 1rem;
+  border-radius: 2rem;
+  box-shadow: 0 4px 24px rgba(37,211,102,.4);
+  cursor: pointer;
+  transition: transform var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+}
+.wa-fab:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 32px rgba(37,211,102,.5);
+}
+.wa-fab svg { width: 22px; height: 22px; fill: var(--white); flex-shrink: 0; }
+
+@media (max-width: 480px) {
+  .wa-fab .wa-text { display: none; }
+  .wa-fab { padding: .85rem; }
+}
+
+/* ─── Section heading helper ──────────────────────────────────────────── */
+.sec-header { text-align: center; margin-bottom: .5rem; }
+.sec-header .h2 { color: var(--navy); }
+.sec-header--white .h2 { color: var(--white); }
+.sec-header .subtitle {
+  font-size: 1.05rem;
+  color: var(--text-mid);
+  margin-top: .6rem;
+}
+.sec-header--white .subtitle { color: rgba(255,255,255,.65); }
+
+/* ─── Gallery strip ──────────────────────────────────────────────────── */
+.gallery-strip {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: .5rem;
+  margin-top: 1rem;
+}
+.gallery-strip img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: var(--radius);
+  transition: transform .3s ease, filter .3s ease;
+  cursor: zoom-in;
+}
+.gallery-strip img:hover { transform: scale(1.04); filter: brightness(1.05); }
+
+@media (max-width: 640px) {
+  .gallery-strip { grid-template-columns: repeat(3, 1fr); }
+}
+</style>
+</head>
+
+<body>
+
+<!-- ═══════════════════════════════════════ NAV ══════════════════════════ -->
+<nav class="nav" id="mainNav" aria-label="Main navigation">
+  <div class="container nav__inner">
+    <a href="#" class="nav__logo" aria-label="BIRI 5497 homepage">
+      Biri 5497
+      <span class="it">Cucina di Pesce — Venezia Mestre</span>
+      <span class="en">Seafood Restaurant — Venice Mestre</span>
+    </a>
+    <div class="nav__actions">
+      <div class="lang-toggle" role="group" aria-label="Language selector">
+        <button id="btnIT" class="active" onclick="setLang('it')" aria-pressed="true">IT</button>
+        <button id="btnEN" onclick="setLang('en')" aria-pressed="false">EN</button>
+      </div>
+      <a href="https://wa.me/393703182015" target="_blank" rel="noopener" class="btn btn--gold btn--nav" aria-label="Prenota via WhatsApp">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="nav__cta-text it">Prenota</span>
+        <span class="nav__cta-text en">Book Now</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════ HERO ══════════════════════════ -->
+<section class="hero" aria-label="Hero">
+  <div class="hero__bg" id="heroBg"></div>
+  <div class="hero__overlay" aria-hidden="true"></div>
+  <div class="container hero__content">
+    <div class="hero__badge">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+      <span class="it">4.7 · 893 recensioni su Google</span>
+      <span class="en">4.7 · 893 Google reviews</span>
+    </div>
+
+    <h1 class="h-display h1 it">Il Mare<br>nel Piatto</h1>
+    <h1 class="h-display h1 en">The Sea<br>on Your Plate</h1>
+
+    <p class="hero__tagline it">Cucina di pesce freschissima a Mestre, con il calore di una famiglia veneziana.</p>
+    <p class="hero__tagline en">Fresh seafood in Mestre, with the warmth of a Venetian family.</p>
+
+    <div class="hero__ctas">
+      <a href="https://wa.me/393703182015" target="_blank" rel="noopener" class="btn btn--gold btn--xl">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="it">Prenota via WhatsApp</span>
+        <span class="en">Book via WhatsApp</span>
+      </a>
+      <a href="#menu" class="btn btn--outline-white btn--xl">
+        <span class="it">Scopri il Menu</span>
+        <span class="en">See the Menu</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero__scroll" aria-hidden="true">
+    <svg viewBox="0 0 24 24" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5"/></svg>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════ ABOUT ═══════════════════════════ -->
+<section class="section" id="about" aria-labelledby="about-heading">
+  <div class="container">
+    <div class="about__grid">
+      <div class="about__img-wrap reveal-left">
+        <img
+          src="photos/photo_01.jpg"
+          alt="La sala del Ristorante BIRI 5497 allestita per una serata speciale"
+          class="about__img"
+          loading="lazy"
+        >
+        <div class="about__img-badge">
+          <span class="num">4.7</span>
+          <span class="lbl">
+            <span class="it">su Google</span>
+            <span class="en">on Google</span>
+          </span>
+        </div>
+      </div>
+      <div class="reveal-right">
+        <p class="eyebrow it">La nostra storia</p>
+        <p class="eyebrow en">Our Story</p>
+        <h2 class="h-display h2 mt-2" id="about-heading" style="color:var(--navy)">
+          <span class="it">Silvana &amp; Pino</span>
+          <span class="en">Silvana &amp; Pino</span>
+        </h2>
+        <div class="ornament">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 100 20A10 10 0 0012 2zm0 4a6 6 0 110 12A6 6 0 0112 6zm0 2a4 4 0 100 8 4 4 0 000-8z" opacity=".3"/><circle cx="12" cy="12" r="2"/></svg>
+        </div>
+        <div class="about__body">
+          <p class="it">Nel cuore di Mestre, il Ristorante BIRI 5497 è una promessa di mare: pesce fresco ogni giorno, selezionato con cura e portato in tavola con la passione di chi cucina per i propri cari.</p>
+          <p class="en">In the heart of Mestre, Ristorante BIRI 5497 is a promise of the sea: fresh fish every day, carefully selected and brought to the table with the passion of those who cook for their loved ones.</p>
+          <p class="it">Silvana e Pino sono &ldquo;sempre una garanzia&rdquo;, come dicono i clienti che tornano settimana dopo settimana. Qui non si viene solo a mangiare — si viene a casa.</p>
+          <p class="en">Silvana and Pino are "always a guarantee", as regulars who come back week after week say. You don't just come here to eat — you come home.</p>
+        </div>
+        <div class="about__stats">
+          <div class="about__stat">
+            <div class="val">893</div>
+            <div class="lbl it">Recensioni Google</div>
+            <div class="lbl en">Google Reviews</div>
+          </div>
+          <div class="about__stat">
+            <div class="val">€€</div>
+            <div class="lbl it">Ottimo rapporto qualità/prezzo</div>
+            <div class="lbl en">Great value for money</div>
+          </div>
+          <div class="about__stat">
+            <div class="val">5/5</div>
+            <div class="lbl it">Ultime recensioni</div>
+            <div class="lbl en">Latest reviews</div>
+          </div>
+        </div>
+        <div class="mt-8">
+          <a href="https://wa.me/393703182015" target="_blank" rel="noopener" class="btn btn--gold">
+            <span class="it">Prenota un tavolo</span>
+            <span class="en">Reserve a table</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ SIGNATURE ═══════════════════════════ -->
+<section class="section signature" id="signature" aria-labelledby="signature-heading">
+  <div class="container">
+    <div class="signature__inner">
+      <div class="reveal-left">
+        <img
+          src="photos/photo_03.jpg"
+          alt="Scogliera Bianca — il piatto signature del BIRI 5497"
+          class="signature__img"
+          loading="lazy"
+        >
+      </div>
+      <div class="reveal-right">
+        <div class="signature__label it">Piatto Signature</div>
+        <div class="signature__label en">Signature Dish</div>
+        <h2 class="signature__title" id="signature-heading">Scogliera<br>Bianca</h2>
+        <p class="signature__desc it">
+          La nostra creazione più amata: frutti di mare freschissimi in una salsa bianca delicata e avvolgente, servita con il pane di casa per raccogliere fino all'ultimo sapore. Un piatto che racconta il mare dell'Adriatico.
+        </p>
+        <p class="signature__desc en">
+          Our most beloved creation: ultra-fresh shellfish in a delicate, velvety white sauce, served with house bread to soak up every last drop of flavour. A dish that tells the story of the Adriatic Sea.
+        </p>
+        <div class="signature__quote">
+          <span class="it">&ldquo;Incredibilmente squisita la scogliera bianca, che ci ha fatto sciogliere!&rdquo;</span>
+          <span class="en">&ldquo;Incredibly exquisite — the scogliera bianca made us melt!&rdquo;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ MENU ════════════════════════════════ -->
+<section class="section section--sand" id="menu" aria-labelledby="menu-heading">
+  <div class="container">
+    <div class="sec-header reveal">
+      <p class="eyebrow it">I nostri piatti</p>
+      <p class="eyebrow en">Our Dishes</p>
+      <h2 class="h-display h2 mt-2" id="menu-heading" style="color:var(--navy)">
+        <span class="it">Sapori del Mare</span>
+        <span class="en">Flavours of the Sea</span>
+      </h2>
+      <p class="subtitle it">Ogni giorno pesce fresco, ogni piatto una storia.</p>
+      <p class="subtitle en">Fresh fish every day, every dish a story.</p>
+    </div>
+
+    <div class="menu-grid">
+      <!-- Card 1: Zuppa di pesce -->
+      <div class="menu-card reveal">
+        <img
+          src="photos/photo_05.jpg"
+          alt="Cozze gratinate — antipasto di mare"
+          class="menu-card__img"
+          loading="lazy"
+        >
+        <div class="menu-card__body">
+          <div class="menu-card__tag it">Primo piatto</div>
+          <div class="menu-card__tag en">First Course</div>
+          <h3 class="menu-card__title">Zuppa di Pesce</h3>
+          <p class="menu-card__desc it">La più buona della vita, come l'hanno definita i nostri ospiti. Brodetto ricco di pesce freschissimo e frutti di mare, con pane tostato.</p>
+          <p class="menu-card__desc en">Rated the best fish soup of their lives by our guests. A rich broth with ultra-fresh fish and shellfish, served with toasted bread.</p>
+        </div>
+      </div>
+
+      <!-- Card 2: Fritto misto -->
+      <div class="menu-card reveal">
+        <img
+          src="photos/photo_06.jpg"
+          alt="Fritto misto di pesce e calamari"
+          class="menu-card__img"
+          loading="lazy"
+        >
+        <div class="menu-card__body">
+          <div class="menu-card__tag it">Specialità</div>
+          <div class="menu-card__tag en">Speciality</div>
+          <h3 class="menu-card__title">Fritto Misto</h3>
+          <p class="menu-card__desc it">Calamari, gamberi e pesciolini in una panatura leggera e croccante. Servito nel cestino, caldo e fragrante come vuole la tradizione veneziana.</p>
+          <p class="menu-card__desc en">Squid, shrimp and small fish in a light, crispy batter. Served in a basket, hot and fragrant as Venetian tradition demands.</p>
+        </div>
+      </div>
+
+      <!-- Card 3: Birimisú (dessert) -->
+      <div class="menu-card reveal">
+        <img
+          src="photos/photo_02.jpg"
+          alt="Birimisú — il dolce della casa"
+          class="menu-card__img"
+          loading="lazy"
+        >
+        <div class="menu-card__body">
+          <div class="menu-card__tag it">Dolce della casa</div>
+          <div class="menu-card__tag en">House Dessert</div>
+          <h3 class="menu-card__title">Birimisú</h3>
+          <p class="menu-card__desc it">La nostra interpretazione del tiramisù, reinventata con amore da Silvana. Un dolce che conquista al primo assaggio — i clienti tornano solo per lui.</p>
+          <p class="menu-card__desc en">Our take on tiramisù, lovingly reinvented by Silvana. A dessert that wins you over at first bite — guests come back just for this.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Gallery strip -->
+    <div class="gallery-strip mt-8 reveal">
+      <img src="photos/photo_04.jpg" alt="Piatto misto di pesce grigliato" loading="lazy">
+      <img src="photos/photo_07.jpg" alt="Specialità di mare" loading="lazy">
+      <img src="photos/photo_08.jpg" alt="Cucina di pesce fresca" loading="lazy">
+      <img src="photos/photo_09.jpg" alt="Piatti del ristorante BIRI" loading="lazy">
+      <img src="photos/photo_10.jpg" alt="Dettagli della cucina BIRI" loading="lazy">
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════ REVIEWS ═══════════════════════════════ -->
+<section class="section" id="recensioni" aria-labelledby="reviews-heading">
+  <div class="container">
+    <div class="reviews__header reveal">
+      <div>
+        <p class="eyebrow it">Cosa dicono di noi</p>
+        <p class="eyebrow en">What Our Guests Say</p>
+        <h2 class="h-display h2 mt-2" id="reviews-heading" style="color:var(--navy)">
+          <span class="it">Recensioni</span>
+          <span class="en">Reviews</span>
+        </h2>
+      </div>
+      <div class="reviews__score">
+        <div class="big-num">4.7</div>
+        <div>
+          <div class="stars" aria-label="4.7 out of 5 stars">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          </div>
+          <div class="reviews__count it">su 893 recensioni Google</div>
+          <div class="reviews__count en">based on 893 Google reviews</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reviews__grid">
+      <!-- Review 1 — Benedetta -->
+      <div class="review-card reveal">
+        <div class="review-card__stars" aria-label="5 stelle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-card__text">
+          &ldquo;Io e i miei colleghi siamo andati a mangiare in questo ristorante di pesce e ne siamo rimasti davvero entusiasti. I piatti sono stati eccezionali e la qualità del cibo eccellente, così come il servizio, attento e cordiale. Siamo rimasti molto soddisfatti! Lo consiglio assolutamente!&rdquo;
+        </p>
+        <div class="review-card__footer">
+          <div class="review-avatar" aria-hidden="true">B</div>
+          <div>
+            <div class="review-card__author">Benedetta</div>
+            <div class="review-card__date it">3 mesi fa · Google</div>
+            <div class="review-card__date en">3 months ago · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 2 — Massimo Bertoldo -->
+      <div class="review-card reveal">
+        <div class="review-card__stars" aria-label="5 stelle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-card__text">
+          &ldquo;Ho mangiato la zuppa di pesce più buona della mia vita! E una lista di primi piatti pazzesca. Tutto il cibo dagli antipasti al dolce buonissimi con un sapore buonissimo, qualità ottima. Tutto fantastico. Tornerò per assaggiare tutti i primi!!!&rdquo;
+        </p>
+        <div class="review-card__footer">
+          <div class="review-avatar" aria-hidden="true">M</div>
+          <div>
+            <div class="review-card__author">Massimo Bertoldo</div>
+            <div class="review-card__date it">6 mesi fa · Google</div>
+            <div class="review-card__date en">6 months ago · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 3 — Giusy Fonzeca -->
+      <div class="review-card reveal">
+        <div class="review-card__stars" aria-label="5 stelle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-card__text">
+          &ldquo;Silvana e Pino sono sempre una garanzia! Piatti buonissimi e di altissima qualità. C&rsquo;è un&rsquo;ampia scelta tra antipasti, primi e secondi di pesce. Ottimi anche i dolci, soprattutto il birimisú. Consigliatissimo.&rdquo;
+        </p>
+        <div class="review-card__footer">
+          <div class="review-avatar" aria-hidden="true">G</div>
+          <div>
+            <div class="review-card__author">Giusy Fonzeca</div>
+            <div class="review-card__date it">2 mesi fa · Google</div>
+            <div class="review-card__date en">2 months ago · Google</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Review 4 — Sara Bevilacqua -->
+      <div class="review-card reveal">
+        <div class="review-card__stars" aria-label="5 stelle">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+        <p class="review-card__text">
+          &ldquo;Ambiente caloroso e familiare. Il personale professionale e ti fa stare a proprio agio. Il menù ha una vasta scelta e tutto è di ottima qualità.&rdquo;
+        </p>
+        <div class="review-card__footer">
+          <div class="review-avatar" aria-hidden="true">S</div>
+          <div>
+            <div class="review-card__author">Sara Bevilacqua</div>
+            <div class="review-card__date it">un mese fa · Google</div>
+            <div class="review-card__date en">1 month ago · Google</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ INFO + ORARI ═════════════════════════ -->
+<section class="section section--sand" id="info" aria-labelledby="info-heading">
+  <div class="container">
+    <div class="sec-header reveal">
+      <p class="eyebrow it">Dove siamo e quando</p>
+      <p class="eyebrow en">Find Us</p>
+      <h2 class="h-display h2 mt-2" id="info-heading" style="color:var(--navy)">
+        <span class="it">Informazioni</span>
+        <span class="en">Info &amp; Hours</span>
+      </h2>
+    </div>
+
+    <div class="info__grid mt-12">
+      <!-- Left: contacts + services -->
+      <div class="reveal-left">
+        <h3 class="it">Contatti</h3>
+        <h3 class="en">Contacts</h3>
+        <div class="info-list mt-4">
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z"/><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z"/></svg>
+            </div>
+            <div>
+              <div class="info-item__label it">Indirizzo</div>
+              <div class="info-item__label en">Address</div>
+              <div class="info-item__val">Via Castellana, 105<br>30174 Venezia Mestre VE</div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"/></svg>
+            </div>
+            <div>
+              <div class="info-item__label it">Telefono</div>
+              <div class="info-item__label en">Phone</div>
+              <div class="info-item__val"><a href="tel:+393703182015" style="color:var(--navy)">370 318 2015</a></div>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M8.625 9.75a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H8.25m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0H12m4.125 0a.375.375 0 11-.75 0 .375.375 0 01.75 0zm0 0h-.375m-13.5 3.01c0 1.6 1.123 2.994 2.707 3.227 1.087.16 2.185.283 3.293.369V21l4.184-4.183a1.14 1.14 0 01.778-.332 48.294 48.294 0 005.83-.498c1.585-.233 2.708-1.626 2.708-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg>
+            </div>
+            <div>
+              <div class="info-item__label">WhatsApp</div>
+              <div class="info-item__val">
+                <a href="https://wa.me/393703182015" target="_blank" rel="noopener" style="color:var(--navy)">
+                  <span class="it">Scrivi su WhatsApp</span>
+                  <span class="en">Message on WhatsApp</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="services-chips mt-8">
+          <div class="chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="it">Dine-in</span>
+            <span class="en">Dine-in</span>
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="it">Prenotazioni</span>
+            <span class="en">Reservations</span>
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="it">Vino &amp; Birra</span>
+            <span class="en">Wine &amp; Beer</span>
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="it">Accessibile</span>
+            <span class="en">Accessible</span>
+          </div>
+          <div class="chip">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+            <span class="it">Pranzo &amp; Cena</span>
+            <span class="en">Lunch &amp; Dinner</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right: hours -->
+      <div class="reveal-right">
+        <h3 class="it">Orari di apertura</h3>
+        <h3 class="en">Opening Hours</h3>
+        <table class="hours-table mt-4" aria-label="Orari apertura">
+          <tbody>
+            <tr>
+              <td class="it">Lunedì</td><td class="it en" lang="it">Monday</td>
+              <td class="closed it">Chiuso</td><td class="closed en">Closed</td>
+            </tr>
+            <tr>
+              <td class="it">Martedì</td><td class="en" lang="en">Tuesday</td>
+              <td class="closed it">Chiuso</td><td class="closed en">Closed</td>
+            </tr>
+            <tr>
+              <td class="it">Mercoledì</td><td class="en">Wednesday</td>
+              <td class="it">11:00–14:00, 19:00–23:30</td><td class="en">11:00–14:00, 19:00–23:30</td>
+            </tr>
+            <tr>
+              <td class="it">Giovedì</td><td class="en">Thursday</td>
+              <td class="it">11:00–14:00, 19:00–23:30</td><td class="en">11:00–14:00, 19:00–23:30</td>
+            </tr>
+            <tr>
+              <td class="it">Venerdì</td><td class="en">Friday</td>
+              <td class="it">11:00–14:00, 19:00–23:30</td><td class="en">11:00–14:00, 19:00–23:30</td>
+            </tr>
+            <tr>
+              <td class="it">Sabato</td><td class="en">Saturday</td>
+              <td class="it">11:00–14:00, 19:00–23:30</td><td class="en">11:00–14:00, 19:00–23:30</td>
+            </tr>
+            <tr>
+              <td class="it">Domenica</td><td class="en">Sunday</td>
+              <td class="it">11:00–14:00, 19:00–23:30</td><td class="en">11:00–14:00, 19:00–23:30</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ MAP ═════════════════════════════════ -->
+<section class="section" style="padding-block:3rem" aria-label="Mappa">
+  <div class="container">
+    <div id="map" role="region" aria-label="Mappa posizione ristorante"></div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ CTA BAND ════════════════════════════ -->
+<section class="cta-band" aria-labelledby="cta-heading">
+  <div class="container">
+    <div class="reveal">
+      <h2 id="cta-heading">
+        <span class="it">Riserva il tuo tavolo</span>
+        <span class="en">Reserve your table</span>
+      </h2>
+      <p class="it">Mercoledì–Domenica, pranzo e cena. Contattaci su WhatsApp.</p>
+      <p class="en">Wednesday–Sunday, lunch and dinner. Contact us on WhatsApp.</p>
+      <a href="https://wa.me/393703182015" target="_blank" rel="noopener" class="btn btn--cta-white btn--xl">
+        <svg viewBox="0 0 24 24" fill="currentColor" width="20" height="20" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span class="it">Prenota su WhatsApp — 370 318 2015</span>
+        <span class="en">Book on WhatsApp — 370 318 2015</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════ FOOTER ══════════════════════════════ -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer__logo">Biri 5497</div>
+    <div class="footer__tagline it">Cucina di Pesce · Venezia Mestre</div>
+    <div class="footer__tagline en">Seafood Restaurant · Venice Mestre</div>
+    <nav class="footer__links" aria-label="Footer navigation">
+      <a href="#about" class="it">Chi siamo</a>
+      <a href="#about" class="en">About</a>
+      <a href="#menu" class="it">Menu</a>
+      <a href="#menu" class="en">Menu</a>
+      <a href="#recensioni" class="it">Recensioni</a>
+      <a href="#recensioni" class="en">Reviews</a>
+      <a href="#info" class="it">Orari</a>
+      <a href="#info" class="en">Hours</a>
+      <a href="https://wa.me/393703182015" target="_blank" rel="noopener">WhatsApp</a>
+    </nav>
+    <div class="footer__copy">
+      <span class="it">Via Castellana, 105 · 30174 Venezia Mestre · Tel. 370 318 2015</span>
+      <span class="en">Via Castellana, 105 · 30174 Venice Mestre · Tel. 370 318 2015</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════ WhatsApp FAB ════════════════════════ -->
+<a href="https://wa.me/393703182015"
+   target="_blank"
+   rel="noopener"
+   class="wa-fab"
+   aria-label="Contattaci su WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+  <span class="wa-text it">Prenota</span>
+  <span class="wa-text en">Book Now</span>
+</a>
+
+<!-- ════════════════════════════════ LEAFLET ══════════════════════════════ -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+
+<script>
+/* ─── Language Switcher ──────────────────────────────────────────────── */
+function setLang(lang) {
+  document.body.classList.toggle('lang-en', lang === 'en');
+  document.getElementById('btnIT').classList.toggle('active', lang === 'it');
+  document.getElementById('btnEN').classList.toggle('active', lang === 'en');
+  document.getElementById('btnIT').setAttribute('aria-pressed', lang === 'it');
+  document.getElementById('btnEN').setAttribute('aria-pressed', lang === 'en');
+  document.documentElement.lang = lang;
+  localStorage.setItem('biri-lang', lang);
+}
+
+// Restore saved language preference
+(function() {
+  const saved = localStorage.getItem('biri-lang');
+  if (saved === 'en') setLang('en');
+})();
+
+/* ─── Nav scroll effect ───────────────────────────────────────────────── */
+const nav = document.getElementById('mainNav');
+window.addEventListener('scroll', function() {
+  nav.classList.toggle('scrolled', window.scrollY > 60);
+}, { passive: true });
+
+/* ─── Hero image fade-in ─────────────────────────────────────────────── */
+window.addEventListener('load', function() {
+  document.getElementById('heroBg').classList.add('loaded');
+});
+
+/* ─── Scroll Reveal (IntersectionObserver) ──────────────────────────── */
+(function() {
+  if (!('IntersectionObserver' in window)) return; // stay visible (no js-ready)
+  document.body.classList.add('js-ready');
+  const obs = new IntersectionObserver(function(entries) {
+    entries.forEach(function(entry) {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.10, rootMargin: '0px 0px -30px 0px' });
+  document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) {
+    obs.observe(el);
+  });
+})();
+
+/* ─── Leaflet Map ────────────────────────────────────────────────────── */
+(function() {
+  var map = L.map('map', {
+    center: [45.5138815, 12.2090544],
+    zoom: 15,
+    scrollWheelZoom: false,
+    zoomControl: true,
+  });
+
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxZoom: 19,
+  }).addTo(map);
+
+  // Custom marker
+  var icon = L.divIcon({
+    className: '',
+    html: '<div style="'
+      + 'width:44px;height:44px;'
+      + 'background:#1C3D4F;'
+      + 'border:3px solid #C08B28;'
+      + 'border-radius:50% 50% 50% 0;'
+      + 'transform:rotate(-45deg);'
+      + 'box-shadow:0 4px 16px rgba(0,0,0,.35);'
+      + '"></div>',
+    iconSize: [44, 44],
+    iconAnchor: [22, 44],
+    popupAnchor: [0, -48],
+  });
+
+  L.marker([45.5138815, 12.2090544], { icon: icon })
+    .addTo(map)
+    .bindPopup(
+      '<strong style="font-family:\'Playfair Display SC\',serif;font-size:1rem;color:#1C3D4F">Ristorante BIRI 5497</strong>'
+      + '<br><span style="font-size:.85rem;color:#4A6070">Via Castellana, 105 · Venezia Mestre</span>'
+      + '<br><a href="https://www.google.com/maps/place/?cid=17335041112931855678" target="_blank" rel="noopener" '
+      + 'style="display:inline-block;margin-top:.5rem;font-size:.8rem;font-weight:700;color:#C08B28">'
+      + 'Apri in Google Maps &rarr;</a>',
+      { maxWidth: 260 }
+    )
+    .openPopup();
+})();
+
+/* ─── Today highlight in hours table ────────────────────────────────── */
+(function() {
+  var days = ['domenica','lunedi','martedi','mercoledi','giovedi','venerdi','sabato'];
+  var today = days[new Date().getDay()];
+  document.querySelectorAll('.hours-table tr').forEach(function(row) {
+    var cell = row.querySelector('td');
+    if (cell && cell.textContent.trim().toLowerCase().replace('ì','i') === today) {
+      row.classList.add('today');
+    }
+  });
+})();
+</script>
+</body>
+</html>
