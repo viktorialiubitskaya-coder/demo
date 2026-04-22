@@ -387,8 +387,8 @@ section { padding: 100px 48px; }
   text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.9);
 }
 .gallery-placeholder-sub {
-  font-family: var(--heading); font-size: 1.1rem; color: rgba(255,255,255,0.75);
-  font-style: italic;
+  font-family: var(--heading); font-size: 1.1rem; color: rgba(255,255,255,0.82);
+  font-style: italic; margin-top: 4px;
 }
 .gallery-item.tall { grid-row: span 2; }
 .gallery-item.wide { grid-column: span 2; }
@@ -875,55 +875,51 @@ footer {
       <button class="filter-btn t-it">Trattamenti</button><button class="filter-btn t-en">Treatments</button>
     </div>
     <div class="gallery-bento">
+      <!-- confermata: appare in ricerca "hairdresser" Unsplash -->
       <div class="gallery-item tall reveal">
-        <div class="gallery-placeholder">
-          <div class="gallery-placeholder-icon">✂️</div>
-          <div class="gallery-placeholder-label">Balayage</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
+        <img src="https://images.unsplash.com/photo-1634449571010-02389ed0f9b0?w=600&auto=format&fit=crop&q=80" alt="Parrucchiere al lavoro — Backstage Venezia">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span>Balayage</span></div>
         </div>
       </div>
+      <!-- confermata: appare in ricerca "hairdresser" Unsplash -->
       <div class="gallery-item reveal reveal-delay-1">
-        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#E8C99A 100%)">
-          <div class="gallery-placeholder-icon">🎨</div>
-          <div class="gallery-placeholder-label t-it">Colore</div>
-          <div class="gallery-placeholder-label t-en">Colour</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
+        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&auto=format&fit=crop&q=80" alt="Taglio capelli donna — salone Mestre" style="height:220px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span class="t-it">Taglio Donna</span><span class="t-en">Women's Cut</span></div>
         </div>
       </div>
+      <!-- confermata: appare in ricerche "hairdresser" e "hair-salon" Unsplash -->
       <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#B87090 0%,#D4909A 100%)">
+        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&auto=format&fit=crop&q=80" alt="Colore e styling capelli — Backstage Mestre" style="height:220px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span class="t-it">Colore</span><span class="t-en">Colour</span></div>
+        </div>
+      </div>
+      <!-- confermata: appare in ricerca "hair-salon" Unsplash -->
+      <div class="gallery-item wide reveal reveal-delay-1">
+        <img src="https://images.unsplash.com/photo-1595475884562-073c30d45670?w=800&auto=format&fit=crop&q=80" alt="Salone di parrucchieri — Venezia" style="height:280px">
+        <div class="gallery-overlay">
+          <div class="gallery-overlay-text"><span>Styling</span></div>
+        </div>
+      </div>
+      <!-- placeholder: foto originale non verificata -->
+      <div class="gallery-item reveal reveal-delay-2">
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#D4909A 0%,#C9A96E 100%);min-height:280px">
           <div class="gallery-placeholder-icon">💎</div>
           <div class="gallery-placeholder-label t-it">Extension</div>
           <div class="gallery-placeholder-label t-en">Extensions</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
+          <div class="gallery-placeholder-sub t-it">I nostri lavori</div>
+          <div class="gallery-placeholder-sub t-en">Our work</div>
         </div>
       </div>
-      <div class="gallery-item wide reveal reveal-delay-1">
-        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#D4909A 100%)">
-          <div class="gallery-placeholder-icon">💆</div>
-          <div class="gallery-placeholder-label">Styling</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
-        </div>
-      </div>
-      <div class="gallery-item reveal reveal-delay-2">
-        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#D4909A 0%,#C9A96E 100%)">
-          <div class="gallery-placeholder-icon">✂️</div>
-          <div class="gallery-placeholder-label t-it">Taglio Donna</div>
-          <div class="gallery-placeholder-label t-en">Women's Cut</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
-        </div>
-      </div>
+      <!-- placeholder: foto originale non verificata -->
       <div class="gallery-item reveal reveal-delay-3">
-        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#E8C99A 0%,#B87090 100%)">
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#B87090 100%);min-height:280px">
           <div class="gallery-placeholder-icon">🌸</div>
           <div class="gallery-placeholder-label">Shatush</div>
-          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
-          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
+          <div class="gallery-placeholder-sub t-it">I nostri lavori</div>
+          <div class="gallery-placeholder-sub t-en">Our work</div>
         </div>
       </div>
     </div>
