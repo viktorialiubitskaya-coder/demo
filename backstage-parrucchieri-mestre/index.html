@@ -381,7 +381,8 @@ section { padding: 100px 48px; }
 }
 .gallery-item.tall .gallery-placeholder { min-height: 460px; }
 .gallery-item.wide .gallery-placeholder { min-height: 280px; }
-.gallery-placeholder-icon { font-size: 2.4rem; opacity: 0.85; }
+.gallery-placeholder-icon { font-size: 2.4rem; opacity: 0.85; color: rgba(255,255,255,0.9); line-height: 1; }
+.gallery-placeholder-icon svg { display: block; }
 .gallery-placeholder-label {
   font-family: var(--body); font-size: 0.65rem; letter-spacing: 0.28em;
   text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.9);
@@ -903,21 +904,31 @@ footer {
           <div class="gallery-overlay-text"><span>Styling</span></div>
         </div>
       </div>
-      <!-- placeholder: foto originale non verificata -->
+      <!-- placeholder: Extension -->
       <div class="gallery-item reveal reveal-delay-2">
         <div class="gallery-placeholder" style="background:linear-gradient(135deg,#D4909A 0%,#C9A96E 100%);min-height:280px">
-          <div class="gallery-placeholder-icon">💎</div>
+          <div class="gallery-placeholder-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><line x1="20" y1="4" x2="8.12" y2="15.88"/><line x1="14.47" y1="14.48" x2="20" y2="20"/><line x1="8.12" y1="8.12" x2="12" y2="12"/></svg></div>
           <div class="gallery-placeholder-label t-it">Extension</div>
           <div class="gallery-placeholder-label t-en">Extensions</div>
           <div class="gallery-placeholder-sub t-it">I nostri lavori</div>
           <div class="gallery-placeholder-sub t-en">Our work</div>
         </div>
       </div>
-      <!-- placeholder: foto originale non verificata -->
+      <!-- placeholder: Shatush -->
       <div class="gallery-item reveal reveal-delay-3">
         <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#B87090 100%);min-height:280px">
-          <div class="gallery-placeholder-icon">🌸</div>
+          <div class="gallery-placeholder-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 22v-5c0-1.1.9-2 2-2h3v-3l4-4 3 3-4 4h-3v3c0 1.1-.9 2-2 2H3z"/><path d="M15 3l6 6-9 9-6-6 9-9z"/></svg></div>
           <div class="gallery-placeholder-label">Shatush</div>
+          <div class="gallery-placeholder-sub t-it">I nostri lavori</div>
+          <div class="gallery-placeholder-sub t-en">Our work</div>
+        </div>
+      </div>
+      <!-- placeholder: terza colonna tall — Colore & Stile -->
+      <div class="gallery-item tall reveal reveal-delay-4">
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#8B6914 100%)">
+          <div class="gallery-placeholder-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polygon points="12,2 15.09,8.26 22,9.27 17,14.14 18.18,21.02 12,17.77 5.82,21.02 7,14.14 2,9.27 8.91,8.26 12,2"/></svg></div>
+          <div class="gallery-placeholder-label t-it">Colore & Stile</div>
+          <div class="gallery-placeholder-label t-en">Colour & Style</div>
           <div class="gallery-placeholder-sub t-it">I nostri lavori</div>
           <div class="gallery-placeholder-sub t-en">Our work</div>
         </div>
