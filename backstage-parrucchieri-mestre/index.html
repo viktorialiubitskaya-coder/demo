@@ -139,7 +139,7 @@ body.lang-en span.t-it, body.lang-en li.t-it { display: none !important; }
 .hero-bg::after {
   content: '';
   position: absolute; inset: 0;
-  background: linear-gradient(160deg, rgba(44,24,16,0.62) 0%, rgba(201,169,110,0.18) 60%, rgba(44,24,16,0.55) 100%);
+  background: linear-gradient(to bottom, rgba(0,0,0,0.45) 0%, rgba(0,0,0,0.6) 100%);
 }
 .hero-content {
   position: relative; z-index: 1;
@@ -154,18 +154,21 @@ body.lang-en span.t-it, body.lang-en li.t-it { display: none !important; }
   font-family: var(--body); font-size: 0.68rem; letter-spacing: 0.4em;
   text-transform: uppercase; color: var(--gold-light); font-weight: 300;
   margin-bottom: 18px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 .hero h1 {
   font-size: clamp(3.2rem, 8vw, 7rem);
   font-weight: 300; color: #fff;
   letter-spacing: 0.06em; margin: 0 0 8px;
   text-transform: uppercase;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 .hero h1 em { font-style: italic; color: var(--gold-light); font-weight: 300; }
 .hero-sub {
   font-family: var(--body); font-size: 0.8rem; letter-spacing: 0.28em;
   text-transform: uppercase; color: rgba(255,255,255,0.72); font-weight: 300;
   margin-bottom: 28px;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.5);
 }
 .hero-rating {
   display: flex; align-items: center; justify-content: center; gap: 10px;
@@ -371,6 +374,22 @@ section { padding: 100px 48px; }
   transition: transform 0.5s ease;
 }
 .gallery-item:hover img { transform: scale(1.05); }
+.gallery-placeholder {
+  width: 100%; min-height: 220px; display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 12px;
+  background: linear-gradient(135deg, var(--rose) 0%, var(--gold) 100%);
+}
+.gallery-item.tall .gallery-placeholder { min-height: 460px; }
+.gallery-item.wide .gallery-placeholder { min-height: 280px; }
+.gallery-placeholder-icon { font-size: 2.4rem; opacity: 0.85; }
+.gallery-placeholder-label {
+  font-family: var(--body); font-size: 0.65rem; letter-spacing: 0.28em;
+  text-transform: uppercase; font-weight: 600; color: rgba(255,255,255,0.9);
+}
+.gallery-placeholder-sub {
+  font-family: var(--heading); font-size: 1.1rem; color: rgba(255,255,255,0.75);
+  font-style: italic;
+}
 .gallery-item.tall { grid-row: span 2; }
 .gallery-item.wide { grid-column: span 2; }
 .gallery-overlay {
@@ -857,39 +876,54 @@ footer {
     </div>
     <div class="gallery-bento">
       <div class="gallery-item tall reveal">
-        <img src="https://images.unsplash.com/photo-1527799820374-dcf8d9d4a388?w=600&auto=format&fit=crop&q=80" alt="Balayage Venezia">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span>Balayage</span><strong>Raffaele</strong></div>
+        <div class="gallery-placeholder">
+          <div class="gallery-placeholder-icon">✂️</div>
+          <div class="gallery-placeholder-label">Balayage</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?w=600&auto=format&fit=crop&q=80" alt="Colore capelli Mestre" style="height:220px">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span class="t-it">Colore</span><span class="t-en">Colour</span></div>
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#E8C99A 100%)">
+          <div class="gallery-placeholder-icon">🎨</div>
+          <div class="gallery-placeholder-label t-it">Colore</div>
+          <div class="gallery-placeholder-label t-en">Colour</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?w=600&auto=format&fit=crop&q=80" alt="Extension capelli" style="height:220px">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span class="t-it">Extension</span><span class="t-en">Extensions</span></div>
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#B87090 0%,#D4909A 100%)">
+          <div class="gallery-placeholder-icon">💎</div>
+          <div class="gallery-placeholder-label t-it">Extension</div>
+          <div class="gallery-placeholder-label t-en">Extensions</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
       <div class="gallery-item wide reveal reveal-delay-1">
-        <img src="https://images.unsplash.com/photo-1519699047748-de8e457a634e?w=800&auto=format&fit=crop&q=80" alt="Styling Venezia" style="height:280px">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span>Styling</span></div>
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#C9A96E 0%,#D4909A 100%)">
+          <div class="gallery-placeholder-icon">💆</div>
+          <div class="gallery-placeholder-label">Styling</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-2">
-        <img src="https://images.unsplash.com/photo-1562322140-8baeececf3df?w=600&auto=format&fit=crop&q=80" alt="Taglio donna Mestre" style="height:280px">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span class="t-it">Taglio Donna</span><span class="t-en">Women's Cut</span><strong>Raffaele</strong></div>
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#D4909A 0%,#C9A96E 100%)">
+          <div class="gallery-placeholder-icon">✂️</div>
+          <div class="gallery-placeholder-label t-it">Taglio Donna</div>
+          <div class="gallery-placeholder-label t-en">Women's Cut</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
       <div class="gallery-item reveal reveal-delay-3">
-        <img src="https://images.unsplash.com/photo-1614267157481-ca2b81ac6fcc?w=600&auto=format&fit=crop&q=80" alt="Shatush Mestre" style="height:280px">
-        <div class="gallery-overlay">
-          <div class="gallery-overlay-text"><span>Shatush</span></div>
+        <div class="gallery-placeholder" style="background:linear-gradient(135deg,#E8C99A 0%,#B87090 100%)">
+          <div class="gallery-placeholder-icon">🌸</div>
+          <div class="gallery-placeholder-label">Shatush</div>
+          <div class="gallery-placeholder-sub t-it">Portfolio in arrivo</div>
+          <div class="gallery-placeholder-sub t-en">Portfolio coming soon</div>
         </div>
       </div>
     </div>
